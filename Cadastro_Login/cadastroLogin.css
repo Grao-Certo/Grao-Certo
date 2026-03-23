@@ -1,0 +1,62 @@
+body {
+    background-color: navy;
+    color: white;
+
+}
+
+button {
+    background-color: green;
+    border-radius: 8px;
+    height: 35px;
+    width: 170px;
+    font-weight: bold;
+    color: white;
+}
+
+input {
+    border-radius: 10px;
+    border: solid 2px blue;
+    height: 25px;
+}
+
+.parteEsquerda {
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    border: solid;
+}
+
+.parteDireita {
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    border: solid;
+    left: 50%;
+}
+
+
+
+.ball {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 10px 10px 10px;
+    
+}
+
+#icon1 {
+    margin: 0 15px 5px 0;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 40px;
+}
+#icon2 {
+    margin: 0 0 5px 15px;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 40px;
+}
