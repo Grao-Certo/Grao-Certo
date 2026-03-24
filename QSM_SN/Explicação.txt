@@ -1,0 +1,4 @@
+O nome dessa pasta representa a abreviação do nome das duas paginas que serão desenvolvidas nesta pasta, sendo elas:
+
+QSN -> quem somos nós : Página de contatos
+SN -> Sobre nós: página de descrição sobre a empresa 
