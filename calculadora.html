@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1>Calculadora Financeira</h1>
+    <p>
+        Insira os dados para estimar em quanto tempo a solução começa a gerar lucros. <br>
+        <b>Atenção: Insira mais de 1 silo apenas se estes possuirem a mesma capacidade, caso contrário realize o cálculo separadamente.</b>
+    </p>
+
+    Insira a quantidade de silos: <input type="text" id="ipt_qtd_silos"><br><br>
+    Insira a capacidade do(s) silo(s) (em toneladas): <input type="text" id="ipt_cap_silos"><br><br>
+    Insira o preço médio do milho (R$ por tonelada): <input type="text" id="ipt_preco_milho"><br><br>
+    Insira a estimativa do tempo de inspeção manual por silo (horas por mês): <input type="text" id="ipt_tempo_inspecao"><br><br>
+    Custo da solução (por silo): <b>R$ 3000</b><br><br>
+
+    <button onclick="calcularLucros()">Calcular Lucros</button>
+
+
+    <div id="id_mensagem"></div>
+</body>
+</html>
+<script>
+    /*
+    Considerações
+
+    Salário médio operador de silo: 20R$ / hora
+    Redução do tempo de inspeção: 70% (Considerando apenas verificações esporádicas)
+    */
+    function calcularLucros(){
+        let qtdSilos = Number(ipt_qtd_silos.value)
+        let capacidadeSilo = Number(ipt_cap_silos.value)
+        let precoMilho = Number(ipt_preco_milho.value)
+        let tempoInspecao = Number(ipt_tempo_inspecao.value)
+
+        // Premissas
+        let custoSolucao = 3000
+        let perdasEvitadasKgPorTonAno = 100 // Perdas totais estimadas em 15%, estimamos melhorar 10%: 10% * 1ton = 100kg
+        let reducaoPercentualInspecao = 0.7
+        let custoHora = 20
+
+        // Custo total
+        let custoTotal = custoSolucao * qtdSilos
+
+        // Economia por reduzir a inspeção manual
+        let economiaInspecaoMensal = qtdSilos * tempoInspecao * reducaoPercentualInspecao * custoHora// Economia mensal 
+        let economiaInspecaoAnual = economiaInspecaoMensal * 12 // Economia anual
+
+        // Economia por perdas evitadas
+        let perdasEvitadasAno = qtdSilos * capacidadeSilo * perdasEvitadasKgPorTonAno // perdas evitadas por ano (kg)
+        let perdasEvitadasTonAno = perdasEvitadasAno / 1000 // converter kg pra toneladas
+        let economiaPerdasAnual = perdasEvitadasTonAno * precoMilho // economia anual por perdas evitadas
+
+        // Economia total
+        let economiaTotalAnual = economiaInspecaoAnual + economiaPerdasAnual;
+        let economiaTotalMensal = (economiaTotalAnual / 12).toFixed();
+
+        // Payback
+        let paybackMeses = 0
+        if (economiaTotalMensal > 0){
+            paybackMeses = (custoTotal / economiaTotalMensal).toFixed()
+        } else {
+            null
+        }
+
+        // Lucro
+        let lucro12Meses = economiaTotalAnual - custoTotal;
+
+        id_mensagem.innerHTML = `
+        <br><b>Resultado</b><br>
+        <b>Custo total:</b> R$${custoTotal}<br>
+        <b>Economia anual (inspeção):</b> R$${economiaInspecaoAnual}<br>
+        <b>Economia anual (perdas evitadas):</b> R$${economiaPerdasAnual}<br>
+        <b>Economia anual total:</b> R$${economiaTotalAnual} (R$${economiaTotalMensal} / mês)<br>
+        <b>Payback estimado:</b> ${paybackMeses + " meses"}<br>
+        <b>Lucro líquido em 12 meses:</b> R$${lucro12Meses}`
+    };
+</script>
