@@ -1,22 +1,71 @@
 body {
     background-color: navy;
     color: white;
-
+    font-size: 25px;
 }
 
 button {
-    background-color: green;
-    border-radius: 8px;
-    height: 35px;
-    width: 170px;
+    background: linear-gradient(90deg, #3498db, #2ecc71, navy);
+    background-size: 180%;
+    background-position: left; /* transição de cor*/
+
+    border-radius: 12px;
+    height: 50px;
+    width: 250px;
     font-weight: bold;
     color: white;
+    padding: 0 20px 0 20px;
+    font-size: 20px;
+    border: none;
+    transition: 0.3s;
+} 
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px 0 #2f8fef;
+    background-position: right; /* transição de cor, puxando a cor da direita no linear-gradient */
+    width: 270px;
 }
 
+/**/
 input {
-    border-radius: 10px;
-    border: solid 2px blue;
-    height: 25px;
+    border: solid transparent;
+    border-bottom: solid blue;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    height: 70px;
+    width: 450px;
+    padding: 0 0 0 16px;
+    margin: 0px 50px 10px 50px;
+    font-size: 23px;
+    transition: 0.4s;
+    
+} 
+
+input:hover {
+    transform: translateY(-5px);
+    width: 500px;
+    margin-top: translateY(-5px); 
+    margin-left: 25px;
+    margin-right: 25px;
+    border: solid 2px rgb(157, 157, 173);
+    border-radius: 15px;
+}
+
+hr {
+    width: 450px;
+}
+
+img {
+    margin-left: 40px;
+    width: 70%;
+}
+
+.container {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
 .parteEsquerda {
@@ -24,7 +73,12 @@ input {
     text-align: center;
     height: 100%;
     width: 50%;
-    border: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: -2%;
+    left: 2%;
 }
 
 .parteDireita {
@@ -32,31 +86,56 @@ input {
     text-align: center;
     height: 100%;
     width: 50%;
-    border: solid;
-    left: 50%;
-}
-
-
-
-.ball {
+    left: 45%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    margin: 0 10px 10px 10px;
-    
+    flex-direction: column;
+    align-items: center;
+}
+.formulario {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    z-index: 1; /* Controla a ordem das camadas de acontecimento*/
+}
+/* Tentativa borda animada */
+.formulario::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(270deg, #3498db, #2ecc71, navy);
+    background-size: 700%;
+    border-radius: 25px;
+    z-index: -1;
+
+    animation: animarBorda 5s ease infinite;
+}
+/* parte interna */
+.formulario::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: rgb(255, 255, 255);
+    border-radius: 25px;
+    z-index: -1;
 }
 
-#icon1 {
-    margin: 0 15px 5px 0;
-    height: 50px;
-    width: 50px;
-    background-color: white;
-    border-radius: 40px;
+/* Atribuindo animação */
+@keyframes animarBorda {
+    0% {
+        background-position: 0%;
+    }
+    50% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0%;
+    }
 }
-#icon2 {
-    margin: 0 0 5px 15px;
-    height: 50px;
-    width: 50px;
-    background-color: white;
-    border-radius: 40px;
+
+.formulario button {
+    margin: 30px 0 30px 0;
+}
+.formulario h1 {
+    color: black;
 }
