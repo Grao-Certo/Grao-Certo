@@ -3,13 +3,13 @@
     src: url(fonts/codec-pro.regular.ttf);
 }
 
-*{
+.index{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
-body{
+.index{
     background-color: var(--cor-fundo);
 }
 .imagem_fundo{
@@ -146,6 +146,155 @@ body{
     height: 400px;
 }
 
+
+/* TELA DE LOGIM E CADASTRO */
+.bodyLoginCad  {
+    background: linear-gradient(270deg, #4bec9c, #24c2ba, rgb(4, 33, 120));
+    color: white;
+    font-size: 25px;
+}
+
+.bodyLoginCad button {
+    background: linear-gradient(90deg, #3498db, #2ecc71, navy);
+    background-size: 180%;
+    background-position: left; /* transição de cor*/
+
+    border-radius: 12px;
+    height: 50px;
+    width: 250px;
+    font-weight: bold;
+    color: white;
+    padding: 0 20px 0 20px;
+    font-size: 20px;
+    border: none;
+    transition: 0.3s;
+} 
+
+.bodyLoginCad button:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 0 15px 0 #041525;
+    background-position: right; /* transição de cor, puxando a cor da direita no linear-gradient */
+    width: 270px;
+}
+
+/**/
+.bodyLoginCad input {
+    border: solid transparent;
+    border-bottom: solid blue;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    height: 70px;
+    width: 450px;
+    padding: 0 0 0 16px;
+    margin: 0px 50px 10px 50px;
+    font-size: 23px;
+    transition: 0.4s;
+} 
+
+.bodyLoginCad input:hover {
+    transform: translateY(-5px);
+    width: 500px;
+    margin-top: translateY(-5px); 
+    margin-left: 25px;
+    margin-right: 25px;
+    border: solid 2px rgb(157, 157, 173);
+    border-radius: 15px;
+}
+
+.bodyLoginCad hr {
+    width: 450px;
+    margin: 5px;
+}
+
+.bodyLoginCad img {
+    margin-left: 40px;
+    width: 75%;
+}
+
+.parteEsquerda h1 {
+    margin-top: 5px;
+}
+
+.container {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.parteEsquerda {
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: -2%;
+}
+
+.parteDireita {
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    left: 48%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.formulario {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    z-index: 1; /*Define a ordem dos acontecimentos*/
+}
+/* Tentativa borda animada */
+.formulario::before {
+    content: "";
+    position: absolute;
+    inset: -10px; /* altera a distância do elemento filho em relação ao pai, 
+    se < 0 aumenta o tamanho da borda fora da div formulario*/
+    background: linear-gradient(270deg, #b4eae5, #2ecc71, rgb(4, 33, 120));
+    background-size: 700%;
+    border-radius: 25px;
+    z-index: -1;/*Define a ordem dos acontecimentos*/
+
+    animation: animarBorda 5s ease infinite;
+}
+/* parte interna */
+.formulario::after {
+    content: "";
+    position: absolute;
+    inset: 3px; /* altera a distância do elemento filho em relação ao pai, 
+    se > 0 consome o espaço da div formulário*/
+    background: rgb(255, 255, 255);
+    border-radius: 25px;
+    z-index: -1;/*Define a ordem dos acontecimentos*/ 
+}
+
+/* Atribuindo animação */
+@keyframes animarBorda {
+    0% {
+        background-position: 0%;
+    }
+    50% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0%;
+    }
+}
+
+.formulario button {
+    margin: 30px 0 30px 0;
+}
+.formulario h1 {
+    color: black;
+}
+/* Variáveis de cores do projeto*/
 :root{
     --cor-verde-escuro: #042e09;
     --cor-fundo:#275673;
