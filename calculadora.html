@@ -1,29 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
+    <title>Simulador Financeiro</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Calculadora Financeira</h1>
-    <p>
-        Insira os dados para estimar em quanto tempo a solução começa a gerar lucros. <br>
-        <b>Atenção: Insira mais de 1 silo apenas se estes possuirem a mesma capacidade, caso contrário realize o cálculo separadamente.</b>
-    </p>
 
-    Insira a quantidade de silos: <input type="text" id="ipt_qtd_silos"><br><br>
-    Insira a capacidade do(s) silo(s) (em toneladas): <input type="text" id="ipt_cap_silos"><br><br>
-    Insira o preço médio do milho (R$ por tonelada): <input type="text" id="ipt_preco_milho"><br><br>
-    Insira a estimativa do tempo de inspeção manual por silo (horas por mês): <input type="text" id="ipt_tempo_inspecao"><br><br>
-    Custo da solução (por silo): <b>R$ 3000</b><br><br>
+    <h3>BENEFÍCIOS DO NOSSO SERVIÇO</h3>
+    <h1>SIMULADOR FINANCEIRO</h1>
+    <p>Descubra em quanto tempo sua operação começa a gerar lucro</p>
 
-    <button onclick="calcularLucros()">Calcular Lucros</button>
+    <div class="container">
 
+        <div class="input-group">
+            <label>QUANTIDADE DE SILOS</label>
+            <input type="number" id="ipt_qtd_silos">
+        </div><br>
 
-    <div id="id_mensagem"></div>
+        <div class="input-group">
+            <label>CAPACIDADE DO(S) SILO(S) (EM TONELADAS)</label>
+            <input type="number" id="ipt_cap_silos">
+        </div><br>
+
+        <div class="input-group">
+            <label>PREÇO MÉDIO DO MILHO (R$ POR TONELADA)</label>
+            <input type="number" id="ipt_preco_milho">
+        </div><br>
+
+        <div class="input-group">
+            <label>TEMPO DE INSPEÇÃO MANUAL POR SILO (HORAS POR MÊS)</label>
+            <input type="number" id="ipt_tempo_inspecao">
+        </div><br>
+
+        <div class="alerta">
+            <b>*ATENÇÃO:</b> Insira mais de 1 silo apenas se possuírem a mesma capacidade.
+        </div><br>
+
+        <button onclick="calcularLucros()">CALCULAR RETORNO</button> 
+
+        <div id="id_mensagem"></div>
+
+    </div>
+
 </body>
 </html>
+
 <script>
     /*
     Considerações
@@ -63,20 +88,20 @@
         let paybackMeses = 0
         if (economiaTotalMensal > 0){
             paybackMeses = (custoTotal / economiaTotalMensal).toFixed()
-        } else {
-            null
-        }
+        };
 
-        // Lucro
-        let lucro12Meses = economiaTotalAnual - custoTotal;
+        // Faturamento
+        let faturamento12Meses = economiaTotalAnual - custoTotal;
 
         id_mensagem.innerHTML = `
-        <br><b>Resultado</b><br>
-        <b>Custo total:</b> R$${custoTotal}<br>
-        <b>Economia anual (inspeção):</b> R$${economiaInspecaoAnual}<br>
-        <b>Economia anual (perdas evitadas):</b> R$${economiaPerdasAnual}<br>
-        <b>Economia anual total:</b> R$${economiaTotalAnual} (R$${economiaTotalMensal} / mês)<br>
-        <b>Payback estimado:</b> ${paybackMeses + " meses"}<br>
-        <b>Lucro líquido em 12 meses:</b> R$${lucro12Meses}`
+            <br><b>RESULTADOS</b><br>
+            <b>Custo total:</b> R$${custoTotal.toLocaleString("pt-BR", {minimumFractionDigits: 2})}<br>
+            <b>Economia anual (inspeção):</b> R$${economiaInspecaoAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}<br>
+            <b>Economia anual (perdas evitadas):</b> R$${economiaPerdasAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}<br>
+            <b>Economia anual total:</b> R$${economiaTotalAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})} 
+            (R$${Number(economiaTotalMensal).toLocaleString("pt-BR", {minimumFractionDigits: 2})} / mês)<br>
+            <b>Payback estimado:</b> ${paybackMeses} meses<br>
+            <b>Faturamento em 12 meses:</b> R$${faturamento12Meses.toLocaleString("pt-BR", {minimumFractionDigits: 2})}
+        `
     };
 </script>
