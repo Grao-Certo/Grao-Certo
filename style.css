@@ -3,7 +3,10 @@
     src: url(fonts/codec-pro.regular.ttf);
 }
 
-*{
+
+
+* {
+
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -157,16 +160,16 @@
 .bodyLoginCad button {
     background: var(--cor-fundo-button-bottom);
     border-radius: 12px;
+    border: none;
     height: 50px;
     width: 250px;
-    font-weight: bold;
     color: white;
     padding: 0 20px 0 20px;
+    margin: 22px;
     font-size: 20px;
-    border: none;
+    font-weight: bold;
     transition: 0.3s;
 } 
-
 .bodyLoginCad button:hover {
     transform: translateY(-7px);
     box-shadow: 0 0 20px 0 black;
@@ -176,14 +179,12 @@
  /* Estilizando a parte esquerda que contém a logo */
 .bodyLoginCad hr {
     width: 450px;
-    margin: 5px;
+    margin: 25px;
 }
-
 .bodyLoginCad img {
     margin-left: 40px;
     width: 75%;
 }
-
 .parteEsquerda h1 {
     margin-top: 5px;
 }
@@ -209,7 +210,7 @@
 .parteDireita {
     position: absolute;
     text-align: center;
-    height: 100%;
+    height: 80%;
     width: 50%;
     left: 48%;
     display: flex;
@@ -217,7 +218,7 @@
     flex-direction: column;
     align-items: center;
 }
-/**/
+
 .bodyLoginCad input {
     border: solid transparent;
     border-bottom: solid var(--cor-fundo-button-bottom);
@@ -231,7 +232,6 @@
     font-size: 23px;
     transition: 0.4s;
 } 
-
 .bodyLoginCad input:hover {
     transform: translateY(-5px);
     width: 500px;
@@ -241,7 +241,6 @@
     border: solid 2px rgb(157, 157, 173);
     border-radius: 15px;
 }
-
 .bodyLoginCad input::placeholder {
     color: white;
 }
@@ -251,15 +250,63 @@
     background-color: #32400192;
     border-radius: 25px;
     border: solid var(--cor-fundo-button-bottom);
+    margin-top: 0;
 }
-
 .formulario button {
     margin: 30px 0 30px 0;
+}
+.formulario h1 {
+    margin: 30px 0 40px 0;
+
 }
 /* Variáveis de cores do projeto*/
 :root{
     --cor-verde-escuro: #042e09;
     --cor-fundo:#275673;
     --cor-fundo-button-bottom: #95b814;
+}
 
+/*HEADER*/
+.LoginCadastro {
+    height: 110px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+}
+.LoginCadastro #logo{
+    height: 70px;
+    width: 250px;
+}
+.LoginCadastro ul{
+    display: flex;
+    padding: 20px;
+}
+.LoginCadastro li{
+    margin: 20px;
+    list-style: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: codec;
+    padding: 10px;
+}
+.LoginCadastro li a{
+    color: white;
+    transition: 0.3s ;
+    padding-bottom: 5px;
+    position: relative;
+}
+.LoginCadastro li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    top: 30px;
+    height: 3px;
+    background-color: var(--cor-verde-escuro);
+    transition: width 0.3s ease-in-out;
+}
+.LoginCadastro li a:hover::after{
+    width: 100%;
 }
