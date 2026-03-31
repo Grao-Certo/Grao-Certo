@@ -1,371 +1,369 @@
 @font-face {
-    font-family: codec;
-    src: url(fonts/codec-pro.regular.ttf);
+  font-family: codec;
+  src: url(fonts/codec-pro.regular.ttf);
 }
-
-
 
 * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.index {
+  background-color: var(--cor-fundo);
+}
+.imagem_fundo {
+  position: relative;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(imgs/imagem_fundo.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  width: 100vw;
+  display: inline-block;
+  justify-content: center;
+  z-index: 1;
+}
+.barra {
+  top: 0;
+  height: 80px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#logo {
+  height: 70px;
+}
+.barra ul {
+  display: flex;
+}
+.barra li {
+  margin: 20px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: codec;
+}
+.barra li a {
+  color: white;
+  transition: 0.2s;
+  padding-bottom: 5px;
+  position: relative;
+}
+.barra li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  top: 20px;
+  height: 2px;
+  background-color: var(--cor-verde-escuro);
+  transition: width 0.3s ease-in-out;
+}
+.barra li a:hover::after {
+  width: 100%;
+}
+#active {
+  color: var(--cor-verde-escuro);
+}
+.barra button {
+  font-family: codec;
+  height: 30px;
+  width: 110px;
+  border-radius: 10%;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  transition: 1s;
+  font-weight: bold;
+  color: var(--cor-verde-escuro);
+}
+.barra button:hover {
+  background-image: linear-gradient(to right, #319e2d, #042e09);
+  color: white;
+}
+.conteudo_header {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20vw;
+}
+.conteudo_header h2 {
+  font-family: codec;
+  word-spacing: 10px;
+  color: white;
+  font-size: 30px;
+}
+.conteudo_header li {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 20px;
+  font-family: codec;
+  list-style: var(--cor-verde-escuro);
+}
+.conteudo_header h2 {
+  margin-bottom: 10px;
+  color: white;
+  font-size: 35px;
+  font-family: codec;
+}
+.conteudo_header p {
+  color: white;
+  font-family: codec;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.btn_contato {
+  display: flex;
+  flex-direction: row;
+}
+.btn_contato button {
+  margin: 10px;
+  font-family: codec;
+  height: 50px;
+  width: 200px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: 1s;
+  font-weight: bold;
+  font-size: 19px;
+  color: var(--cor-verde-escuro);
+}
+.btn_contato button:hover {
+  background-image: linear-gradient(to right, #319e2d, #042e09);
+  color: white;
+}
+.imagem_contato {
+  top: 80%;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  z-index: 2;
+}
+.imagem_contato img {
+  height: 300px;
+}
 
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-.index{
-    background-color: var(--cor-fundo);
-}
-.imagem_fundo{
-    position: relative;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imgs/imagem_fundo.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 700px;
-    width: 100vw;
-    display: inline-block;
-    justify-content: center;
-    z-index: 1;
-}
-.barra{
-    top: 0;
-    height: 80px;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#logo{
-    height: 70px;
-}
-.barra ul{
-    display: flex;
-}
-.barra li{
-    margin: 20px;
-    list-style: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: codec;
-}
-.barra li a{
-    color: white;
-    transition: 0.2s ;
-    padding-bottom: 5px;
-    position: relative;
-}
-.barra li a::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 0;
-    top: 20px;
-    height: 2px;
-    background-color: var(--cor-verde-escuro);
-    transition: width 0.3s ease-in-out;
-}
-.barra li a:hover::after{
-    width: 100%;
-}
-#active{
-    color: var(--cor-verde-escuro);
-}
-.barra button{
-    font-family: codec;
-    height: 30px;
-    width: 110px;
-    border-radius: 10%;
-    border:  none;
-    margin: 10px;
-    cursor: pointer;
-    transition: 1.0s;
-    font-weight: bold;
-    color: var(--cor-verde-escuro);
-}
-.barra button:hover{
-    background-image: linear-gradient(to right, #319e2d, #042e09);
-    color: white;
-}
-.conteudo_header{
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20vw;
-}
-.conteudo_header h2{
-    font-family: codec;
-    word-spacing: 10px;
-    color: white;
-    font-size: 30px;
-}
-.conteudo_header li{
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: white;
-    font-size: 20px;
-    font-family: codec;
-    list-style: var(--cor-verde-escuro);
-}
-.conteudo_header h2{
-    margin-bottom: 10px;
-    color: white;
-    font-size: 35px;
-    font-family: codec;
-}
-.conteudo_header p{
-    color: white;
-    font-family: codec;
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-.btn_contato{
-    display: flex;
-    flex-direction: row;
-}
-.btn_contato button{
-    margin: 10px;
-    font-family: codec;
-    height: 40px;
-    width: 100px;
-    border-radius: 10%;
-    border:  none;
-    cursor: pointer;
-    transition: 1.0s;
-    font-weight: bold;
-    color: var(--cor-verde-escuro);
-}
-.btn_contato button:hover{
-    background-image: linear-gradient(to right, #319e2d, #042e09);
-    color: white;
-}
-.imagem_contato{
-    top: 80%;
-    position: absolute;
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    z-index: 2;
-}
-.imagem_contato img{
-    height: 300px;
-}
-
-
-.container{
-    margin-top: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.logo img{
-    width: 1000px;
-    margin-left: 100px;
-    margin-bottom: 20px;
+.logo img {
+  width: 1000px;
+  margin-left: 100px;
+  margin-bottom: 20px;
 }
-.logo p{
-    padding: 20px;
-    font-family: 'DM Sans', sans-serif;
-    color: white;
-    font-size: 30px;
-    margin-left: 50px;
+.logo p {
+  padding: 20px;
+  font-family: "DM Sans", sans-serif;
+  color: white;
+  font-size: 30px;
+  margin-left: 50px;
 }
-.logo hr{
-    background-color: #134d7021;
-    padding: 8px;
-    width: 400%;
-    border: none;
-    border-radius: 0%;
-    margin-top: 100px;
+.logo hr {
+  background-color: #134d7021;
+  padding: 8px;
+  width: 400%;
+  border: none;
+  border-radius: 0%;
+  margin-top: 100px;
 }
 .Sobre {
-    margin-top: 100px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+  margin-top: 100px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
-.Sobre b{
-    font-size: 38px;
-    margin-left: 50px;
-    font-style: italic;
+.Sobre b {
+  font-size: 38px;
+  margin-left: 50px;
+  font-style: italic;
 }
-.Sobre p{
-    width: 920px;
-    text-align: center;
-    font-size: 30px;
-    margin-left: 50px;
+.Sobre p {
+  width: 920px;
+  text-align: center;
+  font-size: 30px;
+  margin-left: 50px;
 }
 .slogan {
-    margin: 30px;
-    padding: 30px;
-    background-color: #1e3d50;
-    margin-left: 50px;
-    font-size: 60px;
+  margin: 30px;
+  padding: 30px;
+  background-color: #1e3d50;
+  margin-left: 50px;
+  font-size: 60px;
 }
 /* TELA DE LOGIM E CADASTRO */
-.bodyLoginCad  {
-    background: url(imgs/fundoLogin.png);
-    color: white;
-    font-size: 25px;
+.bodyLoginCad {
+  background: url(imgs/fundoLogin.png);
+  color: white;
+  font-size: 25px;
 }
 
 .bodyLoginCad button {
-    background: var(--cor-fundo-button-bottom);
-    border-radius: 12px;
-    border: none;
-    height: 50px;
-    width: 250px;
-    color: white;
-    padding: 0 20px 0 20px;
-    margin: 22px;
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-} 
+  background: var(--cor-fundo-button-bottom);
+  border-radius: 12px;
+  border: none;
+  height: 50px;
+  width: 250px;
+  color: white;
+  padding: 0 20px 0 20px;
+  margin: 22px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
 .bodyLoginCad button:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 0 20px 0 black;
-    width: 270px;
+  transform: translateY(-7px);
+  box-shadow: 0 0 20px 0 black;
+  width: 270px;
 }
 
- /* Estilizando a parte esquerda que contém a logo */
+/* Estilizando a parte esquerda que contém a logo */
 .bodyLoginCad hr {
-    width: 450px;
-    margin: 25px;
+  width: 450px;
+  margin: 25px;
 }
 .bodyLoginCad img {
-    margin-left: 40px;
-    width: 75%;
+  margin-left: 40px;
+  width: 75%;
 }
 .parteEsquerda h1 {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .container-Login {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .parteEsquerda {
-    position: absolute;
-    text-align: center;
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top: -2%;
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: -2%;
 }
- /* Parte do cadastro/login */
+/* Parte do cadastro/login */
 .parteDireita {
-    position: absolute;
-    text-align: center;
-    height: 80%;
-    width: 50%;
-    left: 48%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  position: absolute;
+  text-align: center;
+  height: 80%;
+  width: 50%;
+  left: 48%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bodyLoginCad input {
-    border: solid transparent;
-    border-bottom: solid var(--cor-fundo-button-bottom);
-    outline: none;
-    background-color: transparent;
-    color: black;
-    height: 70px;
-    width: 450px;
-    padding: 0 0 0 16px;
-    margin: 0px 50px 10px 50px;
-    font-size: 23px;
-    transition: 0.4s;
-} 
+  border: solid transparent;
+  border-bottom: solid var(--cor-fundo-button-bottom);
+  outline: none;
+  background-color: transparent;
+  color: black;
+  height: 70px;
+  width: 450px;
+  padding: 0 0 0 16px;
+  margin: 0px 50px 10px 50px;
+  font-size: 23px;
+  transition: 0.4s;
+}
 .bodyLoginCad input:hover {
-    transform: translateY(-5px);
-    width: 500px;
-    margin-top: translateY(-5px); 
-    margin-left: 25px;
-    margin-right: 25px;
-    border: solid 2px rgb(157, 157, 173);
-    border-radius: 15px;
+  transform: translateY(-5px);
+  width: 500px;
+  margin-top: translateY(-5px);
+  margin-left: 25px;
+  margin-right: 25px;
+  border: solid 2px rgb(157, 157, 173);
+  border-radius: 15px;
 }
 .bodyLoginCad input::placeholder {
-    color: white;
+  color: white;
 }
 
 .formulario {
-    position: relative;
-    background-color: #32400192;
-    border-radius: 25px;
-    border: solid var(--cor-fundo-button-bottom);
-    margin-top: 0;
+  position: relative;
+  background-color: #32400192;
+  border-radius: 25px;
+  border: solid var(--cor-fundo-button-bottom);
+  margin-top: 0;
 }
 .formulario button {
-    margin: 30px 0 30px 0;
+  margin: 30px 0 30px 0;
 }
 .formulario h1 {
-    margin: 30px 0 40px 0;
-
+  margin: 30px 0 40px 0;
 }
 /* Variáveis de cores do projeto*/
-:root{
-    --cor-verde-escuro: #042e09;
-    --cor-fundo:#275673;
-    --cor-fundo-button-bottom: #95b814;
+:root {
+  --cor-verde-escuro: #042e09;
+  --cor-fundo: #275673;
+  --cor-fundo-button-bottom: #95b814;
 }
 
 /*HEADER*/
 .LoginCadastro {
-    height: 110px;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 60px;
+  height: 110px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
 }
-.LoginCadastro #logo{
-    height: 70px;
-    width: 250px;
+.LoginCadastro #logo {
+  height: 70px;
+  width: 250px;
 }
-.LoginCadastro ul{
-    display: flex;
-    padding: 20px;
+.LoginCadastro ul {
+  display: flex;
+  padding: 20px;
 }
-.LoginCadastro li{
-    margin: 20px;
-    list-style: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: codec;
-    padding: 10px;
+.LoginCadastro li {
+  margin: 20px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: codec;
+  padding: 10px;
 }
-.LoginCadastro li a{
-    color: white;
-    transition: 0.3s ;
-    padding-bottom: 5px;
-    position: relative;
+.LoginCadastro li a {
+  color: white;
+  transition: 0.3s;
+  padding-bottom: 5px;
+  position: relative;
 }
-.LoginCadastro li a::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 0;
-    top: 30px;
-    height: 3px;
-    background-color: var(--cor-verde-escuro);
-    transition: width 0.3s ease-in-out;
+.LoginCadastro li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  top: 30px;
+  height: 3px;
+  background-color: var(--cor-verde-escuro);
+  transition: width 0.3s ease-in-out;
 }
-.LoginCadastro li a:hover::after{
-    width: 100%;
+.LoginCadastro li a:hover::after {
+  width: 100%;
 }
