@@ -65,9 +65,9 @@
 .barra li a:hover::after {
   width: 100%;
 }
-#active {
-  color: var(--cor-verde-escuro);
-}
+/* .barra li a:hover {
+   color: var(--cor-verde-escuro);
+} */
 .barra button {
   font-family: codec;
   height: 30px;
@@ -241,10 +241,10 @@
 }
 .bodyLoginCad img {
   margin-left: 40px;
-  width: 75%;
-}
-.parteEsquerda h1 {
-  margin-top: 5px;
+  width: 80%;
+  height: 22%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .container-Login {
@@ -311,7 +311,7 @@
   margin-top: 0;
 }
 .formulario button {
-  margin: 30px 0 30px 0;
+  margin: 10px 0 30px 0;
 }
 .formulario h1 {
   margin: 30px 0 40px 0;
@@ -366,4 +366,7 @@
 }
 .LoginCadastro li a:hover::after {
   width: 100%;
+}
+#div_mensagem {
+  margin-top: 10px;
 }

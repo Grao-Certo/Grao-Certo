@@ -7,12 +7,13 @@
     <link rel="shortcut icon" href="imgs/logo_favicon.png" type="image/x-icon">
     <title>Grão Certo | Cadastro</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
 </head>
 
 <body class="bodyLoginCad">
 
     <header class="LoginCadastro">
-            <a href="index.html"><img src="imgs/logo_grãocerto.png" alt="logo da grão certo" id="logo"></a>
+            <a href="index.html"><img src="imgs/logo_grãocerto2.png" alt="logo da grão certo" id="logo"></a>
             <ul>
                 <li><a href="index.html" id="active">HOME</a></li> 
                 <li><a href="">NOSSA SOLUÇÃO</a></li> 
@@ -38,17 +39,16 @@
             <div class="formulario">
                 <h1> CRIAR CONTA </h1>
 
-                <input type="text" name="" id="" placeholder="Nome"> <br>
-                <input type="email" name="" id="" placeholder="Email"> <br>
-                <input type="password" name="" id="" placeholder="Senha">
-
+                <input type="text" name="" id="input_nome" placeholder="Nome"> <br>
+                <input type="email" name="" id="input_email" placeholder="Email"> <br>
+                <input type="password" name="" id="input_senha" placeholder="Senha" oninput="verificar()">
+                    <div id="div_mensagem"></div>
                 <br>
-                <button> C A D A S T R A R </button>
+                <button onclick="cadastrar()"> C A D A S T R A R </button>
             </div>
         </div>
 
     </div>
 
 </body>
-
 </html>
