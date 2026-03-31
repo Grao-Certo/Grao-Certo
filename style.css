@@ -150,6 +150,57 @@
 }
 
 
+.container{
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo img{
+    width: 1000px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}
+.logo p{
+    padding: 20px;
+    font-family: 'DM Sans', sans-serif;
+    color: white;
+    font-size: 30px;
+    margin-left: 50px;
+}
+.Sobre {
+    margin-top: 250px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.Sobre b{
+    font-size: 38px;
+    margin-left: 50px;
+    font-style: italic;
+}
+.Sobre p{
+    width: 920px;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 50px;
+}
+.slogan {
+    margin: 30px;
+    padding: 30px;
+    background-color: #1e3d50;
+    margin-left: 50px;
+    font-size: 60px;
+}
 /* TELA DE LOGIM E CADASTRO */
 .bodyLoginCad  {
     background: url(imgs/fundoLogin.png);
@@ -189,7 +240,7 @@
     margin-top: 5px;
 }
 
-.container {
+.container-Login {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -309,55 +360,4 @@
 }
 .LoginCadastro li a:hover::after{
     width: 100%;
-}
-.container{
-    margin-top: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.logo img{
-    width: 1000px;
-    margin-left: 100px;
-    margin-bottom: 20px;
-}
-.logo p{
-    padding: 20px;
-    font-family: 'DM Sans', sans-serif;
-    color: white;
-    font-size: 30px;
-    margin-left: 50px;
-}
-.Sobre {
-    margin-top: 250px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-.Sobre b{
-    font-size: 38px;
-    margin-left: 50px;
-    font-style: italic;
-}
-.Sobre p{
-    width: 920px;
-    text-align: center;
-    font-size: 30px;
-    margin-left: 50px;
-}
-.slogan {
-    margin: 30px;
-    padding: 30px;
-    background-color: #1e3d50;
-    margin-left: 50px;
-    font-size: 60px;
 }
