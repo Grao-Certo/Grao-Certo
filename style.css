@@ -287,9 +287,7 @@
   border: solid var(--cor-fundo-button-bottom);
   margin-top: 0;
 }
-
- /*GERAL*/
-.bodyLoginCad input {
+.bodyLoginCad .container-Login input {
   border: solid transparent;
   border-bottom: solid var(--cor-fundo-button-bottom);
   outline: none;
@@ -302,7 +300,7 @@
   font-size: 23px;
   transition: 0.4s;
 }
-.bodyLoginCad input:hover {
+.bodyLoginCad .container-Login input:hover {
   transform: translateY(-5px);
   width: 500px;
   margin-top: translateY(-5px);
@@ -311,11 +309,12 @@
   border: solid 2px rgb(157, 157, 173);
   border-radius: 15px;
 }
+.container-Login .formulario button {
+  margin: 10px 0 30px 0;
+}
+ /*GERAL*/
 .bodyLoginCad input::placeholder {
   color: white;
-}
-.formulario button {
-  margin: 10px 0 30px 0;
 }
 .formulario h1 {
   margin: 30px 0 40px 0;
@@ -440,6 +439,32 @@
   border: solid var(--cor-fundo-button-bottom);
   margin-top: 0;
 }
+.bodyLoginCad .container-Cadastro input {
+  border: solid transparent;
+  border-bottom: solid var(--cor-fundo-button-bottom);
+  outline: none;
+  background-color: transparent;
+  color: white;
+  height: 70px;
+  width: 600px;
+  padding: 0 0 0 16px;
+  margin: 0px 50px 10px 50px;
+  font-size: 23px;
+  transition: 0.4s;
+}
+.bodyLoginCad .container-Cadastro input:hover {
+  transform: translateY(-5px);
+  width: 630px;
+  margin-top: translateY(-5px);
+  margin-left: 25px;
+  margin-right: 25px;
+  border: solid 2px rgb(157, 157, 173);
+  border-radius: 15px;
+}
+.container-Cadastro .formulario button {
+  margin: 20px 0 30px 0;
+}
+
 /* Variáveis de cores do projeto*/
 :root {
   --cor-verde-escuro: #042e09;
