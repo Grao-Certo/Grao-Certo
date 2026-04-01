@@ -27,17 +27,19 @@
 }
 .barra {
   top: 0;
-  height: 80px;
+  height: 110px;
   background-color: transparent;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-}
+  padding: 0 60px;
+} 
 #logo {
   height: 70px;
 }
 .barra ul {
   display: flex;
+  padding: 0 30px 0 0;
 }
 .barra li {
   margin: 20px;
@@ -50,15 +52,17 @@
   color: white;
   transition: 0.2s;
   padding-bottom: 5px;
-  position: relative;
+  position: relative;  
+  font-size: 22px;
+  padding-right: 8px;
 }
 .barra li a::after {
   content: "";
   position: absolute;
   left: 0;
   width: 0;
-  top: 20px;
-  height: 2px;
+  top: 28px;
+  height: 3px;
   background-color: var(--cor-verde-escuro);
   transition: width 0.3s ease-in-out;
 }
@@ -70,8 +74,8 @@
 } */
 .barra button {
   font-family: codec;
-  height: 30px;
-  width: 110px;
+  height: 37px;
+  width: 120px;
   border-radius: 10%;
   border: none;
   margin: 10px;
@@ -316,12 +320,6 @@
 .formulario h1 {
   margin: 30px 0 40px 0;
 }
-/* Variáveis de cores do projeto*/
-:root {
-  --cor-verde-escuro: #042e09;
-  --cor-fundo: #275673;
-  --cor-fundo-button-bottom: #95b814;
-}
 
 /*HEADER*/
 .LoginCadastro {
@@ -353,13 +351,14 @@
   transition: 0.3s;
   padding-bottom: 5px;
   position: relative;
+  font-size: 22px;
 }
 .LoginCadastro li a::after {
   content: "";
   position: absolute;
   left: 0;
   width: 0;
-  top: 30px;
+  top: 28px;
   height: 3px;
   background-color: var(--cor-verde-escuro);
   transition: width 0.3s ease-in-out;
@@ -369,4 +368,11 @@
 }
 #div_mensagem {
   margin-top: 10px;
+}
+
+/* Variáveis de cores do projeto*/
+:root {
+  --cor-verde-escuro: #042e09;
+  --cor-fundo: #275673;
+  --cor-fundo-button-bottom: #95b814;
 }
