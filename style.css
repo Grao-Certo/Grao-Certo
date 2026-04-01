@@ -212,7 +212,56 @@
   margin-left: 50px;
   font-size: 60px;
 }
+
 /* TELA DE LOGIM E CADASTRO */
+/*HEADER*/
+.LoginCadastro {
+  height: 110px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+}
+.LoginCadastro #logo {
+  height: 70px;
+  width: 250px;
+}
+.LoginCadastro ul {
+  display: flex;
+  padding: 20px;
+}
+.LoginCadastro li {
+  margin: 20px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: codec;
+  padding: 10px;
+}
+.LoginCadastro li a {
+  color: white;
+  transition: 0.3s;
+  padding-bottom: 5px;
+  position: relative;
+  font-size: 22px;
+}
+.LoginCadastro li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  top: 28px;
+  height: 3px;
+  background-color: var(--cor-verde-escuro);
+  transition: width 0.3s ease-in-out;
+}
+.LoginCadastro li a:hover::after {
+  width: 100%;
+}
+#div_mensagem {
+  margin-top: 10px;
+}
 .bodyLoginCad {
   background: url(imgs/fundoLogin.png);
   color: white;
@@ -268,7 +317,7 @@
   top: 0%;
   left: 2%;
 }
-/* Parte do cadastro/login */
+/* Parte do login */
 .container-Login .parteDireita {
   position: absolute;
   text-align: center;
@@ -320,55 +369,6 @@
   margin: 30px 0 40px 0;
 }
 
-/*HEADER*/
-.LoginCadastro {
-  height: 110px;
-  background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 60px;
-}
-.LoginCadastro #logo {
-  height: 70px;
-  width: 250px;
-}
-.LoginCadastro ul {
-  display: flex;
-  padding: 20px;
-}
-.LoginCadastro li {
-  margin: 20px;
-  list-style: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-family: codec;
-  padding: 10px;
-}
-.LoginCadastro li a {
-  color: white;
-  transition: 0.3s;
-  padding-bottom: 5px;
-  position: relative;
-  font-size: 22px;
-}
-.LoginCadastro li a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 0;
-  top: 28px;
-  height: 3px;
-  background-color: var(--cor-verde-escuro);
-  transition: width 0.3s ease-in-out;
-}
-.LoginCadastro li a:hover::after {
-  width: 100%;
-}
-#div_mensagem {
-  margin-top: 10px;
-}
-
 /*PÁGINA DE CADASTRO*/
 .bodyLoginCad .container-Cadastro img {
   margin-left: 10px;
@@ -393,9 +393,8 @@
   justify-content: center;
   align-items: center;
   top: 7%;
-  margin-left: -0.5%;
+  margin-left: -0.8%;
 }
-/* Parte do cadastro*/
 .container-Cadastro .parteDireita {
   position: absolute;
   text-align: center;
@@ -410,28 +409,30 @@
 .container-Cadastro .parteDireita::before {
     content: "";
     position: absolute;
-    inset: 0px; /*Só funciona com o inset ativo*/
-    background: linear-gradient(90deg, rgb(48, 236, 48), rgb(151, 228, 186), rgb(28, 184, 28), rgb(180, 248, 159));
-    background-size: 600%;
+    inset: 0px; /* um atalho para top, right, bottom e left tudo no 0, assim faz ocupar o espaço todo*/
+    background: radial-gradient(circle at 20% 30%, #84dfdc, transparent 40%),
+                radial-gradient(circle at 80% 70%, #80ed99, transparent 40%),
+                linear-gradient(120deg, #d4fce3, #7cebde);
+    background-size: 400%;
 
-    animation: animarFundo 2s ease infinite;
+    animation: animarFundo 10s ease infinite;
 }
-/* parte interna */
 .container-Cadastro .parteDireita::after {
     content: "";
     position: absolute;
 }
-@keyframes animarFundo{
+@keyframes animarFundo{ /*animação top*/
     0% {
-        background-position: 10%;
+        background-position: 0% 50%;
     }
     50% {
-        background-position: 50%;
+        background-position: 100% 50%;
     }
     100% {
-        background-position: 100%;
+        background-position: 0% 50%;
     }
 }
+
 .container-Cadastro .formulario {
   position: relative;
   background-color: #324001d2;
