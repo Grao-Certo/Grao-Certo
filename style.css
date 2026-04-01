@@ -280,7 +280,7 @@
   flex-direction: column;
   align-items: center;
 }
-.container-Login.formulario {
+.container-Login .formulario {
   position: relative;
   background-color: #32400192;
   border-radius: 25px;
