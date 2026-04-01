@@ -25,9 +25,9 @@ function cadastrar() {
     let email = input_email.value;
     let nome = input_nome.value;
 
-    if (email.includes('@') && email.includes('.com') && nome != '') {
+    if (email.endsWith('@sptech.school')  && nome != '' || email.endsWith('@gmail.com') && nome != '') {
         alert('Cadastro realizado com sucesso!')
-        window.location.href = "login.html";
+        window.location.href = "Login.html";
     } else {
         alert('Digite um email ou usuário válido')
     }
