@@ -1,0 +1,249 @@
+/* Estilos Gerais do Corpo da Página */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #2B5270; /* Cor de fundo principal azul */
+    color: #FFFFFF; /* Cor do texto branca */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+h2, h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* Rótulos das seções (ex: NOSSA SOLUÇÃO) */
+.rotulo-secao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Cria as linhas ao lado dos rótulos */
+.rotulo-secao::before,
+.rotulo-secao::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #A2B9C9;
+    margin: 0 20px;
+    max-width: 150px;
+}
+
+/* Botão Verde Padrão */
+.botao-primario {
+    display: inline-block;
+    background-color: #7A9B26;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+.botao-primario:hover {
+    background-color: #65811F;
+}
+
+/* 1. Header / Topo da Página */
+.secao-hero {
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+}
+
+.texto-boas-vindas {
+    letter-spacing: 6px;
+    font-size: 1.1rem;
+    color: #A2B9C9;
+    margin-bottom: 20px;
+}
+
+.container-logo img {
+    width: 600px;
+    margin-bottom: 20px;
+}
+
+.subtitulo {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #A2B9C9;
+}
+
+/* 2. Seção Sobre Nós */
+.secao-sobre-nos {
+    text-align: center;
+    padding: 40px 10%;
+}
+
+.caixa-de-destaque {
+    background-color: #183A55; /* Azul mais escuro */
+    padding: 35px;
+    margin: 30px auto;
+    width: 80%; /* Ocupa 80% do espaço disponível */
+}
+
+.caixa-de-destaque p {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.descricao-sobre-nos {
+    font-size: 0.85rem;
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
+    text-transform: uppercase;
+}
+
+/* 3. Seção Nossa Solução */
+.secao-solucoes {
+    display: flex;
+    align-items: center;
+    padding: 60px 10%;
+    border-top: 1px solid #A2B9C9;
+}
+
+.imagem-solucoes {
+    width: 50%; /* Metade da tela para a imagem */
+    padding-right: 30px;
+}
+
+.imagem-solucoes img {
+    width: 100%;
+}
+
+.conteudo-solucoes {
+    width: 50%; /* Metade da tela para o texto */
+    text-align: center;
+}
+
+.conteudo-solucoes h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.conteudo-solucoes p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* 4. Seção Benefícios */
+.secao-beneficios {
+    padding: 60px 10%;
+    text-align: center;
+    border-top: 1px solid #A2B9C9;
+}
+
+.secao-beneficios h2 {
+    margin-bottom: 40px;
+}
+
+.container-cartoes-beneficios {
+    display: flex;
+    justify-content: space-between; /* Espalha os 3 cartões por igual */
+}
+
+.cartao-beneficio {
+    background-color: #183A55;
+    border-radius: 8px;
+    width: 30%; /* Cada cartão ocupa 30% do espaço */
+    padding-bottom: 30px;
+}
+
+.cartao-beneficio img {
+    width: 100%;
+    height: 200px;
+}
+
+.cartao-beneficio h3 {
+    margin: 20px 0 15px 0;
+    font-size: 1.2rem;
+}
+
+/* Pequena linha azul abaixo do título dentro do cartão */
+.cartao-beneficio h3::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: #A2B9C9;
+    margin: 10px auto 0 auto;
+}
+
+.cartao-beneficio ul {
+    list-style: none; /* Tira as bolinhas da lista */
+    padding: 0 25px;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cartao-beneficio li {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* 5. Seção Porque a Grão Certo */
+.secao-porque-nos {
+    display: flex;
+    padding: 60px 10%;
+    background-color: #244660; /* Fundo levemente diferente para destacar */
+}
+
+.imagem-porque-nos {
+    width: 50%;
+    padding-right: 30px;
+}
+
+.imagem-porque-nos img {
+    width: 100%;
+}
+
+.texto-porque-nos {
+    width: 50%;
+}
+
+/* Alinha o rótulo à esquerda e tira a linha do lado esquerdo */
+.texto-porque-nos .rotulo-secao {
+    justify-content: flex-start;
+}
+
+.texto-porque-nos .rotulo-secao::before {
+    display: none;
+}
+
+.texto-porque-nos h2 {
+    text-align: left;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+}
+
+.item-destaque {
+    margin-bottom: 25px;
+}
+
+.item-destaque h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.icone-marca {
+    color: #7A9B26; /* Cor verde do "check" */
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+.item-destaque p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    text-align: justify;
+    margin-left: 25px; /* Empurra o texto para não ficar debaixo do ícone */
+}
