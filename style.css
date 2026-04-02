@@ -3,7 +3,7 @@
   src: url(fonts/codec-pro.regular.ttf);
 }
 
-* {
+*{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -25,6 +25,7 @@
   justify-content: center;
   z-index: 1;
 }
+
 .barra {
   top: 0;
   height: 110px;
@@ -36,11 +37,14 @@
 } 
 #logo {
   height: 70px;
+
 }
 .barra ul {
   display: flex;
   padding: 0 30px 0 0;
 }
+
+
 .barra li {
   margin: 20px;
   list-style: none;
