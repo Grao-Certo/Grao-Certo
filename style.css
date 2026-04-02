@@ -274,7 +274,6 @@
   background: url(imgs/fundoLogin.png);
   color: white;
   font-size: 25px;
-  background-size: cover;
 }
 
 .bodyLoginCad button {
@@ -303,8 +302,8 @@
 }
 /*PÁGINA DE LOGIN*/
 .bodyLoginCad .container-Login img {
-  width: 90%;
-  margin-left: 50px;
+  margin-left: 10px;
+  width: 80%;
   height: 22%;
   object-fit: cover;
   object-position: center;
@@ -380,7 +379,7 @@
 
 /*PÁGINA DE CADASTRO*/
 .bodyLoginCad .container-Cadastro img {
-  margin-left: 50px;
+  margin-left: 10px;
   width: 60%;
   height: 28%;
   object-fit: cover;
@@ -479,4 +478,219 @@
   --cor-verde-escuro: #042e09;
   --cor-fundo: #275673;
   --cor-fundo-button-bottom: #95b814;
+}
+
+/* =============================================
+   SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
+   ============================================= */
+
+h2, h3 {
+    font-family: codec;
+}
+
+/* Cor base para todas as seções integradas */
+.secao-sobre-nos,
+.secao-solucoes,
+.secao-beneficios,
+.secao-porque-nos {
+    color: #FFFFFF;
+}
+
+.rotulo-secao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.linha-lateral {
+    border-top: 1px solid #A2B9C9;
+    width: 100px;
+    margin: 0 20px;
+}
+
+/* Botão Verde Padrão */
+.botao-primario {
+    display: inline-block;
+    background-color: #7A9B26;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.botao-primario:hover {
+    background-color: #65811F;
+}
+
+/* Seção Sobre Nós */
+.secao-sobre-nos {
+    text-align: center;
+    padding: 60px 10%;
+    border-top: 1px solid #A2B9C9;
+}
+
+.caixa-de-destaque {
+    background-color: #183A55;
+    padding: 35px;
+    margin: 30px auto;
+    width: 80%;
+}
+
+.caixa-de-destaque p {
+    font-family: codec;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.descricao-sobre-nos {
+    font-size: 14px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
+    text-transform: uppercase;
+}
+
+/* Seção Nossa Solução */
+.secao-solucoes {
+    display: flex;
+    align-items: center;
+    padding: 60px 10%;
+    border-top: 1px solid #A2B9C9;
+}
+
+.imagem-solucoes {
+    width: 50%;
+    padding-right: 30px;
+}
+
+.imagem-solucoes img {
+    width: 100%;
+}
+
+.conteudo-solucoes {
+    width: 50%;
+    text-align: center;
+}
+
+.conteudo-solucoes h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.conteudo-solucoes p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Seção Benefícios */
+.secao-beneficios {
+    padding: 60px 10%;
+    text-align: center;
+    border-top: 1px solid #A2B9C9;
+}
+
+.secao-beneficios h2 {
+    margin-bottom: 40px;
+}
+
+.container-cartoes-beneficios {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartao-beneficio {
+    background-color: #183A55;
+    border-radius: 8px;
+    width: 30%;
+    padding-bottom: 30px;
+}
+
+.cartao-beneficio img {
+    width: 100%;
+    height: 200px;
+}
+
+.cartao-beneficio h3 {
+    margin: 20px 0 15px 0;
+    font-size: 19px;
+}
+
+.linha-azul-curta {
+    width: 40px;
+    height: 2px;
+    background-color: #A2B9C9;
+    margin: 10px auto 15px auto;
+}
+
+.cartao-beneficio ul {
+    list-style: none;
+    padding: 0 25px;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cartao-beneficio li {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Seção Porque a Grão Certo */
+.secao-porque-nos {
+    display: flex;
+    padding: 60px 10%;
+    background-color: #244660;
+}
+
+.imagem-porque-nos {
+    width: 50%;
+    padding-right: 30px;
+}
+
+.imagem-porque-nos img {
+    width: 100%;
+}
+
+.texto-porque-nos {
+    width: 50%;
+}
+
+.texto-porque-nos .rotulo-secao {
+    justify-content: flex-start;
+}
+
+.texto-porque-nos h2 {
+    text-align: left;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+.item-destaque {
+    margin-bottom: 25px;
+}
+
+.item-destaque h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.icone-marca {
+    color: #7A9B26;
+    font-size: 19px;
+    margin-right: 5px;
+}
+
+.item-destaque p {
+    font-size: 13px;
+    text-transform: uppercase;
+    text-align: justify;
+    margin-left: 25px;
 }
