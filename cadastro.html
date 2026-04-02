@@ -7,24 +7,24 @@
     <link rel="shortcut icon" href="imgs/logo_favicon.png" type="image/x-icon">
     <title>Grão Certo | Cadastro</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
 </head>
 
 <body class="bodyLoginCad">
 
     <header class="LoginCadastro">
-            <a href="index.html"><img src="imgs/logo_grãocerto.png" alt="logo da grão certo" id="logo"></a>
+            <a href="index.html"><img src="imgs/logo_grãocerto2.png" alt="logo da grão certo" id="logo"></a>
             <ul>
-                <li><a href="index.html" id="active">HOME</a></li> 
+                <li><a href="index.html">HOME</a></li> 
                 <li><a href="">NOSSA SOLUÇÃO</a></li> 
                 <li><a href="">SOBRE NÓS</a></li>
                 <li><a href="">CONTATOS</a></li>
             </ul>
         </header>
 
-    <div class="container-Login">
-
+    <div class="container-Cadastro"> <!--PAI-->
         <div class="parteEsquerda">
-            <img src="imgs/logo_grãocerto.png">
+            <img src="imgs/image.png">
 
             <h1> JÁ TEM UMA <br> CONTA?</h1>
 
@@ -37,18 +37,19 @@
         <div class="parteDireita">
             <div class="formulario">
                 <h1> CRIAR CONTA </h1>
-
-                <input type="text" name="" id="" placeholder="Nome"> <br>
-                <input type="email" name="" id="" placeholder="Email"> <br>
-                <input type="password" name="" id="" placeholder="Senha">
-
+                <input type="text" name="" id="input_nome" placeholder="Nome"> <br>
+                <input type="password" name="" id="input_senha" placeholder="Senha" oninput="verificar()"><br>
+                <input type="email" name="" id="input_email" placeholder="Email"> <br>
+                <input type="text" name="" id="input_cpf" placeholder="Documento"> <br>
+                <input type="checkbox" name="" id="input_pf"><input type="checkbox" name="" id="input_pj">
+                <input type="text" name="" id="input_cep" placeholder="CEP"> <br>
+                <input type="text" name="" id="input_empresa" placeholder="Empresa"> <br>
+                <input type="text" name="" id="input_empresa" placeholder="Empresa"> <br>
                 <br>
-                <button> C A D A S T R A R </button>
+                <button onclick="cadastrar()"> C A D A S T R A R </button>
             </div>
         </div>
-
     </div>
 
 </body>
-
 </html>

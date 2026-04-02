@@ -1,367 +1,477 @@
 @font-face {
-    font-family: codec;
-    src: url(fonts/codec-pro.regular.ttf);
+  font-family: codec;
+  src: url(fonts/codec-pro.regular.ttf);
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.index {
+  background-color: var(--cor-fundo);
+}
+.imagem_fundo {
+  position: relative;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(imgs/imagem_fundo.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  width: 100vw;
+  display: inline-block;
+  justify-content: center;
+  z-index: 1;
+}
+
+.barra {
+  top: 0;
+  height: 110px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+} 
+#logo {
+  height: 70px;
+
+}
+.barra ul {
+  display: flex;
+  padding: 0 30px 0 0;
 }
 
 
-
-* {
-
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
+.barra li {
+  margin: 20px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: codec;
 }
-.index{
-    background-color: var(--cor-fundo);
+.barra li a {
+  color: white;
+  transition: 0.2s;
+  padding-bottom: 5px;
+  position: relative;  
+  font-size: 22px;
+  padding-right: 8px;
 }
-.imagem_fundo{
-    position: relative;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(imgs/imagem_fundo.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 700px;
-    width: 100vw;
-    display: inline-block;
-    justify-content: center;
-    z-index: 1;
+.barra li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  top: 28px;
+  height: 3px;
+  background-color: var(--cor-verde-escuro);
+  transition: width 0.3s ease-in-out;
 }
-.barra{
-    top: 0;
-    padding-top: 20px;
-    width: 100%;
-    height: 80px;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.barra li a:hover::after {
+  width: 100%;
 }
-#logo{
-    height: 70px;
+#active {
+  color: #042e09;
 }
-.barra ul{
-    display: flex;
-    justify-content: center;
+.barra button {
+  font-family: codec;
+  height: 37px;
+  width: 120px;
+  border-radius: 10%;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  transition: 1s;
+  font-weight: bold;
+  color: var(--cor-verde-escuro);
 }
-.barra li{
-    margin: 20px;
-    list-style: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: codec;
+.barra button:hover {
+  background-image: linear-gradient(to right, #319e2d, #042e09);
+  color: white;
 }
-.barra li a{
-    color: white;
-    transition: 0.2s ;
-    padding-bottom: 5px;
-    position: relative;
+.conteudo_header {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20vw;
 }
-.barra li a::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 0;
-    top: 20px;
-    height: 2px;
-    background-color: var(--cor-verde-escuro);
-    transition: width 0.3s ease-in-out;
+.conteudo_header h2 {
+  font-family: codec;
+  word-spacing: 10px;
+  color: white;
+  font-size: 30px;
 }
-.barra li a:hover::after{
-    width: 100%;
+.conteudo_header li {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 20px;
+  font-family: codec;
+  list-style: var(--cor-verde-escuro);
 }
-#active{
-    color: var(--cor-verde-escuro);
+.conteudo_header h2 {
+  margin-bottom: 10px;
+  color: white;
+  font-size: 35px;
+  font-family: codec;
 }
-.barra button{
-    margin-top: 15px;
-    margin-right: 10px;
-    font-family: codec;
-    height: 30px;
-    width: 110px;
-    border-radius: 10%;
-    border:  none;
-    cursor: pointer;
-    transition: 1.0s;
-    font-weight: bold;
-    color: var(--cor-verde-escuro);
+.conteudo_header p {
+  color: white;
+  font-family: codec;
+  margin-bottom: 10px;
+  font-size: 20px;
 }
-.barra button:hover{
-    background-image: linear-gradient(to right, #319e2d, #042e09);
-    color: white;
+.btn_contato {
+  display: flex;
+  flex-direction: row;
 }
-.conteudo_header{
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20vw;
+.btn_contato button {
+  margin: 10px;
+  font-family: codec;
+  height: 50px;
+  width: 200px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: 1s;
+  font-weight: bold;
+  font-size: 19px;
+  color: var(--cor-verde-escuro);
 }
-.conteudo_header h2{
-    font-family: codec;
-    word-spacing: 10px;
-    color: white;
-    font-size: 30px;
+.btn_contato button:hover {
+  background-image: linear-gradient(to right, #319e2d, #042e09);
+  color: white;
 }
-.conteudo_header li{
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: white;
-    font-size: 20px;
-    font-family: codec;
-    list-style: var(--cor-verde-escuro);
+.imagem_contato {
+  top: 80%;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  z-index: 2;
 }
-.conteudo_header h2{
-    margin-bottom: 10px;
-    color: white;
-    font-size: 35px;
-    font-family: codec;
-}
-.conteudo_header p{
-    color: white;
-    font-family: codec;
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-.btn_contato{
-    display: flex;
-    flex-direction: row;
-}
-.btn_contato button{
-    margin: 10px;
-    font-family: codec;
-    height: 40px;
-    width: 100px;
-    border-radius: 10%;
-    border:  none;
-    cursor: pointer;
-    transition: 1.0s;
-    font-weight: bold;
-    color: var(--cor-verde-escuro);
-}
-.btn_contato button:hover{
-    background-image: linear-gradient(to right, #319e2d, #042e09);
-    color: white;
-}
-.imagem_contato{
-    top: 80%;
-    position: absolute;
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    z-index: 2;
-}
-.imagem_contato img{
-    height: 300px;
+.imagem_contato img {
+  height: 300px;
 }
 
-
-.container{
-    margin-top: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.logo img{
-    width: 1000px;
-    margin-left: 100px;
-    margin-bottom: 20px;
+.logo img {
+  width: 1000px;
+  margin-left: 100px;
+  margin-bottom: 20px;
 }
-.logo p{
-    padding: 20px;
-    font-family: 'DM Sans', sans-serif;
-    color: white;
-    font-size: 30px;
-    margin-left: 50px;
+.logo p {
+  padding: 20px;
+  font-family: "DM Sans", sans-serif;
+  color: white;
+  font-size: 30px;
+  margin-left: 50px;
+}
+.logo hr {
+  background-color: #134d7021;
+  padding: 8px;
+  width: 400%;
+  border: none;
+  border-radius: 0%;
+  margin-top: 100px;
 }
 .Sobre {
-    margin-top: 250px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+  margin-top: 100px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
-.Sobre b{
-    font-size: 38px;
-    margin-left: 50px;
-    font-style: italic;
+.Sobre b {
+  font-size: 38px;
+  margin-left: 50px;
+  font-style: italic;
 }
-.Sobre p{
-    width: 920px;
-    text-align: center;
-    font-size: 30px;
-    margin-left: 50px;
+.Sobre p {
+  width: 920px;
+  text-align: center;
+  font-size: 30px;
+  margin-left: 50px;
 }
 .slogan {
-    margin: 30px;
-    padding: 30px;
-    background-color: #1e3d50;
-    margin-left: 50px;
-    font-size: 60px;
+  margin: 30px;
+  padding: 30px;
+  background-color: #1e3d50;
+  margin-left: 50px;
+  font-size: 60px;
 }
+
 /* TELA DE LOGIM E CADASTRO */
-.bodyLoginCad  {
-    background: url(imgs/fundoLogin.png);
-    color: white;
-    font-size: 25px;
+/*HEADER*/
+.LoginCadastro {
+  height: 110px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+}
+.LoginCadastro #logo {
+  height: 70px;
+  width: 250px;
+}
+.LoginCadastro ul {
+  display: flex;
+  padding: 20px;
+}
+.LoginCadastro li {
+  margin: 20px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: codec;
+  padding: 10px;
+}
+.LoginCadastro li a {
+  color: white;
+  transition: 0.3s;
+  padding-bottom: 5px;
+  position: relative;
+  font-size: 22px;
+}
+.LoginCadastro li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  top: 28px;
+  height: 3px;
+  background-color: var(--cor-verde-escuro);
+  transition: width 0.3s ease-in-out;
+}
+.LoginCadastro li a:hover::after {
+  width: 100%;
+}
+#div_mensagem {
+  margin-top: 10px;
+}
+.bodyLoginCad {
+  background: url(imgs/fundoLogin.png);
+  color: white;
+  font-size: 25px;
 }
 
 .bodyLoginCad button {
-    background: var(--cor-fundo-button-bottom);
-    border-radius: 12px;
-    border: none;
-    height: 50px;
-    width: 250px;
-    color: white;
-    padding: 0 20px 0 20px;
-    margin: 22px;
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-} 
+  background: var(--cor-fundo-button-bottom);
+  border-radius: 12px;
+  border: none;
+  height: 50px;
+  width: 250px;
+  color: white;
+  padding: 0 20px 0 20px;
+  margin: 22px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
 .bodyLoginCad button:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 0 20px 0 black;
-    width: 270px;
+  transform: translateY(-7px);
+  box-shadow: 0 0 20px 0 black;
+  width: 270px;
 }
 
- /* Estilizando a parte esquerda que contém a logo */
+/* Estilizando a parte esquerda que contém a logo */
 .bodyLoginCad hr {
-    width: 450px;
-    margin: 25px;
+  width: 450px;
+  margin: 25px;
 }
-.bodyLoginCad img {
-    margin-left: 40px;
-    width: 75%;
+/*PÁGINA DE LOGIN*/
+.bodyLoginCad .container-Login img {
+  margin-left: 10px;
+  width: 80%;
+  height: 22%;
+  object-fit: cover;
+  object-position: center;
 }
-.parteEsquerda h1 {
-    margin-top: 5px;
-}
-
 .container-Login {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
-
-.parteEsquerda {
-    position: absolute;
-    text-align: center;
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top: -2%;
+.container-Login .parteEsquerda {
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0%;
+  left: 2%;
 }
- /* Parte do cadastro/login */
-.parteDireita {
-    position: absolute;
-    text-align: center;
-    height: 80%;
-    width: 50%;
-    left: 48%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+/* Parte do login */
+.container-Login .parteDireita {
+  position: absolute;
+  text-align: center;
+  height: 80%;
+  width: 50%;
+  left: 48%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-
-.bodyLoginCad input {
-    border: solid transparent;
-    border-bottom: solid var(--cor-fundo-button-bottom);
-    outline: none;
-    background-color: transparent;
-    color: black;
-    height: 70px;
-    width: 450px;
-    padding: 0 0 0 16px;
-    margin: 0px 50px 10px 50px;
-    font-size: 23px;
-    transition: 0.4s;
-} 
-.bodyLoginCad input:hover {
-    transform: translateY(-5px);
-    width: 500px;
-    margin-top: translateY(-5px); 
-    margin-left: 25px;
-    margin-right: 25px;
-    border: solid 2px rgb(157, 157, 173);
-    border-radius: 15px;
+.container-Login .formulario {
+  position: relative;
+  background-color: #32400192;
+  border-radius: 25px;
+  border: solid var(--cor-fundo-button-bottom);
+  margin-top: 0;
 }
+.bodyLoginCad .container-Login input {
+  border: solid transparent;
+  border-bottom: solid var(--cor-fundo-button-bottom);
+  outline: none;
+  background-color: transparent;
+  color: white;
+  height: 70px;
+  width: 450px;
+  padding: 0 0 0 16px;
+  margin: 0px 50px 10px 50px;
+  font-size: 23px;
+  transition: 0.4s;
+}
+.bodyLoginCad .container-Login input:hover {
+  transform: translateY(-5px);
+  width: 500px;
+  margin-top: translateY(-5px);
+  margin-left: 25px;
+  margin-right: 25px;
+  border: solid 2px rgb(157, 157, 173);
+  border-radius: 15px;
+}
+.container-Login .formulario button {
+  margin: 10px 0 30px 0;
+}
+ /*GERAL*/
 .bodyLoginCad input::placeholder {
-    color: white;
-}
-
-.formulario {
-    position: relative;
-    background-color: #32400192;
-    border-radius: 25px;
-    border: solid var(--cor-fundo-button-bottom);
-    margin-top: 0;
-}
-.formulario button {
-    margin: 30px 0 30px 0;
+  color: white;
 }
 .formulario h1 {
-    margin: 30px 0 40px 0;
-
-}
-/* Variáveis de cores do projeto*/
-:root{
-    --cor-verde-escuro: #042e09;
-    --cor-fundo:#275673;
-    --cor-fundo-button-bottom: #95b814;
+  margin: 30px 0 40px 0;
 }
 
-/*HEADER*/
-.LoginCadastro {
-    height: 110px;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 60px;
+/*PÁGINA DE CADASTRO*/
+.bodyLoginCad .container-Cadastro img {
+  margin-left: 10px;
+  width: 60%;
+  height: 28%;
+  object-fit: cover;
+  object-position: center;
 }
-.LoginCadastro #logo{
-    height: 70px;
-    width: 250px;
+.container-Cadastro {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
 }
-.LoginCadastro ul{
-    display: flex;
-    padding: 20px;
+.container-Cadastro .parteEsquerda {
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 7%;
+  margin-left: -0.8%;
 }
-.LoginCadastro li{
-    margin: 20px;
-    list-style: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: codec;
-    padding: 10px;
+.container-Cadastro .parteDireita {
+  position: absolute;
+  text-align: center;
+  height: 130%;
+  width: 100%;
+  top: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-.LoginCadastro li a{
-    color: white;
-    transition: 0.3s ;
-    padding-bottom: 5px;
-    position: relative;
-}
-.LoginCadastro li a::after{
+.container-Cadastro .parteDireita::before {
     content: "";
     position: absolute;
-    left: 0;
-    width: 0;
-    top: 30px;
-    height: 3px;
-    background-color: var(--cor-verde-escuro);
-    transition: width 0.3s ease-in-out;
+    inset: 0px; /* um atalho para top, right, bottom e left tudo no 0, assim faz ocupar o espaço todo*/
+
+    background: radial-gradient(circle at 20% 30%, rgb(11, 191, 149), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 200, 100), transparent 40%),
+                radial-gradient(circle at 50% 50%, rgb(126, 203, 180), transparent 40%),
+              white;
+
+    background-size: 200% 200%;
+    animation: moverCirculos 12s ease-in-out infinite;
 }
-.LoginCadastro li a:hover::after{
-    width: 100%;
+@keyframes moverCirculos{ /*animação top*/
+    0% {
+        background-position: 20% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 20%;
+    }
+}
+
+.container-Cadastro .formulario {
+  position: relative;
+  background-color: #324001d2;
+  border-radius: 25px;
+  border: solid var(--cor-fundo-button-bottom);
+  margin-top: 0;
+}
+.bodyLoginCad .container-Cadastro input {
+  border: solid transparent;
+  border-bottom: solid var(--cor-fundo-button-bottom);
+  outline: none;
+  background-color: transparent;
+  color: white;
+  height: 70px;
+  width: 600px;
+  padding: 0 0 0 16px;
+  margin: 0px 50px 10px 50px;
+  font-size: 23px;
+  transition: 0.4s;
+}
+.bodyLoginCad .container-Cadastro input:hover {
+  transform: translateY(-5px);
+  width: 630px;
+  margin-top: translateY(-5px);
+  margin-left: 25px;
+  margin-right: 25px;
+  border: solid 2px rgb(157, 157, 173);
+  border-radius: 15px;
+}
+
+.container-Cadastro .formulario button {
+  margin: 20px 0 30px 0;
+}
+
+/* Variáveis de cores do projeto*/
+:root {
+  --cor-verde-escuro: #042e09;
+  --cor-fundo: #275673;
+  --cor-fundo-button-bottom: #95b814;
 }
