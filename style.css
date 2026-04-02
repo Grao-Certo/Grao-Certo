@@ -93,10 +93,10 @@
   color: white;
 }
 .conteudo_header {
-  margin-top: 100px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
-  margin-left: 20vw;
+  margin-left: 15vw;
 }
 .conteudo_header h2 {
   font-family: codec;
@@ -105,6 +105,7 @@
   font-size: 30px;
 }
 .conteudo_header li {
+    margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
   color: white;
@@ -112,11 +113,12 @@
   font-family: codec;
   list-style: var(--cor-verde-escuro);
 }
-.conteudo_header h2 {
+.conteudo_header h3 {
   margin-bottom: 10px;
   color: white;
   font-size: 35px;
   font-family: codec;
+  margin-top: 10px;
 }
 .conteudo_header p {
   color: white;
@@ -129,7 +131,8 @@
   flex-direction: row;
 }
 .btn_contato button {
-  margin: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
   font-family: codec;
   height: 50px;
   width: 200px;
@@ -155,6 +158,7 @@
 }
 .imagem_contato img {
   height: 300px;
+  border-radius: 5px;
 }
 
 .container {
