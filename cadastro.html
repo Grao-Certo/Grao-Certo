@@ -13,7 +13,7 @@
 <body class="bodyLoginCad">
 
     <header class="LoginCadastro">
-            <a href="index.html"><img src="imgs/logo_grãocerto2.png" alt="logo da grão certo" id="logo"></a>
+            <a href="index.html"><img src="imgs/logo_grãocerto.png" alt="logo da grão certo" id="logo"></a>
             <ul>
                 <li><a href="index.html">HOME</a></li> 
                 <li><a href="">NOSSA SOLUÇÃO</a></li> 
@@ -24,7 +24,7 @@
 
     <div class="container-Cadastro"> <!--PAI-->
         <div class="parteEsquerda">
-            <img src="imgs/image.png">
+            <img src="imgs/Logo_Grande.png">
 
             <h1> JÁ TEM UMA <br> CONTA?</h1>
 
@@ -41,11 +41,16 @@
                 <input type="password" name="" id="input_senha" placeholder="Senha" oninput="verificar()"><br>
                 <input type="email" name="" id="input_email" placeholder="Email"> <br>
                 <input type="text" name="" id="input_cpf" placeholder="Documento"> <br>
-                <input type="checkbox" name="" id="input_pf"><input type="checkbox" name="" id="input_pj">
+                Tipo de pessoa:
+                <select id="select_pessoa">
+                    <option selected disabled> Selecione</option>
+                    <option>PF</option>
+                    <option>PJ</option>
+                </select><br>
                 <input type="text" name="" id="input_cep" placeholder="CEP"> <br>
                 <input type="text" name="" id="input_empresa" placeholder="Empresa"> <br>
-                <input type="text" name="" id="input_empresa" placeholder="Empresa"> <br>
                 <br>
+                <div id="div_mensagem"></div>
                 <button onclick="cadastrar()"> C A D A S T R A R </button>
             </div>
         </div>

@@ -274,6 +274,7 @@
   background: url(imgs/fundoLogin.png);
   color: white;
   font-size: 25px;
+  background-size: cover;
 }
 
 .bodyLoginCad button {
@@ -302,8 +303,8 @@
 }
 /*PÁGINA DE LOGIN*/
 .bodyLoginCad .container-Login img {
-  margin-left: 10px;
-  width: 80%;
+  width: 90%;
+  margin-left: 50px;
   height: 22%;
   object-fit: cover;
   object-position: center;
@@ -379,7 +380,7 @@
 
 /*PÁGINA DE CADASTRO*/
 .bodyLoginCad .container-Cadastro img {
-  margin-left: 10px;
+  margin-left: 50px;
   width: 60%;
   height: 28%;
   object-fit: cover;
