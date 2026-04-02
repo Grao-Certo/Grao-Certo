@@ -10,28 +10,25 @@ body {
 }
 
 h2, h3 {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: codec; 
 }
 
-/* Rótulos das seções (ex: NOSSA SOLUÇÃO) */
 .rotulo-secao {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
+    font-size: 14px;
     letter-spacing: 2px;
     margin-bottom: 15px;
     text-transform: uppercase;
 }
 
-/* Cria as linhas ao lado dos rótulos */
-.rotulo-secao::before,
-.rotulo-secao::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #A2B9C9;
-    margin: 0 20px;
-    max-width: 150px;
+/* classe simples para as linhas ao lado dos rótulos */
+.linha-lateral {
+    border-top: 1px solid #A2B9C9;
+    width: 100px;
+    /* Dando um espaço entre a linha e a palavra */
+    margin: 0 20px; 
 }
 
 /* Botão Verde Padrão */
@@ -43,7 +40,7 @@ h2, h3 {
     padding: 10px 30px;
     font-weight: bold;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 14px; 
     margin-top: 15px;
 }
 
@@ -51,7 +48,7 @@ h2, h3 {
     background-color: #65811F;
 }
 
-/* 1. Header / Topo da Página */
+/* Topo da Página */
 .secao-hero {
     text-align: center;
     padding: 60px 20px 40px 20px;
@@ -59,7 +56,7 @@ h2, h3 {
 
 .texto-boas-vindas {
     letter-spacing: 6px;
-    font-size: 1.1rem;
+    font-size: 18px; 
     color: #A2B9C9;
     margin-bottom: 20px;
 }
@@ -75,34 +72,34 @@ h2, h3 {
     color: #A2B9C9;
 }
 
-/* 2. Seção Sobre Nós */
+/* Seção Sobre Nós */
 .secao-sobre-nos {
     text-align: center;
     padding: 40px 10%;
 }
 
 .caixa-de-destaque {
-    background-color: #183A55; /* Azul mais escuro */
+    background-color: #183A55;
     padding: 35px;
     margin: 30px auto;
-    width: 80%; /* Ocupa 80% do espaço disponível */
+    width: 80%;
 }
 
 .caixa-de-destaque p {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.6rem;
+    font-family: codec;
+    font-size: 26px; 
     font-weight: bold;
 }
 
 .descricao-sobre-nos {
-    font-size: 0.85rem;
+    font-size: 14px; 
     width: 80%;
     margin: 0 auto;
     text-align: justify;
     text-transform: uppercase;
 }
 
-/* 3. Seção Nossa Solução */
+/* Seção Nossa Solução */
 .secao-solucoes {
     display: flex;
     align-items: center;
@@ -111,7 +108,8 @@ h2, h3 {
 }
 
 .imagem-solucoes {
-    width: 50%; /* Metade da tela para a imagem */
+    /* reservando metade da tela para a imagem */
+    width: 50%; 
     padding-right: 30px;
 }
 
@@ -120,22 +118,23 @@ h2, h3 {
 }
 
 .conteudo-solucoes {
-    width: 50%; /* Metade da tela para o texto */
+    /* reservando a outra metade da tela para o texto */
+    width: 50%; 
     text-align: center;
 }
 
 .conteudo-solucoes h3 {
-    font-size: 1.4rem;
+    font-size: 22px;
     margin-bottom: 20px;
 }
 
 .conteudo-solucoes p {
-    font-size: 0.9rem;
+    font-size: 14px; 
     margin-bottom: 15px;
     text-transform: uppercase;
 }
 
-/* 4. Seção Benefícios */
+/* Seção Benefícios */
 .secao-beneficios {
     padding: 60px 10%;
     text-align: center;
@@ -148,13 +147,15 @@ h2, h3 {
 
 .container-cartoes-beneficios {
     display: flex;
-    justify-content: space-between; /* Espalha os 3 cartões por igual */
+    justify-content: space-between; 
 }
 
 .cartao-beneficio {
     background-color: #183A55;
     border-radius: 8px;
-    width: 30%; /* Cada cartão ocupa 30% do espaço */
+
+    /* Cada cartão ocupa +/- uns 30% do espaço disponivel */
+    width: 30%; 
     padding-bottom: 30px;
 }
 
@@ -165,23 +166,24 @@ h2, h3 {
 
 .cartao-beneficio h3 {
     margin: 20px 0 15px 0;
-    font-size: 1.2rem;
+    font-size: 19px;
 }
 
-/* Pequena linha azul abaixo do título dentro do cartão */
-.cartao-beneficio h3::after {
-    content: "";
-    display: block;
+/* Nova classe simples para a pequena linha azul abaixo do título dentro do cartão */
+.linha-azul-curta {
     width: 40px;
     height: 2px;
     background-color: #A2B9C9;
-    margin: 10px auto 0 auto;
+
+    /* Margens para centralizar e dar espaço */
+    margin: 10px auto 15px auto; 
 }
 
 .cartao-beneficio ul {
-    list-style: none; /* Tira as bolinhas da lista */
+    /* List-style como none tira as bolinhas da lista */
+    list-style: none; 
     padding: 0 25px;
-    font-size: 0.8rem;
+    font-size: 13px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -191,11 +193,13 @@ h2, h3 {
     font-weight: bold;
 }
 
-/* 5. Seção Porque a Grão Certo */
+/* Seção Porque a Grão Certo */
 .secao-porque-nos {
     display: flex;
     padding: 60px 10%;
-    background-color: #244660; /* Fundo levemente diferente para destacar */
+
+    /* Fundo levemente diferente para dar destaque*/
+    background-color: #244660; 
 }
 
 .imagem-porque-nos {
@@ -211,18 +215,14 @@ h2, h3 {
     width: 50%;
 }
 
-/* Alinha o rótulo à esquerda e tira a linha do lado esquerdo */
+/* Alinhando o rótulo à esquerda */
 .texto-porque-nos .rotulo-secao {
     justify-content: flex-start;
 }
 
-.texto-porque-nos .rotulo-secao::before {
-    display: none;
-}
-
 .texto-porque-nos h2 {
     text-align: left;
-    font-size: 1.4rem;
+    font-size: 22px;
     margin-bottom: 30px;
 }
 
@@ -231,19 +231,22 @@ h2, h3 {
 }
 
 .item-destaque h4 {
-    font-size: 1.1rem;
+    font-size: 18px;
     margin-bottom: 5px;
 }
 
 .icone-marca {
-    color: #7A9B26; /* Cor verde do "check" */
-    font-size: 1.2rem;
+    /* Cor verde para o simbolo de "check" */
+    color: #7A9B26; 
+    font-size: 19px; 
     margin-right: 5px;
 }
 
 .item-destaque p {
-    font-size: 0.8rem;
+    font-size: 13px;
     text-transform: uppercase;
     text-align: justify;
-    margin-left: 25px; /* Empurra o texto para não ficar debaixo do ícone */
+
+    /* Empurra o texto para não ficar debaixo do ícone */
+    margin-left: 25px; 
 }
