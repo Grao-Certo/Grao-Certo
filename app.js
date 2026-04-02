@@ -21,30 +21,60 @@ function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critéri
     }
 }
 
-function cadastrar() {
-    let email = input_email.value;
-    let nome = input_nome.value;
+function cadastrar() { 
+    let email = input_email.value; 
+    let nome = input_nome.value; 
+    let cpf = input_cpf.value; 
+    let pessoa = select_pessoa.value; 
+    let empresa = input_empresa.value; 
+    let cep = input_cep.value; 
 
-    if (email.endsWith('@sptech.school')  && nome != '' || email.endsWith('@gmail.com') && nome != '') {
-        alert('Cadastro realizado com sucesso!')
-        window.location.href = "Login.html";
+    // EMAIL
+    if(email.endsWith('@sptech.school') || email.endsWith('@gmail.com')) {
+
+        if (cpf.length == 14 && cpf[3] == '.' && cpf[7] == '.' && cpf[11] == '-') {
+
+            if(pessoa == 'PJ' || pessoa == 'PF') { // TIPO DE PESSOA // CPF
+
+                if(cep.length == 9 && cep[5] == '-') { // CEP
+
+                    if(empresa != '') { // NOME DA EMPRESA
+
+                        if (nome != '') { // NOME DO USUÁRIO
+                            alert('Cadastro realizado com sucesso!')
+                            Window.location.href = 'Login.html';
+                        } else {
+                            alert('Digite seu nome')
+                        }
+                    } else {
+                        alert('Digite o nome da sua empresa')
+                    }
+                } else {
+                    alert('Digite um CEP válido')
+                }
+            } else {
+                alert('Selecione uma opção!')
+            }
+        } else {
+            alert('Digite um CPF válido')
+        }
     } else {
-        alert('Digite um email ou usuário válido')
+        alert('Digite um email válido')
     }
 }
- 
+
 /* Tela de login */
 function logar() {
-        let email = input_email.value;
-        let senha = input_senha.value;
+    let email = input_email.value;
+    let senha = input_senha.value;
 
-        let emailFicticio = 'brandao123@sptech.com';
-        let senhaFicticia = 'Clara123';
+    let emailFicticio = 'brandao123@sptech.com';
+    let senhaFicticia = 'Clara123';
 
-        if (email == emailFicticio && senha == senhaFicticia) {
-            alert('Login realizado com sucesso!')
-            window.location.href = "index.html";      
-        } else {
-            alert('Usuário ou senha errada.')
-        }
+    if (email == emailFicticio && senha == senhaFicticia) {
+        alert('Login realizado com sucesso!')
+        window.location.href = "index.html";
+    } else {
+        alert('Usuário ou senha errada.')
     }
+}
