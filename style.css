@@ -43,8 +43,6 @@
   display: flex;
   padding: 0 30px 0 0;
 }
-
-
 .barra li {
   margin: 20px;
   list-style: none;
@@ -221,8 +219,9 @@
   font-size: 60px;
 }
 
+/*====================================*/
 /* TELA DE LOGIM E CADASTRO */
-/*HEADER*/
+/*====================================*/
 .LoginCadastro {
   height: 110px;
   background-color: transparent;
@@ -468,7 +467,22 @@
   border: solid 2px rgb(157, 157, 173);
   border-radius: 15px;
 }
-
+.container-Cadastro #input_senha {
+  margin-bottom: 20px;
+}
+.container-Cadastro select {
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  position: relative;
+  left: -20%;
+  font-size: 20px;
+}
+.container-Cadastro label {
+  position: relative;
+  margin: 10px;
+  left: -20%;
+}
 .container-Cadastro .formulario button {
   margin: 20px 0 30px 0;
 }
@@ -481,8 +495,8 @@
 }
 
 /* =============================================
-   SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
-   ============================================= */
+SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
+============================================= */
 
 h2, h3 {
     font-family: codec;
