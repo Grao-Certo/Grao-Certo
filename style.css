@@ -28,7 +28,7 @@
 
 .barra {
   top: 0;
-  height: 110px;
+  height: 120px;
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -167,6 +167,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: codec;
 }
 .logo {
   display: flex;
@@ -212,6 +213,7 @@
   text-align: center;
   font-size: 30px;
   margin-left: 50px;
+  font-family: codec;
 }
 .slogan {
   margin: 30px;
