@@ -43,8 +43,6 @@
   display: flex;
   padding: 0 30px 0 0;
 }
-
-
 .barra li {
   margin: 20px;
   list-style: none;
@@ -223,8 +221,9 @@
   font-size: 60px;
 }
 
+/*====================================*/
 /* TELA DE LOGIM E CADASTRO */
-/*HEADER*/
+/*====================================*/
 .LoginCadastro {
   height: 110px;
   background-color: transparent;
@@ -470,7 +469,22 @@
   border: solid 2px rgb(157, 157, 173);
   border-radius: 15px;
 }
-
+.container-Cadastro #input_senha {
+  margin-bottom: 20px;
+}
+.container-Cadastro select {
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  position: relative;
+  left: -20%;
+  font-size: 20px;
+}
+.container-Cadastro label {
+  position: relative;
+  margin: 10px;
+  left: -20%;
+}
 .container-Cadastro .formulario button {
   margin: 20px 0 30px 0;
 }
@@ -483,8 +497,8 @@
 }
 
 /* =============================================
-   SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
-   ============================================= */
+SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
+============================================= */
 
 h2, h3 {
     font-family: codec;
@@ -695,4 +709,150 @@ h2, h3 {
     text-transform: uppercase;
     text-align: justify;
     margin-left: 25px;
+}
+
+/* CALCULADORA */
+
+
+body.simulador-body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background: #417fa6;
+    color: white;
+    text-align: center;
+}
+
+
+.simulador-subtitulo {
+    margin-top: 30px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.simulador-titulo {
+    font-size: 36px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.simulador-descricao {
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+
+.simulador-subtitulo::before,
+.simulador-subtitulo::after {
+    content: "";
+    display: inline-block;
+    width: 180px;
+    height: 1.4px;
+    background: white;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+
+.simulador-container {
+    background-color: #1f4b6d;
+    width: 60%;
+    margin: auto;
+    padding: 45px;
+    border-radius: 30px;
+    border: 2px solid #2d6cdf;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+
+.simulador-input-group {
+    text-align: left;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.simulador-label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+
+.simulador-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+
+    background: 
+        linear-gradient(#1f4b6d, #1f4b6d) padding-box,
+        linear-gradient(90deg, #2d6cdf, #6ea8ff) border-box;
+
+    color: white;
+    outline: none;
+}
+
+
+.simulador-input::placeholder {
+    color: #ccc;
+}
+
+
+.simulador-linha {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.simulador-icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    border: 2px solid transparent;
+
+    background: 
+        linear-gradient(#1f4b6d, #1f4b6d) padding-box,
+        linear-gradient(180deg, #2d6cdf, #6ea8ff) border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.simulador-icone img {
+    width: 100%;
+    height: 100%;
+}
+
+.simulador-alerta {
+    font-size: 10px;
+    text-align: left;
+    margin-top: 10px;
+    border-top: 1.4px solid #2d6cdf;
+    padding-top: 10px;
+}
+
+.simulador-botao {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: none;
+    background-color: #d9e6f2;
+    color: #1f4b6d;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.simulador-botao:hover {
+    background-color: white;
+}
+
+
+.simulador-resultado {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: left;
 }

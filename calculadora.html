@@ -8,41 +8,68 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="simulador-body">
 
-    <h3>BENEFÍCIOS DO NOSSO SERVIÇO</h3>
-    <h1>SIMULADOR FINANCEIRO</h1>
-    <p>Descubra em quanto tempo sua operação começa a gerar lucro</p>
+    <h3 class="simulador-subtitulo">BENEFÍCIOS DO NOSSO SERVIÇO</h3>
+    <h1 class="simulador-titulo">SIMULADOR FINANCEIRO</h1>
+    <p class="simulador-descricao">Descubra em quanto tempo sua operação começa a gerar lucro</p>
 
-    <div class="container">
+    <div class="simulador-container">
+        <div class="simulador-linha">
+    
+            <div class="simulador-icone">
+                <img src="imgs/silo.png" alt="Silo">
+            </div>
 
-        <div class="input-group">
-            <label>QUANTIDADE DE SILOS</label>
-            <input type="number" id="ipt_qtd_silos">
-        </div><br>
+            <div class="simulador-input-group">
+                <label class="simulador-label">QUANTIDADE DE SILOS</label>
+                <input type="number" id="ipt_qtd_silos" class="simulador-input">
+            </div><br>
+        </div>
 
-        <div class="input-group">
-            <label>CAPACIDADE DO(S) SILO(S) (EM TONELADAS)</label>
-            <input type="number" id="ipt_cap_silos">
-        </div><br>
+        <div class="simulador-linha">
+    
+            <div class="simulador-icone">
+                <img src="imgs/capacidade.png" alt="Simbolo de capacidade">
+            </div>
 
-        <div class="input-group">
-            <label>PREÇO MÉDIO DO MILHO (R$ POR TONELADA)</label>
-            <input type="number" id="ipt_preco_milho">
-        </div><br>
+            <div class="simulador-input-group">
+                <label class="simulador-label">CAPACIDADE DO(S) SILO(S) (EM TONELADAS)</label>
+                <input type="number" id="ipt_cap_silos" class="simulador-input">
+            </div><br>
+        </div>
 
-        <div class="input-group">
-            <label>TEMPO DE INSPEÇÃO MANUAL POR SILO (HORAS POR MÊS)</label>
-            <input type="number" id="ipt_tempo_inspecao">
-        </div><br>
+        <div class="simulador-linha">
+    
+            <div class="simulador-icone">
+                <img src="imgs/milho.png" alt="Milho">
+            </div>
 
-        <div class="alerta">
+            <div class="simulador-input-group">
+                <label class="simulador-label">PREÇO MÉDIO DO MILHO (R$ POR TONELADA)</label>
+                <input type="number" id="ipt_preco_milho" class="simulador-input">
+            </div><br>
+        </div>
+
+        <div class="simulador-linha">
+    
+            <div class="simulador-icone">
+                <img src="imgs/tempo.png" alt="Relógio">
+            </div>
+
+            <div class="simulador-input-group">
+                <label class="simulador-label">TEMPO DE INSPEÇÃO MANUAL POR SILO (HORAS POR MÊS)</label>
+                <input type="number" id="ipt_tempo_inspecao" class="simulador-input">
+            </div><br>
+        </div>
+
+        <div class="simulador-alerta">
             <b>*ATENÇÃO:</b> Insira mais de 1 silo apenas se possuírem a mesma capacidade.
         </div><br>
 
-        <button onclick="calcularLucros()">CALCULAR RETORNO</button> 
+        <button class="simulador-botao" onclick="calcularLucros()">CALCULAR RETORNO</button> 
 
-        <div id="id_mensagem"></div>
+        <div id="id_mensagem" class="simulador-resultado"></div>
 
     </div>
 

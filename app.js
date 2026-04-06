@@ -42,7 +42,7 @@ function cadastrar() {
 
                         if (nome != '') { // NOME DO USUÁRIO
                             alert('Cadastro realizado com sucesso!')
-                            Window.location.href = 'Login.html';
+                            window.location.href = 'Login.html';
                         } else {
                             alert('Digite seu nome')
                         }
