@@ -8,6 +8,7 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
+  overflow-x: hidden;
 }
 .index {
   background-color: var(--cor-fundo);
