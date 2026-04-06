@@ -421,7 +421,7 @@
     inset: 0px; /* um atalho para top, right, bottom e left tudo no 0, assim faz ocupar o espaço todo*/
 
     background: radial-gradient(circle at 20% 30%, rgb(11, 191, 149), transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(0, 200, 100), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(19, 92, 250, 0.692), transparent 40%),
                 radial-gradient(circle at 50% 50%, rgb(126, 203, 180), transparent 40%),
               white;
 
@@ -479,6 +479,8 @@
   position: relative;
   left: -20%;
   font-size: 20px;
+  margin-bottom: 15px;
+  margin-top: 5px;
 }
 .container-Cadastro label {
   position: relative;
