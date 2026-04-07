@@ -78,7 +78,7 @@
   font-family: codec;
   height: 37px;
   width: 120px;
-  border-radius: 10%;
+  border-radius: 10px;
   border: none;
   margin: 10px;
   cursor: pointer;
@@ -103,7 +103,7 @@
   font-size: 30px;
 }
 .conteudo_header li {
-    margin-left: 20px;
+  margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
   color: white;
@@ -221,17 +221,54 @@
   font-size: 60px;
 }
 .container-footer{
-  margin-top: 5%;
+  padding: 5%;
   display: flex;
   flex-direction: column;
   font-family: codec;
 }
 .footer {
   display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin-bottom: 40px;
+  padding: px;
+  margin-bottom: 0px;
 }
+.logo-footer {
+  margin-right: 100px;
+}
+.logo-footer img{
+  width: 900px;
+}
+.informacoes {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.informacoes p {
+  margin-left: 50px;
+  margin-bottom: 22px;
+  color: white;
+}
+.informacoes a {
+  margin-left: 50px;
+
+  color: white;
+}
+.informacoes h3 {
+  margin-left: 50px;
+  margin-bottom: 22px;
+  color: #95b814;
+}
+.container-cop {
+  padding: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: codec;
+  color: aliceblue;
+}
+
 /*====================================*/
 /* TELA DE LOGIM E CADASTRO */
 /*====================================*/
