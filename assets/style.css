@@ -308,12 +308,13 @@
   width: 270px;
 }
 
+/*PÁGINA DE LOGIN*/
 /* Estilizando a parte esquerda que contém a logo */
 .bodyLoginCad hr {
   width: 450px;
   margin: 25px;
 }
-/*PÁGINA DE LOGIN*/
+
 .bodyLoginCad .container-Login img {
   margin-left: 10px;
   width: 80%;
@@ -349,7 +350,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
+} 
 .container-Login .formulario {
   position: relative;
   background-color: #32400192;
@@ -404,7 +405,7 @@
   align-items: baseline;
   justify-content: space-between;
 }
-.container-Cadastro .parteEsquerda {
+.container-Cadastro .parteSuperior {
   position: absolute;
   text-align: center;
   height: 100%;
@@ -416,7 +417,7 @@
   top: 7%;
   margin-left: -0.8%;
 }
-.container-Cadastro .parteDireita {
+.container-Cadastro .parteInferior {
   position: absolute;
   text-align: center;
   height: 130%;
@@ -427,7 +428,7 @@
   flex-direction: column;
   align-items: center;
 }
-.container-Cadastro .parteDireita::before {
+.container-Cadastro .parteInferior::before {
     content: "";
     position: absolute;
     inset: 0px; /* um atalho para top, right, bottom e left tudo no 0, assim faz ocupar o espaço todo*/
@@ -726,8 +727,6 @@ h2, h3 {
 }
 
 /* CALCULADORA */
-
-
 body.simulador-body {
     margin: 0;
     font-family: 'Times New Roman', Times, serif;
