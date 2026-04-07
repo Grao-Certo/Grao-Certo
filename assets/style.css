@@ -8,7 +8,6 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  overflow-x: hidden;
 }
 .index {
   background-color: var(--cor-fundo);
@@ -188,7 +187,7 @@
 .logo hr {
   background-color: #134d7021;
   padding: 8px;
-  width: 400%;
+  width: 100%;
   border: none;
   border-radius: 0%;
   margin-top: 100px;
