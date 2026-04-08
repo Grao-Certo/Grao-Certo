@@ -243,6 +243,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   padding: 20px;
+  font-size: 20px;
 }
 
 .informacoes p {
