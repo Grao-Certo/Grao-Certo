@@ -222,18 +222,20 @@
 .container-footer{
   padding: 5%;
   display: flex;
+  width: 100vw;
   flex-direction: column;
   font-family: codec;
 }
 .footer {
   display: flex;
-    margin-bottom: 0px;
+    width: 100vw;
 }
 .logo-footer {
+  margin-top: 1%;
   margin-right: 100px;
 }
 .logo-footer img{
-  width: 800px;
+  width: 600px;
 }
 .informacoes {
   margin-top: 60px;
@@ -247,11 +249,14 @@
   margin-left: 50px;
   margin-bottom: 18px;
   color: white;
+  font-size: 15px;
 }
 .informacoes a {
   margin-left: 50px;
   margin-bottom: 18px;
   color: white;
+  font-size: 15px;
+
 }
 .informacoes h3 {
   margin-left: 50px;
