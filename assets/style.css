@@ -227,32 +227,30 @@
 }
 .footer {
   display: flex;
-  padding: px;
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 .logo-footer {
   margin-right: 100px;
 }
 .logo-footer img{
-  max-width: 100%;
+  width: 800px;
 }
 .informacoes {
-  margin-top: 70px;
+  margin-top: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 20px;
   font-size: 20px;
 }
 
 .informacoes p {
   margin-left: 50px;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
   color: white;
 }
 .informacoes a {
   margin-left: 50px;
-
+  margin-bottom: 18px;
   color: white;
 }
 .informacoes h3 {
