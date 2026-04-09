@@ -11,6 +11,7 @@
 }
 .index {
   background-color: var(--cor-fundo);
+  overflow-x: hidden;
 }
 .imagem_fundo {
   position: relative;
@@ -20,7 +21,7 @@
   background-size: cover;
   background-position: center;
   height: 700px;
-  width: 100vw;
+  width: 100%;
   display: inline-block;
   justify-content: center;
   z-index: 1;
@@ -173,8 +174,7 @@
   align-items: center;
 }
 .logo img {
-  width: 1000px;
-  margin-left: 100px;
+  max-width: 100%;
   margin-bottom: 20px;
 }
 .logo p {
@@ -182,7 +182,6 @@
   font-family: "DM Sans", sans-serif;
   color: white;
   font-size: 30px;
-  margin-left: 50px;
 }
 .logo hr {
   background-color: #134d7021;
@@ -235,7 +234,7 @@
   margin-right: 100px;
 }
 .logo-footer img{
-  width: 900px;
+  max-width: 100%;
 }
 .informacoes {
   margin-top: 70px;
