@@ -151,6 +151,47 @@ ORDER BY percentual DESC;
 CREATE DATABASE grao;
 USE grao; 
 
+
+CREATE TABLE historico_estoque (
+    idHistorico INT PRIMARY KEY AUTO_INCREMENT,
+    fkSilo INT,
+    volume_anterior DECIMAL(10,2),
+    volume_novo DECIMAL(10,2),
+    diferenca DECIMAL(10,2),
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fkSilo) REFERENCES silo(idSilo)
+);
+
+SELECT idDado, volumeEstimado_silo, fkSilo 
+FROM dado 
+WHERE idDado = 1;
+
+INSERT INTO historico_estoque (
+    fkSilo,
+    volume_anterior,
+    volume_novo,
+    diferenca
+)
+SELECT 
+    fkSilo,
+    volumeEstimado_silo,
+    900.00,
+    900.00 - volumeEstimado_silo
+FROM dado
+WHERE idDado = 1;
+
+UPDATE dado
+SET volumeEstimado_silo = 900.00
+WHERE idDado = 1;
+
+SELECT 
+    fkSilo,
+    volume_anterior,
+    volume_novo,
+    diferenca,
+    dataHora
+FROM historico_estoque;
+
 -- Lista quais silos cada usuário tem.
 SELECT 
     usuario.nome AS 'usuário',
