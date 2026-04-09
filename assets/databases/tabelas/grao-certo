@@ -1,0 +1,205 @@
+
+'Grão Certo'
+
+
+-- Criar Database
+CREATE DATABASE graoCerto;
+
+-- Utilizar Database
+USE graoCerto;
+
+-- Criar tabela usuario
+CREATE TABLE usuario (
+	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(60) NOT NULL,
+    senha CHAR(60), -- Como ainda não aprendemos sobre Hash e criptografia de senha, mantemos este campo como exemplo.
+	email VARCHAR(60) UNIQUE NOT NULL,
+	tipo_pessoa CHAR(2),
+	CONSTRAINT CHK_TIPO
+		CHECK (tipo_pessoa IN ('PF','PJ')),
+	documento VARCHAR(14) UNIQUE NOT NULL, -- CPF ou CNPJ, a depender do dado em tipo_pessoa
+	CEP CHAR(8),
+	quantidade_silos INT
+);
+
+-- Criar tabela silo
+/*
+OBS: Cada silo precisa de tipos diferentes de dados para gerar o volume total final
+Silo Trincheira — Formato: Retangular (Prisma Retangular) — Volume: Comprimento × Largura × Altura
+Silo Cilíndrico — Formato: Cilindro — Volume: π · r² · h
+Silo Cilíndrico com Teto Cônico — Formato: Cilindro + Cone — Volume: π · r² · h + (1/3) · π · r² · h(cone)
+*/
+CREATE TABLE silo (
+	idSilo INT PRIMARY KEY AUTO_INCREMENT,
+	tipoSilo VARCHAR(30),
+	CONSTRAINT CHK_SILO
+		CHECK (tipoSilo IN ('Trincheira','Cilindrico','Cilindrico com Teto Cônico')),
+	alturaTotal_silo DECIMAL(5,2),
+	comprimento_silo DECIMAL(5,2),
+	largura_silo DECIMAL(5,2),
+	raio DECIMAL(5,2),
+	alturaCone_silo DECIMAL(5,2),
+	volumeMaximo_silo DECIMAL(10,2),
+	fkUsuario INT,
+	FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+	data_instalacao DATE
+);
+
+-- Criar tabela dado
+CREATE TABLE dado (
+	idDado INT PRIMARY KEY AUTO_INCREMENT,
+	distanciaSuperficie DECIMAL(5,2),
+	volumeEstimado_silo DECIMAL(10,2),
+	dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+	fkSilo INT,
+	FOREIGN KEY (fkSilo) REFERENCES silo(idSilo)
+);
+
+-- Inserir usuários
+INSERT INTO usuario
+(nome, senha, email, tipo_pessoa, documento, CEP, quantidade_silos)
+VALUES
+('Rafael Moura', '$2a$12$OcsHzgfrcH.yOLtdMOr5f.4NOCoJGYCM8gEfDPFsNegdYly3wA1Gm', 'rafael.moura@email.com','PF','38472961502','04567010',1),
+('Lucas Silvestre','$2a$12$OcsHzgfrcH.yOLtdMOr5f.4NOCoJGYCM8gEfDPFsNegdYly3wA1Gm' , 'lucas.silvestre@email.com','PF','52917483641','03312040',1),
+('Maria Eduarda Almeida','$2a$12$OcsHzgfrcH.yOLtdMOr5f.4NOCoJGYCM8gEfDPFsNegdYly3wA1Gm' , 'maria.almeida@email.com','PF','94726153088','01311000',1),
+('Agro Silo Brasil LTDA','$2a$12$OcsHzgfrcH.yOLtdMOr5f.4NOCoJGYCM8gEfDPFsNegdYly3wA1Gm', 'contato@agrosilo.com','PJ','37482916000152','06789030',1),
+('Armazens Paulistas SA', '$2a$12$OcsHzgfrcH.yOLtdMOr5f.4NOCoJGYCM8gEfDPFsNegdYly3wA1Gm', 'contato@armazenspaulistas.com','PJ','60391827000144','07215060',2);
+
+-- Inserir silos
+INSERT INTO silo
+(tipoSilo, alturaTotal_silo, comprimento_silo, largura_silo, raio, alturaCone_silo, volumeMaximo_silo, fkUsuario, data_instalacao)
+VALUES
+('Trincheira',4.50,30.00,12.00,NULL,NULL,1620.00,1,'2023-02-10'),
+('Cilindrico',12.00,NULL,NULL,4.00,NULL,603.19,2,'2022-08-15'),
+('Cilindrico',14.00,NULL,NULL,4.50,NULL,890.12,3,'2024-01-05'),
+('Cilindrico com Teto Cônico',20.00,NULL,NULL,6.50,4.00,2299.33,4,'2021-06-20'),
+('Trincheira',5.00,40.00,14.00,NULL,NULL,2800.00,5,'2020-03-11'),
+('Cilindrico',18.00,NULL,NULL,5.50,NULL,1710.42,5,'2023-09-30');
+
+
+-- Inserir Dados
+/* A ideia principal é que o valor que o banco de dados receberá
+será a moda de 10 valores captados pelo sensor do arduino, a fim de evitar erros de mensuração.
+*/
+
+INSERT INTO dado (distanciaSuperficie, volumeEstimado_silo, fkSilo)
+VALUES
+(2.15,774.00,1),
+(1.95,204.00,2),
+(3.15,458.00,3),
+(1.45,522.00,4),
+(2.65,954.00,5),
+(3.85,1386.00,6);
+
+-- Tabelas Completas
+SELECT * FROM usuario;
+
+SELECT * FROM silo;
+
+SELECT * FROM dado;
+
+-- Estrutura das tabelas
+DESC usuario;
+
+DESC silo;
+
+DESC dado;
+
+
+-- Exemplos de SELECT
+-- Quantidade de silos de um usuário
+SELECT nome, quantidade_silos
+FROM usuario
+WHERE nome = 'Rafael Moura';
+
+-- Volume atual de um silo
+SELECT volumeEstimado_silo AS volume_atual
+FROM dado
+WHERE fkSilo = 1;
+
+-- Capacidade máxima de um silo
+SELECT volumeMaximo_silo AS capacidade_maxima
+FROM silo
+WHERE idSilo = 1;
+
+-- Melhor visualização dos Usuários:
+SELECT
+nome AS nome_usuario,
+email AS email_usuario,
+CONCAT(tipo_pessoa, ' - ', documento) AS identificacao,
+CONCAT('CEP: ', CEP) AS cep_formatado,
+quantidade_silos AS qtd_silos_cadastrada,
+CASE
+WHEN tipo_pessoa = 'PF' THEN 'Pessoa Física'
+WHEN tipo_pessoa = 'PJ' THEN 'Pessoa Jurídica'
+ELSE 'Não informado'
+END AS tipo_descricao
+FROM usuario
+ORDER BY nome;
+
+-- Verificação do percentual dos silos do tipo Trincheira:
+SELECT
+silo.idSilo AS silo,
+(dado.volumeEstimado_silo / silo.volumeMaximo_silo) * 100 AS percentual
+FROM silo, dado
+WHERE silo.tipoSilo = 'Trincheira' AND dado.fkSilo = silo.idSilo
+ORDER BY percentual DESC;
+
+
+-- Sprint 2
+
+CREATE DATABASE grao;
+USE grao; 
+
+-- Lista quais silos cada usuário tem.
+SELECT 
+    usuario.nome AS 'usuário',
+    silo.idSilo,
+    silo.tipoSilo,
+    silo.data_instalacao
+FROM usuario
+	JOIN silo  
+		ON usuario.idUsuario = silo.fkUsuario;
+        
+
+-- ver dados coletados por silo        
+SELECT
+    silo.idSilo,
+    silo.tipoSilo,
+    dado.volumeEstimado_silo,
+    dado.dataHora
+FROM silo
+	JOIN dado
+		ON silo.idSilo = dado.fkSilo;
+	
+
+-- Mostrar percentual de ocupação do silo
+
+SELECT
+    silo.idSilo,
+    silo.tipoSilo,
+    dado.volumeEstimado_silo,
+    silo.volumeMaximo_silo,
+    (dado.volumeEstimado_silo / silo.volumeMaximo_silo) * 100 AS percentual
+FROM silo
+	JOIN dado
+		ON dado.fkSilo = silo.idSilo;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
