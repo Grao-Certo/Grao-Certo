@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grão Certo | Dashboard</title>
+
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+
+        <aside class="dashboard-sidebar">
+
+            <img src="../assets/imgs/logo_grãocerto.png" class="logo-sidebar">
+
+            <div class="usuario">
+                <div class="icone-usuario"></div>
+                <h3>ARMAZENS PAULISTAS SA</h3>
+                <p>contato@armazenspaulistas.com</p>
+            </div>
+
+            <ul class="menu">
+                <li class="ativo">▼ DASHBOARD</li>
+                <li class="destaque">SILO 1</li>
+                <li>SILO 2</li>
+            </ul>
+
+            <div class="acoes">
+                <button>GERAR RELATÓRIO</button>
+                <button>CONFIGURAR ALERTAS</button>
+            </div>
+
+        </aside>
+
+        <main class="dashboard-conteudo">
+            <div class="dashboard-card">
+                <h3>Temperatura</h3>
+                <div class="grafico-container">
+                    <canvas id="grafico"></canvas>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('grafico');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Silo 1', 'Silo 2', 'Silo 3'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [30, 28, 32],
+                backgroundColor: '#8BC34A'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
