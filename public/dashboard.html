@@ -44,10 +44,28 @@
         </aside>
 
         <main class="dashboard-conteudo">
-            <div class="dashboard-card">
-                <h3>Temperatura</h3>
-                <div class="grafico-container">
-                    <canvas id="grafico"></canvas>
+            <div class="card-container">
+                <h3 class="titulo-card">VOLUME ATUAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container">
+                        <canvas id="grafico1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <h3 class="titulo-card">ALTERAÇÕES DE ESTOQUE</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container">
+                        <canvas id="grafico2"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <h3 class="titulo-card">VOLUME ATUAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container">
+                        <canvas id="grafico3"></canvas>
+                    </div>
                 </div>
             </div>
         </main>
@@ -65,9 +83,43 @@
         element.classList.toggle("ativo");
     }
 
-    const ctx = document.getElementById('grafico');
+    const ctx1 = document.getElementById('grafico1');
+    const ctx2 = document.getElementById('grafico2');
+    const ctx3 = document.getElementById('grafico3');
 
-    new Chart(ctx, {
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['Silo 1', 'Silo 2', 'Silo 3'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [30, 28, 32],
+                backgroundColor: '#8BC34A'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Silo 1', 'Silo 2', 'Silo 3'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [30, 28, 32],
+                backgroundColor: '#8BC34A'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    new Chart(ctx3, {
         type: 'bar',
         data: {
             labels: ['Silo 1', 'Silo 2', 'Silo 3'],

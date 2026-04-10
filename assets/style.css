@@ -949,14 +949,46 @@ dashboard
   padding: 0;
 }
 
+.usuario {
+  text-align: center;
+}
+
+.usuario h3 {
+  font-size: 26px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.usuario p {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
 .submenu {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
 }
 
+.menu-item{
+  font-size: 26px;
+  font-weight: bold;
+  
+}
+
+.submenu li {
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .menu-item.ativo .submenu {
   max-height: 200px;
+}
+
+.menu-item:hover{
+  color: #95b814;
+  transition: 0.3s;
 }
 
 .seta {
@@ -976,8 +1008,22 @@ dashboard
 }
 
 .dashboard-conteudo {
-  flex: 1;
+  display: flex;
   padding: 40px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-card {
+  margin-bottom: 8px;
+  font-size: 20px;
 }
 
 .dashboard-card {
@@ -986,6 +1032,7 @@ dashboard
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   width: fit-content;
+  height: fit-content;
   border: 2px solid black;
 }
 
@@ -1018,6 +1065,8 @@ dashboard
 
 .acoes button:hover {
   opacity: 0.85;
+  color: #95b814;
+  transition: 0.3s;
 }
 
 /*
