@@ -44,8 +44,7 @@ CREATE TABLE
         alturaCone_silo DECIMAL(5, 2),
         volumeMaximo_silo DECIMAL(10, 2),
         fkUsuario INT,
-        CONSTRAINT chFkUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario),
-        data_instalacao DATE
+        CONSTRAINT chFkUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario)
     );
 
 -- Criar tabela dado
@@ -55,7 +54,7 @@ CREATE TABLE
         distanciaSuperficie DECIMAL(5, 2),
         volumeEstimado_silo DECIMAL(10, 2),
         dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
-        fkSilo INT,
+        fkSilo INT NOT NULL,
         CONSTRAINT chFkSilo FOREIGN KEY (fkSilo) REFERENCES silo (idSilo)
     );
 
@@ -127,8 +126,7 @@ INSERT INTO
         raio,
         alturaCone_silo,
         volumeMaximo_silo,
-        fkUsuario,
-        data_instalacao
+        fkUsuario
     )
 VALUES
     (
@@ -139,8 +137,7 @@ VALUES
         NULL,
         NULL,
         1620.00,
-        1,
-        '2023-02-10'
+        1
     ),
     (
         'Cilindrico',
@@ -150,8 +147,7 @@ VALUES
         4.00,
         NULL,
         603.19,
-        2,
-        '2022-08-15'
+        2
     ),
     (
         'Cilindrico',
@@ -161,8 +157,7 @@ VALUES
         4.50,
         NULL,
         890.12,
-        3,
-        '2024-01-05'
+        3
     ),
     (
         'Cilindrico com Teto Cônico',
@@ -172,8 +167,7 @@ VALUES
         6.50,
         4.00,
         2299.33,
-        4,
-        '2021-06-20'
+        4
     ),
     (
         'Trincheira',
@@ -183,8 +177,7 @@ VALUES
         NULL,
         NULL,
         2800.00,
-        5,
-        '2020-03-11'
+        5
     ),
     (
         'Cilindrico',
@@ -194,8 +187,7 @@ VALUES
         5.50,
         NULL,
         1710.42,
-        5,
-        '2023-09-30'
+        5
     );
 
 -- Inserir Dados
@@ -203,14 +195,19 @@ VALUES
 será a moda de 10 valores captados pelo sensor do arduino, a fim de evitar erros de mensuração.
  */
 INSERT INTO
-    dado (distanciaSuperficie, volumeEstimado_silo, fkSilo)
+    dado (
+        distanciaSuperficie,
+        volumeEstimado_silo,
+        fkSilo,
+        fkSensor
+    )
 VALUES
-    (2.15, 774.00, 1),
-    (1.95, 204.00, 2),
-    (3.15, 458.00, 3),
-    (1.45, 522.00, 4),
-    (2.65, 954.00, 5),
-    (3.85, 1386.00, 6);
+    (2.15, 774.00, 1, 1),
+    (1.95, 204.00, 2, 2),
+    (3.15, 458.00, 3, 3),
+    (1.45, 522.00, 4, 4),
+    (2.65, 954.00, 5, 5),
+    (3.85, 1386.00, 6, 6);
 
 -- Tabelas Completas
 SELECT
@@ -283,8 +280,7 @@ SELECT
     silo.idSilo AS silo,
     (dado.volumeEstimado_silo / silo.volumeMaximo_silo) * 100 AS percentual
 FROM
-    silo,
-    dado
+    JOIN dado ON dado.fkSilo = silo.idSilo
 WHERE
     silo.tipoSilo = 'Trincheira'
     AND dado.fkSilo = silo.idSilo
@@ -292,10 +288,6 @@ ORDER BY
     percentual DESC;
 
 -- Sprint 2
-CREATE DATABASE grao;
-
-USE grao;
-
 CREATE TABLE
     historico_estoque (
         idHistorico INT PRIMARY KEY AUTO_INCREMENT,
@@ -306,6 +298,39 @@ CREATE TABLE
         dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
         CONSTRAINT chFkSilo FOREIGN KEY (fkSilo) REFERENCES silo (idSilo)
     );
+
+CREATE TABLE
+    sensor (
+        idSensor INT PRIMARY KEY AUTO_INCREMENT,
+        identificacao_sensor VARCHAR(45) UNIQUE,
+        status_sensor VARCHAR(20),
+        data_instalacao DATE,
+        fkSilo INT NOT NULL,
+        CONSTRAINT chStatusSensor CHECK (
+            status_sensor IN ('ativo', 'inativo', 'manutencao', 'instalacao')
+        ),
+        CONSTRAINT chFkSilo FOREIGN KEY (fkSilo) REFERENCES silo (idSilo)
+    );
+
+ALTER TABLE dado
+ADD COLUMN fkSensor INT NOT NULL;
+
+ALTER TABLE dado ADD CONSTRAINT chFkSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor);
+
+INSERT INTO
+    sensor (
+        identificacao_sensor,
+        status_sensor,
+        data_instalacao,
+        fkSilo
+    )
+VALUES
+    ('SENSOR_01', 'ativo', '2023-02-10', 1),
+    ('SENSOR_02', 'ativo', '2022-08-15', 2),
+    ('SENSOR_03', 'ativo', '2024-01-05', 3),
+    ('SENSOR_04', 'manutencao', '2021-06-20', 4),
+    ('SENSOR_05', 'ativo', '2020-03-11', 5),
+    ('SENSOR_06', 'ativo', '2023-09-30', 6);
 
 SELECT
     idDado,
@@ -347,8 +372,7 @@ FROM
 SELECT
     usuario.nome AS 'usuário',
     silo.idSilo,
-    silo.tipoSilo,
-    silo.data_instalacao
+    silo.tipoSilo
 FROM
     usuario
     JOIN silo ON usuario.idUsuario = silo.fkUsuario;
