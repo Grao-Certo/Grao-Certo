@@ -1042,6 +1042,11 @@ dashboard
   height: 250px;
 }
 
+.info-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .acoes {
   margin-top: auto;
   margin-bottom: 20px;
