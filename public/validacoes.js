@@ -73,7 +73,7 @@ function logar() {
 
     if (email == emailFicticio && senha == senhaFicticia) {
         alert('Login realizado com sucesso!')
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     } else {
         alert('Usuário ou senha errada.')
     }

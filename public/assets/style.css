@@ -879,7 +879,7 @@ body.simulador-body {
 }
 
 .simulador-alerta {
-    font-size: 10px;
+    font-size: 14px;
     text-align: left;
     margin-top: 10px;
     border-top: 1.4px solid #2d6cdf;
@@ -907,6 +907,10 @@ body.simulador-body {
     margin-top: 20px;
     font-size: 14px;
     text-align: left;
+}
+
+.conteudo_header {
+  text-align: left;
 }
 
 
