@@ -976,6 +976,8 @@ dashboard
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 .submenu {
