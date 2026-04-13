@@ -920,7 +920,7 @@ dashboard
 
 .dashboard-body {
   background-color: #d2e2e4;
-  margin: 0;
+  margin-left: 68px;
 }
 
 .dashboard-layout {
