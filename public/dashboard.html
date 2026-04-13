@@ -45,7 +45,7 @@
 
         <main class="dashboard-conteudo">
             <div class="card-container">
-                <h3 class="titulo-card">VOLUME ATUAL</h3>
+                <h3 class="titulo-card">VOLUME POR SILO</h3>
                 <div class="dashboard-card">
                     <div class="grafico-container">
                         <canvas id="grafico1"></canvas>
@@ -83,6 +83,25 @@
                     </div>
                 </div>
             </div>
+            <div class="linha-dupla">
+                <div class="card-container">
+                    <h3 class="titulo-card">GRAFICO 5</h3>
+                    <div class="dashboard-card">
+                        <div class="grafico-container">
+                            <canvas id="grafico5"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">GRAFICO 6</h3>
+                    <div class="dashboard-card">
+                        <div class="grafico-container">
+                            <canvas id="grafico6"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
     </div>
@@ -102,104 +121,104 @@
     const ctx2 = document.getElementById('grafico2');
     const ctx3 = document.getElementById('grafico3');
     const ctx4 = document.getElementById('grafico4');
-    
 
 
-let labels = ['SILO 1', 'SILO 2', 'SILO 3', 'SILO 4'];
-let valores = [10, 25, 15, 30];
 
-new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: labels,
-        datasets: [
-            {
-                label: 'Volume atual (TON)',
-                data: valores,
-                backgroundColor: '#8BC34A'
-            }
-        ]
-    },
-    options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: true
+    let labels = ['SILO 1', 'SILO 2', 'SILO 3', 'SILO 4'];
+    let valores = [10, 25, 15, 30];
+
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Volume atual (TON)',
+                    data: valores,
+                    backgroundColor: '#8BC34A'
+                }
+            ]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true
+                }
             }
         }
-    }
-});
+    });
 
-new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
-        datasets: [{
-            label: 'Volume mensal (TON)',
-            data: [120, 150, 180, 90, 200, 170],
-            backgroundColor: '#8BC34A'
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false
-    }
-});
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
+            datasets: [{
+                label: 'Volume mensal (TON)',
+                data: [120, 150, 180, 90, 200, 170],
+                backgroundColor: '#8BC34A'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
 
     let capacidadeMax = 100;
-let volumeAtual = 72.5;
+    let volumeAtual = 72.5;
 
-let porcentagem = (volumeAtual / capacidadeMax) * 100;
+    let porcentagem = (volumeAtual / capacidadeMax) * 100;
 
-let pluginTextoCentro = {
-    id: 'textoCentro',
-    afterDraw: function(chart) {
-        let ctx = chart.ctx;
-        let chartArea = chart.chartArea;
+    let pluginTextoCentro = {
+        id: 'textoCentro',
+        afterDraw: function (chart) {
+            let ctx = chart.ctx;
+            let chartArea = chart.chartArea;
 
-        let x = (chartArea.left + chartArea.right) / 2;
-        let y = (chartArea.top + chartArea.bottom) / 1.2;
+            let x = (chartArea.left + chartArea.right) / 2;
+            let y = (chartArea.top + chartArea.bottom) / 1.2;
 
-        ctx.save();
+            ctx.save();
 
-        ctx.textAlign = 'center';
+            ctx.textAlign = 'center';
 
-        // TON (principal)
-        ctx.font = 'bold 18px Arial';
-        ctx.fillStyle = '#333';
-        ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
+            // TON (principal)
+            ctx.font = 'bold 18px Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
 
-        // %
-        ctx.font = '12px Arial';
-        ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
+            // %
+            ctx.font = '12px Arial';
+            ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
 
-        ctx.restore();
-    }
-};
+            ctx.restore();
+        }
+    };
 
-new Chart(ctx3, {
-    type: 'doughnut',
-    data: {
-        datasets: [{
-            data: [porcentagem, 100 - porcentagem],
-            backgroundColor: ['#324001', '#8BC34A'],
-            borderWidth: 0
-        }]
-    },
-    options: {
-        rotation: -90,
-        circumference: 180,
-        cutout: '70%',
-        plugins: {
-            legend: { display: false }
+    new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [porcentagem, 100 - porcentagem],
+                backgroundColor: ['#324001', '#8BC34A'],
+                borderWidth: 0
+            }]
         },
-        responsive: true,
-        maintainAspectRatio: false
-    },
-    plugins: [pluginTextoCentro]
-});
+        options: {
+            rotation: -90,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: { display: false }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+        plugins: [pluginTextoCentro]
+    });
 
     new Chart(ctx4, {
         type: 'bar',

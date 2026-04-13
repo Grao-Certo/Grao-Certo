@@ -921,7 +921,6 @@ dashboard
 
 .dashboard-layout {
   display: flex;
-  height: 100vh;
 }
 
 .dashboard-sidebar {
@@ -933,6 +932,9 @@ dashboard
   display: flex;
   flex-direction: column;
   height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .logo-sidebar {
@@ -1012,6 +1014,7 @@ dashboard
   grid-template-columns: repeat(3, 1fr);
   padding: 40px;
   gap: 20px;
+  margin-left: 480px;
 }
 
 .card-container {
@@ -1054,6 +1057,13 @@ dashboard
 .full-width .dashboard-card {
   width: 100%;
   height: 400px;
+}
+
+.linha-dupla {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 .info-container {
