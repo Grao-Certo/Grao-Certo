@@ -1045,6 +1045,17 @@ dashboard
   height: 250px;
 }
 
+.full-width .grafico-container {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.full-width .dashboard-card {
+  width: 100%;
+  height: 400px;
+}
+
 .info-container {
     display: flex;
     flex-direction: column;

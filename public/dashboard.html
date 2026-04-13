@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="card-container">
-                <h3 class="titulo-card">ALTERAÇÕES DE ESTOQUE</h3>
+                <h3 class="titulo-card">VOLUME MENSAL</h3>
                 <div class="dashboard-card">
                     <div class="grafico-container">
                         <canvas id="grafico2"></canvas>
@@ -102,6 +102,51 @@
     const ctx2 = document.getElementById('grafico2');
     const ctx3 = document.getElementById('grafico3');
     const ctx4 = document.getElementById('grafico4');
+    
+
+
+let labels = ['Produto A', 'Produto B', 'Produto C', 'Produto D'];
+let valores = [10, 25, 15, 30];
+
+new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Vendas',
+                data: valores,
+                backgroundColor: '#4CAF50'
+            }
+        ]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true
+            }
+        }
+    }
+});
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
+        datasets: [{
+            label: 'Volume mensal',
+            data: [120, 150, 180, 90, 200, 170],
+            backgroundColor: '#8BC34A'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
 
     const valor = 72.5;
 
@@ -122,7 +167,7 @@
             const y = (chartArea.top + chartArea.bottom) / 1.2;
 
             let texto = valor.toString().replace('.', ',');
-            ctx.fillText(texto + ' TON', x, y);
+            ctx.fillText(texto + ' %', x, y);
 
             ctx.restore();
         }
@@ -153,29 +198,13 @@
         plugins: [pluginTextoCentro]
     });
 
-    new Chart(ctx2, {
+    new Chart(ctx4, {
         type: 'bar',
         data: {
-            labels: ['Silo 1', 'Silo 2', 'Silo 3'],
+            labels: ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'],
             datasets: [{
                 label: 'Temperatura',
-                data: [30, 28, 32],
-                backgroundColor: '#8BC34A'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ['Silo 1', 'Silo 2', 'Silo 3'],
-            datasets: [{
-                label: 'Temperatura',
-                data: [30, 28, 32],
+                data: [13, 28, 32, 48, 52, 64, 97],
                 backgroundColor: '#8BC34A'
             }]
         },
