@@ -967,6 +967,13 @@ dashboard
   margin-bottom: 30px;
 }
 
+.icone-usuario img{
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .submenu {
   max-height: 0;
   overflow: hidden;
