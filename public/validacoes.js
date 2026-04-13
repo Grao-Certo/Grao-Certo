@@ -5,11 +5,11 @@ function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critéri
     let maiusculas = senha != senha.toLowerCase();
     let minusculas = senha != senha.toUpperCase();
     let criterios = 0;
-
+    
     if (tamanho) criterios++;
     if (maiusculas) criterios++;
     if (minusculas) criterios++;
-
+    
     if (criterios == 3) {
         div_mensagem.innerHTML = `Senha Forte`  // atingiu todos os critérios de segurança
     } else if (criterios == 2) {
@@ -21,25 +21,32 @@ function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critéri
     }
 }
 
-function cadastrar() { 
-    let email = input_email.value; 
-    let nome = input_nome.value; 
-    let cpf = input_cpf.value; 
-    let pessoa = select_pessoa.value; 
-    let empresa = input_empresa.value; 
-    let cep = input_cep.value; 
-
-    // EMAIL
-    if(email.endsWith('@sptech.school') || email.endsWith('@gmail.com')) {
-
+function cadastrar() {
+    let email = input_email.value;
+    let nome = input_nome.value;
+    let cpf = input_cpf.value;
+    let pessoa = select_pessoa.value;
+    let empresa = input_empresa.value;
+    let cep = input_cep.value;
+    
+    let emailValido = false;
+    let validaEmail = ['@sptech.school', '@gmail.com', 'hotmail.com', '@yahoo.com','@outlook.com']
+    
+    for (let i = 0; i < validaEmail.length; i++) {
+        if (email.endsWith(validaEmail[i])) {
+            emailValido = true;
+        }
+    }
+    if (emailValido) {
+        
         if (cpf.length == 14 && cpf[3] == '.' && cpf[7] == '.' && cpf[11] == '-') {
-
-            if(pessoa == 'PJ' || pessoa == 'PF') { // TIPO DE PESSOA // CPF
-
-                if(cep.length == 9 && cep[5] == '-') { // CEP
-
-                    if(empresa != '') { // NOME DA EMPRESA
-
+            
+            if (pessoa == 'PJ' || pessoa == 'PF') { // TIPO DE PESSOA // CPF
+                
+                if (cep.length == 9 && cep[5] == '-') { // CEP
+                    
+                    if (empresa != '') { // NOME DA EMPRESA
+                        
                         if (nome != '') { // NOME DO USUÁRIO
                             alert('Cadastro realizado com sucesso!')
                             window.location.href = 'login.html';
@@ -63,18 +70,27 @@ function cadastrar() {
     }
 }
 
+let validacao = 3;
 /* Tela de login */
 function logar() {
     let email = input_email.value;
     let senha = input_senha.value;
-
-    let emailFicticio = 'brandao123@sptech.com';
+    
+    let emailFicticio = 'brandao123@sptech.school';
     let senhaFicticia = 'Clara123';
 
-    if (email == emailFicticio && senha == senhaFicticia) {
-        alert('Login realizado com sucesso!')
-        window.location.href = "dashboard.html";
+
+    if (validacao > 0) {
+
+        if (email == emailFicticio && senha == senhaFicticia) {
+            alert('Login realizado com sucesso!')
+            window.location.href = "dashboard.html";
+        } else {
+            alert('Usuário ou senha errada.')
+            validacao--;
+        }
+
     } else {
-        alert('Usuário ou senha errada.')
+        alert('Usuário bloqueado')
     }
 }
