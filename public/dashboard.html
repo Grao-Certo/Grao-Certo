@@ -105,7 +105,7 @@
     
 
 
-let labels = ['Produto A', 'Produto B', 'Produto C', 'Produto D'];
+let labels = ['SILO 1', 'SILO 2', 'SILO 3', 'SILO 4'];
 let valores = [10, 25, 15, 30];
 
 new Chart(ctx1, {
@@ -114,9 +114,9 @@ new Chart(ctx1, {
         labels: labels,
         datasets: [
             {
-                label: 'Vendas',
+                label: 'Volume atual (TON)',
                 data: valores,
-                backgroundColor: '#4CAF50'
+                backgroundColor: '#8BC34A'
             }
         ]
     },
@@ -137,7 +137,7 @@ new Chart(ctx2, {
     data: {
         labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
         datasets: [{
-            label: 'Volume mensal',
+            label: 'Volume mensal (TON)',
             data: [120, 150, 180, 90, 200, 170],
             backgroundColor: '#8BC34A'
         }]
@@ -148,62 +148,65 @@ new Chart(ctx2, {
     }
 });
 
-    const valor = 72.5;
+    let capacidadeMax = 100;
+let volumeAtual = 72.5;
 
-    const pluginTextoCentro = {
-        id: 'textoCentro',
-        beforeDraw(chart) {
-            const { ctx, chartArea } = chart;
-            const valor = chart.data.datasets[0].data[0];
+let porcentagem = (volumeAtual / capacidadeMax) * 100;
 
-            ctx.save();
+let pluginTextoCentro = {
+    id: 'textoCentro',
+    afterDraw: function(chart) {
+        let ctx = chart.ctx;
+        let chartArea = chart.chartArea;
 
-            ctx.font = 'bold 24px Arial';
-            ctx.fillStyle = '#333';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
+        let x = (chartArea.left + chartArea.right) / 2;
+        let y = (chartArea.top + chartArea.bottom) / 1.2;
 
-            const x = (chartArea.left + chartArea.right) / 2;
-            const y = (chartArea.top + chartArea.bottom) / 1.2;
+        ctx.save();
 
-            let texto = valor.toString().replace('.', ',');
-            ctx.fillText(texto + ' %', x, y);
+        ctx.textAlign = 'center';
 
-            ctx.restore();
-        }
-    };
+        // TON (principal)
+        ctx.font = 'bold 18px Arial';
+        ctx.fillStyle = '#333';
+        ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
 
-    new Chart(ctx3, {
-        type: 'doughnut',
-        data: {
-            labels: ['Usado', 'Livre'],
-            datasets: [{
-                data: [valor, 100 - valor],
-                backgroundColor: ['#324001', '#8BC34A'],
-                borderWidth: 0
-            }]
+        // %
+        ctx.font = '12px Arial';
+        ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
+
+        ctx.restore();
+    }
+};
+
+new Chart(ctx3, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [porcentagem, 100 - porcentagem],
+            backgroundColor: ['#324001', '#8BC34A'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        rotation: -90,
+        circumference: 180,
+        cutout: '70%',
+        plugins: {
+            legend: { display: false }
         },
-        options: {
-            rotation: -90,          // começa de baixo
-            circumference: 180,     // só metade
-            cutout: '70%',          // espaço interno (o "buraco")
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: false
-        },
-        plugins: [pluginTextoCentro]
-    });
+        responsive: true,
+        maintainAspectRatio: false
+    },
+    plugins: [pluginTextoCentro]
+});
 
     new Chart(ctx4, {
         type: 'bar',
         data: {
             labels: ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'],
             datasets: [{
-                label: 'Temperatura',
+                label: 'TON',
                 data: [13, 28, 32, 48, 52, 64, 97],
                 backgroundColor: '#8BC34A'
             }]
