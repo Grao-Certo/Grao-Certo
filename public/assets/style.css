@@ -412,7 +412,8 @@
 .container-Login .formulario button {
   margin: 10px 0 30px 0;
 }
-/*GERAL*/
+
+ /*GERAL*/
 .bodyLoginCad input::placeholder {
   color: white;
 }
@@ -423,8 +424,8 @@
 /*PÁGINA DE CADASTRO*/
 .bodyLoginCad .container-Cadastro img {
   margin-left: 10px;
-  width: 60%;
-  height: 28%;
+  width: 70%;
+  height: 20%;
   object-fit: cover;
   object-position: center;
 }
@@ -437,55 +438,24 @@
 .container-Cadastro .parteSuperior {
   position: absolute;
   text-align: center;
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 7%;
-  margin-left: -0.8%;
+  top: 10%;
+  margin-left: 25px;
 }
 .container-Cadastro .parteInferior {
   position: absolute;
   text-align: center;
-  height: 130%;
-  width: 100%;
-  top: 100%;
+  height: 70%;
+  width: 50%;
+  left: 50%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-.container-Cadastro .parteInferior::before {
-  content: "";
-  position: absolute;
-  inset: 0px; /* um atalho para top, right, bottom e left tudo no 0, assim faz ocupar o espaço todo*/
-
-  background:
-    radial-gradient(circle at 20% 30%, rgb(11, 191, 149), transparent 40%),
-    radial-gradient(
-      circle at 80% 70%,
-      rgba(19, 92, 250, 0.692),
-      transparent 40%
-    ),
-    radial-gradient(circle at 50% 50%, rgb(126, 203, 180), transparent 40%),
-    white;
-
-  background-size: 200% 200%;
-  animation: moverCirculos 12s ease-in-out infinite;
-}
-@keyframes moverCirculos {
-  /*animação top*/
-  0% {
-    background-position: 20% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 20%;
-  }
 }
 
 .container-Cadastro .formulario {
@@ -493,7 +463,8 @@
   background-color: #324001d2;
   border-radius: 25px;
   border: solid var(--cor-fundo-button-bottom);
-  margin-top: 0;
+  margin-top: 40px;
+  padding: 0;
 }
 .bodyLoginCad .container-Cadastro input {
   border: solid transparent;
@@ -501,16 +472,16 @@
   outline: none;
   background-color: transparent;
   color: white;
-  height: 70px;
-  width: 600px;
+  height: 67px;
+  width: 570px;
   padding: 0 0 0 16px;
-  margin: 0px 50px 10px 50px;
+  margin: 0px 50px 5px 50px;
   font-size: 23px;
   transition: 0.4s;
 }
 .bodyLoginCad .container-Cadastro input:hover {
   transform: translateY(-5px);
-  width: 630px;
+  width: 600px;
   margin-top: translateY(-5px);
   margin-left: 25px;
   margin-right: 25px;
@@ -519,6 +490,9 @@
 }
 .container-Cadastro #input_senha {
   margin-bottom: 20px;
+}
+.container-Cadastro .formulario h1 {
+  margin: 30px 0 25px 0;
 }
 .container-Cadastro select {
   width: 120px;
