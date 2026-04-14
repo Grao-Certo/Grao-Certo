@@ -809,6 +809,9 @@ h3 {
   color: var(--cor-verde-escuro);
 }
 /* CALCULADORA */
+.color-header {
+  background-color: #183a55;
+}
 body.simulador-body {
   margin: 0;
   font-family: "Times New Roman", Times, serif;
@@ -818,7 +821,7 @@ body.simulador-body {
 }
 
 .simulador-subtitulo {
-  margin-top: 300px;
+  margin-top: 40px;
   font-size: 16px;
   letter-spacing: 1px;
   position: relative;
