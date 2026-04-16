@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: Dm Sans;
-  src: url(fonts/DMSans-VariableFont_opsz\,wght.ttf)
+  src: url(fonts/DMSans-VariableFont_opsz\,wght.ttf);
 }
 
 * {
@@ -117,7 +117,6 @@
   margin-bottom: 5px;
   color: white;
   font-size: 35px;
-  
 }
 .conteudo_header p {
   color: white;
@@ -132,15 +131,17 @@
 .btn_contato button {
   margin-right: 10px;
   margin-top: 10px;
-  height: 50px;
+  height: 46px;
   width: 200px;
   border-radius: 7px;
-  border: none;
+  border: solid green;
   cursor: pointer;
   transition: 1s;
   font-weight: bold;
-  font-size: 19px;
-  color: var(--cor-verde-escuro);
+  font-size: 16px;
+  color: green;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 .btn_contato button:hover {
   background-image: linear-gradient(to right, #319e2d, #042e09);
@@ -212,6 +213,7 @@
   display: flex;
   width: 100vw;
   flex-direction: column;
+  background-color: #183a55;
 }
 .footer {
   display: flex;
@@ -255,6 +257,7 @@
   flex-direction: row;
   justify-content: space-around;
   color: aliceblue;
+  background-color: #183a55;
 }
 
 /*====================================*/
@@ -407,7 +410,7 @@
   margin: 10px 0 30px 0;
 }
 
- /*GERAL*/
+/*GERAL*/
 .bodyLoginCad input::placeholder {
   color: white;
 }
@@ -582,12 +585,12 @@ h3 {
   color: white;
   text-align: center;
   font-size: 50px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .descricao-sobre-nos {
   font-size: 16px;
-  font-family: 'Dm Sans';
+  font-family: "Dm Sans";
   width: 80%;
   margin: 0 auto;
   text-align: center;
@@ -616,21 +619,21 @@ h3 {
   width: 50%;
   text-align: center;
   background-color: #183a55;
-  padding-top: 28px;
+  padding-top: 50px;
   padding-bottom: 20px;
   border-radius: 10px;
-  padding: 30px;
+  padding: 20px;
 }
 
 .conteudo-solucoes h3 {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 
 .conteudo-solucoes p {
   font-size: 16px;
   margin-bottom: 15px;
-  margin-top: 20px;
+  margin-top: 22px;
   text-transform: uppercase;
 }
 
@@ -692,6 +695,7 @@ h3 {
 .secao-porque-nos {
   display: flex;
   justify-content: center;
+  padding-bottom: 50px;
 }
 
 .imagem-porque-nos {
@@ -701,14 +705,13 @@ h3 {
 .imagem-porque-nos img {
   width: 100%;
   border-radius: 10px;
-  
 }
 
 .texto-porque-nos {
   width: 50%;
   height: 653px;
   background-color: #244660;
-  padding: 80px;
+  padding: 50px;
   border-radius: 10px;
   margin-left: 50px;
   margin-top: 50px;
@@ -717,7 +720,28 @@ h3 {
 .texto-porque-nos .rotulo-secao {
   justify-content: flex-start;
 }
-
+.btn_porque-nos {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-bottom: 50px;
+  margin-left: 20px;
+}
+.btn_porque-nos button {
+  margin-right: 10px;
+  margin-top: 10px;
+  height: 34px;
+  width: 220px;
+  cursor: pointer;
+  transition: 1s;
+  font-weight: bold;
+  font-size: 19px;
+  color: var(--cor-verde-escuro);
+}
+.btn_porque-nos button:hover {
+  background-image: linear-gradient(to right, #319e2d, #042e09);
+  color: white;
+}
 .texto-porque-nos h2 {
   text-align: left;
   font-size: 22px;
@@ -916,7 +940,6 @@ body.simulador-body {
 .simulador-botao:hover {
   background-color: white;
 }
-
 
 .simulador-resultado {
   margin-top: 20px;
