@@ -3,11 +3,17 @@
   src: url(fonts/codec-pro.regular.ttf);
 }
 
+@font-face {
+  font-family: Dm Sans;
+  src: url(fonts/DMSans-VariableFont_opsz\,wght.ttf)
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
+  font-family: Dm Sans;
 }
 .index {
   background-color: #417fa6;
@@ -593,6 +599,7 @@ h3 {
 
 .descricao-sobre-nos {
   font-size: 16px;
+  font-family: 'Dm Sans';
   width: 80%;
   margin: 0 auto;
   text-align: center;
@@ -782,6 +789,11 @@ h3 {
   font-size: 19px;
   color: var(--cor-verde-escuro);
 }
+
+.btn_simulador button:hover {
+  background-image: linear-gradient(to right, #319e2d, #042e09);
+  color: white;
+}
 /* CALCULADORA */
 .color-header {
   background-color: #183a55;
@@ -914,6 +926,7 @@ body.simulador-body {
 .simulador-botao:hover {
   background-color: white;
 }
+
 
 .simulador-resultado {
   margin-top: 20px;
