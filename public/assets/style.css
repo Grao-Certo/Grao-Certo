@@ -311,6 +311,8 @@
 }
 .bodyLoginCad {
   background: url(imgs/fundoLogin.png);
+  height: 130vh;
+  background-size: cover;
   color: white;
   font-size: 25px;
 }
@@ -485,9 +487,7 @@
   border: solid 2px rgb(157, 157, 173);
   border-radius: 15px;
 }
-.container-Cadastro #input_senha {
-  margin-bottom: 20px;
-}
+
 .container-Cadastro .formulario h1 {
   margin: 30px 0 25px 0;
 }
@@ -504,7 +504,7 @@
 .container-Cadastro label {
   position: relative;
   margin: 10px;
-  left: -20%;
+  left: -18%;
 }
 .container-Cadastro .formulario button {
   margin: 20px 0 30px 0;

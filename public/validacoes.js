@@ -94,3 +94,18 @@ function logar() {
         alert('Usuário bloqueado')
     }
 }
+
+function colocarEmpresa(){
+    const documento = document.getElementById('input_doc');
+    const select = document.getElementById('select_pessoa');
+    const iptNome = document.getElementById('input_nome');
+    const tipoPessoa = select.value;
+
+    if(tipoPessoa == 'PJ'){
+        iptNome.placeholder = 'Nome da Empresa: ';
+        documento.placeholder = 'CNPJ:';  
+    }else{
+        iptNome.placeholder = 'Nome Completo: '
+        documento.placeholder = 'CPF:'  
+    }
+}

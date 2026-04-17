@@ -35,20 +35,18 @@
         <div class="parteInferior">
             <div class="formulario">
                 <h1> CRIAR CONTA </h1>
-                <input type="text" name="" id="input_nome" placeholder="Nome"> <br>
-                <input type="text" name="" id="input_cpf" placeholder="CPF: xxx.xxx.xxx-xx"> <br>
-                <input type="text" name="" id="input_cep" placeholder="CEP: xxxxx-xxx"> <br>
-                <input type="email" name="" id="input_email" placeholder="Email"> <br>
-                <input type="password" name="" id="input_senha" placeholder="Senha" oninput="verificar()"><br>
-
                 <label>Tipo de pessoa:</label>
-                <select id="select_pessoa">
+                <select id="select_pessoa" onchange="colocarEmpresa()">
                     <option selected disabled> Selecione</option>
                     <option>PF</option>
                     <option>PJ</option>
                 </select><br>
-                
-                <input type="text" name="" id="input_empresa" placeholder="Empresa"> <br>
+                <input type="text" name="" id="input_nome" placeholder="Nome"> <br>
+                <input type="text" name="" id="input_doc" placeholder="CPF: xxx.xxx.xxx-xx"> <br>
+                <input type="text" name="" id="input_cep" placeholder="CEP: xxxxx-xxx"> <br>
+                <input type="email" name="" id="input_email" placeholder="Email"> <br>
+                <input type="password" name="" id="input_senha" placeholder="Senha" oninput="verificar()"><br>
+
               
                 <div id="div_mensagem"></div>
                 <button onclick="cadastrar()"> C A D A S T R A R </button>
