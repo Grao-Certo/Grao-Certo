@@ -9,86 +9,92 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body class="simulador-body">
-        <header class="barra color-header">
-            <a href="index.html"><img src="assets/imgs/logo_grãocerto.png" alt="logo da grão certo" id="logo"></a>
-            <ul>
-                <li><a href="index.html">HOME</a></li> 
-                <li><a href="index.html#nossa_solucao">NOSSA SOLUÇÃO</a></li> 
-                <li><a href="index.html#sobreNos">SOBRE NÓS</a></li>
-                <li><a href="simulador.html" id="active">SIMULADOR</a></li> 
-                <a href="login.html"><button>LOGIN</button></a>
-                <a href="cadastro.html"><button>CADASTRE-SE</button></a>
-            </ul>
-        </header>
-    
+        <div class="imagem_fundo simulador_fundo">
 
-    <h3 class="simulador-subtitulo" id="simulador-titulo-1">BENEFÍCIOS DO NOSSO SERVIÇO</h3>
-    <h1 class="simulador-titulo">SIMULADOR FINANCEIRO</h1>
-    <p class="simulador-descricao">Descubra em quanto tempo sua operação começa a gerar lucro</p>
-
-    <div class="simulador-container">
-        <div class="simulador-linha">
+            <header class="barra">
+                <a href="index.html"><img src="assets/imgs/logo_grãocerto.png" alt="logo da grão certo" id="logo"></a>
+                <ul>
+                    <li><a href="index.html">HOME</a></li> 
+                    <li><a href="index.html#nossa_solucao">NOSSA SOLUÇÃO</a></li> 
+                    <li><a href="index.html#sobreNos">SOBRE NÓS</a></li>
+                    <li><a href="simulador.html" id="active">SIMULADOR</a></li> 
+                    <a href="login.html"><button>LOGIN</button></a>
+                    <a href="cadastro.html"><button>CADASTRE-SE</button></a>
+                </ul>
+            </header>
+        </div>
     
-            <div class="simulador-icone">
-                <img src="assets/imgs/silo.png" alt="Silo">
+        <div class="container-pai">
+
+            <h3 class="simulador-subtitulo" id="simulador-titulo-1">BENEFÍCIOS DO NOSSO SERVIÇO</h3>
+            <h1 class="simulador-titulo">SIMULADOR FINANCEIRO</h1>
+            <p class="simulador-descricao">Descubra em quanto tempo sua operação começa a gerar lucro</p>
+            
+            <div class="simulador-container">
+                
+                <div class="simulador-linha">
+                    
+                    <div class="simulador-icone">
+                        <img src="assets/imgs/silo.png" alt="Silo">
+                </div>
+
+                <div class="simulador-input-group">
+                    <label class="simulador-label">QUANTIDADE DE SILOS</label>
+                    <input type="text" id="ipt_qtd_silos" class="simulador-input">
+                </div><br>
+            </div>
+            
+            <div class="simulador-linha">
+                
+                <div class="simulador-icone">
+                    <img src="assets/imgs/capacidade.png" alt="Simbolo de capacidade">
+                </div>
+                
+                <div class="simulador-input-group">
+                    <label class="simulador-label">CAPACIDADE DO(S) SILO(S) (EM TONELADAS)</label>
+                    <input type="text" id="ipt_cap_silos" class="simulador-input">
+                </div><br>
             </div>
 
-            <div class="simulador-input-group">
-                <label class="simulador-label">QUANTIDADE DE SILOS</label>
-                <input type="text" id="ipt_qtd_silos" class="simulador-input">
-            </div><br>
-        </div>
+            <div class="simulador-linha">
+                
+                <div class="simulador-icone">
+                    <img src="assets/imgs/milho.png" alt="Milho">
+                </div>
 
-        <div class="simulador-linha">
-    
-            <div class="simulador-icone">
-                <img src="assets/imgs/capacidade.png" alt="Simbolo de capacidade">
+                <div class="simulador-input-group">
+                    <label class="simulador-label">PREÇO MÉDIO DO MILHO (R$ POR TONELADA)</label>
+                    <input type="text" id="ipt_preco_milho" class="simulador-input">
+                </div><br>
             </div>
-
-            <div class="simulador-input-group">
-                <label class="simulador-label">CAPACIDADE DO(S) SILO(S) (EM TONELADAS)</label>
-                <input type="text" id="ipt_cap_silos" class="simulador-input">
-            </div><br>
-        </div>
-
-        <div class="simulador-linha">
-    
-            <div class="simulador-icone">
-                <img src="assets/imgs/milho.png" alt="Milho">
+            
+            <div class="simulador-linha">
+                
+                <div class="simulador-icone">
+                    <img src="assets/imgs/tempo.png" alt="Relógio">
+                </div>
+                
+                <div class="simulador-input-group">
+                    <label class="simulador-label">TEMPO DE INSPEÇÃO MANUAL POR SILO (HORAS POR MÊS)</label>
+                    <input type="text" id="ipt_tempo_inspecao" class="simulador-input">
+                </div><br>
             </div>
-
-            <div class="simulador-input-group">
-                <label class="simulador-label">PREÇO MÉDIO DO MILHO (R$ POR TONELADA)</label>
-                <input type="text" id="ipt_preco_milho" class="simulador-input">
+            
+            <div class="simulador-alerta">
+                <b>*ATENÇÃO:</b> Insira mais de 1 silo apenas se possuírem a mesma capacidade.
             </div><br>
+            
+            <button class="simulador-botao" onclick="calcularLucros()">CALCULAR RETORNO</button> 
+            
+            <div id="id_mensagem" class="simulador-resultado"></div>
+
         </div>
-
-        <div class="simulador-linha">
-    
-            <div class="simulador-icone">
-                <img src="assets/imgs/tempo.png" alt="Relógio">
-            </div>
-
-            <div class="simulador-input-group">
-                <label class="simulador-label">TEMPO DE INSPEÇÃO MANUAL POR SILO (HORAS POR MÊS)</label>
-                <input type="text" id="ipt_tempo_inspecao" class="simulador-input">
-            </div><br>
-        </div>
-
-        <div class="simulador-alerta">
-            <b>*ATENÇÃO:</b> Insira mais de 1 silo apenas se possuírem a mesma capacidade.
-        </div><br>
-
-        <button class="simulador-botao" onclick="calcularLucros()">CALCULAR RETORNO</button> 
-
-        <div id="id_mensagem" class="simulador-resultado"></div>
-
     </div>
-
-</body>
-</html>
-
-<script>
+        
+    </body>
+    </html>
+    
+    <script>
     /*
     Considerações
 

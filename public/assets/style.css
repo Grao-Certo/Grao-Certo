@@ -810,15 +810,20 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   color: white;
 }
 /* CALCULADORA */
-.color-header {
-  background-color: #183a55;
-}
 body.simulador-body {
+  position: relative;
+  overflow-x: hidden;
   margin: 0;
   font-family: "Times New Roman", Times, serif;
   background: #417fa6;
   color: white;
   text-align: center;
+}
+
+.simulador_fundo{
+  height: 600px;
+  width: 100vw;
+  z-index: 1;
 }
 
 .simulador-subtitulo {
@@ -850,6 +855,15 @@ body.simulador-body {
   vertical-align: middle;
 }
 
+.container-pai{
+  position: absolute;
+  padding: 20px;
+  width: 100vw;
+  background: #417fa6;
+  z-index: 10;
+  top: 20%;
+}
+
 .simulador-container {
   background-color: #1f4b6d;
   width: 60%;
@@ -857,7 +871,7 @@ body.simulador-body {
   padding: 45px;
   border-radius: 30px;
   border: 2px solid #2d6cdf;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 }
 
 .simulador-input-group {
