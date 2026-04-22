@@ -63,7 +63,6 @@ CREATE TABLE
     telemetria (
         id INT PRIMARY KEY AUTO_INCREMENT,
         distancia_superficie DECIMAL(5, 2),
-        volume_estimado DECIMAL(10, 2),
         data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
         fk_silo INT,
         fk_sensor INT,
@@ -261,20 +260,6 @@ VALUES
     ('SENSOR_05', 'ativo', '2020-03-11', 5),
     ('SENSOR_06', 'ativo', '2023-09-30', 6);
 
-INSERT INTO
-    telemetria (
-        distancia_superficie,
-        volume_estimado,
-        fk_silo,
-        fk_sensor
-    )
-VALUES
-    (2.15, 774.00, 1, 1),
-    (1.95, 204.00, 2, 2),
-    (3.15, 458.00, 3, 3),
-    (1.45, 522.00, 4, 4),
-    (2.65, 954.00, 5, 5),
-    (3.85, 1386.00, 6, 6);
 
 INSERT INTO
     historico_estoque (fk_silo, volume_anterior, volume_novo, diferenca)
