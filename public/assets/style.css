@@ -979,8 +979,8 @@ dashboard
 }
 
 .logo-sidebar {
-  width: 109.1%;
-  display: block;
+  width: 100%;
+  display: flex;
   margin: 0 auto;
 }
 
@@ -1031,6 +1031,7 @@ dashboard
 .submenu li {
   font-size: 30px;
   font-weight: bold;
+  color: #ffffff;
 }
 
 .menu-item.ativo .submenu {
@@ -1038,6 +1039,15 @@ dashboard
 }
 
 .menu-item:hover {
+  color: #95b814;
+  transition: 0.3s;
+}
+
+.menu-item.ativo {
+  color: #95b814;
+}
+
+.menu-item ul li:hover {
   color: #95b814;
   transition: 0.3s;
 }
