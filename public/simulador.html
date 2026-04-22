@@ -133,14 +133,43 @@
         let faturamento12Meses = economiaTotalAnual - custoTotal;
 
         id_mensagem.innerHTML = `
-            <br><b>RESULTADOS</b><br>
-            <b>Custo total:</b> R$${custoTotal.toLocaleString("pt-BR", {minimumFractionDigits: 2})}<br>
-            <b>Economia anual (inspeção):</b> R$${economiaInspecaoAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}<br>
-            <b>Economia anual (perdas evitadas):</b> R$${economiaPerdasAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}<br>
-            <b>Economia anual total:</b> R$${economiaTotalAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})} 
-            (R$${Number(economiaTotalMensal).toLocaleString("pt-BR", {minimumFractionDigits: 2})} / mês)<br>
-            <b>Payback estimado:</b> ${paybackMeses} meses<br>
-            <b>Faturamento em 12 meses:</b> R$${faturamento12Meses.toLocaleString("pt-BR", {minimumFractionDigits: 2})}
-        `
+
+            <h3 class="simulador-subtitulo">RESULTADOS</h3>
+
+            <div class="simulador-resultados-grid">
+
+                <div class="simulador-card">
+                    <p class="titulo-card">Custo total</p>
+                    <p class="valor-card">R$ ${custoTotal.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                </div>
+
+                <div class="simulador-card">
+                    <p class="titulo-card">Economia (inspeção)</p>
+                    <p class="valor-card">R$ ${economiaInspecaoAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                </div>
+
+                <div class="simulador-card">
+                    <p class="titulo-card">Perdas evitadas</p>
+                    <p class="valor-card">R$ ${economiaPerdasAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                </div>
+
+                <div class="simulador-card destaque">
+                    <p class="titulo-card">Economia total</p>
+                    <p class="valor-card">R$ ${economiaTotalAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                    <small>R$ ${Number(economiaTotalMensal).toLocaleString("pt-BR", {minimumFractionDigits: 2})} / mês</small>
+                </div>
+
+                <div class="simulador-card">
+                    <p class="titulo-card">Payback</p>
+                    <p class="valor-card">${paybackMeses} meses</p>
+                </div>
+
+                <div class="simulador-card lucro">
+                    <p class="titulo-card">Faturamento 12 meses</p>
+                    <p class="valor-card">R$ ${faturamento12Meses.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                </div>
+
+            </div>
+        `;
     };
 </script>
