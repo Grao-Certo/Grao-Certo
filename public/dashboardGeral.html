@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grão Certo | Dashboard</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+
+        <aside class="dashboard-sidebar">
+
+            <a href="index.html"><img src="assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
+
+            <div class="usuario">
+                <div class="icone-usuario">
+                    <img src="../public/assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
+                </div>
+                <h3>ARMAZENS PAULISTAS SA</h3>
+                <p>contato@armazenspaulistas.com</p>
+            </div>
+
+            <ul class="menu">
+
+                <li class="menu-item" onclick="toggleMenu(this)">
+                    <span class="seta">▶</span> DASHBOARD
+                    <ul class="submenu">
+                        <li>SILO 1</li>
+                        <li>SILO 2</li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            
+
+        </aside>
+
+        <main class="dashboard-conteudo">
+            <div class="card-container">
+                <h3 class="titulo-card">VOLUME POR SILO</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container">
+                        <canvas id="grafico1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <h3 class="titulo-card">VOLUME MENSAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container">
+                        <canvas id="grafico2"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <h3 class="titulo-card">VOLUME ATUAL</h3>
+
+                <div class="dashboard-card">
+                    <div class="grafico-container">
+                        <canvas id="grafico3"></canvas>
+                    </div>
+
+                    <div class="info-container">
+                        <h3>Última atualização</h3>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container full-width">
+                <h3 class="titulo-card">REGISTRO VOLUME SEMANAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container">
+                        <canvas id="grafico4"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="linha-dupla">
+                <div class="card-container">
+                    <h3 class="titulo-card">GRAFICO 5</h3>
+                    <div class="dashboard-card">
+                        <div class="grafico-container">
+                            <canvas id="grafico5"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">GRAFICO 6</h3>
+                    <div class="dashboard-card">
+                        <div class="grafico-container">
+                            <canvas id="grafico6"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+    function toggleMenu(element) {
+        element.classList.toggle("ativo");
+    }
+
+    const ctx1 = document.getElementById('grafico1');
+    const ctx2 = document.getElementById('grafico2');
+    const ctx3 = document.getElementById('grafico3');
+    const ctx4 = document.getElementById('grafico4');
+
+
+
+    let labels = ['SILO 1', 'SILO 2', 'SILO 3', 'SILO 4'];
+    let valores = [10, 25, 15, 30];
+
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Volume atual (TON)',
+                    data: valores,
+                    backgroundColor: '#8BC34A'
+                }
+            ]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
+            datasets: [{
+                label: 'Volume mensal (TON)',
+                data: [120, 150, 180, 90, 200, 170],
+                backgroundColor: '#8BC34A'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    let capacidadeMax = 100;
+    let volumeAtual = 72.5;
+
+    let porcentagem = (volumeAtual / capacidadeMax) * 100;
+
+    let pluginTextoCentro = {
+        id: 'textoCentro',
+        afterDraw: function (chart) {
+            let ctx = chart.ctx;
+            let chartArea = chart.chartArea;
+
+            let x = (chartArea.left + chartArea.right) / 2;
+            let y = (chartArea.top + chartArea.bottom) / 1.2;
+
+            ctx.save();
+
+            ctx.textAlign = 'center';
+
+            // TON (principal)
+            ctx.font = 'bold 18px Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
+
+            // %
+            ctx.font = '12px Arial';
+            ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
+
+            ctx.restore();
+        }
+    };
+
+    new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [porcentagem, 100 - porcentagem],
+                backgroundColor: ['#324001', '#8BC34A'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            rotation: -90,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: { display: false }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+        plugins: [pluginTextoCentro]
+    });
+
+    new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'],
+            datasets: [{
+                label: 'TON',
+                data: [13, 28, 32, 48, 52, 64, 97],
+                backgroundColor: '#8BC34A'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
