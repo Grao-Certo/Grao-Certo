@@ -157,6 +157,9 @@ function colocarEmpresa() {
         numero.placeholder = 'Número'
         complemento.placeholder = 'Complemento'
 
+        numero.type = 'number'
+        complemento.type = 'text'
+
         // Troca a função que será chamada no oninput
         documento.setAttribute('oninput', 'mascaraCNPJ(this)');
 
@@ -168,11 +171,16 @@ function colocarEmpresa() {
         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
         documento.maxLength = 14; // Tamanho do CPF com pontos/traço
 
-        tipo.placeholder = 'Tipo Usuário'
+        tipo.placeholder = 'Tipo Usuário: administrador/operador'
         senha.placeholder = 'Senha'
         confirmar.placeholder = 'Confirme sua senha'
 
         senha.setAttribute('oninput', 'verificar()');
+        cep.setAttribute('oninput', '');
+        cep.maxLength = 20;
+
+        numero.type = 'password'
+        complemento.type = 'password'
 
         // Volta para a função de CPF
         documento.setAttribute('oninput', 'mascaraCPF(this)');
