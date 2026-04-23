@@ -705,11 +705,12 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 }
 .imagem-porque-nos img {
   width: 100%;
+  height: 108%;
   border-radius: 10px;
 }
 
 .texto-porque-nos {
-  width: 50%;
+  width: 44%;
   height: 653px;
   background-color: #244660;
   padding: 50px;
