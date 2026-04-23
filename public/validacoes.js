@@ -133,6 +133,11 @@ function colocarEmpresa() {
     const documento = document.getElementById('input_doc');
     const select = document.getElementById('select_pessoa');
     const iptNome = document.getElementById('input_nome');
+
+    const cep = document.getElementById('input_tipoUsu');
+    const numero = document.getElementById('input_senha');
+    const complemento = document.getElementById('input_confirmar_senha');
+
     const tipoPessoa = select.value;
 
     // Limpa o valor do campo quando troca o tipo para não misturar máscaras
@@ -142,14 +147,17 @@ function colocarEmpresa() {
         iptNome.placeholder = 'Nome da Empresa';
         documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
         documento.maxLength = 18; // Tamanho do CNPJ com pontos/barra/traço
-        
+        cep.placeholder = 'CEP: xxxxx-xxx'
+        numero.placeholder = 'Número'
+        complemento.placeholder = 'Complemento'
+
         // Troca a função que será chamada no oninput
-        documento.setAttribute('oninput', 'mascaraCNPJ(this)'); 
+        documento.setAttribute('oninput', 'mascaraCNPJ(this)');
     } else {
         iptNome.placeholder = 'Nome Completo';
         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
         documento.maxLength = 14; // Tamanho do CPF com pontos/traço
-        
+
         // Volta para a função de CPF
         documento.setAttribute('oninput', 'mascaraCPF(this)');
     }
@@ -170,7 +178,7 @@ function mascaraCPF(input) {
 
     // 2. Montar a máscara manualmente baseada na quantidade de números
     let valorFormatado = "";
-    
+
     for (let i = 0; i < apenasNumeros.length; i++) {
         if (i === 3) {
             valorFormatado += "."; // Primeiro ponto
@@ -201,7 +209,7 @@ function mascaraCNPJ(input) {
 
     // 2. Montar a máscara manualmente baseada na quantidade de números
     let valorFormatado = "";
-    
+
     for (let i = 0; i < apenasNumeros.length; i++) {
         if (i === 2) {
             valorFormatado += "."; // Primeiro ponto
