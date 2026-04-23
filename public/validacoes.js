@@ -12,10 +12,12 @@ function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critéri
 
     if (criterios == 3) {
         div_mensagem.innerHTML = `Senha Forte!`  // atingiu todos os critérios de segurança
-    } else if (criterios == 2) {
+    } else if (criterios == 2 && senha.length > 4) {
         div_mensagem.innerHTML = `Senha Média. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // atingiu 2 critérios de segurança
+    } else if (criterios == 2) {
+        div_mensagem.innerHTML = `Senha Fraca. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // atingiu 2 critérios de segurança
     } else if (criterios == 1) {
-        div_mensagem.innerHTML = `Senha fraca. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // atingiu 1 critério de segurança
+        div_mensagem.innerHTML = `Senha Insegura. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // atingiu 1 critério de segurança
     } else {
         div_mensagem.innerHTML = `Senha Insegura. Utilize maiúsculas, minúsculas <br> e pelo menos 8 caracteres.`  // não atingiu nenhum critério de segurança  
     }
@@ -50,8 +52,7 @@ function cadastrar() {
                     if (emailValido) {
 
                         if (confirmarSenha == senha) { // Confirme sua senha
-                            alert('Cadastro realizado com sucesso!')
-                            window.location.href = 'login.html';
+                            div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
 
                         } else {
                             div_erro.innerHTML = 'A senha não é compatível com a anterior'
@@ -64,6 +65,38 @@ function cadastrar() {
                 }
             } else {
                 div_erro.innerHTML = 'Digite um CPF válido'
+            }
+        } else {
+            div_erro.innerHTML = 'Digite seu nome'
+        }
+    } else {
+        div_erro.innerHTML = 'Selecione uma opção!'
+    }
+
+    if (pessoa == 'Empresa') { // TIPO DE PESSOA
+
+        if (nome != '') { // NOME DO USUÁRIO 
+
+            if (doc.length == 18 && doc[2] == '.' && doc[6] == '.' && doc[10] == '/' && doc[15] == '-') {
+
+                if (cep.length == 9 && cep[5] == '-') { // CEP
+
+                    if (emailValido) {
+
+                        if (confirmarSenha == senha) { // Confirme sua senha
+                            alert('Cadastro realizado com sucesso!')
+
+                        } else {
+                            div_erro.innerHTML = 'A senha não é compatível com a anterior'
+                        }
+                    } else {
+                        div_erro.innerHTML = 'Digite um email válido'
+                    }
+                } else {
+                    div_erro.innerHTML = 'Digite um CEP válido'
+                }
+            } else {
+                div_erro.innerHTML = 'Digite um CNPJ válido'
             }
         } else {
             div_erro.innerHTML = 'Digite seu nome'
@@ -104,11 +137,11 @@ function colocarEmpresa() {
     const iptNome = document.getElementById('input_nome');
     const tipoPessoa = select.value;
 
-    if (tipoPessoa == 'PJ') {
-        iptNome.placeholder = 'Nome da Empresa: ';
+    if (tipoPessoa == 'Empresa') {
+        iptNome.placeholder = 'Nome da Empresa ';
         documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
     } else {
-        iptNome.placeholder = 'Nome Completo: '
+        iptNome.placeholder = 'Nome Completo '
         documento.placeholder = 'CPF: xxx.xxx.xxx-xx'
     }
 }
