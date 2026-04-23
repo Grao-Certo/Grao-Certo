@@ -153,6 +153,9 @@ function colocarEmpresa() {
 
         // Troca a função que será chamada no oninput
         documento.setAttribute('oninput', 'mascaraCNPJ(this)');
+
+        cep.setAttribute('oninput', 'mascaraCEP(this)');
+        cep.maxLength = 8;
     } else {
         iptNome.placeholder = 'Nome Completo';
         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
@@ -219,6 +222,33 @@ function mascaraCNPJ(input) {
             valorFormatado += "/"; // Barra
         } else if (i === 12) {
             valorFormatado += '-' // Hífen
+        }
+        valorFormatado += apenasNumeros[i];
+    }
+
+    // 3. Atualiza o campo com o valor filtrado e formatado
+    input.value = valorFormatado;
+}
+
+function mascaraCEP(input) {
+    let valorOriginal = input.value;
+    let apenasNumeros = "";
+
+    // 1. Filtrar apenas o que é número (comparando caractere por caractere)
+    for (let i = 0; i < valorOriginal.length; i++) {
+        let caractere = valorOriginal[i];
+        // Verifica se o caractere está entre "0" e "9"
+        if (caractere >= '0' && caractere <= '9') {
+            apenasNumeros += caractere;
+        }
+    }
+
+    // 2. Montar a máscara manualmente baseada na quantidade de números
+    let valorFormatado = "";
+
+    for (let i = 0; i < apenasNumeros.length; i++) {
+        if (i === 4) {
+            valorFormatado += "-"; // Primeiro ponto
         }
         valorFormatado += apenasNumeros[i];
     }
