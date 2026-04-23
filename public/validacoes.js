@@ -27,10 +27,12 @@ function cadastrar() {
     let pessoa = select_pessoa.value;
     let nome = input_nome.value;
     let doc = input_doc.value;
-    let cep = input_cep.value;
+    let tipoUsu = input_tipoUsu.value;
     let email = input_email.value;
     let senha = input_senha.value;
     let confirmarSenha = input_confirmar_senha.value;
+
+    tipoUsu = tipoUsu.toLowerCase();
 
     let emailValido = false;
     let validaEmail = ['@sptech.school', '@gmail.com', '@hotmail.com', '@yahoo.com', '@outlook.com']
@@ -47,7 +49,7 @@ function cadastrar() {
 
             if (doc.length == 14 && doc[3] == '.' && doc[7] == '.' && doc[11] == '-') {
 
-                if (cep.length == 9 && cep[5] == '-') { // CEP
+                if (tipoUsu == 'operador' || tipoUsu == 'administrador') { 
 
                     if (emailValido) {
 
@@ -61,7 +63,7 @@ function cadastrar() {
                         div_erro.innerHTML = 'Digite um email válido'
                     }
                 } else {
-                    div_erro.innerHTML = 'Digite um CEP válido'
+                    div_erro.innerHTML = 'Digite um tipo de usuário válido'
                 }
             } else {
                 div_erro.innerHTML = 'Digite um CPF válido'
@@ -76,15 +78,15 @@ function cadastrar() {
 
             if (doc.length == 18 && doc[2] == '.' && doc[6] == '.' && doc[10] == '/' && doc[15] == '-') {
 
-                if (cep.length == 9 && cep[5] == '-') { // CEP
+                if (tipoUsu.length == 9 && tipoUsu[5] == '-') { // CEP
 
                     if (emailValido) {
 
-                        if (confirmarSenha == senha) { // Confirme sua senha
+                        if (senha != '') { // Confirme sua senha
                             div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
 
                         } else {
-                            div_erro.innerHTML = 'A senha não é compatível com a anterior'
+                            div_erro.innerHTML = 'Digite o número do endereço'
                         }
                     } else {
                         div_erro.innerHTML = 'Digite um email válido'
@@ -96,7 +98,7 @@ function cadastrar() {
                 div_erro.innerHTML = 'Digite um CNPJ válido'
             }
         } else {
-            div_erro.innerHTML = 'Digite seu nome'
+            div_erro.innerHTML = 'Digite o nome da empresa'
         }
     } else {
         div_erro.innerHTML = 'Selecione uma opção!'
@@ -138,6 +140,10 @@ function colocarEmpresa() {
     const numero = document.getElementById('input_senha');
     const complemento = document.getElementById('input_confirmar_senha');
 
+    const tipo = document.getElementById('input_tipoUsu');
+    const senha = document.getElementById('input_senha');
+    const confirmar = document.getElementById('input_confirmar_senha');
+
     const tipoPessoa = select.value;
 
     // Limpa o valor do campo quando troca o tipo para não misturar máscaras
@@ -156,10 +162,17 @@ function colocarEmpresa() {
 
         cep.setAttribute('oninput', 'mascaraCEP(this)');
         cep.maxLength = 9;
+
     } else {
         iptNome.placeholder = 'Nome Completo';
         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
         documento.maxLength = 14; // Tamanho do CPF com pontos/traço
+
+        tipo.placeholder = 'Tipo Usuário'
+        senha.placeholder = 'Senha'
+        confirmar.placeholder = 'Confirme sua senha'
+
+        senha.setAttribute('oninput', 'verificar()');
 
         // Volta para a função de CPF
         documento.setAttribute('oninput', 'mascaraCPF(this)');
