@@ -155,7 +155,7 @@ function colocarEmpresa() {
         documento.setAttribute('oninput', 'mascaraCNPJ(this)');
 
         cep.setAttribute('oninput', 'mascaraCEP(this)');
-        cep.maxLength = 8;
+        cep.maxLength = 9;
     } else {
         iptNome.placeholder = 'Nome Completo';
         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
@@ -247,7 +247,7 @@ function mascaraCEP(input) {
     let valorFormatado = "";
 
     for (let i = 0; i < apenasNumeros.length; i++) {
-        if (i === 4) {
+        if (i === 5) {
             valorFormatado += "-"; // Primeiro ponto
         }
         valorFormatado += apenasNumeros[i];
