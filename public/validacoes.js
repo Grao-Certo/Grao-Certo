@@ -135,12 +135,23 @@ function colocarEmpresa() {
     const iptNome = document.getElementById('input_nome');
     const tipoPessoa = select.value;
 
+    // Limpa o valor do campo quando troca o tipo para não misturar máscaras
+    documento.value = "";
+
     if (tipoPessoa == 'Empresa') {
-        iptNome.placeholder = 'Nome da Empresa ';
+        iptNome.placeholder = 'Nome da Empresa';
         documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
+        documento.maxLength = 18; // Tamanho do CNPJ com pontos/barra/traço
+        
+        // Troca a função que será chamada no oninput
+        documento.setAttribute('oninput', 'mascaraCNPJ(this)'); 
     } else {
-        iptNome.placeholder = 'Nome Completo '
-        documento.placeholder = 'CPF: xxx.xxx.xxx-xx'
+        iptNome.placeholder = 'Nome Completo';
+        documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
+        documento.maxLength = 14; // Tamanho do CPF com pontos/traço
+        
+        // Volta para a função de CPF
+        documento.setAttribute('oninput', 'mascaraCPF(this)');
     }
 }
 
