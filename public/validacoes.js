@@ -5,11 +5,11 @@ function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critéri
     let maiusculas = senha != senha.toLowerCase();
     let minusculas = senha != senha.toUpperCase();
     let criterios = 0;
-    
+
     if (tamanho) criterios++;
     if (maiusculas) criterios++;
     if (minusculas) criterios++;
-    
+
     if (criterios == 3) {
         div_mensagem.innerHTML = `Senha Forte!`  // atingiu todos os critérios de segurança
     } else if (criterios == 2) {
@@ -22,53 +22,54 @@ function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critéri
 }
 
 function cadastrar() {
-    let email = input_email.value;
-    let nome = input_nome.value;
-    let cpf = input_doc.value;
     let pessoa = select_pessoa.value;
+    let nome = input_nome.value;
+    let doc = input_doc.value;
     let cep = input_cep.value;
-
+    let email = input_email.value;
     let senha = input_senha.value;
     let confirmarSenha = input_confirmar_senha.value;
-    
+
     let emailValido = false;
     let validaEmail = ['@sptech.school', '@gmail.com', '@hotmail.com', '@yahoo.com', '@outlook.com']
-    
+
     for (let i = 0; i < validaEmail.length; i++) {
         if (email.endsWith(validaEmail[i])) {
             emailValido = true;
         }
     }
-    if (emailValido) {
-        
-        if (cpf.length == 14 && cpf[3] == '.' && cpf[7] == '.' && cpf[11] == '-') {
-            
-            if (pessoa == 'PJ' || pessoa == 'PF') { // TIPO DE PESSOA
-                
+
+    if (pessoa == 'Usuário') { // TIPO DE PESSOA
+
+        if (nome != '') { // NOME DO USUÁRIO
+
+            if (doc.length == 14 && doc[3] == '.' && doc[7] == '.' && doc[11] == '-') {
+
                 if (cep.length == 9 && cep[5] == '-') { // CEP
-                    
-                    if (confirmarSenha == senha) { // Confirme sua senha
-                        
-                        if (nome != '') { // NOME DO USUÁRIO
+
+                    if (emailValido) {
+
+                        if (confirmarSenha == senha) { // Confirme sua senha
                             alert('Cadastro realizado com sucesso!')
                             window.location.href = 'login.html';
+
                         } else {
-                            div_erro.innerHTML = 'Digite seu nome'
+                            div_erro.innerHTML = 'A senha não é compatível com a anterior'
                         }
                     } else {
-                        div_erro.innerHTML = 'A senha não é compatível com a anterior'
+                        div_erro.innerHTML = 'Digite um email válido'
                     }
                 } else {
                     div_erro.innerHTML = 'Digite um CEP válido'
                 }
             } else {
-                div_erro.innerHTML = 'Selecione uma opção!'
+                div_erro.innerHTML = 'Digite um CPF válido'
             }
         } else {
-            div_erro.innerHTML = 'Digite um CPF válido'
+            div_erro.innerHTML = 'Digite seu nome'
         }
     } else {
-        div_erro.innerHTML = 'Digite um email válido'
+        div_erro.innerHTML = 'Selecione uma opção!'
     }
 }
 
@@ -77,7 +78,7 @@ let validacao = 3;
 function logar() {
     let email = input_email.value;
     let senha = input_senha.value;
-    
+
     let emailFicticio = 'brandao123@sptech.school';
     let senhaFicticia = 'Clara123';
 
@@ -97,17 +98,17 @@ function logar() {
     }
 }
 
-function colocarEmpresa(){
+function colocarEmpresa() {
     const documento = document.getElementById('input_doc');
     const select = document.getElementById('select_pessoa');
     const iptNome = document.getElementById('input_nome');
     const tipoPessoa = select.value;
 
-    if (tipoPessoa == 'PJ'){
+    if (tipoPessoa == 'PJ') {
         iptNome.placeholder = 'Nome da Empresa: ';
-        documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';  
+        documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
     } else {
         iptNome.placeholder = 'Nome Completo: '
-        documento.placeholder = 'CPF: xxx.xxx.xxx-xx'  
+        documento.placeholder = 'CPF: xxx.xxx.xxx-xx'
     }
 }
