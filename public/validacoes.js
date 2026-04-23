@@ -69,11 +69,8 @@ function cadastrar() {
         } else {
             div_erro.innerHTML = 'Digite seu nome'
         }
-    } else {
-        div_erro.innerHTML = 'Selecione uma opção!'
-    }
 
-    if (pessoa == 'Empresa') { // TIPO DE PESSOA
+    } else if (pessoa == 'Empresa') { // TIPO DE PESSOA
 
         if (nome != '') { // NOME DO USUÁRIO 
 
@@ -84,7 +81,7 @@ function cadastrar() {
                     if (emailValido) {
 
                         if (confirmarSenha == senha) { // Confirme sua senha
-                            alert('Cadastro realizado com sucesso!')
+                            div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
 
                         } else {
                             div_erro.innerHTML = 'A senha não é compatível com a anterior'
@@ -104,6 +101,7 @@ function cadastrar() {
     } else {
         div_erro.innerHTML = 'Selecione uma opção!'
     }
+
 }
 
 let validacao = 3;
