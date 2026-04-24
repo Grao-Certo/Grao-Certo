@@ -220,8 +220,11 @@
   width: 100vw;
 }
 .logo-footer {
+  display: flex;
+  flex-direction: column;
   margin-top: 1%;
   margin-right: 100px;
+  align-items: center;
 }
 .logo-footer img {
   width: 600px;
