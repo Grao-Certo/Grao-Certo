@@ -1,181 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simulador Financeiro</title>
-    <link rel="shortcut icon" href="assets/imgs/logo_favicon.png" type="image/x-icon">   
+    <link
+      rel="shortcut icon"
+      href="assets/imgs/logo_favicon.png"
+      type="image/x-icon"
+    />
 
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-<body class="simulador-body">
-        <div class="imagem_fundo simulador_fundo">
-
-            <header class="barra">
-                <a href="index.html"><img src="assets/imgs/logo_grãocerto.png" alt="logo da grão certo" id="logo"></a>
-                <ul>
-                    <li><a href="index.html">HOME</a></li> 
-                    <li><a href="index.html#nossa_solucao">NOSSA SOLUÇÃO</a></li> 
-                    <li><a href="index.html#sobreNos">SOBRE NÓS</a></li>
-                    <li><a href="simulador.html" id="active">SIMULADOR</a></li> 
-                    <a href="login.html"><button>LOGIN</button></a>
-                    <a href="cadastro.html"><button>CADASTRE-SE</button></a>
-                </ul>
-            </header>
-        </div>
-    
-        <div class="container-pai">
-
-            <h3 class="simulador-subtitulo" id="simulador-titulo-1">BENEFÍCIOS DO NOSSO SERVIÇO</h3>
-            <h1 class="simulador-titulo">SIMULADOR FINANCEIRO</h1>
-            <p class="simulador-descricao">Descubra em quanto tempo sua operação começa a gerar lucro</p>
-            
-            <div class="simulador-container">
-                
-                <div class="simulador-linha">
-                    
-                    <div class="simulador-icone">
-                        <img src="assets/imgs/silo.png" alt="Silo">
-                </div>
-
-                <div class="simulador-input-group">
-                    <label class="simulador-label">QUANTIDADE DE SILOS</label>
-                    <input type="text" id="ipt_qtd_silos" class="simulador-input">
-                </div><br>
-            </div>
-            
-            <div class="simulador-linha">
-                
-                <div class="simulador-icone">
-                    <img src="assets/imgs/capacidade.png" alt="Simbolo de capacidade">
-                </div>
-                
-                <div class="simulador-input-group">
-                    <label class="simulador-label">CAPACIDADE DO(S) SILO(S) (EM TONELADAS)</label>
-                    <input type="text" id="ipt_cap_silos" class="simulador-input">
-                </div><br>
-            </div>
-
-            <div class="simulador-linha">
-                
-                <div class="simulador-icone">
-                    <img src="assets/imgs/milho.png" alt="Milho">
-                </div>
-
-                <div class="simulador-input-group">
-                    <label class="simulador-label">PREÇO MÉDIO DO MILHO (R$ POR TONELADA)</label>
-                    <input type="text" id="ipt_preco_milho" class="simulador-input">
-                </div><br>
-            </div>
-            
-            <div class="simulador-linha">
-                
-                <div class="simulador-icone">
-                    <img src="assets/imgs/tempo.png" alt="Relógio">
-                </div>
-                
-                <div class="simulador-input-group">
-                    <label class="simulador-label">TEMPO DE INSPEÇÃO MANUAL POR SILO (HORAS POR MÊS)</label>
-                    <input type="text" id="ipt_tempo_inspecao" class="simulador-input">
-                </div><br>
-            </div>
-            
-            <div class="simulador-alerta">
-                <b>*ATENÇÃO:</b> Insira mais de 1 silo apenas se possuírem a mesma capacidade.
-            </div><br>
-            
-            <button class="simulador-botao" onclick="calcularLucros()">CALCULAR RETORNO</button> 
-            
-            <div id="id_mensagem" class="simulador-resultado"></div>
-
-        </div>
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body class="simulador-body">
+    <div class="imagem_fundo simulador_fundo">
+      <header class="barra">
+        <a href="index.html"
+          ><img
+            src="assets/imgs/logo_grãocerto.png"
+            alt="logo da grão certo"
+            id="logo"
+        /></a>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="index.html#nossa_solucao">NOSSA SOLUÇÃO</a></li>
+          <li><a href="index.html#sobreNos">SOBRE NÓS</a></li>
+          <li><a href="simulador.html" id="active">SIMULADOR</a></li>
+          <a href="login.html"><button>LOGIN</button></a>
+          <a href="cadastro.html"><button>CADASTRE-SE</button></a>
+        </ul>
+      </header>
     </div>
-        
-    </body>
-    </html>
-    
-    <script>
-    /*
+
+    <div class="container-pai">
+      <h3 class="simulador-subtitulo" id="simulador-titulo-1">
+        BENEFÍCIOS DO NOSSO SERVIÇO
+      </h3>
+      <h1 class="simulador-titulo">SIMULADOR FINANCEIRO</h1>
+      <p class="simulador-descricao">
+        Descubra em quanto tempo sua operação começa a gerar lucro
+      </p>
+
+      <div class="simulador-container">
+        <div class="simulador-linha">
+          <div class="simulador-icone">
+            <img src="assets/imgs/silo.png" alt="Silo" />
+          </div>
+
+          <div class="simulador-input-group">
+            <label class="simulador-label">QUANTIDADE DE SILOS</label>
+            <input type="text" id="ipt_qtd_silos" class="simulador-input" />
+          </div>
+          <br />
+        </div>
+
+        <div class="simulador-linha">
+          <div class="simulador-icone">
+            <img src="assets/imgs/capacidade.png" alt="Simbolo de capacidade" />
+          </div>
+
+          <div class="simulador-input-group">
+            <label class="simulador-label"
+              >CAPACIDADE DO(S) SILO(S) (EM TONELADAS)</label
+            >
+            <input type="text" id="ipt_cap_silos" class="simulador-input" />
+          </div>
+          <br />
+        </div>
+
+        <div class="simulador-linha">
+          <div class="simulador-icone">
+            <img src="assets/imgs/milho.png" alt="Milho" />
+          </div>
+
+          <div class="simulador-input-group">
+            <label class="simulador-label"
+              >PREÇO MÉDIO DO MILHO (R$ POR TONELADA)</label
+            >
+            <input type="text" id="ipt_preco_milho" class="simulador-input" />
+          </div>
+          <br />
+        </div>
+
+        <div class="simulador-linha">
+          <div class="simulador-icone">
+            <img src="assets/imgs/tempo.png" alt="Relógio" />
+          </div>
+
+          <div class="simulador-input-group">
+            <label class="simulador-label"
+              >TEMPO DE INSPEÇÃO MANUAL POR SILO (HORAS POR MÊS)</label
+            >
+            <input
+              type="text"
+              id="ipt_tempo_inspecao"
+              class="simulador-input"
+            />
+          </div>
+          <br />
+        </div>
+
+        <div class="simulador-alerta">
+          <b>*ATENÇÃO:</b> Insira mais de 1 silo apenas se possuírem a mesma
+          capacidade.
+        </div>
+        <br />
+
+        <button class="simulador-botao" onclick="calcularLucros()">
+          CALCULAR RETORNO
+        </button>
+
+        <div id="id_mensagem" class="simulador-resultado"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  /*
     Considerações
 
     Salário médio operador de silo: 20R$ / hora
     Redução do tempo de inspeção: 70% (Considerando apenas verificações esporádicas)
     */
-    function calcularLucros(){
-        let qtdSilos = Number(ipt_qtd_silos.value)
-        let capacidadeSilo = Number(ipt_cap_silos.value)
-        let precoMilho = Number(ipt_preco_milho.value)
-        let tempoInspecao = Number(ipt_tempo_inspecao.value)
+  function calcularLucros() {
+    let qtdSilos = Number(ipt_qtd_silos.value);
+    let capacidadeSilo = Number(ipt_cap_silos.value);
+    let precoMilho = Number(ipt_preco_milho.value);
+    let tempoInspecao = Number(ipt_tempo_inspecao.value);
 
-        // Premissas
-        let custoSolucao = 3000
-        let perdasEvitadasKgPorTonAno = 100 // Perdas totais estimadas em 15%, estimamos melhorar 10%: 10% * 1ton = 100kg
-        let reducaoPercentualInspecao = 0.7
-        let custoHora = 20
+    // Premissas
+    let custoSolucao = 3000;
+    let perdasEvitadasKgPorTonAno = 100; // Perdas totais estimadas em 15%, estimamos melhorar 10%: 10% * 1ton = 100kg
+    let reducaoPercentualInspecao = 0.7;
+    let custoHora = 20;
 
-        // Custo total
-        let custoTotal = custoSolucao * qtdSilos
+    // Custo total
+    let custoTotal = custoSolucao * qtdSilos;
 
-        // Economia por reduzir a inspeção manual
-        let economiaInspecaoMensal = qtdSilos * tempoInspecao * reducaoPercentualInspecao * custoHora// Economia mensal 
-        let economiaInspecaoAnual = economiaInspecaoMensal * 12 // Economia anual
+    // Economia por reduzir a inspeção manual
+    let economiaInspecaoMensal =
+      qtdSilos * tempoInspecao * reducaoPercentualInspecao * custoHora; // Economia mensal
+    let economiaInspecaoAnual = economiaInspecaoMensal * 12; // Economia anual
 
-        // Economia por perdas evitadas
-        let perdasEvitadasAno = qtdSilos * capacidadeSilo * perdasEvitadasKgPorTonAno // perdas evitadas por ano (kg)
-        let perdasEvitadasTonAno = perdasEvitadasAno / 1000 // converter kg pra toneladas
-        let economiaPerdasAnual = perdasEvitadasTonAno * precoMilho // economia anual por perdas evitadas
+    // Economia por perdas evitadas
+    let perdasEvitadasAno =
+      qtdSilos * capacidadeSilo * perdasEvitadasKgPorTonAno; // perdas evitadas por ano (kg)
+    let perdasEvitadasTonAno = perdasEvitadasAno / 1000; // converter kg pra toneladas
+    let economiaPerdasAnual = perdasEvitadasTonAno * precoMilho; // economia anual por perdas evitadas
 
-        // Economia total
-        let economiaTotalAnual = economiaInspecaoAnual + economiaPerdasAnual;
-        let economiaTotalMensal = (economiaTotalAnual / 12).toFixed();
+    // Economia total
+    let economiaTotalAnual = economiaInspecaoAnual + economiaPerdasAnual;
+    let economiaTotalMensal = (economiaTotalAnual / 12).toFixed();
 
-        // Payback
-        let paybackMeses = 0
-        if (economiaTotalMensal > 0){
-            paybackMeses = (custoTotal / economiaTotalMensal).toFixed()
-        };
+    // Payback
+    let paybackMeses = 0;
+    if (economiaTotalMensal > 0) {
+      paybackMeses = (custoTotal / economiaTotalMensal).toFixed();
+    }
 
-        // Faturamento
-        let faturamento12Meses = economiaTotalAnual - custoTotal;
+    // Faturamento
+    let faturamento12Meses = economiaTotalAnual - custoTotal;
 
-        id_mensagem.innerHTML = `
+    id_mensagem.innerHTML = `
 
             <h3 class="simulador-subtitulo">RESULTADOS</h3>
 
             <div class="simulador-resultados-grid">
 
                 <div class="simulador-card">
-                    <p class="titulo-card">Custo total</p>
-                    <p class="valor-card">R$ ${custoTotal.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                    <p class="titulo-card" style="color:white;">Custo total</p>
+                    <p class="valor-card">R$ ${custoTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                 </div>
 
                 <div class="simulador-card">
-                    <p class="titulo-card">Economia (inspeção)</p>
-                    <p class="valor-card">R$ ${economiaInspecaoAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                    <p class="titulo-card" style="color:white;" >Economia (inspeção)</p>
+                    <p class="valor-card">R$ ${economiaInspecaoAnual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                 </div>
 
                 <div class="simulador-card">
-                    <p class="titulo-card">Perdas evitadas</p>
-                    <p class="valor-card">R$ ${economiaPerdasAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                    <p class="titulo-card" style="color:white;">Perdas evitadas</p>
+                    <p class="valor-card">R$ ${economiaPerdasAnual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                 </div>
 
                 <div class="simulador-card destaque">
-                    <p class="titulo-card">Economia total</p>
-                    <p class="valor-card">R$ ${economiaTotalAnual.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
-                    <small>R$ ${Number(economiaTotalMensal).toLocaleString("pt-BR", {minimumFractionDigits: 2})} / mês</small>
+                    <p class="titulo-card" style="color:white;">Economia total</p>
+                    <p class="valor-card">R$ ${economiaTotalAnual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                    <small>R$ ${Number(economiaTotalMensal).toLocaleString("pt-BR", { minimumFractionDigits: 2 })} / mês</small>
                 </div>
 
                 <div class="simulador-card">
-                    <p class="titulo-card">Payback</p>
+                    <p class="titulo-card" style="color:white;">Payback</p>
                     <p class="valor-card">${paybackMeses} meses</p>
                 </div>
 
                 <div class="simulador-card lucro">
-                    <p class="titulo-card">Faturamento 12 meses</p>
-                    <p class="valor-card">R$ ${faturamento12Meses.toLocaleString("pt-BR", {minimumFractionDigits: 2})}</p>
+                    <p class="titulo-card" style="color:white;">Faturamento 12 meses</p>
+                    <p class="valor-card">R$ ${faturamento12Meses.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
                 </div>
 
             </div>
         `;
-    };
+  }
 </script>

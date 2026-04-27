@@ -988,18 +988,12 @@ body.simulador-body {
   border: 1px solid #2d6cdf;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   transition: 0.3s;
+  color: white;
 }
 
 .simulador-card:hover {
   transform: translateY(-5px);
 }
-
-.titulo-card {
-  font-size: 13px;
-  color: #ccc;
-  margin: 0;
-}
-
 .valor-card {
   font-size: 20px;
   color: white;
