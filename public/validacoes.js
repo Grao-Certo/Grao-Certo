@@ -120,7 +120,7 @@ function logar() {
 
         if (email == emailFicticio && senha == senhaFicticia) {
             alert('Login realizado com sucesso!')
-            window.location.href = "dashboard.html";
+            window.location.href = "dashboardGeral.html";
         } else {
             div_erro.innerHTML = 'Usuário ou senha errada.'
             validacao--;
