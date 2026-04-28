@@ -32,9 +32,9 @@
                     <span class="seta">▶</span> DASHBOARD
                     <ul class="submenu">
                         <li> <a href="dashboardGeral.html">AVISOS</a> </li>
-                        <li ><a href="dashboardSilo1.html">SILO 1</a> </li>
-                        <li ><a href="dashboardSilo2.html">SILO 2</a> </li>
-                        <li ><a href="dashboardSilo3.html" id="active">SILO 3</a> </li>
+                        <li> <a href="dashboardSilo1.html" id="active">SILO 1</a> </li>
+                        <li> <a href="dashboardSilo2.html">SILO 2</a> </li>
+                        <li> <a href="dashboardSilo3.html">SILO 3</a> </li>
                     </ul>
                 </li>
 
@@ -121,6 +121,8 @@
     const ctx2 = document.getElementById('grafico2');
     const ctx3 = document.getElementById('grafico3');
     const ctx4 = document.getElementById('grafico4');
+    const ctx5 = document.getElementById('grafico5');
+    const ctx6 = document.getElementById('grafico6');
 
 
 
@@ -235,4 +237,87 @@
             maintainAspectRatio: false
         }
     });
+
+
+    let capMax = 100;
+    let volAtu = 72.5;
+
+    let percent = (volumeAtual / capacidadeMax) * 100;
+
+    let pluginTextoCentral = {
+        id: 'textoCentral',
+        afterDraw: function (chart) {
+            let ctx = chart.ctx;
+            let chartArea = chart.chartArea;
+
+            let x = (chartArea.left + chartArea.right) / 2;
+            let y = (chartArea.top + chartArea.bottom) / 1.2;
+
+            ctx.save();
+
+            ctx.textAlign = 'center';
+
+            // TON (principal)
+            ctx.font = 'bold 18px Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
+
+            // %
+            ctx.font = '12px Arial';
+            ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
+
+            ctx.restore();
+        }
+    };
+
+    new Chart(ctx5, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [percent, 100 - percent],
+                backgroundColor: ['#324001', '#8BC34A'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            rotation: 90,
+            circumference: 360,
+            cutout: '70%',
+            plugins: {
+                legend: { display: false }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+        plugins: [pluginTextoCentral]
+    });
+
+    let labs = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    let vals = [25, 40, 60, 70, 80, 65, 55, 60, 60, 50, 45, 50];
+
+    new Chart(ctx6, {
+        type: 'bar',
+        data: {
+            labels: labs,
+            datasets: [
+                {
+                    label: 'Volume atual (TON)',
+                    data: vals,
+                    backgroundColor: '#8BC34A'
+                }
+            ]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+
+
 </script>
