@@ -45,10 +45,21 @@
 
         <main class="dashboard-conteudo">
             <div class="card-container">
-                <h3 class="titulo-card">VOLUME POR SILO</h3>
+                <h3 class="titulo-card">VALOR ATUAL EM ESTOQUE</h3>
                 <div class="dashboard-card">
-                   <input type="text">
-                   <input type="text">
+                    <div class="card-estoque">
+                        <h3 class="titulo-info">ESTOQUE ATUAL</h3>
+                        <input type="text" id="ipt_estoqueAtual" class="input-info estoque" value="72,5" readonly>
+
+                        <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                        <input type="text" id="ipt_valorTonelada" class="input-info valor-tonelada"
+                            placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
+
+                        <div class="resultado-estoque">
+                            <h3 class="titulo-info">VALOR DO ESTOQUE ATUAL</h3>
+                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -70,7 +81,9 @@
 
                     <div class="info-container">
                         <h3>Última atualização</h3>
-                        <input type="text">
+                        <div class="alerta-silos">
+                            <input type="text" class="silo-input critico" value="72.5" readonly>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,21 +136,6 @@
     const ctx4 = document.getElementById('grafico4');
     const ctx5 = document.getElementById('grafico5');
     const ctx6 = document.getElementById('grafico6');
-
-
-
-    function calcularEstoque() {
-    let estoque = Number(document.getElementById('ipt_estoque').value);
-    let valorTon = Number(document.getElementById('ipt_valorTon').value);
-
-    let valorTotal = estoque * valorTon;
-
-    document.getElementById('ipt_valorTotal').value =
-        valorTotal.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        });
-}
 
     new Chart(ctx2, {
         type: 'bar',
@@ -304,6 +302,15 @@
             }
         }
     });
+
+    function calcularValorEstoque() {
+        let estoque = Number(ipt_estoqueAtual.value.replaceAll(',', '.'));
+        let valorTonelada = Number(ipt_valorTonelada.value.replaceAll(',', '.'));
+
+        let total = estoque * valorTonelada;
+
+        ipt_valorTotal.value = "R$ " + total.toFixed(2);
+    }
 
 
 </script>

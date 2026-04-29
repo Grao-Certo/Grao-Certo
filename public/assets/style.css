@@ -1310,6 +1310,57 @@ dashboard
   transition: 0.3s;
 }
 
+.card-estoque {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.titulo-info {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c6794;
+    margin: 0;
+}
+
+.input-info {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.input-info.estoque {
+    background-color: #5e6655;
+    color: white;
+    cursor: default;
+}
+
+.input-info.valor-tonelada {
+    background-color: #5e6655;
+    color: white;
+}
+.input-info.valor-tonelada::placeholder {
+  color: white;
+  opacity: 85%;
+}
+
+.input-info.valor-total {
+    background-color: #324001;
+    color: white;
+    cursor: default;
+}
+
+.resultado-estoque {
+    margin-top: 10px;
+}
+
 .acoes button:hover {
   opacity: 0.85;
   color: #95b814;
