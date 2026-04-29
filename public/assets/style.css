@@ -22,7 +22,7 @@
 .imagem_fundo {
   position: relative;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
     url(imgs/imagem_fundo.jpg);
   background-size: cover;
   background-position: center;
@@ -70,14 +70,14 @@
   width: 0;
   top: 28px;
   height: 3px;
-  background-color: var(--cor-verde-escuro);
+  background-color: var(--cor-fundo-button-bottom);
   transition: width 0.3s ease-in-out;
 }
 .barra li a:hover::after {
   width: 100%;
 }
 #active {
-  color: #042e09;
+  color: var(--cor-fundo-button-bottom);
 }
 .barra button {
   height: 37px;
@@ -158,6 +158,10 @@
 .imagem_contato img {
   height: 300px;
   border-radius: 5px;
+  transition: 0.5s;
+}
+.imagem_contato img:hover{
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .container {
@@ -248,6 +252,10 @@
   margin-bottom: 18px;
   color: white;
   font-size: 15px;
+  transition: 0.5s;
+}
+.informacoes a:hover {
+  color: var(--cor-fundo-button-bottom);
 }
 .informacoes h3 {
   margin-left: 50px;
@@ -662,6 +670,10 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   border-radius: 8px;
   width: 30%;
   padding-bottom: 30px;
+  transition: 0.5s;
+}
+.cartao-beneficio:hover{
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .cartao-beneficio img {
