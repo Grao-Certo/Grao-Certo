@@ -248,6 +248,10 @@
   margin-bottom: 18px;
   color: white;
   font-size: 15px;
+  transition: 0.5s;
+}
+.informacoes a:hover {
+  color: var(--cor-fundo-button-bottom);
 }
 .informacoes h3 {
   margin-left: 50px;
