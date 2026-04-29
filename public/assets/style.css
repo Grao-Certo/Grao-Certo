@@ -1147,18 +1147,20 @@ dashboard
   display: grid;
   gap: 20px;
   padding: 40px;
-  margin-left: 480px;
+  margin-left: 430px;
   align-items: start;
 }
 
 .card-topo {
   margin-left: 25px;
-  height: 100px;
+  height: 150px;
+  width: 220px;
   display: grid;
   grid-template-rows: auto 1fr; 
   justify-items: center;
   align-items: center;
-  border: 2px solid #2c6794;
+  border: 5px solid #2c6794;
+  border-radius: 5%;
 }
 
 .card-topo .titulo-card {
@@ -1175,12 +1177,13 @@ dashboard
 }
 
 .card-topo span {
-  font-size: 28px;
+  font-size: 35px;
   font-weight: bold;
 }
 
 .card-topo .titulo-card {
-  font-size: 14px;
+  font-size: 19px;
+  font-weight: bold;
   margin-bottom: 5px;
   text-align: center;
 }

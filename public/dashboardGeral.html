@@ -47,17 +47,17 @@
 
         <main class="dashboard-conteudo">
             <div class="cards-topo">
-                <div class="dashboard-card card-topo">
+                <div class="card-topo">
                     <h3 class="titulo-card">TOTAL SILOS</h3>
                     <span style="color: green;">3</span>
                 </div>
 
-                <div class="dashboard-card card-topo">
+                <div class="card-topo">
                     <h3 class="titulo-card">VOLUME TOTAL ARMAZENADO</h3>
                     <span>120,5 TON</span>
                 </div>
 
-                <div class="dashboard-card card-topo">
+                <div class="card-topo">
                     <h3 class="titulo-card">SILOS EM ALERTA</h3>
                     <span style="color:red;">2</span>
                 </div>
@@ -97,41 +97,41 @@
     const ctx1 = document.getElementById('grafico1');
 
     new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ['SILO 1', 'SILO 2', 'SILO 3'],
-        datasets: [{
-            data: [95, 10, 62],
-            backgroundColor: ['#7f0d0d', '#f1ae00', '#8BC34A']
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return context.raw + '%';
+        type: 'bar',
+        data: {
+            labels: ['SILO 1', 'SILO 2', 'SILO 3'],
+            datasets: [{
+                data: [95, 10, 62],
+                backgroundColor: ['#7f0d0d', '#f1ae00', '#324001']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return context.raw + '%';
+                        }
+                    }
+                },
+                datalabels: {
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: function (value) {
+                        return value + '%';
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 14
                     }
                 }
-            },
-            datalabels: {
-                anchor: 'end',
-                align: 'top',
-                formatter: function(value) {
-                    return value + '%';
-                },
-                font: {
-                    weight: 'bold',
-                    size: 14
-                }
             }
-        }
-    },
-    plugins: [ChartDataLabels]
-});
+        },
+        plugins: [ChartDataLabels]
+    });
 </script>
