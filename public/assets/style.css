@@ -158,6 +158,10 @@
 .imagem_contato img {
   height: 300px;
   border-radius: 5px;
+  transition: 0.5s;
+}
+.imagem_contato img:hover{
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .container {
@@ -666,6 +670,10 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   border-radius: 8px;
   width: 30%;
   padding-bottom: 30px;
+  transition: 0.5s;
+}
+.cartao-beneficio:hover{
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .cartao-beneficio img {
