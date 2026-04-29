@@ -7,7 +7,9 @@
   font-family: Dm Sans;
   src: url(fonts/DMSans-VariableFont_opsz\,wght.ttf);
 }
-
+html {
+  scroll-behavior: smooth;
+}
 * {
   padding: 0;
   margin: 0;
