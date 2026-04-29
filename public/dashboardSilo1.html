@@ -45,10 +45,21 @@
 
         <main class="dashboard-conteudo">
             <div class="card-container">
-                <h3 class="titulo-card">VOLUME POR SILO</h3>
+                <h3 class="titulo-card">VALOR ATUAL EM ESTOQUE</h3>
                 <div class="dashboard-card">
-                   <input type="text">
-                   <input type="text">
+                    <div class="card-estoque">
+                        <h3 class="titulo-info">ESTOQUE ATUAL</h3>
+                        <input type="text" id="ipt_estoqueAtual" class="input-info estoque" value="72,5" readonly>
+
+                        <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                        <input type="text" id="ipt_valorTonelada" class="input-info valor-tonelada"
+                            placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
+
+                        <div class="resultado-estoque">
+                            <h3 class="titulo-info">VALOR DO ESTOQUE ATUAL</h3>
+                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -70,7 +81,9 @@
 
                     <div class="info-container">
                         <h3>Última atualização</h3>
-                        <input type="text">
+                        <div class="alerta-silos">
+                            <input type="text" class="silo-input critico" value="72.5" readonly>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,36 +137,78 @@
     const ctx5 = document.getElementById('grafico5');
     const ctx6 = document.getElementById('grafico6');
 
+    const dados = [33, 20, 9, 2, 1];
+const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
 
+const pluginValoresDireita = {
+    id: 'valoresDireita',
+    afterDatasetsDraw(chart) {
+        const { ctx } = chart;
+        const meta = chart.getDatasetMeta(0);
 
-    function calcularEstoque() {
-    let estoque = Number(document.getElementById('ipt_estoque').value);
-    let valorTon = Number(document.getElementById('ipt_valorTon').value);
+        ctx.save();
+        ctx.font = '14px Arial';
+        ctx.fillStyle = '#333';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
 
-    let valorTotal = estoque * valorTon;
+        meta.data.forEach((barra, index) => {
+            const valor = dados[index];
+            const x = chart.chartArea.right + 15;
+            const y = barra.y;
 
-    document.getElementById('ipt_valorTotal').value =
-        valorTotal.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
+            ctx.fillText(`${valor} TON`, x, y);
         });
-}
 
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
-            datasets: [{
-                label: 'Volume mensal (TON)',
-                data: [120, 150, 180, 90, 200, 170],
-                backgroundColor: '#8BC34A'
-            }]
+        ctx.restore();
+    }
+};
+
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: dias,
+        datasets: [{
+            label: 'Produção',
+            data: dados,
+            backgroundColor: '#4CAF50',
+            borderRadius: 5
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+
+        aspectRatio: 1,
+
+        layout: {
+            padding: {
+                right: 90
+            }
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Toneladas'
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
         }
-    });
+    },
+    plugins: [pluginValoresDireita]
+});
 
     let capacidadeMax = 100;
     let volumeAtual = 72.5;
@@ -304,6 +359,15 @@
             }
         }
     });
+
+    function calcularValorEstoque() {
+        let estoque = Number(ipt_estoqueAtual.value.replaceAll(',', '.'));
+        let valorTonelada = Number(ipt_valorTonelada.value.replaceAll(',', '.'));
+
+        let total = estoque * valorTonelada;
+
+        ipt_valorTotal.value = "R$ " + total.toFixed(2);
+    }
 
 
 </script>

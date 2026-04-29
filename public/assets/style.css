@@ -22,7 +22,7 @@
 .imagem_fundo {
   position: relative;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
     url(imgs/imagem_fundo.jpg);
   background-size: cover;
   background-position: center;
@@ -70,14 +70,14 @@
   width: 0;
   top: 28px;
   height: 3px;
-  background-color: var(--cor-verde-escuro);
+  background-color: var(--cor-fundo-button-bottom);
   transition: width 0.3s ease-in-out;
 }
 .barra li a:hover::after {
   width: 100%;
 }
 #active {
-  color: #042e09;
+  color: var(--cor-fundo-button-bottom);
 }
 .barra button {
   height: 37px;
@@ -158,6 +158,10 @@
 .imagem_contato img {
   height: 300px;
   border-radius: 5px;
+  transition: 0.5s;
+}
+.imagem_contato img:hover{
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .container {
@@ -248,6 +252,10 @@
   margin-bottom: 18px;
   color: white;
   font-size: 15px;
+  transition: 0.5s;
+}
+.informacoes a:hover {
+  color: var(--cor-fundo-button-bottom);
 }
 .informacoes h3 {
   margin-left: 50px;
@@ -662,6 +670,10 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   border-radius: 8px;
   width: 30%;
   padding-bottom: 30px;
+  transition: 0.5s;
+}
+.cartao-beneficio:hover{
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .cartao-beneficio img {
@@ -1144,32 +1156,43 @@ dashboard
   display: grid;
   gap: 20px;
   padding: 40px;
-  margin-left: 480px;
+  margin-left: 430px;
   align-items: start;
 }
 
 .card-topo {
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-left: 25px;
+  height: 150px;
+  width: 220px;
+  display: grid;
+  grid-template-rows: auto 1fr; 
+  justify-items: center;
   align-items: center;
-  border: 2px solid #2c6794;
+  border: 5px solid #2c6794;
+  border-radius: 5%;
+}
+
+.card-topo .titulo-card {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .cards-topo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 90px;
+  grid-column: span 1;
 }
 
 .card-topo span {
-  font-size: 28px;
+  font-size: 35px;
   font-weight: bold;
 }
 
 .card-topo .titulo-card {
-  font-size: 14px;
+  font-size: 19px;
+  font-weight: bold;
   margin-bottom: 5px;
   text-align: center;
 }
@@ -1229,6 +1252,52 @@ dashboard
   flex-direction: column;
 }
 
+.alert {
+    display: grid;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+.alerta-titulo {
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.alerta-silos {
+    display: flex;
+    gap: 15px;
+}
+
+.silo-input {
+    width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: default;
+    outline: none;
+}
+
+.silo-input.critico {
+    background-color: #7f0d0d;
+    color: white;
+}
+
+.silo-input.atencao {
+    background-color: #f1ae00;
+    color: white;
+}
+
+.silo-input {
+    user-select: none;
+}
+
 .acoes {
   margin-top: auto;
   margin-bottom: 20px;
@@ -1248,6 +1317,57 @@ dashboard
   color: white;
   background-color: #2c6794;
   transition: 0.3s;
+}
+
+.card-estoque {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.titulo-info {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c6794;
+    margin: 0;
+}
+
+.input-info {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.input-info.estoque {
+    background-color: #5e6655;
+    color: white;
+    cursor: default;
+}
+
+.input-info.valor-tonelada {
+    background-color: #5e6655;
+    color: white;
+}
+.input-info.valor-tonelada::placeholder {
+  color: white;
+  opacity: 85%;
+}
+
+.input-info.valor-total {
+    background-color: #324001;
+    color: white;
+    cursor: default;
+}
+
+.resultado-estoque {
+    margin-top: 10px;
 }
 
 .acoes button:hover {
