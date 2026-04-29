@@ -48,7 +48,7 @@
             <div class="cards-topo">
     <div class="dashboard-card card-topo">
         <h3 class="titulo-card">TOTAL SILOS</h3>
-        <span>3</span>
+        <span style="color: green;">3</span>
     </div>
 
     <div class="dashboard-card card-topo">
@@ -62,34 +62,20 @@
     </div>
 </div>
 
-            <div class="dashboard-card full-width alert">
-                <span>ALERTA PRIORITÁRIO</span>
-            </div>
+            <div class="full-width alert">
+    <span class="alerta-titulo">ALERTA PRIORITÁRIO</span>
+
+    <div class="alerta-silos">
+        <div class="silo-alerta">Silo 01</div>
+        <div class="silo-alerta">Silo 03</div>
+    </div>
+</div>
 
             <div class="card-container full-width">
                 <h3 class="titulo-card">OCUPAÇÃO DOS SILOS</h3>
                 <div class="dashboard-card">
                     <div class="grafico-container">
                         <canvas id="grafico4"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="linha-dupla">
-                <div class="card-container">
-                    <h3 class="titulo-card">GRAFICO 5</h3>
-                    <div class="dashboard-card">
-                        <div class="grafico-container">
-                            <canvas id="grafico5"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-container">
-                    <h3 class="titulo-card">GRAFICO 6</h3>
-                    <div class="dashboard-card">
-                        <div class="grafico-container">
-                            <canvas id="grafico6"></canvas>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -101,7 +87,6 @@
 
 </html>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 
     function toggleMenu(element) {

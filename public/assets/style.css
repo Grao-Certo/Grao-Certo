@@ -1140,18 +1140,26 @@ dashboard
 }
 
 .card-topo {
+  margin-left: 25px;
   height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto 1fr; 
+  justify-items: center;
   align-items: center;
   border: 2px solid #2c6794;
+}
+
+.card-topo .titulo-card {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .cards-topo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 90px;
+  grid-column: span 1;
 }
 
 .card-topo span {
