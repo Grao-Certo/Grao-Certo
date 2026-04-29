@@ -171,22 +171,25 @@
                 <div class="simulador-card">
                     <p class="titulo-card" style="color:white;">Custo total</p>
                     <p class="valor-card">R$ ${custoTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                    <small class="fonte-card"> De acordo com abimaq.org.br </small>
                 </div>
 
                 <div class="simulador-card">
                     <p class="titulo-card" style="color:white;" >Economia (inspeção)</p>
                     <p class="valor-card">R$ ${economiaInspecaoAnual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                    <small class="fonte-card"> De acordo com glassdoor.com.br </small>
                 </div>
 
                 <div class="simulador-card">
                     <p class="titulo-card" style="color:white;">Perdas evitadas</p>
                     <p class="valor-card">R$ ${economiaPerdasAnual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
+                   <small class="fonte-card"> De acordo com Balanço Geral Criciúma </small>
                 </div>
 
                 <div class="simulador-card destaque">
                     <p class="titulo-card" style="color:white;">Economia total</p>
                     <p class="valor-card">R$ ${economiaTotalAnual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</p>
-                    <small>R$ ${Number(economiaTotalMensal).toLocaleString("pt-BR", { minimumFractionDigits: 2 })} / mês</small>
+                    <small class="fonte-card-economia">R$ ${Number(economiaTotalMensal).toLocaleString("pt-BR", { minimumFractionDigits: 2 })} / mês</small>
                 </div>
 
                 <div class="simulador-card">

@@ -832,19 +832,19 @@ body.simulador-body {
 
 .simulador-subtitulo {
   margin-top: 40px;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 1px;
   position: relative;
 }
 
 .simulador-titulo {
-  font-size: 36px;
+  font-size: 38px;
   margin: 10px 0;
   font-weight: bold;
 }
 
 .simulador-descricao {
-  font-size: 15px;
+  font-size: 18px;
   margin-bottom: 30px;
 }
 
@@ -885,7 +885,7 @@ body.simulador-body {
 }
 
 .simulador-label {
-  font-size: 12px;
+  font-size: 16px;
   margin-bottom: 5px;
   display: block;
 }
@@ -916,8 +916,8 @@ body.simulador-body {
 }
 
 .simulador-icone {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
 
   border: 2px solid transparent;
@@ -937,7 +937,7 @@ body.simulador-body {
 }
 
 .simulador-alerta {
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
   margin-top: 10px;
   border-top: 1.4px solid #2d6cdf;
@@ -947,13 +947,14 @@ body.simulador-body {
 .simulador-botao {
   margin-top: 20px;
   padding: 10px 25px;
-  border-radius: 20px;
+  border-radius: 40px;
   border: none;
   background-color: #d9e6f2;
   color: #1f4b6d;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 18px;
 }
 
 .simulador-botao:hover {
@@ -962,7 +963,7 @@ body.simulador-body {
 
 .simulador-resultado {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 18px;
   text-align: left;
 }
 
@@ -995,7 +996,7 @@ body.simulador-body {
 }
 
 .titulo-card {
-  font-size: 13px;
+  font-size: 14px;
   color: #ccc;
   margin: 0;
 }
@@ -1006,9 +1007,17 @@ body.simulador-body {
   margin: 5px 0;
 }
 
-.simulador-card small {
+.fonte-card-economia {
   font-size: 12px;
   color: #95b814;
+}
+
+.fonte-card {
+  font-size: 11px;
+  color: #bbb;
+  display: block;
+  margin-top: 8px;
+  font-style: italic;
 }
 
 /*
