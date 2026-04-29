@@ -49,21 +49,26 @@ function cadastrar() {
 
             if (doc.length == 14 && doc[3] == '.' && doc[7] == '.' && doc[11] == '-') {
 
-                if (tipoUsu == 'operador' || tipoUsu == 'administrador') { 
+                if (emailValido) {
+                    
+                    if (tipoUsu == 'operador' || tipoUsu == 'administrador') {
+                        
+                        if (senha != '') { // senha
 
-                    if (emailValido) {
+                            if (confirmarSenha == senha) { // Confirme sua senha
+                                div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
 
-                        if (confirmarSenha == senha) { // Confirme sua senha
-                            div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
-
+                            } else {
+                                div_erro.innerHTML = 'A senha não é compatível com a anterior'
+                            }
                         } else {
-                            div_erro.innerHTML = 'A senha não é compatível com a anterior'
+                            div_erro.innerHTML = 'Adicione uma senha!'
                         }
                     } else {
-                        div_erro.innerHTML = 'Digite um email válido'
+                        div_erro.innerHTML = 'Digite um tipo de usuário válido'
                     }
                 } else {
-                    div_erro.innerHTML = 'Digite um tipo de usuário válido'
+                    div_erro.innerHTML = 'Digite um email válido'
                 }
             } else {
                 div_erro.innerHTML = 'Digite um CPF válido'
@@ -131,10 +136,10 @@ function logar() {
     }
 }
 
-function colocarEmpresa() { 
+function colocarEmpresa() {
     const documento = document.getElementById('input_doc'); // Criando as constantes para modificar os inputs
     const select = document.getElementById('select_pessoa'); // Essa funcao pega o elemento pelo ID
-    const iptNome = document.getElementById('input_nome'); 
+    const iptNome = document.getElementById('input_nome');
 
     const cep = document.getElementById('input_tipoUsu'); // Definindo as constantes que serão alteradas
     const numero = document.getElementById('input_senha'); // Empresa
