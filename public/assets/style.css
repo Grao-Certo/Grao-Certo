@@ -1240,6 +1240,52 @@ dashboard
   flex-direction: column;
 }
 
+.alert {
+    display: grid;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+.alerta-titulo {
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.alerta-silos {
+    display: flex;
+    gap: 15px;
+}
+
+.silo-input {
+    width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: default;
+    outline: none;
+}
+
+.silo-input.critico {
+    background-color: #7f0d0d;
+    color: white;
+}
+
+.silo-input.atencao {
+    background-color: #f1ae00;
+    color: white;
+}
+
+.silo-input {
+    user-select: none;
+}
+
 .acoes {
   margin-top: auto;
   margin-bottom: 20px;
