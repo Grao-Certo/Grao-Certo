@@ -131,16 +131,16 @@ function logar() {
     }
 }
 
-function colocarEmpresa() {
-    const documento = document.getElementById('input_doc');
-    const select = document.getElementById('select_pessoa');
-    const iptNome = document.getElementById('input_nome');
+function colocarEmpresa() { 
+    const documento = document.getElementById('input_doc'); // Criando as constantes para modificar os inputs
+    const select = document.getElementById('select_pessoa'); // Essa funcao pega o elemento pelo ID
+    const iptNome = document.getElementById('input_nome'); 
 
-    const cep = document.getElementById('input_tipoUsu');
-    const numero = document.getElementById('input_senha');
+    const cep = document.getElementById('input_tipoUsu'); // Definindo as constantes que serão alteradas
+    const numero = document.getElementById('input_senha'); // Empresa
     const complemento = document.getElementById('input_confirmar_senha');
 
-    const tipo = document.getElementById('input_tipoUsu');
+    const tipo = document.getElementById('input_tipoUsu'); // Usuario
     const senha = document.getElementById('input_senha');
     const confirmar = document.getElementById('input_confirmar_senha');
 
@@ -150,7 +150,7 @@ function colocarEmpresa() {
     documento.value = "";
 
     if (tipoPessoa == 'Empresa') {
-        iptNome.placeholder = 'Nome da Empresa';
+        iptNome.placeholder = 'Nome da Empresa'; // Alterando os placeholders
         documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
         documento.maxLength = 18; // Tamanho do CNPJ com pontos/barra/traço
         cep.placeholder = 'CEP: xxxxx-xxx'
