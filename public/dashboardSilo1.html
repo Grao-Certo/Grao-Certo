@@ -137,21 +137,78 @@
     const ctx5 = document.getElementById('grafico5');
     const ctx6 = document.getElementById('grafico6');
 
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
-            datasets: [{
-                label: 'Volume mensal (TON)',
-                data: [120, 150, 180, 90, 200, 170],
-                backgroundColor: '#8BC34A'
-            }]
+    const dados = [33, 20, 9, 2, 1];
+const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+
+const pluginValoresDireita = {
+    id: 'valoresDireita',
+    afterDatasetsDraw(chart) {
+        const { ctx } = chart;
+        const meta = chart.getDatasetMeta(0);
+
+        ctx.save();
+        ctx.font = '14px Arial';
+        ctx.fillStyle = '#333';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+
+        meta.data.forEach((barra, index) => {
+            const valor = dados[index];
+            const x = chart.chartArea.right + 15;
+            const y = barra.y;
+
+            ctx.fillText(`${valor} TON`, x, y);
+        });
+
+        ctx.restore();
+    }
+};
+
+
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: dias,
+        datasets: [{
+            label: 'Produção',
+            data: dados,
+            backgroundColor: '#4CAF50',
+            borderRadius: 5
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+
+        aspectRatio: 1,
+
+        layout: {
+            padding: {
+                right: 90
+            }
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Toneladas'
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
         }
-    });
+    },
+    plugins: [pluginValoresDireita]
+});
 
     let capacidadeMax = 100;
     let volumeAtual = 72.5;
