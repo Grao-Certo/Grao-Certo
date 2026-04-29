@@ -1133,10 +1133,36 @@ dashboard
 
 .dashboard-conteudo {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 40px;
   gap: 20px;
+  padding: 40px;
   margin-left: 480px;
+  align-items: start;
+}
+
+.card-topo {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #2c6794;
+}
+
+.cards-topo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card-topo span {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.card-topo .titulo-card {
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .card-container {

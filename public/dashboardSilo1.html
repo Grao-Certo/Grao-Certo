@@ -47,9 +47,9 @@
             <div class="card-container">
                 <h3 class="titulo-card">VOLUME POR SILO</h3>
                 <div class="dashboard-card">
-                    <div class="grafico-container">
-                        <canvas id="grafico1"></canvas>
-                    </div>
+                   <input type="text">
+                   <input type="text">
+
                 </div>
             </div>
             <div class="card-container">
@@ -126,32 +126,18 @@
 
 
 
-    let labels = ['SILO 1', 'SILO 2', 'SILO 3', 'SILO 4'];
-    let valores = [10, 25, 15, 30];
+    function calcularEstoque() {
+    let estoque = Number(document.getElementById('ipt_estoque').value);
+    let valorTon = Number(document.getElementById('ipt_valorTon').value);
 
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Volume atual (TON)',
-                    data: valores,
-                    backgroundColor: '#8BC34A'
-                }
-            ]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: true
-                }
-            }
-        }
-    });
+    let valorTotal = estoque * valorTon;
+
+    document.getElementById('ipt_valorTotal').value =
+        valorTotal.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
+}
 
     new Chart(ctx2, {
         type: 'bar',
