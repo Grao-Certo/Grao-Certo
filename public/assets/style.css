@@ -602,9 +602,9 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 }
 
 .descricao-sobre-nos {
-  font-size: 16px;
+  font-size: 25px;
   font-family: "Dm Sans";
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
@@ -618,13 +618,13 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 }
 
 .imagem-solucoes {
-  width: 50%;
+  width: 70%;
   padding-right: 30px;
 }
 
 .imagem-solucoes img {
-  width: 600px;
-  height: 383px;
+  width: 700px;
+  height: 520px;
   border-radius: 10px;
 }
 
@@ -639,12 +639,12 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 }
 
 .conteudo-solucoes h3 {
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 7px;
 }
 
 .conteudo-solucoes p {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 15px;
   margin-top: 22px;
   text-transform: uppercase;
@@ -686,7 +686,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 
 .cartao-beneficio h3 {
   margin: 10px 0 5px 0;
-  font-size: 19px;
+  font-size: 25px;
 }
 
 .linha-azul-curta {
@@ -699,14 +699,13 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 .cartao-beneficio ul {
   list-style: none;
   padding: 0 25px;
-  font-size: 13px;
+  font-size: 18px;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .cartao-beneficio li {
   margin-bottom: 15px;
-  font-weight: bold;
 }
 
 /* Seção Porque a Grão Certo */
