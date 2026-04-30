@@ -82,7 +82,8 @@
                     <div class="info-container">
                         <h3>Última atualização</h3>
                         <div class="alerta-silos">
-                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" value="04-04-2026" readonly>
+                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" value="04-04-2026"
+                                readonly>
                         </div>
                     </div>
                 </div>
@@ -98,7 +99,7 @@
             </div>
             <div class="linha-dupla">
                 <div class="card-container">
-                    <h3 class="titulo-card">GRAFICO 5</h3>
+                    <h3 class="titulo-card">TONELADAS ATUAIS</h3>
                     <div class="dashboard-card">
                         <div class="grafico-container">
                             <canvas id="grafico5"></canvas>
@@ -107,7 +108,7 @@
                 </div>
 
                 <div class="card-container">
-                    <h3 class="titulo-card">GRAFICO 6</h3>
+                    <h3 class="titulo-card">HISTÓRICO MENSAL</h3>
                     <div class="dashboard-card">
                         <div class="grafico-container">
                             <canvas id="grafico6"></canvas>
@@ -124,6 +125,7 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
     function toggleMenu(element) {
@@ -297,23 +299,13 @@
             ctx.save();
 
             ctx.textAlign = 'center';
-
-            // TON (principal)
-            ctx.font = 'bold 18px Arial';
-            ctx.fillStyle = '#333';
-            ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
-
-            // %
-            ctx.font = '12px Arial';
-            ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
-
-            ctx.restore();
         }
     };
 
     new Chart(ctx5, {
         type: 'doughnut',
         data: {
+            labels: ['Cheio', 'Vazio'],
             datasets: [{
                 data: [percent, 100 - percent],
                 backgroundColor: ['#324001', '#8BC34A'],
@@ -323,14 +315,30 @@
         options: {
             rotation: 90,
             circumference: 360,
-            cutout: '70%',
-            plugins: {
-                legend: { display: false }
-            },
+            cutout: '50%',
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    color: '#000',
+                    font: {
+                        size: 12,
+                        weight: 'bold'
+                    },
+                    formatter: (value, context) => {
+                        const label = context.chart.data.labels[context.dataIndex];
+                        return `${label} ${value.toFixed(1)}%`;
+                    },
+                    anchor: 'end',
+                    align: 'end',
+                    offset: 10
+                }
+            }
         },
-        plugins: [pluginTextoCentral]
+        plugins: [ChartDataLabels, pluginTextoCentral]
     });
 
     let labs = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -344,7 +352,7 @@
                 {
                     label: 'Volume atual (TON)',
                     data: vals,
-                    backgroundColor: '#8BC34A'
+                    backgroundColor: '#324001'
                 }
             ]
         },
