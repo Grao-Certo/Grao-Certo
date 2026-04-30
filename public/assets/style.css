@@ -1236,6 +1236,19 @@ dashboard
     justify-content: center;
 }
 
+.dashboard-graficos-grandes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grafico-grande {
+    width: 100%;
+    max-width: 550px;
+    height: 300px;
+    margin: 0 auto;
+}
+
 .full-width .grafico-container {
   max-width: 100%;
   width: 100%;
