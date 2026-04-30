@@ -45,17 +45,28 @@
 
         <main class="dashboard-conteudo">
             <div class="card-container">
-                <h3 class="titulo-card">VOLUME POR SILO</h3>
+                <h3 class="titulo-card">VALOR ATUAL EM ESTOQUE</h3>
                 <div class="dashboard-card">
-                    <div class="grafico-container">
-                        <canvas id="grafico1"></canvas>
+                    <div class="card-estoque">
+                        <h3 class="titulo-info">ESTOQUE ATUAL</h3>
+                        <input type="text" id="ipt_estoqueAtual" class="input-info estoque" value="72,5" readonly>
+
+                        <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                        <input type="text" id="ipt_valorTonelada" class="input-info valor-tonelada"
+                            placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
+
+                        <div class="resultado-estoque">
+                            <h3 class="titulo-info">VALOR DO ESTOQUE ATUAL</h3>
+                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div class="card-container">
                 <h3 class="titulo-card">VOLUME MENSAL</h3>
                 <div class="dashboard-card">
-                    <div class="grafico-container">
+                    <div class="grafico-container grafico-mensal">
                         <canvas id="grafico2"></canvas>
                     </div>
                 </div>
@@ -70,7 +81,10 @@
 
                     <div class="info-container">
                         <h3>Última atualização</h3>
-                        <input type="text">
+                        <div class="alerta-silos">
+                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" value="04-04-2026"
+                                readonly>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,18 +99,18 @@
             </div>
             <div class="linha-dupla">
                 <div class="card-container">
-                    <h3 class="titulo-card">GRAFICO 5</h3>
-                    <div class="dashboard-card">
-                        <div class="grafico-container">
+                    <h3 class="titulo-card">TONELADAS ATUAIS</h3>
+                    <div class="dashboard-card dashboard-graficos-grandes">
+                        <div class="grafico-container grafico-grande">
                             <canvas id="grafico5"></canvas>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-container">
-                    <h3 class="titulo-card">GRAFICO 6</h3>
-                    <div class="dashboard-card">
-                        <div class="grafico-container">
+                    <h3 class="titulo-card">HISTÓRICO MENSAL</h3>
+                    <div class="dashboard-card dashboard-graficos-grandes">
+                        <div class="grafico-container grafico-grande">
                             <canvas id="grafico6"></canvas>
                         </div>
                     </div>
@@ -111,6 +125,7 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
     function toggleMenu(element) {
@@ -124,49 +139,77 @@
     const ctx5 = document.getElementById('grafico5');
     const ctx6 = document.getElementById('grafico6');
 
+    const dados = [33, 20, 9, 2, 1];
+    const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
 
+    const pluginValoresDireita = {
+        id: 'valoresDireita',
+        afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            const meta = chart.getDatasetMeta(0);
 
-    let labels = ['SILO 1', 'SILO 2', 'SILO 3', 'SILO 4'];
-    let valores = [10, 25, 15, 30];
+            ctx.save();
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
 
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Volume atual (TON)',
-                    data: valores,
-                    backgroundColor: '#8BC34A'
-                }
-            ]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: true
-                }
-            }
+            meta.data.forEach((barra, index) => {
+                const valor = dados[index];
+                const x = chart.chartArea.right + 15;
+                const y = barra.y;
+
+                ctx.fillText(`${valor} TON`, x, y);
+            });
+
+            ctx.restore();
         }
-    });
+    };
+
 
     new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
+            labels: dias,
             datasets: [{
-                label: 'Volume mensal (TON)',
-                data: [120, 150, 180, 90, 200, 170],
-                backgroundColor: '#8BC34A'
+                label: 'Produção',
+                data: dados,
+                backgroundColor: '#8BC34A',
+                borderRadius: 5
             }]
         },
         options: {
+            indexAxis: 'y',
             responsive: true,
-            maintainAspectRatio: false
-        }
+
+            aspectRatio: 1,
+
+            layout: {
+                padding: {
+                    right: 90
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Toneladas'
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        },
+        plugins: [pluginValoresDireita]
     });
 
     let capacidadeMax = 100;
@@ -256,23 +299,13 @@
             ctx.save();
 
             ctx.textAlign = 'center';
-
-            // TON (principal)
-            ctx.font = 'bold 18px Arial';
-            ctx.fillStyle = '#333';
-            ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
-
-            // %
-            ctx.font = '12px Arial';
-            ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
-
-            ctx.restore();
         }
     };
 
     new Chart(ctx5, {
         type: 'doughnut',
         data: {
+            labels: ['Cheio', 'Vazio'],
             datasets: [{
                 data: [percent, 100 - percent],
                 backgroundColor: ['#324001', '#8BC34A'],
@@ -282,14 +315,30 @@
         options: {
             rotation: 90,
             circumference: 360,
-            cutout: '70%',
-            plugins: {
-                legend: { display: false }
-            },
+            cutout: '50%',
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    color: '#000',
+                    font: {
+                        size: 12,
+                        weight: 'bold'
+                    },
+                    formatter: (value, context) => {
+                        const label = context.chart.data.labels[context.dataIndex];
+                        return `${label} ${value.toFixed(1)}%`;
+                    },
+                    anchor: 'end',
+                    align: 'end',
+                    offset: 10
+                }
+            }
         },
-        plugins: [pluginTextoCentral]
+        plugins: [ChartDataLabels, pluginTextoCentral]
     });
 
     let labs = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -303,7 +352,7 @@
                 {
                     label: 'Volume atual (TON)',
                     data: vals,
-                    backgroundColor: '#8BC34A'
+                    backgroundColor: '#324001'
                 }
             ]
         },
@@ -318,6 +367,15 @@
             }
         }
     });
+
+    function calcularValorEstoque() {
+        let estoque = Number(ipt_estoqueAtual.value.replaceAll(',', '.'));
+        let valorTonelada = Number(ipt_valorTonelada.value.replaceAll(',', '.'));
+
+        let total = estoque * valorTonelada;
+
+        ipt_valorTotal.value = "R$ " + total.toFixed(2);
+    }
 
 
 </script>
