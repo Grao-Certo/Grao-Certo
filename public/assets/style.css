@@ -1227,7 +1227,13 @@ dashboard
 .grafico-container {
   width: 100%;
   max-width: 350px;
-  height: 250px;
+  height: 230px;
+}
+
+.grafico-mensal {
+    width: 500px;
+    height: 330px;
+    justify-content: center;
 }
 
 .full-width .grafico-container {

@@ -66,7 +66,7 @@
             <div class="card-container">
                 <h3 class="titulo-card">VOLUME MENSAL</h3>
                 <div class="dashboard-card">
-                    <div class="grafico-container">
+                    <div class="grafico-container grafico-mensal">
                         <canvas id="grafico2"></canvas>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     <div class="info-container">
                         <h3>Última atualização</h3>
                         <div class="alerta-silos">
-                            <input type="text" class="silo-input critico" value="72.5" readonly>
+                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" value="04-04-2026" readonly>
                         </div>
                     </div>
                 </div>
@@ -138,77 +138,77 @@
     const ctx6 = document.getElementById('grafico6');
 
     const dados = [33, 20, 9, 2, 1];
-const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+    const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
 
-const pluginValoresDireita = {
-    id: 'valoresDireita',
-    afterDatasetsDraw(chart) {
-        const { ctx } = chart;
-        const meta = chart.getDatasetMeta(0);
+    const pluginValoresDireita = {
+        id: 'valoresDireita',
+        afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            const meta = chart.getDatasetMeta(0);
 
-        ctx.save();
-        ctx.font = '14px Arial';
-        ctx.fillStyle = '#333';
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'middle';
+            ctx.save();
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
 
-        meta.data.forEach((barra, index) => {
-            const valor = dados[index];
-            const x = chart.chartArea.right + 15;
-            const y = barra.y;
+            meta.data.forEach((barra, index) => {
+                const valor = dados[index];
+                const x = chart.chartArea.right + 15;
+                const y = barra.y;
 
-            ctx.fillText(`${valor} TON`, x, y);
-        });
+                ctx.fillText(`${valor} TON`, x, y);
+            });
 
-        ctx.restore();
-    }
-};
+            ctx.restore();
+        }
+    };
 
 
-new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: dias,
-        datasets: [{
-            label: 'Produção',
-            data: dados,
-            backgroundColor: '#4CAF50',
-            borderRadius: 5
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        responsive: true,
-
-        aspectRatio: 1,
-
-        layout: {
-            padding: {
-                right: 90
-            }
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: dias,
+            datasets: [{
+                label: 'Produção',
+                data: dados,
+                backgroundColor: '#8BC34A',
+                borderRadius: 5
+            }]
         },
-        scales: {
-            x: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Toneladas'
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+
+            aspectRatio: 1,
+
+            layout: {
+                padding: {
+                    right: 90
                 }
             },
-            y: {
-                grid: {
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Toneladas'
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            plugins: {
+                legend: {
                     display: false
                 }
             }
         },
-        plugins: {
-            legend: {
-                display: false
-            }
-        }
-    },
-    plugins: [pluginValoresDireita]
-});
+        plugins: [pluginValoresDireita]
+    });
 
     let capacidadeMax = 100;
     let volumeAtual = 72.5;
