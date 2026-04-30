@@ -50,9 +50,9 @@ function cadastrar() {
             if (doc.length == 14 && doc[3] == '.' && doc[7] == '.' && doc[11] == '-') {
 
                 if (emailValido) {
-                    
+
                     if (tipoUsu == 'operador' || tipoUsu == 'administrador') {
-                        
+
                         if (senha != '') { // senha
 
                             if (confirmarSenha == senha) { // Confirme sua senha
@@ -83,9 +83,9 @@ function cadastrar() {
 
             if (doc.length == 18 && doc[2] == '.' && doc[6] == '.' && doc[10] == '/' && doc[15] == '-') {
 
-                if (tipoUsu.length == 9 && tipoUsu[5] == '-') { // CEP
-
-                    if (emailValido) {
+                if (emailValido) {
+                    
+                    if (tipoUsu.length == 9 && tipoUsu[5] == '-') { // CEP
 
                         if (senha != '') { // Confirme sua senha
                             div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
@@ -94,10 +94,10 @@ function cadastrar() {
                             div_erro.innerHTML = 'Digite o número do endereço'
                         }
                     } else {
-                        div_erro.innerHTML = 'Digite um email válido'
+                        div_erro.innerHTML = 'Digite um CEP válido'
                     }
                 } else {
-                    div_erro.innerHTML = 'Digite um CEP válido'
+                    div_erro.innerHTML = 'Digite um email válido'
                 }
             } else {
                 div_erro.innerHTML = 'Digite um CNPJ válido'
@@ -117,8 +117,8 @@ function logar() {
     let email = input_email.value;
     let senha = input_senha.value;
 
-    let emailFicticio = 'brandao123@sptech.school';
-    let senhaFicticia = 'Clara123';
+    let emailFicticio = 'pedro@sptech.school';
+    let senhaFicticia = 'pedro';
 
 
     if (validacao > 0) {
