@@ -1389,6 +1389,10 @@ dashboard
     margin-top: 10px;
 }
 
+.resultado-estoque input{
+  color: white;
+}
+
 .acoes button:hover {
   opacity: 0.85;
   color: #95b814;

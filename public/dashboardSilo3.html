@@ -82,7 +82,7 @@
                     <div class="info-container">
                         <h3>Última atualização</h3>
                         <div class="alerta-silos">
-                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" value="04-04-2026"
+                            <input type="text" id="ipt_valorAtualizado" class="input-info valor-total" value="04-04-2026"
                                 readonly>
                         </div>
                     </div>
@@ -131,6 +131,21 @@
     function toggleMenu(element) {
         element.classList.toggle("ativo");
     }
+
+    function calcularValorEstoque() {
+        let strEstoque = ipt_estoqueAtual.value.replaceAll(',', '.');
+        let strValorTonelada = ipt_valorTonelada.value.replaceAll(',', '.');
+
+        let estoque = Number(strEstoque);
+        let valorTonelada = Number(strValorTonelada);
+
+        let total = estoque * valorTonelada;
+
+        total = total.toFixed(2).replaceAll('.', ',')
+
+        ipt_valorTotal.value = "R$ " + total;
+    }
+
 
     const ctx1 = document.getElementById('grafico1');
     const ctx2 = document.getElementById('grafico2');
@@ -368,14 +383,6 @@
         }
     });
 
-    function calcularValorEstoque() {
-        let estoque = Number(ipt_estoqueAtual.value.replaceAll(',', '.'));
-        let valorTonelada = Number(ipt_valorTonelada.value.replaceAll(',', '.'));
-
-        let total = estoque * valorTonelada;
-
-        ipt_valorTotal.value = "R$ " + total.toFixed(2);
-    }
-
+  
 
 </script>
