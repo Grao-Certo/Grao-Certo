@@ -382,14 +382,6 @@
         }
     });
 
-    function calcularValorEstoque() {
-        let estoque = Number(ipt_estoqueAtual.value.replaceAll(',', '.'));
-        let valorTonelada = Number(ipt_valorTonelada.value.replaceAll(',', '.'));
-
-        let total = estoque * valorTonelada;
-
-        ipt_valorTotal.value = "R$ " + total.toFixed(2);
-    }
 
 
 </script>
