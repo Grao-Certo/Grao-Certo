@@ -87,12 +87,15 @@ function cadastrar() {
                     
                     if (tipoUsu.length == 9 && tipoUsu[5] == '-') { // CEP
 
-                        if (senha != '') { // Confirme sua senha
-                            div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
-
-                        } else {
-                            div_erro.innerHTML = 'Digite o número do endereço'
-                        }
+                        if(Number(senha) > 0){
+                            if (senha != '') { // Confirme sua senha
+                                div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
+                            } else {
+                                div_erro.innerHTML = 'Digite o número do endereço'
+                            }
+                        }else{
+                            div_erro.innerHTML = 'Digite um número de endereço valido';
+                        }    
                     } else {
                         div_erro.innerHTML = 'Digite um CEP válido'
                     }
