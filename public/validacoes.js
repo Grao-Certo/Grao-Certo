@@ -1,3 +1,5 @@
+
+
 /* Tela de cadastro */
 function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critérios 
     let senha = input_senha.value; // ter letras Maiusculas, minuscula e ter pelo menos 8 caracteres

@@ -1156,7 +1156,7 @@ dashboard
   display: grid;
   gap: 20px;
   padding: 40px;
-  margin-left: 430px;
+  margin-left: 30%;
   align-items: start;
 }
 
