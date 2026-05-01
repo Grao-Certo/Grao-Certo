@@ -319,9 +319,6 @@ html {
 .LoginCadastro li a:hover::after {
   width: 100%;
 }
-#div_mensagem {
-  margin-top: 10px;
-}
 .bodyLoginCad {
   background: url(imgs/fundoLogin.png);
   height: 110vh;
@@ -347,6 +344,28 @@ html {
   transform: translateY(-7px);
   box-shadow: 0 0 20px 0 black;
   width: 270px;
+}
+
+#div_mensagem {
+  margin: 10px;
+}
+
+.erro {
+  color: white;
+  background-color: rgba(255, 19, 19, 0.582);
+  border: solid 3px rgb(44, 1, 1);
+  margin: 20px 0 15px 0;
+  padding: 4px 10px;
+  border-radius: 11px;
+}
+
+.acerto {
+  color: white;
+  background-color: rgba(15, 216, 106, 0.582);
+  border: solid 3px rgb(7, 80, 4);
+  margin: 14px 0 1 0;
+  padding: 4px 7px;
+  border-radius: 11px;
 }
 
 /*PÁGINA DE LOGIN*/
@@ -422,7 +441,7 @@ html {
   border-radius: 15px;
 }
 .container-Login .formulario button {
-  margin: 10px 0 30px 0;
+  margin: 20px 0 30px 0;
 }
 
 /*GERAL*/

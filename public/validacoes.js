@@ -58,25 +58,25 @@ function cadastrar() {
                         if (senha != '') { // senha
 
                             if (confirmarSenha == senha) { // Confirme sua senha
-                                div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
+                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
 
                             } else {
-                                div_erro.innerHTML = 'A senha não é compatível com a anterior'
+                                div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
                             }
                         } else {
-                            div_erro.innerHTML = 'Adicione uma senha!'
+                            div_mensagem2.innerHTML = '<span class="erro"> Adicione uma senha!'
                         }
                     } else {
-                        div_erro.innerHTML = 'Digite um tipo de usuário válido'
+                        div_mensagem2.innerHTML = '<span class="erro"> Digite um tipo de usuário válido'
                     }
                 } else {
-                    div_erro.innerHTML = 'Digite um email válido'
+                    div_mensagem2.innerHTML = '<span class="erro"> Digite um email válido'
                 }
             } else {
-                div_erro.innerHTML = 'Digite um CPF válido'
+                div_mensagem2.innerHTML = '<span class="erro"> Digite um CPF válido'
             }
         } else {
-            div_erro.innerHTML = 'Digite seu nome'
+            div_mensagem2.innerHTML = '<span class="erro"> Digite seu nome'
         }
 
     } else if (pessoa == 'Empresa') { // TIPO DE PESSOA
@@ -90,28 +90,30 @@ function cadastrar() {
                     if (tipoUsu.length == 9 && tipoUsu[5] == '-') { // CEP
 
                         if(senha != ''){
+                            
                             if (Number(senha) > 0) { // Confirme sua senha
-                                div_erro.innerHTML = '<span style="color: green;"> Cadastro realizado com sucesso!'
+                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
+
                             } else {
-                                div_erro.innerHTML = 'Digite um número de endereço valido'
+                                div_mensagem2.innerHTML = '<span class="erro"> Digite um número de endereço valido'
                             }
                         }else{
-                            div_erro.innerHTML = 'Digite o número do endereço';
+                            div_mensagem2.innerHTML = '<span class="erro"> Digite o número do endereço';
                         }    
                     } else {
-                        div_erro.innerHTML = 'Digite um CEP válido'
+                        div_mensagem2.innerHTML = '<span class="erro"> Digite um CEP válido'
                     }
                 } else {
-                    div_erro.innerHTML = 'Digite um email válido'
+                    div_mensagem2.innerHTML = '<span class="erro"> Digite um email válido'
                 }
             } else {
-                div_erro.innerHTML = 'Digite um CNPJ válido'
+                div_mensagem2.innerHTML = '<span class="erro"> Digite um CNPJ válido'
             }
         } else {
-            div_erro.innerHTML = 'Digite o nome da empresa'
+            div_mensagem2.innerHTML = '<span class="erro"> Digite o nome da empresa'
         }
     } else {
-        div_erro.innerHTML = 'Selecione uma opção!'
+        div_mensagem2.innerHTML = '<span class="erro"> Selecione uma opção!'
     }
 
 }
@@ -129,10 +131,10 @@ function logar() {
     if (validacao > 0) {
 
         if (email == emailFicticio && senha == senhaFicticia) {
-            alert('Login realizado com sucesso!')
             window.location.href = "dashboardGeral.html";
+            
         } else {
-            div_erro.innerHTML = 'Usuário ou senha errada.'
+            div_mensagem2.innerHTML = '<span class="erro"> Usuário ou senha errada.'
             validacao--;
         }
 
