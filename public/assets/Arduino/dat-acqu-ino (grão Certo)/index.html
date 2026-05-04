@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,22 +8,22 @@
 
 <body>
 
-    <h1>Graphics</h1>
+    <h1>captação de distancia</h1>
     <div style="display: flex;">
         <div style="width: 50%;">
-            <canvas id="sensorAnalogico"></canvas>
+            <canvas id="valoresDistancia"></canvas>
         </div>
         <div style="width: 50%;">
-            <canvas id="sensorDigital"></canvas>
+            <canvas id="valoresDistancia"></canvas>
         </div>
     </div>
 
     <script>
-        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+        var valoresDistancia = new Chart(document.getElementById('valoresDistancia').getContext('2d'), {
             type: 'line',
             data: {
                 datasets: [{
-                    label: 'Analogico',
+                    label: 'Distancia',
                     borderColor: '#63B1BC',
                     backgroundColor: '#ED145B'
                 }]
@@ -41,31 +41,6 @@
                         beginAtZero: true,
                     },
                 },
-            }
-        });
-
-        var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Digital',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#0762C8'
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(0-1)'
-                        },
-                        beginAtZero: true
-                    }
-                }
             }
         });
 
@@ -102,8 +77,7 @@
         }
 
         setInterval(() => {
-            obterDados(sensorAnalogico, 'analogico');
-            obterDados(sensorDigital, 'digital');
+            obterDados(valoresDistancia, 'distancia');
         }, 1000);
 
     </script>

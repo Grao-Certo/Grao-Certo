@@ -104,6 +104,9 @@ const servidor = (valoresDistancia) => {
     next();
   });
 
+  // Serve the static files from the current directory
+  app.use(express.static(__dirname));
+
   app.listen(SERVIDOR_PORTA, () => {
     console.log(`🚀 API rodando em http://localhost:${SERVIDOR_PORTA}`);
   });
