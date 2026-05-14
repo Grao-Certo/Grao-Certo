@@ -23,7 +23,6 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/avisos", avisosRouter);
 
 
 app.listen(PORTA_APP, function () {
