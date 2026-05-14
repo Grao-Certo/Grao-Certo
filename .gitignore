@@ -2,9 +2,8 @@ node_modules
 package-lock.json
 
 .github
-
-.DS_Store
-Thumbs.db
+.env
+.env.dev
 
 dist/
 build/
