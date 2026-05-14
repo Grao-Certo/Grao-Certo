@@ -1,11 +1,11 @@
 @font-face {
   font-family: codec;
-  src: url(fonts/codec-pro.regular.ttf);
+  src: url(../assets/fonts/codec-pro.regular.ttf);
 }
 
 @font-face {
   font-family: Dm Sans;
-  src: url(fonts/DMSans-VariableFont_opsz\,wght.ttf);
+  src: url(../assets/fonts/DMSans-VariableFont_opsz,wght.ttf);
 }
 html {
   scroll-behavior: smooth;
@@ -25,7 +25,7 @@ html {
   position: relative;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
-    url(imgs/imagem_fundo.jpg);
+    url(../assets/imgs/imagem_fundo.jpg);
   background-size: cover;
   background-position: center;
   height: 700px;
@@ -320,7 +320,7 @@ html {
   width: 100%;
 }
 .bodyLoginCad {
-  background: url(imgs/fundoLogin.png);
+  background: url(../assets/imgs/fundoLogin.png);
   height: 110vh;
   background-size: cover;
   color: white;
