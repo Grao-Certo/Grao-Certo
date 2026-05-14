@@ -58,7 +58,43 @@ function cadastrar() {
                         if (senha != '') { // senha
 
                             if (confirmarSenha == senha) { // Confirme sua senha
-                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
+
+                                fetch("/usuarios/cadastrarUsuario/", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    // crie um atributo que recebe o valor recuperado aqui
+                                    // Agora vá para o arquivo routes/usuario.js
+                                    pessoaServer: pessoa,
+                                    nomeServer: nome,
+                                    docServer: doc,
+                                    tipoUsuServer: tipoUsu,
+                                    emailServer: email,
+                                    senhaServer: senha
+                                }),
+                                })
+                                .then(function (resposta) {
+                                    console.log("resposta: ", resposta);
+
+                                    if (resposta.ok) {
+
+                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...'
+
+                                    setTimeout(() => {
+                                        window.location = "login.html";
+                                    }, "2000");
+
+                                    finalizarAguardar();
+                                    } else {
+                                    throw "Houve um erro ao tentar realizar o cadastro do usuario";
+                                    }
+                                })
+                                .catch(function (resposta) {
+                                    console.log(`#ERRO: ${resposta}`);
+                                    finalizarAguardar();
+                            });
 
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
@@ -92,7 +128,43 @@ function cadastrar() {
                         if(senha != ''){
                             
                             if (Number(senha) > 0) { // Confirme sua senha
-                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
+
+                            fetch("/usuarios/cadastrarEmpresa", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    // crie um atributo que recebe o valor recuperado aqui
+                                    // Agora vá para o arquivo routes/usuario.js
+                                    pessoaServer: pessoa,
+                                    nomeServer: nome,
+                                    docServer: doc,
+                                    tipoUsuServer: tipoUsu,
+                                    emailServer: email,
+                                    senhaServer: senha
+                                }),
+                                })
+                                .then(function (resposta) {
+                                    console.log("resposta: ", resposta);
+
+                                    if (resposta.ok) {
+
+                                    div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...';
+
+                                    setTimeout(() => {
+                                        window.location = "./dashboard/garagem.html";
+                                    }, "2000");
+
+                                    finalizarAguardar();
+                                    } else {
+                                    throw "Houve um erro ao tentar realizar o cadastro do carro!";
+                                    }
+                                })
+                                .catch(function (resposta) {
+                                    console.log(`#ERRO: ${resposta}`);
+                                    finalizarAguardar();
+                            });
 
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> Digite um número de endereço valido'
