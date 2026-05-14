@@ -225,7 +225,7 @@ function logar() {
                     sessionStorage.ID_EMPRESA = json.empresaId;
     
                     setTimeout(function () {
-                        window.location = "dashboardGeral.html";
+                        window.location = "dashboard/dashboardGeral.html";
                     }, 1000); // apenas para exibir o loading
     
                 });
