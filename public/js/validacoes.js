@@ -122,11 +122,11 @@ function cadastrar() {
             if (doc.length == 18 && doc[2] == '.' && doc[6] == '.' && doc[10] == '/' && doc[15] == '-') {
 
                 if (emailValido) {
-                    
+
                     if (tipoUsu.length == 9 && tipoUsu[5] == '-') { // CEP
 
-                        if(senha != ''){
-                            
+                        if (senha != '') {
+
                             if (Number(senha) > 0) { // Confirme sua senha
 
                             fetch("/usuarios/cadastrarEmpresa", {
@@ -169,9 +169,9 @@ function cadastrar() {
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> Digite um número de endereço valido'
                             }
-                        }else{
+                        } else {
                             div_mensagem2.innerHTML = '<span class="erro"> Digite o número do endereço';
-                        }    
+                        }
                     } else {
                         div_mensagem2.innerHTML = '<span class="erro"> Digite um CEP válido'
                     }
@@ -196,24 +196,60 @@ function logar() {
     let email = input_email.value;
     let senha = input_senha.value;
 
-    let emailFicticio = 'pedro@sptech.school';
-    let senhaFicticia = 'pedro';
-
+    // let emailFicticio = 'pedro@sptech.school';
+    // let senhaFicticia = 'pedro';
 
     if (validacao > 0) {
-
-        if (email == emailFicticio && senha == senhaFicticia) {
-            window.location.href = "dashboardGeral.html";
-            
-        } else {
-            div_mensagem2.innerHTML = '<span class="erro"> Usuário ou senha errada.'
-            validacao--;
-        }
-
+        
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+    
+            if (resposta.ok) {
+                console.log(resposta);
+    
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_EMPRESA = json.empresaId;
+    
+                    setTimeout(function () {
+                        window.location = "dashboardGeral.html";
+                    }, 1000); // apenas para exibir o loading
+    
+                });
+    
+            } else {
+                div_mensagem2.innerHTML = '<span class="erro"> Usuário ou senha errada.'
+                validacao--;
+    
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+    
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    
+        return false;
+        
     } else {
         alert('Usuário bloqueado')
     }
 }
+
 
 function colocarEmpresa() {
     const documento = document.getElementById('input_doc'); // Criando as constantes para modificar os inputs
