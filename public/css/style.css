@@ -494,7 +494,7 @@ html {
   background-color: #324001d2;
   border-radius: 25px;
   border: solid var(--cor-fundo-button-bottom);
-  margin-top: 40px;
+  margin-top: 10px;
   padding: 0;
 }
 .bodyLoginCad .container-Cadastro input {
@@ -503,16 +503,16 @@ html {
   outline: none;
   background-color: transparent;
   color: white;
-  height: 60px;
-  width: 520px;
+  height: 55px;
+  width: 480px;
   padding: 0 0 0 12px;
-  margin: 0px 50px 0px 50px;
+  margin: 0px 50px;
   font-size: 21px;
   transition: 0.4s;
 }
 .bodyLoginCad .container-Cadastro input:hover {
   transform: translateY(-5px);
-  width: 560px;
+  width: 500px;
   margin-top: translateY(-5px);
   margin-left: 25px;
   margin-right: 25px;
@@ -529,14 +529,14 @@ html {
   height: 50px;
   border-radius: 10px;
   position: relative;
-  left: -18%;
+  left: -17%;
   font-size: 20px;
   margin-top: 5px;
 }
 .container-Cadastro label {
   position: relative;
   margin: 10px 10px 20px 10px;
-  left: -17%;
+  left: -15%;
   padding: 12px 15px;
   border-bottom: solid 3px #95b814;
   font-size: 21px;
