@@ -6,8 +6,13 @@ function validarSessao() {
     var b_usuario = document.getElementById("b_usuario");
     var b_email = document.getElementById("b_email");
 
-    b_usuario.innerHTML = nome;
-    b_email.innerHTML = email;
+    if(nome != undefined){
+        b_usuario.innerHTML = nome;
+    }
+
+    if(email != undefined){
+        b_email.innerHTML = email;
+    }
 }
 
 function limparSessao() {
