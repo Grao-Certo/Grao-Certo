@@ -79,17 +79,7 @@ CREATE TABLE
         fk_sensor INT NOT NULL,
         FOREIGN KEY (fk_sensor) REFERENCES sensor (id)
     );
-
-CREATE TABLE
-    historico_estoque (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        fk_silo INT NOT NULL,
-        volume_anterior DECIMAL(10, 2),
-        volume_novo DECIMAL(10, 2),
-        data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (fk_silo) REFERENCES silo (id)
-    );
-
+    
 INSERT INTO
     empresa (
         nome,
@@ -204,15 +194,6 @@ VALUES
     ('SENSOR_003', 'manutencao', '2023-11-20', 3),
     ('SENSOR_004', 'ativo', '2024-03-05', 4);
 
-INSERT INTO
-    historico_estoque (fk_silo, volume_anterior, volume_novo)
-VALUES
-    (1, 1200.00, 1350.00),
-    (1, 1350.00, 1100.00),
-    (2, 500.00, 650.00),
-    (3, 900.00, 1200.00),
-    (4, 2000.00, 1800.00);
-
 SELECT
     *
 FROM
@@ -297,18 +278,3 @@ FROM
     JOIN empresa e ON s.fk_empresa = e.id
 WHERE
     se.status_sensor = 'manutencao';
-
--- SELECT com histórico de movimentação do historico_estoque
-SELECT
-    e.nome AS empresa,
-    s.id AS silo,
-    h.volume_anterior,
-    h.volume_novo,
-    (h.volume_novo - h.volume_anterior) AS variacao,
-    h.data_hora
-FROM
-    historico_estoque h
-    JOIN silo s ON h.fk_silo = s.id
-    JOIN empresa e ON s.fk_empresa = e.id
-ORDER BY
-    h.data_hora DESC;
