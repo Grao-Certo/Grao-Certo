@@ -6,16 +6,8 @@ function validarSessao() {
     var b_usuario = document.getElementById("b_usuario");
     var b_email = document.getElementById("b_email");
 
-    if (email != null && nome != null) {
-        if (b_usuario != null) {
-            b_usuario.innerHTML = nome;
-        }
-        if (b_email != null) {
-            b_email.innerHTML = email;
-        }
-    } else {
-        window.location = "../login.html";
-    }
+    b_usuario.innerHTML = nome;
+    b_email.innerHTML = email;
 }
 
 function limparSessao() {
