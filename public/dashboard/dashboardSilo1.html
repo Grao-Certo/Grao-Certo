@@ -8,9 +8,10 @@
     <link rel="shortcut icon" href="assets/imgs/logo_favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
 </head>
 
-<body class="dashboard-body">
+<body class="dashboard-body" onload="validarSessao()">
 
     <div class="dashboard-layout">
 
@@ -22,8 +23,8 @@
                 <div class="icone-usuario">
                     <img src="../assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
                 </div>
-                <h3>ARMAZENS PAULISTAS SA</h3>
-                <p>contato@armazenspaulistas.com</p>
+                <h3 id="b_usuario">ARMAZENS PAULISTAS SA</h3>
+                <p id="b_email">contato@armazenspaulistas.com</p>
             </div>
 
             <ul class="menu">
@@ -38,6 +39,9 @@
                     </ul>
                 </li>
 
+                <li class="menu-item" onclick="limparSessao()">
+                    Sair
+                </li>
             </ul>
 
 
