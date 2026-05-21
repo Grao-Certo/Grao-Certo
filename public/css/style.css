@@ -357,6 +357,7 @@ html {
   margin: 20px 0 15px 0;
   padding: 4px 10px;
   border-radius: 11px;
+  font-size: 22px;
 }
 
 .acerto {
@@ -366,6 +367,7 @@ html {
   margin: 14px 0 1 0;
   padding: 4px 7px;
   border-radius: 11px;
+  font-size: 22px;
 }
 
 /*PÁGINA DE LOGIN*/
@@ -575,7 +577,7 @@ html {
 .container-Cadastro-silo .formulario {
   background-color: #013340d2;
   border-radius: 25px;
-  border: solid var(--cor-fundo-button-silo);
+  border: solid 3px var(--cor-fundo-button-silo);
   margin-top: 10px;
   padding: 0;
 }
