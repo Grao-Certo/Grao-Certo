@@ -1421,3 +1421,66 @@ dashboard
 /*
 Cadastro de Silo
 */
+
+
+.dashboard-conteudo {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px;
+  padding: 40px;
+  margin-left: 30%;
+  align-items: stretch;
+}
+ 
+.dashboard-linha-topo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+ 
+.dashboard-card-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.grafico-gauge {
+  width: 100%;
+  max-width: 220px;
+  height: 160px;
+  margin: 0 auto;
+}
+ 
+.grafico-mensal {
+  width: 100% !important;
+  height: 270px !important;
+  max-width: unset !important;
+}
+ 
+.grafico-semanal {
+  width: 100%;
+  height: 270px;
+}
+ 
+.grafico-mensal-full {
+  width: 100%;
+  height: 270px;
+}
+ 
+.full-width {
+  grid-column: unset;
+  width: 100%;
+}
+ 
+.full-width .grafico-container {
+  max-width: 100% !important;
+  width: 100%;
+  height: 100%;
+}
+ 
+.full-width .dashboard-card {
+  width: 100%;
+  height: 320px;
+}
