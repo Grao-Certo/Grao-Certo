@@ -418,7 +418,7 @@ html {
   border: solid var(--cor-fundo-button-bottom);
   margin-top: 0;
 }
-.bodyLoginCad .container-Login input {
+.container-Login input {
   border: solid transparent;
   border-bottom: solid var(--cor-fundo-button-bottom);
   outline: none;
@@ -431,7 +431,7 @@ html {
   font-size: 23px;
   transition: 0.4s;
 }
-.bodyLoginCad .container-Login input:hover {
+.container-Login input:hover {
   transform: translateY(-5px);
   width: 500px;
   margin-top: translateY(-5px);
@@ -545,11 +545,114 @@ html {
   margin: 20px 0 30px 0;
 }
 
+/* Parte do cadastro de silo */
+.cadastroSilo {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-Cadastro-silo {
+  background: url(../assets/imgs/silo-cadastro.png);
+  background-size: cover;
+  color: white;
+  font-size: 25px;
+  height: 100vh;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  right: 0;
+}
+
+.container-Cadastro-silo .formulario {
+  background-color: #013340d2;
+  border-radius: 25px;
+  border: solid var(--cor-fundo-button-silo);
+  margin-top: 10px;
+  padding: 0;
+}
+
+.container-Cadastro-silo input {
+  border: solid transparent;
+  border-bottom: solid var(--cor-fundo-button-silo);
+  outline: none;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  height: 55px;
+  width: 480px;
+  padding: 0 0 0 12px;
+  margin: 0px 50px;
+  font-size: 21px;
+  transition: 0.4s;
+}
+
+.container-Cadastro-silo input:hover {
+  transform: translateY(-5px);
+  width: 500px;
+  margin-top: translateY(-5px);
+  margin-left: 25px;
+  margin-right: 25px;
+  border: solid 2px rgb(157, 157, 173);
+  border-radius: 15px;
+}
+
+.container-Cadastro-silo input::placeholder {
+  color: white;
+}
+
+.container-Cadastro-silo .formulario h1 {
+  margin: 25px 0;
+  font-size: 40px;
+}
+.container-Cadastro-silo select {
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  position: relative;
+  left: -20%;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.container-Cadastro-silo label {
+  position: relative;
+  margin: 10px 10px 20px 10px;
+  left: -18%;
+  padding: 12px 15px;
+  border-bottom: solid 3px #5293e2;
+  font-size: 21px;
+}
+.container-Cadastro-silo .formulario button {
+  margin: 20px 0 30px 0;
+}
+
+.container-Cadastro-silo button {
+  background: var(--cor-fundo-button-silo);
+  border-radius: 12px;
+  border: none;
+  height: 50px;
+  width: 250px;
+  color: white;
+  padding: 0 20px 0 20px;
+  margin: 22px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.container-Cadastro-silo button:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 0 20px 0 black;
+  width: 270px;
+}
+
 /* Variáveis de cores do projeto*/
 :root {
   --cor-verde-escuro: #042e09;
   --cor-fundo: #275673;
   --cor-fundo-button-bottom: #95b814;
+  --cor-fundo-button-silo: #5293e2;
   --cor-bordas: #95b814
 }
 

@@ -10,15 +10,15 @@
     <script src="js/validacoes.js"></script>
 </head>
 
-<body class="bodyLoginCad">
+<body class="cadastrarSilo">
 
     <aside class="dashboard-sidebar">
 
-        <a href="index.html"><img src="../assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
+        <a href="index.html"><img src="./assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
 
         <div class="usuario">
             <div class="icone-usuario">
-                <img src="../assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
+                <img src="./assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
             </div>
             <h3 id="b_usuario">ARMAZENS PAULISTAS SA</h3>
             <p id="b_email">contato@armazenspaulistas.com</p>
@@ -26,46 +26,32 @@
 
         <ul class="menu">
 
-            <li class="menu-item" onclick="toggleMenu(this)">
-                <span class="seta">▶</span> DASHBOARD
-                <ul class="submenu">
-                    <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
-                    <li> <a href="dashboardSilo1.html">SILO 1</a> </li>
-                    <li> <a href="dashboardSilo2.html">SILO 2</a> </li>
-                    <li> <a href="dashboardSilo3.html">SILO 3</a> </li>
-                </ul>
-            </li>
-
-            <li class="menu-item" onclick="limparSessao()">
-                Sair
+            <li class="menu-item" dashboardGeral.html>
+                <span class="seta">▶</span> <a href="dashboardGeral.html">DASHBOARD</a>
             </li>
         </ul>
 
-
-
     </aside>
 
-    <div class="container-Cadastro"> <!--PAI-->
+    <div class="container-Cadastro-silo"> <!--PAI-->
 
-        <div class="parteInferior">
-            <div class="formulario">
-                <h1> CADASTRAR SILO </h1>
-                <label for="select_silo">Tipo de silo:</label>
-                <select id="select_silo">
-                    <option selected disabled> Selecione</option>
-                    <option>Usuário</option>
-                    <option>Empresa</option>
-                </select><br>
-                <input type="text" id="input_alturaTotal" placeholder="Altura Total"> <br>
-                <input type="text" id="input_doccomprimento" placeholder="Comprimento"> <br>
-                <input type="email" id="input_largura" placeholder="Largura"> <br>
-                <input type="text" id="input_raio" placeholder="Raio"><br>
-                <input type="text" id="input_alturaCone" placeholder="Altura Cone"><br>
+        <div class="formulario">
+            <h1> CADASTRAR SILO </h1>
+            <label for="select_silo">Tipo de silo:</label>
+            <select id="select_silo">
+                <option selected disabled> Selecione</option>
+                <option>Usuário</option>
+                <option>Empresa</option>
+            </select><br>
+            <input type="text" id="input_alturaTotal" placeholder="Altura Total"> <br>
+            <input type="text" id="input_doccomprimento" placeholder="Comprimento"> <br>
+            <input type="email" id="input_largura" placeholder="Largura"> <br>
+            <input type="text" id="input_raio" placeholder="Raio"><br>
+            <input type="text" id="input_alturaCone" placeholder="Altura Cone"><br>
 
-                <div id="div_mensagem"></div>
-                <div id="div_mensagem2"></div>
-                <button onclick="cadastrarSilo()"> C A D A S T R A R </button>
-            </div>
+            <div id="div_mensagem"></div>
+            <div id="div_mensagem2"></div>
+            <button onclick="cadastrarSilo()"> C A D A S T R A R </button>
         </div>
     </div>
 
