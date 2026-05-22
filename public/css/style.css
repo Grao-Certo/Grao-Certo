@@ -1249,7 +1249,21 @@ dashboard
 }
 
 .menu-item.ativo .submenu {
-  max-height: 250px;
+  max-height: 220px;
+  max-width: 430px;
+  overflow-y: auto;
+}
+
+.menu-item.ativo .submenu::-webkit-scrollbar {
+  width: 9px; /* largura da scrollbar */
+  background: grey;
+  border-radius: 100px;
+
+}
+
+.menu-item.ativo .submenu::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: rgb(121, 191, 16); /* cor do thumb */
 }
 
 .menu-item:hover {
