@@ -1,12 +1,13 @@
 
 
 /* Tela de cadastro */
+let criterios = 0;
 function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critérios 
     let senha = input_senha.value; // ter letras Maiusculas, minuscula e ter pelo menos 8 caracteres
     let tamanho = senha.length >= 8;
     let maiusculas = senha != senha.toLowerCase();
     let minusculas = senha != senha.toUpperCase();
-    let criterios = 0;
+    criterios = 0;
 
     if (tamanho) criterios++;
     if (maiusculas) criterios++;
@@ -33,24 +34,15 @@ function cadastrarUsuario() {
     let senha = input_senha.value;
     let confirmarSenha = input_confirmarSenha.value;
 
-    let emailValido = false;
-    let validaEmail = ['@sptech.school', '@gmail.com', '@hotmail.com', '@yahoo.com', '@outlook.com']
-
-    for (let i = 0; i < validaEmail.length; i++) {
-        if (email.endsWith(validaEmail[i])) {
-            emailValido = true;
-        }
-    }
-
     if (usuario == 'Operador' || usuario == 'Administrador') {
 
-        if (nome != '') { // NOME DO USUÁRIO
+        if (nome != '') {
 
             if (cpf.length == 14 && cpf[3] == '.' && cpf[7] == '.' && cpf[11] == '-') {
 
-                if (emailValido) {
+                if (email.includes('@') && email.includes('.')) {
 
-                    if (senha != '') { // senha
+                    if (criterios == 3) { // senha
 
                         if (confirmarSenha == senha) { // Confirme sua senha
 
@@ -99,7 +91,7 @@ function cadastrarUsuario() {
                             div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
                         }
                     } else {
-                        div_mensagem2.innerHTML = '<span class="erro"> Adicione uma senha!'
+                        div_mensagem2.innerHTML = '<span class="erro"> A senha precisa ser forte!'
                     }
                 } else {
                     div_mensagem2.innerHTML = '<span class="erro"> Digite um email válido'
@@ -125,22 +117,13 @@ function cadastrarEmpresa() {
     let senha = input_senha.value;
     let confirmarSenha = input_confirmarSenha.value;
 
-    let emailValido = false;
-    let validaEmail = ['@sptech.school', '@gmail.com', '@hotmail.com', '@yahoo.com', '@outlook.com']
-
-    for (let i = 0; i < validaEmail.length; i++) {
-        if (email.endsWith(validaEmail[i])) {
-            emailValido = true;
-        }
-    }
-
     if (nome != '') {
 
         if (cnpj.length == 18 && cnpj[2] == '.' && cnpj[6] == '.' && cnpj[10] == '/' && cnpj[15] == '-') {
 
-            if (emailValido) {
+            if (email.includes('@') && email.includes('.')) {
 
-                if (cep.length == 9 && cep[5] == '-') { // CEP
+                if (cep.length == 9 && cep[5] == '-') {
 
                     if (numero != '') {
 
@@ -195,7 +178,7 @@ function cadastrarEmpresa() {
                                 div_mensagem2.innerHTML = '<span class="erro"> As senha não coicidem!'
                             }
                         } else {
-                            div_mensagem2.innerHTML = '<span class="erro"> Digite uma senha!'
+                            div_mensagem2.innerHTML = '<span class="erro"> A senha precisa ser forte!'
                         }
                     } else {
                         div_mensagem2.innerHTML = '<span class="erro"> Digite um número de endereço válido'
@@ -282,10 +265,9 @@ function cadastrarSilo() {
     let raio = input_raio.value;
     let alturaCone = input_alturaCone.value;
 
-
     if (silo == 'Trincheira' || silo == 'Cilindrico' || silo == 'Cilindrico com Teto Conico') { // TIPO DE SILO
 
-        if (altura != '') { // altura DO USUÁRIO
+        if (altura != '') {
 
             if (comprimento != '') {
 
@@ -294,12 +276,6 @@ function cadastrarSilo() {
                     if (raio != '') {
 
                         if (alturaCone != '') { // alturaCone
-
-                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
-
-                            setTimeout(() => {
-                                div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...'
-                            }, "2000");
 
                             fetch("/usuarios/cadastrarUsuario/", {
                                 method: "POST",
@@ -322,15 +298,7 @@ function cadastrarSilo() {
 
                                     if (resposta.ok) {
 
-                                        div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
-
-                                        setTimeout(() => {
-                                            div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...'
-                                        }, "2000");
-
-                                        setTimeout(() => {
-                                            window.location = "login.html";
-                                        }, "2000");
+                                        div_mensagem2.innerHTML = '<span class="acerto"> Cadastro de silo realizado com sucesso!'
 
                                         finalizarAguardar();
                                     } else {
@@ -362,68 +330,68 @@ function cadastrarSilo() {
     }
 }
 
-function colocarEmpresa() {
-    const documento = document.getElementById('input_doc'); // Criando as constantes para modificar os inputs
-    const select = document.getElementById('select_pessoa'); // Essa funcao pega o elemento pelo ID
-    const iptNome = document.getElementById('input_nome');
+// function colocarEmpresa() {
+//     const documento = document.getElementById('input_doc'); // Criando as constantes para modificar os inputs
+//     const select = document.getElementById('select_pessoa'); // Essa funcao pega o elemento pelo ID
+//     const iptNome = document.getElementById('input_nome');
 
-    const cep = document.getElementById('input_tipoUsu'); // Definindo as constantes que serão alteradas
-    const numero = document.getElementById('input_senha'); // Empresa
-    const complemento = document.getElementById('input_confirmar_senha');
+//     const cep = document.getElementById('input_tipoUsu'); // Definindo as constantes que serão alteradas
+//     const numero = document.getElementById('input_senha'); // Empresa
+//     const complemento = document.getElementById('input_confirmar_senha');
 
-    const tipo = document.getElementById('input_tipoUsu'); // Usuario
-    const senha = document.getElementById('input_senha');
-    const confirmar = document.getElementById('input_confirmar_senha');
+//     const tipo = document.getElementById('input_tipoUsu'); // Usuario
+//     const senha = document.getElementById('input_senha');
+//     const confirmar = document.getElementById('input_confirmar_senha');
 
-    const tipoPessoa = select.value;
+//     const tipoPessoa = select.value;
 
-    const empresa = document.getElementById('input_empresa');
+//     const empresa = document.getElementById('input_empresa');
 
-    // Limpa o valor do campo quando troca o tipo para não misturar máscaras
-    documento.value = "";
+//     // Limpa o valor do campo quando troca o tipo para não misturar máscaras
+//     documento.value = "";
 
-    if (tipoPessoa == 'Empresa') {
-        empresa.style.display = 'none';
+//     if (tipoPessoa == 'Empresa') {
+//         empresa.style.display = 'none';
 
-        iptNome.placeholder = 'Nome da Empresa'; // Alterando os placeholders
-        documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
-        documento.maxLength = 18; // Tamanho do CNPJ com pontos/barra/traço
-        cep.placeholder = 'CEP: xxxxx-xxx'
-        numero.placeholder = 'Número'
-        complemento.placeholder = 'Complemento'
+//         iptNome.placeholder = 'Nome da Empresa'; // Alterando os placeholders
+//         documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
+//         documento.maxLength = 18; // Tamanho do CNPJ com pontos/barra/traço
+//         cep.placeholder = 'CEP: xxxxx-xxx'
+//         numero.placeholder = 'Número'
+//         complemento.placeholder = 'Complemento'
 
-        numero.type = 'number'
-        complemento.type = 'text'
+//         numero.type = 'number'
+//         complemento.type = 'text'
 
-        // Troca a função que será chamada no oninput
-        documento.setAttribute('oninput', 'mascaraCNPJ(this)');
+//         // Troca a função que será chamada no oninput
+//         documento.setAttribute('oninput', 'mascaraCNPJ(this)');
 
-        cep.setAttribute('oninput', 'mascaraCEP(this)');
-        cep.maxLength = 9;
+//         cep.setAttribute('oninput', 'mascaraCEP(this)');
+//         cep.maxLength = 9;
 
-    } else {
-        empresa.style.display = 'flex';
+//     } else {
+//         empresa.style.display = 'flex';
 
-        iptNome.placeholder = 'Nome Completo';
-        documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
-        documento.maxLength = 14; // Tamanho do CPF com pontos/traço
+//         iptNome.placeholder = 'Nome Completo';
+//         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
+//         documento.maxLength = 14; // Tamanho do CPF com pontos/traço
 
-        tipo.placeholder = 'Tipo Usuário: administrador/operador'
-        senha.placeholder = 'Senha'
-        confirmar.placeholder = 'Confirme sua senha'
+//         tipo.placeholder = 'Tipo Usuário: administrador/operador'
+//         senha.placeholder = 'Senha'
+//         confirmar.placeholder = 'Confirme sua senha'
 
-        senha.setAttribute('oninput', 'verificar()');
-        cep.setAttribute('oninput', '');
-        cep.maxLength = 20;
+//         senha.setAttribute('oninput', 'verificar()');
+//         cep.setAttribute('oninput', '');
+//         cep.maxLength = 20;
 
 
-        numero.type = 'password'
-        complemento.type = 'password'
+//         numero.type = 'password'
+//         complemento.type = 'password'
 
-        // Volta para a função de CPF
-        documento.setAttribute('oninput', 'mascaraCPF(this)');
-    }
-}
+//         // Volta para a função de CPF
+//         documento.setAttribute('oninput', 'mascaraCPF(this)');
+//     }
+// }
 
 function mascaraCPF(input) {
     let valorOriginal = input.value;
