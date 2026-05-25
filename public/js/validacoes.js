@@ -33,6 +33,7 @@ function cadastrar() {
     let email = input_email.value;
     let senha = input_senha.value;
     let confirmarSenha = input_confirmar_senha.value;
+    let fkEmpresa = input_empresa.value;
 
     tipoUsu = tipoUsu.toLowerCase();
 
@@ -53,57 +54,67 @@ function cadastrar() {
 
                 if (emailValido) {
 
-                    if (tipoUsu == 'operador' || tipoUsu == 'administrador') {
+                    if (fkEmpresa != '') {
 
-                        if (senha != '') { // senha
+                        if (tipoUsu == 'operador' || tipoUsu == 'administrador') {
 
-                            if (confirmarSenha == senha) { // Confirme sua senha
+                            if (senha != '') { // senha
 
-                                fetch("/usuarios/cadastrarUsuario/", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        // crie um atributo que recebe o valor recuperado aqui
-                                        // Agora vá para o arquivo routes/usuario.js
-                                        pessoaServer: pessoa,
-                                        nomeServer: nome,
-                                        docServer: doc,
-                                        tipoUsuServer: tipoUsu,
-                                        emailServer: email,
-                                        senhaServer: senha
-                                    }),
-                                })
-                                    .then(function (resposta) {
-                                        console.log("resposta: ", resposta);
+                                if (confirmarSenha == senha) { // Confirme sua senha
 
-                                        if (resposta.ok) {
+                                    fetch("/usuarios/cadastrarUsuario/", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify({
+                                            // crie um atributo que recebe o valor recuperado aqui
+                                            // Agora vá para o arquivo routes/usuario.js
+                                            pessoaServer: pessoa,
+                                            nomeServer: nome,
+                                            docServer: doc,
+                                            emailServer: email,
+                                            fkEmpresaServer: fkEmpresa,
+                                            tipoUsuServer: tipoUsu,
+                                            senhaServer: senha
+                                        }),
+                                    })
+                                        .then(function (resposta) {
+                                            console.log("resposta: ", resposta);
 
-                                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...'
+                                            if (resposta.ok) {
 
-                                            setTimeout(() => {
+                                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
+
+                                                setTimeout(() => {
+                                                    div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...';
+                                                }, "2000");
+                                                
+                                                setTimeout(() => {
                                                 window.location = "login.html";
                                             }, "2000");
 
+                                                finalizarAguardar();
+                                            } else {
+                                                throw "Houve um erro ao tentar realizar o cadastro do usuario";
+                                            }
+                                        })
+                                        .catch(function (resposta) {
+                                            console.log(`#ERRO: ${resposta}`);
                                             finalizarAguardar();
-                                        } else {
-                                            throw "Houve um erro ao tentar realizar o cadastro do usuario";
-                                        }
-                                    })
-                                    .catch(function (resposta) {
-                                        console.log(`#ERRO: ${resposta}`);
-                                        finalizarAguardar();
-                                    });
+                                        });
 
+                                } else {
+                                    div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
+                                }
                             } else {
-                                div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
+                                div_mensagem2.innerHTML = '<span class="erro"> Adicione uma senha!'
                             }
                         } else {
-                            div_mensagem2.innerHTML = '<span class="erro"> Adicione uma senha!'
+                            div_mensagem2.innerHTML = '<span class="erro"> Digite um tipo de usuário válido'
                         }
                     } else {
-                        div_mensagem2.innerHTML = '<span class="erro"> Digite um tipo de usuário válido'
+                        div_mensagem2.innerHTML = '<span class="erro"> Digite o número da empresa'
                     }
                 } else {
                     div_mensagem2.innerHTML = '<span class="erro"> Digite um email válido'
@@ -150,12 +161,16 @@ function cadastrar() {
 
                                         if (resposta.ok) {
 
-                                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...';
+                                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
 
                                             setTimeout(() => {
-                                                window.location = "./dashboard/garagem.html";
+                                                div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para o cadastro do usuário...';
                                             }, "2000");
 
+                                            setTimeout(() => {
+                                                window.location = "cadastro.html";
+                                            }, "2000");
+                                            
                                             finalizarAguardar();
                                         } else {
                                             throw "Houve um erro ao tentar realizar o cadastro do carro!";
@@ -266,7 +281,7 @@ function cadastrarSilo() {
             if (comprimento != '') {
 
                 if (largura != '') {
-                    
+
                     if (raio != '') {
 
                         if (alturaCone != '') { // alturaCone
@@ -353,10 +368,14 @@ function colocarEmpresa() {
 
     const tipoPessoa = select.value;
 
+    const empresa = document.getElementById('input_empresa');
+
     // Limpa o valor do campo quando troca o tipo para não misturar máscaras
     documento.value = "";
 
     if (tipoPessoa == 'Empresa') {
+        empresa.style.display = 'none';
+
         iptNome.placeholder = 'Nome da Empresa'; // Alterando os placeholders
         documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
         documento.maxLength = 18; // Tamanho do CNPJ com pontos/barra/traço
@@ -374,6 +393,8 @@ function colocarEmpresa() {
         cep.maxLength = 9;
 
     } else {
+        empresa.style.display = 'flex';
+
         iptNome.placeholder = 'Nome Completo';
         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
         documento.maxLength = 14; // Tamanho do CPF com pontos/traço
@@ -385,6 +406,7 @@ function colocarEmpresa() {
         senha.setAttribute('oninput', 'verificar()');
         cep.setAttribute('oninput', '');
         cep.maxLength = 20;
+
 
         numero.type = 'password'
         complemento.type = 'password'
