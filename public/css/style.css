@@ -548,7 +548,7 @@ html {
 }
 
 /* Parte do cadastro de silo */
-.cadastrarSilo {
+.cadastro-admin {
   display: flex;
   flex-direction: row;
 }

@@ -25,17 +25,13 @@ function verificar() { // Para a senha ser forte, ela tem que cumprir 3 critéri
     }
 }
 
-function cadastrar() {
-    let pessoa = select_pessoa.value;
+function cadastrarUsuario() {
+    let usuario = select_usuario.value;
     let nome = input_nome.value;
-    let doc = input_doc.value;
-    let tipoUsu = input_tipoUsu.value;
+    let cpf = input_cpf.value;
     let email = input_email.value;
     let senha = input_senha.value;
-    let confirmarSenha = input_confirmar_senha.value;
-    let fkEmpresa = input_empresa.value;
-
-    tipoUsu = tipoUsu.toLowerCase();
+    let confirmarSenha = input_confirmarSenha.value;
 
     let emailValido = false;
     let validaEmail = ['@sptech.school', '@gmail.com', '@hotmail.com', '@yahoo.com', '@outlook.com']
@@ -46,75 +42,64 @@ function cadastrar() {
         }
     }
 
-    if (pessoa == 'Usuário') { // TIPO DE PESSOA
+    if (usuario == 'Operador' || usuario == 'Administrador') {
 
         if (nome != '') { // NOME DO USUÁRIO
 
-            if (doc.length == 14 && doc[3] == '.' && doc[7] == '.' && doc[11] == '-') {
+            if (cpf.length == 14 && cpf[3] == '.' && cpf[7] == '.' && cpf[11] == '-') {
 
                 if (emailValido) {
 
-                    if (fkEmpresa != '') {
+                    if (senha != '') { // senha
 
-                        if (tipoUsu == 'operador' || tipoUsu == 'administrador') {
+                        if (confirmarSenha == senha) { // Confirme sua senha
 
-                            if (senha != '') { // senha
+                            fetch("/usuarios/cadastrarUsuario/", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    // crie um atributo que recebe o valor recuperado aqui
+                                    // Agora vá para o arquivo routes/usuario.js
+                                    usuarioServer: usuario,
+                                    nomeServer: nome,
+                                    cpfServer: cpf,
+                                    emailServer: email,
+                                    senhaServer: senha,
+                                    fkEmpresaServer: fkEmpresa
+                                }),
+                            })
+                                .then(function (resposta) {
+                                    console.log("resposta: ", resposta);
 
-                                if (confirmarSenha == senha) { // Confirme sua senha
+                                    if (resposta.ok) {
 
-                                    fetch("/usuarios/cadastrarUsuario/", {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                        },
-                                        body: JSON.stringify({
-                                            // crie um atributo que recebe o valor recuperado aqui
-                                            // Agora vá para o arquivo routes/usuario.js
-                                            pessoaServer: pessoa,
-                                            nomeServer: nome,
-                                            docServer: doc,
-                                            emailServer: email,
-                                            fkEmpresaServer: fkEmpresa,
-                                            tipoUsuServer: tipoUsu,
-                                            senhaServer: senha
-                                        }),
-                                    })
-                                        .then(function (resposta) {
-                                            console.log("resposta: ", resposta);
+                                        div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
 
-                                            if (resposta.ok) {
+                                        setTimeout(() => {
+                                            div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...';
+                                        }, "2000");
 
-                                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
+                                        setTimeout(() => {
+                                            window.location = "login.html";
+                                        }, "2000");
 
-                                                setTimeout(() => {
-                                                    div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...';
-                                                }, "2000");
-                                                
-                                                setTimeout(() => {
-                                                    window.location = "login.html";
-                                            }, "2000");
+                                        finalizarAguardar();
+                                    } else {
+                                        throw "Houve um erro ao tentar realizar o cadastro do usuario";
+                                    }
+                                })
+                                .catch(function (resposta) {
+                                    console.log(`#ERRO: ${resposta}`);
+                                    finalizarAguardar();
+                                });
 
-                                                finalizarAguardar();
-                                            } else {
-                                                throw "Houve um erro ao tentar realizar o cadastro do usuario";
-                                            }
-                                        })
-                                        .catch(function (resposta) {
-                                            console.log(`#ERRO: ${resposta}`);
-                                            finalizarAguardar();
-                                        });
-
-                                } else {
-                                    div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
-                                }
-                            } else {
-                                div_mensagem2.innerHTML = '<span class="erro"> Adicione uma senha!'
-                            }
                         } else {
-                            div_mensagem2.innerHTML = '<span class="erro"> Digite um tipo de usuário válido'
+                            div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
                         }
                     } else {
-                        div_mensagem2.innerHTML = '<span class="erro"> Digite o número da empresa'
+                        div_mensagem2.innerHTML = '<span class="erro"> Adicione uma senha!'
                     }
                 } else {
                     div_mensagem2.innerHTML = '<span class="erro"> Digite um email válido'
@@ -123,22 +108,46 @@ function cadastrar() {
                 div_mensagem2.innerHTML = '<span class="erro"> Digite um CPF válido'
             }
         } else {
-            div_mensagem2.innerHTML = '<span class="erro"> Digite seu nome'
+            div_mensagem2.innerHTML = '<span class="erro"> Digite o nome do usuário'
         }
+    } else {
+        div_mensagem2.innerHTML = '<span class="erro"> Digite um tipo de usuário válido'
+    }
+}
 
-    } else if (pessoa == 'Empresa') { // TIPO DE PESSOA
+function cadastrarEmpresa() {
+    let nome = input_nome.value;
+    let cnpj = input_cnpj.value;
+    let email = input_email.value;
+    let cep = input_cep.value;
+    let numero = input_numero.value;
+    let complemento = input_complemento.value;
+    let senha = input_senha.value;
+    let confirmarSenha = input_confirmarSenha.value;
 
-        if (nome != '') { // NOME DO USUÁRIO 
+    let emailValido = false;
+    let validaEmail = ['@sptech.school', '@gmail.com', '@hotmail.com', '@yahoo.com', '@outlook.com']
 
-            if (doc.length == 18 && doc[2] == '.' && doc[6] == '.' && doc[10] == '/' && doc[15] == '-') {
+    for (let i = 0; i < validaEmail.length; i++) {
+        if (email.endsWith(validaEmail[i])) {
+            emailValido = true;
+        }
+    }
 
-                if (emailValido) {
+    if (nome != '') {
 
-                    if (tipoUsu.length == 9 && tipoUsu[5] == '-') { // CEP
+        if (cnpj.length == 18 && cnpj[2] == '.' && cnpj[6] == '.' && cnpj[10] == '/' && cnpj[15] == '-') {
+
+            if (emailValido) {
+
+                if (cep.length == 9 && cep[5] == '-') { // CEP
+
+                    if (numero != '') {
 
                         if (senha != '') {
 
-                            if (Number(senha) > 0) { // Confirme sua senha
+                            if (senha == confirmarSenha) {
+
 
                                 fetch("/usuarios/cadastrarEmpresa", {
                                     method: "POST",
@@ -148,11 +157,12 @@ function cadastrar() {
                                     body: JSON.stringify({
                                         // crie um atributo que recebe o valor recuperado aqui
                                         // Agora vá para o arquivo routes/usuario.js
-                                        pessoaServer: pessoa,
                                         nomeServer: nome,
-                                        docServer: doc,
-                                        tipoUsuServer: tipoUsu,
+                                        cnpjServer: cnpj,
                                         emailServer: email,
+                                        cepServer: cep,
+                                        numeroServer: numero,
+                                        complementoServer: complemento,
                                         senhaServer: senha
                                     }),
                                 })
@@ -170,7 +180,7 @@ function cadastrar() {
                                             setTimeout(() => {
                                                 window.location = "cadastro.html";
                                             }, "2000");
-                                            
+
                                             finalizarAguardar();
                                         } else {
                                             throw "Houve um erro ao tentar realizar o cadastro do carro!";
@@ -182,27 +192,26 @@ function cadastrar() {
                                     });
 
                             } else {
-                                div_mensagem2.innerHTML = '<span class="erro"> Digite um número de endereço valido'
+                                div_mensagem2.innerHTML = '<span class="erro"> As senha não coicidem!'
                             }
                         } else {
-                            div_mensagem2.innerHTML = '<span class="erro"> Digite o número do endereço';
+                            div_mensagem2.innerHTML = '<span class="erro"> Digite uma senha!'
                         }
                     } else {
-                        div_mensagem2.innerHTML = '<span class="erro"> Digite um CEP válido'
+                        div_mensagem2.innerHTML = '<span class="erro"> Digite um número de endereço válido'
                     }
                 } else {
-                    div_mensagem2.innerHTML = '<span class="erro"> Digite um email válido'
+                    div_mensagem2.innerHTML = '<span class="erro"> Digite um CEP válido'
                 }
             } else {
-                div_mensagem2.innerHTML = '<span class="erro"> Digite um CNPJ válido'
+                div_mensagem2.innerHTML = '<span class="erro"> Digite um email válido'
             }
         } else {
-            div_mensagem2.innerHTML = '<span class="erro"> Digite o nome da empresa'
+            div_mensagem2.innerHTML = '<span class="erro"> Digite um CNPJ válido'
         }
     } else {
-        div_mensagem2.innerHTML = '<span class="erro"> Selecione uma opção!'
+        div_mensagem2.innerHTML = '<span class="erro"> Digite o nome da empresa'
     }
-
 }
 
 let validacao = 3;
