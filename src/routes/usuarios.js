@@ -8,11 +8,6 @@ router.post("/cadastrarUsuario", function (req, res) {
     usuarioController.cadastrarUsuario(req, res);
 });
 
-router.post("/cadastrarEmpresa", function (req, res) {
-    usuarioController.cadastrarEmpresa(req, res);
-});
-
-
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
