@@ -60,41 +60,41 @@ function cadastrar() {
                             if (confirmarSenha == senha) { // Confirme sua senha
 
                                 fetch("/usuarios/cadastrarUsuario/", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify({
-                                    // crie um atributo que recebe o valor recuperado aqui
-                                    // Agora vá para o arquivo routes/usuario.js
-                                    pessoaServer: pessoa,
-                                    nomeServer: nome,
-                                    docServer: doc,
-                                    tipoUsuServer: tipoUsu,
-                                    emailServer: email,
-                                    senhaServer: senha
-                                }),
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        // crie um atributo que recebe o valor recuperado aqui
+                                        // Agora vá para o arquivo routes/usuario.js
+                                        pessoaServer: pessoa,
+                                        nomeServer: nome,
+                                        docServer: doc,
+                                        tipoUsuServer: tipoUsu,
+                                        emailServer: email,
+                                        senhaServer: senha
+                                    }),
                                 })
-                                .then(function (resposta) {
-                                    console.log("resposta: ", resposta);
+                                    .then(function (resposta) {
+                                        console.log("resposta: ", resposta);
 
-                                    if (resposta.ok) {
+                                        if (resposta.ok) {
 
-                                div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...'
+                                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...'
 
-                                    setTimeout(() => {
-                                        window.location = "login.html";
-                                    }, "2000");
+                                            setTimeout(() => {
+                                                window.location = "login.html";
+                                            }, "2000");
 
-                                    finalizarAguardar();
-                                    } else {
-                                    throw "Houve um erro ao tentar realizar o cadastro do usuario";
-                                    }
-                                })
-                                .catch(function (resposta) {
-                                    console.log(`#ERRO: ${resposta}`);
-                                    finalizarAguardar();
-                            });
+                                            finalizarAguardar();
+                                        } else {
+                                            throw "Houve um erro ao tentar realizar o cadastro do usuario";
+                                        }
+                                    })
+                                    .catch(function (resposta) {
+                                        console.log(`#ERRO: ${resposta}`);
+                                        finalizarAguardar();
+                                    });
 
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> A senha não é compatível com a anterior'
@@ -129,42 +129,42 @@ function cadastrar() {
 
                             if (Number(senha) > 0) { // Confirme sua senha
 
-                            fetch("/usuarios/cadastrarEmpresa", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify({
-                                    // crie um atributo que recebe o valor recuperado aqui
-                                    // Agora vá para o arquivo routes/usuario.js
-                                    pessoaServer: pessoa,
-                                    nomeServer: nome,
-                                    docServer: doc,
-                                    tipoUsuServer: tipoUsu,
-                                    emailServer: email,
-                                    senhaServer: senha
-                                }),
+                                fetch("/usuarios/cadastrarEmpresa", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        // crie um atributo que recebe o valor recuperado aqui
+                                        // Agora vá para o arquivo routes/usuario.js
+                                        pessoaServer: pessoa,
+                                        nomeServer: nome,
+                                        docServer: doc,
+                                        tipoUsuServer: tipoUsu,
+                                        emailServer: email,
+                                        senhaServer: senha
+                                    }),
                                 })
-                                .then(function (resposta) {
-                                    console.log("resposta: ", resposta);
+                                    .then(function (resposta) {
+                                        console.log("resposta: ", resposta);
 
-                                    if (resposta.ok) {
+                                        if (resposta.ok) {
 
-                                    div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...';
+                                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso! Redirecionando para a tela de login...';
 
-                                    setTimeout(() => {
-                                        window.location = "./dashboard/garagem.html";
-                                    }, "2000");
+                                            setTimeout(() => {
+                                                window.location = "./dashboard/garagem.html";
+                                            }, "2000");
 
-                                    finalizarAguardar();
-                                    } else {
-                                    throw "Houve um erro ao tentar realizar o cadastro do carro!";
-                                    }
-                                })
-                                .catch(function (resposta) {
-                                    console.log(`#ERRO: ${resposta}`);
-                                    finalizarAguardar();
-                            });
+                                            finalizarAguardar();
+                                        } else {
+                                            throw "Houve um erro ao tentar realizar o cadastro do carro!";
+                                        }
+                                    })
+                                    .catch(function (resposta) {
+                                        console.log(`#ERRO: ${resposta}`);
+                                        finalizarAguardar();
+                                    });
 
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> Digite um número de endereço valido'
@@ -200,7 +200,7 @@ function logar() {
     // let senhaFicticia = 'pedro';
 
     if (validacao > 0) {
-        
+
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -212,10 +212,10 @@ function logar() {
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-    
+
             if (resposta.ok) {
                 console.log(resposta);
-    
+
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -223,33 +223,120 @@ function logar() {
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.ID_EMPRESA = json.empresaId;
-    
+
                     setTimeout(function () {
                         window.location = "dashboard/dashboardGeral.html";
                     }, 1000); // apenas para exibir o loading
-    
+
                 });
-    
+
             } else {
                 div_mensagem2.innerHTML = '<span class="erro"> Usuário ou senha errada.'
                 validacao--;
-    
+
                 resposta.text().then(texto => {
                     console.error(texto);
                 });
             }
-    
+
         }).catch(function (erro) {
             console.log(erro);
         })
-    
+
         return false;
-        
+
     } else {
         alert('Usuário bloqueado')
     }
 }
 
+function cadastrarSilo() {
+    let silo = select_silo.value;
+    let altura = input_altura.value;
+    let comprimento = input_comprimento.value;
+    let largura = input_largura.value;
+    let raio = input_raio.value;
+    let alturaCone = input_alturaCone.value;
+
+
+    if (silo == 'Trincheira' || silo == 'Cilindrico' || silo == 'Cilindrico com Teto Conico') { // TIPO DE SILO
+
+        if (altura != '') { // altura DO USUÁRIO
+
+            if (comprimento != '') {
+
+                if (largura != '') {
+                    
+                    if (raio != '') {
+
+                        if (alturaCone != '') { // alturaCone
+
+                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
+
+                            setTimeout(() => {
+                                div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...'
+                            }, "2000");
+
+                            fetch("/usuarios/cadastrarUsuario/", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    // crie um atributo que recebe o valor recuperado aqui
+                                    // Agora vá para o arquivo routes/usuario.js
+                                    siloServer: silo,
+                                    alturaServer: altura,
+                                    comprimentoServer: comprimento,
+                                    larguraServer: largura,
+                                    raioServer: raio,
+                                    alturaConeServer: alturaCone
+                                }),
+                            })
+                                .then(function (resposta) {
+                                    console.log("resposta: ", resposta);
+
+                                    if (resposta.ok) {
+
+                                        div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
+
+                                        setTimeout(() => {
+                                            div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...'
+                                        }, "2000");
+
+                                        setTimeout(() => {
+                                            window.location = "login.html";
+                                        }, "2000");
+
+                                        finalizarAguardar();
+                                    } else {
+                                        throw "Houve um erro ao tentar realizar o cadastro do usuario";
+                                    }
+                                })
+                                .catch(function (resposta) {
+                                    console.log(`#ERRO: ${resposta}`);
+                                    finalizarAguardar();
+                                });
+
+                        } else {
+                            div_mensagem2.innerHTML = '<span class="erro"> Adicione a altura do cone'
+                        }
+                    } else {
+                        div_mensagem2.innerHTML = '<span class="erro"> Digite o raio do silo'
+                    }
+                } else {
+                    div_mensagem2.innerHTML = '<span class="erro"> Digite a largura do silo'
+                }
+            } else {
+                div_mensagem2.innerHTML = '<span class="erro"> Digite o comprimento do silo'
+            }
+        } else {
+            div_mensagem2.innerHTML = '<span class="erro"> Digite a altura do silo'
+        }
+    } else {
+        div_mensagem2.innerHTML = '<span class="erro"> Selecione o tipo de silo'
+    }
+}
 
 function colocarEmpresa() {
     const documento = document.getElementById('input_doc'); // Criando as constantes para modificar os inputs

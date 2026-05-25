@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/imgs/logo_favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/imgs/logo_favicon.png" type="image/x-icon">
     <title>Grão Certo | Cadastro de Silo</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/validacoes.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/validacoes.js"></script>
 </head>
 
 <body class="cadastrarSilo">
 
     <aside class="dashboard-sidebar">
 
-        <a href="index.html"><img src="./assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
+        <a href="index.html"><img src="../assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
 
         <div class="usuario">
             <div class="icone-usuario">
-                <img src="./assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
+                <img src="../assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
             </div>
             <h3 id="b_usuario">ARMAZENS PAULISTAS SA</h3>
             <p id="b_email">contato@armazenspaulistas.com</p>
@@ -26,8 +26,12 @@
 
         <ul class="menu">
 
-            <li class="menu-item" dashboardGeral.html>
-                <span class="seta">▶</span> <a href="dashboardGeral.html">DASHBOARD</a>
+            <li class="menu-item" onclick="toggleMenu(this)">
+                <span class="seta">▶</span> DASHBOARD
+                <ul class="submenu">
+                    <li> <a href="dashboardGeral.html">AVISOS</a> </li>
+                    <li> <a href="cadastroSilos.html" id="active">CADASTRAR NOVO SILO</a> </li>
+                </ul>
             </li>
         </ul>
 
@@ -40,11 +44,12 @@
             <label for="select_silo">Tipo de silo:</label>
             <select id="select_silo">
                 <option selected disabled> Selecione</option>
-                <option>Usuário</option>
-                <option>Empresa</option>
+                <option>Trincheira</option>
+                <option>Cilindrico</option>
+                <option>Cilindrico com Teto Conico</option>
             </select><br>
-            <input type="text" id="input_alturaTotal" placeholder="Altura Total"> <br>
-            <input type="text" id="input_doccomprimento" placeholder="Comprimento"> <br>
+            <input type="text" id="input_altura" placeholder="Altura Total"> <br>
+            <input type="text" id="input_comprimento" placeholder="Comprimento"> <br>
             <input type="email" id="input_largura" placeholder="Largura"> <br>
             <input type="text" id="input_raio" placeholder="Raio"><br>
             <input type="text" id="input_alturaCone" placeholder="Altura Cone"><br>
@@ -58,3 +63,10 @@
 </body>
 
 </html>
+
+<script>
+    function toggleMenu(element) {
+        element.classList.toggle("ativo");
+    }
+
+</script>
