@@ -47,79 +47,74 @@
 
         </aside>
 
-        <main class="dashboard-conteudo">
-            <div class="card-container">
-                <h3 class="titulo-card">VALOR ATUAL EM ESTOQUE</h3>
-                <div class="dashboard-card">
-                    <div class="card-estoque">
-                        <h3 class="titulo-info">ESTOQUE ATUAL</h3>
-                        <input type="text" id="ipt_estoqueAtual" class="input-info estoque" value="72,5" readonly>
+          <main class="dashboard-conteudo">
 
-                        <h3 class="titulo-info">VALOR POR TONELADA</h3>
-                        <input type="text" id="ipt_valorTonelada" class="input-info valor-tonelada"
-                            placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
+            <!-- LINHA 1: Faturamento + Alterações de Estoque + Volume Atual -->
+            <div class="dashboard-linha-topo">
 
-                        <div class="resultado-estoque">
-                            <h3 class="titulo-info">VALOR DO ESTOQUE ATUAL</h3>
-                            <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
-                        </div>
-                    </div>
+                <div class="card-container">
+                    <h3 class="titulo-card">FATURAMENTO DO SILO</h3>
+                    <div class="dashboard-card">
+                        <div class="card-estoque">
+                            <h3 class="titulo-info">ESTOQUE ATUAL</h3>
+                            <input type="text" id="ipt_estoqueAtual" class="input-info estoque" value="72,5" readonly>
 
-                </div>
-            </div>
-            <div class="card-container">
-                <h3 class="titulo-card">ALTERAÇÕES DE ESTOQUE</h3>
-                <div class="dashboard-card">
-                    <div class="grafico-container grafico-mensal">
-                        <canvas id="grafico2"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card-container">
-                <h3 class="titulo-card">VOLUME ATUAL</h3>
+                            <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                            <input type="text" id="ipt_valorTonelada" class="input-info valor-tonelada"
+                                placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
 
-                <div class="dashboard-card">
-                    <div class="grafico-container">
-                        <canvas id="grafico3"></canvas>
-                    </div>
-
-                    <div class="info-container">
-                        <h3>Última atualização</h3>
-                        <div class="alerta-silos">
-                            <input type="text" id="ipt_valorAtualizado" class="input-info valor-total" value="05-04-2026"
-                                readonly>
+                            <div class="resultado-estoque">
+                                <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                                <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">ESTOQUE SEMANAL </h3>
+                    <div class="dashboard-card">
+                        <div class="grafico-container grafico-mensal">
+                            <canvas id="grafico2"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">VOLUME ATUAL</h3>
+                    <div class="dashboard-card dashboard-card-gauge">
+                        <div class="grafico-container grafico-gauge">
+                            <canvas id="grafico3"></canvas>
+                        </div>
+                        <div class="info-container">
+                            <h3>ÚLTIMA ATUALIZAÇÃO:</h3>
+                            <input type="text" id="ipt_valorAtualizado" class="input-info valor-total" value="05-04-2026" readonly>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
+            <!-- LINHA 2: Entrada e Saída Total Semanal -->
             <div class="card-container full-width">
-                <h3 class="titulo-card">REGISTRO VOLUME SEMANAL</h3>
+                <h3 class="titulo-card">ENTRADA E SAÍDA TOTAL SEMANAL</h3>
                 <div class="dashboard-card">
-                    <div class="grafico-container">
+                    <div class="grafico-container grafico-semanal">
                         <canvas id="grafico4"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="linha-dupla">
-                <div class="card-container">
-                    <h3 class="titulo-card">TONELADAS ATUAIS</h3>
-                    <div class="dashboard-card dashboard-graficos-grandes">
-                        <div class="grafico-container grafico-grande">
-                            <canvas id="grafico5"></canvas>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="card-container">
-                    <h3 class="titulo-card">HISTÓRICO MENSAL</h3>
-                    <div class="dashboard-card dashboard-graficos-grandes">
-                        <div class="grafico-container grafico-grande">
-                            <canvas id="grafico6"></canvas>
-                        </div>
+            <!-- LINHA 3: Registro Volume Total Mensal -->
+            <div class="card-container full-width">
+                <h3 class="titulo-card">REGISTRO VOLUME TOTAL MENSAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container grafico-mensal-full">
+                        <canvas id="grafico6"></canvas>
                     </div>
                 </div>
             </div>
+
         </main>
 
     </div>
@@ -150,90 +145,58 @@
         ipt_valorTotal.value = "R$ " + total;
     }
 
-
-    const ctx1 = document.getElementById('grafico1');
     const ctx2 = document.getElementById('grafico2');
     const ctx3 = document.getElementById('grafico3');
     const ctx4 = document.getElementById('grafico4');
-    const ctx5 = document.getElementById('grafico5');
     const ctx6 = document.getElementById('grafico6');
 
-    const dados = [40, 33, 28, 20, 13, 9, 6];
-    const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-
-    const pluginValoresDireita = {
-        id: 'valoresDireita',
-        afterDatasetsDraw(chart) {
-            const { ctx } = chart;
-            const meta = chart.getDatasetMeta(0);
-
-            ctx.save();
-            ctx.font = '14px Arial';
-            ctx.fillStyle = '#333';
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'middle';
-
-            meta.data.forEach((barra, index) => {
-                const valor = dados[index];
-                const x = chart.chartArea.right + 15;
-                const y = barra.y;
-
-                ctx.fillText(`${valor} TON`, x, y);
-            });
-
-            ctx.restore();
-        }
-    };
-
-
+    // GRÁFICO 2: Estoque Semanal 
     new Chart(ctx2, {
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: dias,
+            labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
             datasets: [{
-                label: 'Produção',
-                data: dados,
-                backgroundColor: '#8BC34A',
-                borderRadius: 5
+                label: 'Alteração',
+                data: [60, 85, 70, 90, 75, 80, 65],
+                borderColor: '#8BC34A',
+                backgroundColor: 'rgba(139, 195, 74, 0.1)',
+                borderWidth: 2,
+                pointBackgroundColor: '#8BC34A',
+                pointRadius: 4,
+                tension: 0.4,
+                fill: true
             }]
         },
         options: {
-            indexAxis: 'y',
             responsive: true,
-
-            aspectRatio: 1,
-
-            layout: {
-                padding: {
-                    right: 90
-                }
-            },
+            maintainAspectRatio: false,
             scales: {
-                x: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Toneladas'
-                    }
-                },
                 y: {
-                    grid: {
-                        display: false
-                    }
+                    beginAtZero: false,
+                    min: 0,
+                    max: 100,
+                    ticks: { stepSize: 20 }
+                },
+                x: {
+                    grid: { display: false }
                 }
             },
             plugins: {
                 legend: {
-                    display: false
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
                 }
             }
-        },
-        plugins: [pluginValoresDireita]
+        }
     });
 
+    // GRÁFICO 3: Volume Atual  
     let capacidadeMax = 100;
     let volumeAtual = 72.5;
-
     let porcentagem = (volumeAtual / capacidadeMax) * 100;
 
     let pluginTextoCentro = {
@@ -241,22 +204,15 @@
         afterDraw: function (chart) {
             let ctx = chart.ctx;
             let chartArea = chart.chartArea;
-
             let x = (chartArea.left + chartArea.right) / 2;
-            let y = (chartArea.top + chartArea.bottom) / 1.2;
+            let y = (chartArea.top + chartArea.bottom) / 1.15;
 
             ctx.save();
-
             ctx.textAlign = 'center';
 
-            // TON (principal)
-            ctx.font = 'bold 18px Arial';
+            ctx.font = 'bold 22px DM Sans, Arial';
             ctx.fillStyle = '#333';
             ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
-
-            // %
-            ctx.font = '12px Arial';
-            ctx.fillText(porcentagem.toFixed(1) + '%', x, y + 20);
 
             ctx.restore();
         }
@@ -276,7 +232,8 @@
             circumference: 180,
             cutout: '70%',
             plugins: {
-                legend: { display: false }
+                legend: { display: false },
+                tooltip: { enabled: false }
             },
             responsive: true,
             maintainAspectRatio: false
@@ -284,109 +241,96 @@
         plugins: [pluginTextoCentro]
     });
 
+    // GRÁFICO 4: Entrada e Saída Total Semanal 
     new Chart(ctx4, {
         type: 'bar',
         data: {
-            labels: ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'],
-            datasets: [{
-                label: 'TON',
-                data: [13, 28, 32, 48, 52, 64, 97],
-                backgroundColor: '#8BC34A'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-
-
-    let capMax = 100;
-    let volAtu = 72.5;
-
-    let percent = (volumeAtual / capacidadeMax) * 100;
-
-    let pluginTextoCentral = {
-        id: 'textoCentral',
-        afterDraw: function (chart) {
-            let ctx = chart.ctx;
-            let chartArea = chart.chartArea;
-
-            let x = (chartArea.left + chartArea.right) / 2;
-            let y = (chartArea.top + chartArea.bottom) / 1.2;
-
-            ctx.save();
-
-            ctx.textAlign = 'center';
-        }
-    };
-
-    new Chart(ctx5, {
-        type: 'doughnut',
-        data: {
-            labels: ['Cheio', 'Vazio'],
-            datasets: [{
-                data: [percent, 100 - percent],
-                backgroundColor: ['#324001', '#8BC34A'],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            rotation: 90,
-            circumference: 360,
-            cutout: '50%',
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#000',
-                    font: {
-                        size: 12,
-                        weight: 'bold'
-                    },
-                    formatter: (value, context) => {
-                        const label = context.chart.data.labels[context.dataIndex];
-                        return `${label} ${value.toFixed(1)}%`;
-                    },
-                    anchor: 'end',
-                    align: 'end',
-                    offset: 10
-                }
-            }
-        },
-        plugins: [ChartDataLabels, pluginTextoCentral]
-    });
-
-    let labs = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-    let vals = [25, 40, 60, 70, 80, 65, 55, 60, 60, 50, 45, 50];
-
-    new Chart(ctx6, {
-        type: 'bar',
-        data: {
-            labels: labs,
+            labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
             datasets: [
                 {
-                    label: 'Volume atual (TON)',
-                    data: vals,
-                    backgroundColor: '#324001'
+                    label: 'Entrada',
+                    data: [0, 10, 5, 0, 10, 30, 40],
+                    backgroundColor: '#8BC34A',
+                    borderRadius: 3
+                },
+                {
+                    label: 'Saída',
+                    data: [0, 12, 10, 0, 5, 10, 48],
+                    backgroundColor: '#c0392b',
+                    borderRadius: 3
                 }
             ]
         },
         options: {
-            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 50,
+                    ticks: { stepSize: 10 }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            },
             plugins: {
                 legend: {
-                    display: true
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
                 }
             }
         }
     });
 
-  
+    // GRÁFICO 6: Registro Volume Total Mensal 
+    new Chart(ctx6, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+            datasets: [
+                {
+                    label: '2026',
+                    data: [80, 75, 70, 65, 72, 68, 80, 0, 0, 0, 0, 0],
+                    backgroundColor: '#324001',
+                    borderRadius: 3
+                },
+                {
+                    label: '2025',
+                    data: [78, 72, 68, 60, 65, 70, 75, 0, 0, 0, 0, 0],
+                    backgroundColor: '#8BC34A',
+                    borderRadius: 3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { stepSize: 20 }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
+                }
+            }
+        }
+    });
 
 </script>
