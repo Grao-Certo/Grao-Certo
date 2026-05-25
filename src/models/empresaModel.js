@@ -1,4 +1,4 @@
-var database = require("../database/config");
+let database = require("../database/config");
 
 function buscarPorId(id) {
   console.log(
@@ -14,7 +14,7 @@ function buscarPorId(id) {
 		id: ${id}`
   );
 
-  var instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}'`;
+  let instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}'`;
 
   return database.executar(instrucaoSql);
 }
@@ -31,7 +31,7 @@ function listar() {
 		function listar():`
   );
 
-  var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
+  let instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
 
   return database.executar(instrucaoSql);
 }
@@ -50,7 +50,7 @@ function buscarPorCnpj(cnpj) {
 		cnpj: ${cnpj}`
   );
 
-  var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
+  let instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
 
   return database.executar(instrucaoSql);
 }
@@ -75,7 +75,7 @@ function cadastrar(nome, cnpj, email, cep, numero, complemento) {
     `
   );
 
-  var instrucaoSql = `
+  let instrucaoSql = `
     INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endereco) 
     VALUES ('${nome}', '${cnpj}', '${email}', '${cep}', '${numero}', '${complemento}');
   `;

@@ -13,7 +13,8 @@ function autenticar(email, senha) {
 		email: ${email}
 		senha: ${senha}`
     )
-    var instrucaoSql = `
+    
+    let instrucaoSql = `
         SELECT id, nome, email, fk_empresa as empresaId FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -37,9 +38,11 @@ function cadastrar(nome, email, senha, fkEmpresa, tipoUsuario) {
         tipoUsuario: ${tipoUsuario}
     `);
 
-    var tipoFormatado = tipoUsuario ? tipoUsuario.toLowerCase() : 'operador';
+    // utilizando o operador ternário (um if/else simplificado para uma linha) para formatar o tipo de usuário
+    // se o tipoUsuário for null, o tipoUsuário será enviado como como 'operador'
+    let tipoFormatado = tipoUsuario ? tipoUsuario.toLowerCase() : 'operador';
 
-    var instrucaoSql = `
+    let instrucaoSql = `
         INSERT INTO usuario (nome, email, senha, tipo_usuario, fk_empresa) 
         VALUES ('${nome}', '${email}', '${senha}', '${tipoFormatado}', '${fkEmpresa}');
     `;

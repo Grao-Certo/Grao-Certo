@@ -1,4 +1,4 @@
-var database = require("../database/config")
+let database = require("../database/config")
 
 function cadastrarSilo(tipo, altura, comprimento, largura, raio, alturaCone) {
     console.log(
@@ -18,9 +18,10 @@ function cadastrarSilo(tipo, altura, comprimento, largura, raio, alturaCone) {
 		alturaCone: ${alturaCone}`
     );
 
-    var instrucaoSql = `
+    let instrucaoSql = `
         INSERT INTO silo (tipo_silo, altura_total, comprimento, largura, raio, altura_cone, fk_empresa) VALUES ('${tipo}', '${altura}', '${comprimento}', '${largura}', '${raio}', '${alturaCone}');
     `;
+    
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
