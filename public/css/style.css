@@ -615,19 +615,20 @@ html {
   font-size: 40px;
 }
 .container-Cadastro-silo select {
-  width: 120px;
+  width: 280px;
   height: 50px;
   border-radius: 10px;
   position: relative;
-  left: -20%;
+  right: 0;
   font-size: 20px;
   margin-top: 5px;
+  margin-right: 46px;
 }
 
 .container-Cadastro-silo label {
   position: relative;
   margin: 10px 10px 20px 10px;
-  left: -18%;
+  right: 0;
   padding: 12px 15px;
   border-bottom: solid 3px #5293e2;
   font-size: 21px;

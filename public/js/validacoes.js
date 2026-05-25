@@ -91,7 +91,7 @@ function cadastrar() {
                                                 }, "2000");
                                                 
                                                 setTimeout(() => {
-                                                window.location = "login.html";
+                                                    window.location = "login.html";
                                             }, "2000");
 
                                                 finalizarAguardar();
