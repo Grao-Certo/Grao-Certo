@@ -79,6 +79,7 @@ function cadastrarUsuario(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var fkEmpresa = req.body.fkEmpresaServer;
+    var tipoUsuario = req.body.tipoUsuarioServer;
 
     if (nome == "" || nome == null) {
         res.status(400).send("Seu nome está indefinido!");
@@ -87,7 +88,7 @@ function cadastrarUsuario(req, res) {
     } else if (senha == "" || senha == null) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, email, senha, fkEmpresa, tipoUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -95,10 +96,7 @@ function cadastrarUsuario(req, res) {
             ).catch(
                 function (erro) {
                     console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
+                    console.log("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );

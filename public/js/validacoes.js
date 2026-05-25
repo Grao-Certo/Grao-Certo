@@ -46,36 +46,37 @@ function cadastrarUsuario() {
 
                         if (confirmarSenha == senha) { // Confirme sua senha
 
-                            fetch("/usuarios/cadastrarUsuario/", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify({
-                                    // crie um atributo que recebe o valor recuperado aqui
-                                    // Agora vá para o arquivo routes/usuario.js
-                                    usuarioServer: usuario,
-                                    nomeServer: nome,
-                                    cpfServer: cpf,
-                                    emailServer: email,
-                                    senhaServer: senha,
-                                    fkEmpresaServer: fkEmpresa
-                                }),
-                            })
-                                .then(function (resposta) {
+                            let fkEmpresaLogada = sessionStorage.ID_EMPRESA;
+
+                            fetch("/usuarios/cadastrarUsuario/",
+                                {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+
+                                    body: JSON.stringify({
+                                        nomeServer: nome,
+                                        emailServer: email,
+                                        senhaServer: senha,
+                                        fkEmpresaServer: fkEmpresaLogada,
+                                        tipoUsuarioServer: usuario
+                                    }
+                                    ),
+                                }   
+                            ).then(
+                                function (resposta) {
                                     console.log("resposta: ", resposta);
-
                                     if (resposta.ok) {
-
                                         div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
 
                                         setTimeout(() => {
                                             div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para a tela de login...';
-                                        }, "2000");
+                                        }, "1000");
 
                                         setTimeout(() => {
                                             window.location = "login.html";
-                                        }, "2000");
+                                        }, "1000");
 
                                         finalizarAguardar();
                                     } else {
@@ -131,49 +132,65 @@ function cadastrarEmpresa() {
 
                             if (senha == confirmarSenha) {
 
-
-                                fetch("/usuarios/cadastrarEmpresa", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        // crie um atributo que recebe o valor recuperado aqui
-                                        // Agora vá para o arquivo routes/usuario.js
-                                        nomeServer: nome,
-                                        cnpjServer: cnpj,
-                                        emailServer: email,
-                                        cepServer: cep,
-                                        numeroServer: numero,
-                                        complementoServer: complemento,
-                                        senhaServer: senha
-                                    }),
-                                })
-                                    .then(function (resposta) {
-                                        console.log("resposta: ", resposta);
-
-                                        if (resposta.ok) {
-
-                                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro realizado com sucesso!'
-
-                                            setTimeout(() => {
-                                                div_mensagem2.innerHTML = '<span class="acerto"> Redirecionando para o cadastro do usuário...';
-                                            }, "2000");
-
-                                            setTimeout(() => {
-                                                window.location = "cadastro.html";
-                                            }, "2000");
-
-                                            finalizarAguardar();
+                                fetch("/empresas/cadastrarEmpresa",
+                                    {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify(
+                                            {
+                                                nomeServer: nome,
+                                                cnpjServer: cnpj,
+                                                emailServer: email,
+                                                cepServer: cep,
+                                                numeroServer: numero,
+                                                complementoServer: complemento
+                                            }
+                                        ),
+                                    }
+                                ).then (
+                                    function (resposta) {
+                                         if (resposta.ok) {
+                                            resposta.json().then(jsonEmpresa => {
+                                                let idEmpresaCriada = jsonEmpresa.insertId;
+ 
+                                                div_mensagem2.innerHTML = '<span class="acerto"> Empresa cadastrada!</span>';
+ 
+                                                fetch("/usuarios/cadastrarUsuario", {
+                                                    method: "POST",
+                                                    headers: {
+                                                        "Content-Type": "application/json",
+                                                    },
+                                                    body: JSON.stringify(
+                                                        {
+                                                            nomeServer: nome,
+                                                            emailServer: email,
+                                                            senhaServer: senha,
+                                                            fkEmpresaServer: idEmpresaCriada,
+                                                            tipoUsuarioServer: "Administrador"
+                                                        }
+                                                    )
+                                                }).then(
+                                                    function (respostaUsuario) {
+                                                        if (respostaUsuario.ok) {
+                                                            div_mensagem2.innerHTML = '<span class="acerto"> Cadastro completo realizado com sucesso!</span>';
+                                                            setTimeout(() => {
+                                                                window.location = "login.html";
+                                                            }, 500);
+                                                        } else {
+                                                            div_mensagem2.innerHTML = '<span class="erro"> Empresa criada, mas houve um erro ao criar o usuário administrador.</span>';
+                                                        }
+                                                    }
+                                                );
+                                            });
                                         } else {
-                                            throw "Houve um erro ao tentar realizar o cadastro do carro!";
-                                        }
-                                    })
-                                    .catch(function (resposta) {
-                                        console.log(`#ERRO: ${resposta}`);
-                                        finalizarAguardar();
-                                    });
-
+                                            div_mensagem2.innerHTML = '<span class="erro"> Houve um erro ao cadastrar a empresa.</span>';
+                                         }
+                                     })
+                                     .catch(function (erro) {
+                                         console.log(`#ERRO: ${erro}`);
+                                     });
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> As senha não coicidem!'
                             }
