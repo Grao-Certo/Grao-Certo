@@ -82,9 +82,9 @@ function cadastrarUsuario(req, res) {
 
     if (nome == "" || nome == null) {
         res.status(400).send("Seu nome está indefinido!");
-    } else if (email == "" || nome == null) {
+    } else if (email == "" || email == null) {
         res.status(400).send("Seu email está indefinido!");
-    } else if (senha == "" || nome == null) {
+    } else if (senha == "" || senha == null) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
         usuarioModel.cadastrar(nome, email, senha, fkEmpresa)

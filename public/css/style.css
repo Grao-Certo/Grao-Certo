@@ -321,7 +321,7 @@ html {
 }
 .bodyLoginCad {
   background: url(../assets/imgs/fundoLogin.png);
-  height: 110vh;
+  height: 100vh;
   background-size: cover;
   color: white;
   font-size: 25px;
@@ -357,6 +357,7 @@ html {
   margin: 20px 0 15px 0;
   padding: 4px 10px;
   border-radius: 11px;
+  font-size: 22px;
 }
 
 .acerto {
@@ -366,6 +367,7 @@ html {
   margin: 14px 0 1 0;
   padding: 4px 7px;
   border-radius: 11px;
+  font-size: 22px;
 }
 
 /*PÁGINA DE LOGIN*/
@@ -418,7 +420,7 @@ html {
   border: solid var(--cor-fundo-button-bottom);
   margin-top: 0;
 }
-.bodyLoginCad .container-Login input {
+.container-Login input {
   border: solid transparent;
   border-bottom: solid var(--cor-fundo-button-bottom);
   outline: none;
@@ -431,7 +433,7 @@ html {
   font-size: 23px;
   transition: 0.4s;
 }
-.bodyLoginCad .container-Login input:hover {
+.container-Login input:hover {
   transform: translateY(-5px);
   width: 500px;
   margin-top: translateY(-5px);
@@ -545,12 +547,112 @@ html {
   margin: 20px 0 30px 0;
 }
 
-/* Variáveis de cores do projeto*/
-:root {
-  --cor-verde-escuro: #042e09;
-  --cor-fundo: #275673;
-  --cor-fundo-button-bottom: #95b814;
-  --cor-bordas: #95b814
+/* Parte do cadastro de silo */
+.cadastroSilo {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-item a{
+  text-decoration: none;
+  color: white;
+}
+
+.container-Cadastro-silo {
+  background: url(../assets/imgs/silo-cadastro.png);
+  background-size: cover;
+  color: white;
+  font-size: 25px;
+  height: 100vh;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+}
+
+.container-Cadastro-silo .formulario {
+  background-color: #013340d2;
+  border-radius: 25px;
+  border: solid 3px var(--cor-fundo-button-silo);
+  margin-top: 10px;
+  padding: 0;
+}
+
+.container-Cadastro-silo input {
+  border: solid transparent;
+  border-bottom: solid var(--cor-fundo-button-silo);
+  outline: none;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  height: 55px;
+  width: 480px;
+  padding: 0 0 0 12px;
+  margin: 0px 50px;
+  font-size: 21px;
+  transition: 0.4s;
+}
+
+.container-Cadastro-silo input:hover {
+  transform: translateY(-5px);
+  width: 500px;
+  margin-top: translateY(-5px);
+  margin-left: 25px;
+  margin-right: 25px;
+  border: solid 2px rgb(157, 157, 173);
+  border-radius: 15px;
+}
+
+.container-Cadastro-silo input::placeholder {
+  color: white;
+}
+
+.container-Cadastro-silo .formulario h1 {
+  margin: 25px 0;
+  font-size: 40px;
+}
+.container-Cadastro-silo select {
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  position: relative;
+  left: -20%;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.container-Cadastro-silo label {
+  position: relative;
+  margin: 10px 10px 20px 10px;
+  left: -18%;
+  padding: 12px 15px;
+  border-bottom: solid 3px #5293e2;
+  font-size: 21px;
+}
+.container-Cadastro-silo .formulario button {
+  margin: 20px 0 30px 0;
+}
+
+.container-Cadastro-silo button {
+  background: var(--cor-fundo-button-silo);
+  border-radius: 12px;
+  border: none;
+  height: 50px;
+  width: 250px;
+  color: white;
+  padding: 0 20px 0 20px;
+  margin: 22px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.container-Cadastro-silo button:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 0 20px 0 black;
+  width: 270px;
 }
 
 /* =============================================
@@ -927,11 +1029,11 @@ body.simulador-body {
   padding: 12px;
   border-radius: 25px;
   border: 2px solid transparent;
-
+  
   background:
-    linear-gradient(#1f4b6d, #1f4b6d) padding-box,
-    linear-gradient(90deg, #2d6cdf, #6ea8ff) border-box;
-
+  linear-gradient(#1f4b6d, #1f4b6d) padding-box,
+  linear-gradient(90deg, #2d6cdf, #6ea8ff) border-box;
+  
   color: white;
   outline: none;
 }
@@ -952,10 +1054,10 @@ body.simulador-body {
   height: 78px;
   border-radius: 50%;
   border: 2px solid transparent;
-
+  
   background:
-    linear-gradient(#1f4b6d, #1f4b6d) padding-box,
-    linear-gradient(180deg, #2d6cdf, #6ea8ff) border-box;
+  linear-gradient(#1f4b6d, #1f4b6d) padding-box,
+  linear-gradient(180deg, #2d6cdf, #6ea8ff) border-box;
 
   display: flex;
   align-items: center;
@@ -1138,7 +1240,20 @@ dashboard
 }
 
 .menu-item.ativo .submenu {
-  max-height: 250px;
+  max-height: 220px;
+  max-width: 430px;
+  overflow-y: auto;
+}
+
+/* scrollbar */
+.menu-item.ativo .submenu::-webkit-scrollbar {
+  width: 9px; 
+  background: grey;
+  border-radius: 100px;
+}
+.menu-item.ativo .submenu::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: rgb(121, 191, 16);
 }
 
 .menu-item:hover {
@@ -1249,22 +1364,22 @@ dashboard
 }
 
 .grafico-mensal {
-    width: 500px;
-    height: 330px;
-    justify-content: center;
+  width: 500px;
+  height: 330px;
+  justify-content: center;
 }
 
 .dashboard-graficos-grandes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grafico-grande {
-    width: 100%;
-    max-width: 550px;
-    height: 300px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 550px;
+  height: 300px;
+  margin: 0 auto;
 }
 
 .full-width .grafico-container {
@@ -1291,13 +1406,13 @@ dashboard
 }
 
 .alert {
-    display: grid;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 0;
-
-    border-top: 2px solid #000000;
-    border-bottom: 2px solid #000000;
+  display: grid;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
 .alerta-titulo {
@@ -1306,42 +1421,42 @@ dashboard
 }
 
 .alerta-silos {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .silo-input {
-    width: 300px;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: default;
-    outline: none;
+  width: 300px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: default;
+  outline: none;
 }
 
 .silo-input.critico {
-    background-color: #7f0d0d;
-    color: white;
+  background-color: #7f0d0d;
+  color: white;
 }
 
 .silo-input.atencao {
     background-color: #f1ae00;
     color: white;
-}
-
-.silo-input {
+  }
+  
+  .silo-input {
     user-select: none;
-}
-
-.acoes {
-  margin-top: auto;
-  margin-bottom: 20px;
-}
-
-.acoes button {
+  }
+  
+  .acoes {
+    margin-top: auto;
+    margin-bottom: 20px;
+  }
+  
+  .acoes button {
   width: 90%;
   margin: 10px auto;
   padding: 12px;
@@ -1358,20 +1473,20 @@ dashboard
 }
 
 .card-estoque {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
 }
 
-.titulo-info {
+  .titulo-info {
     font-size: 16px;
     font-weight: 700;
     color: #2c6794;
     margin: 0;
-}
-
-.input-info {
+  }
+  
+  .input-info {
     width: 100%;
     padding: 12px 16px;
     border: none;
@@ -1381,106 +1496,166 @@ dashboard
     text-align: center;
     outline: none;
     box-sizing: border-box;
-}
-
-.input-info.estoque {
+  }
+  
+  .input-info.estoque {
     background-color: #5e6655;
     color: white;
     cursor: default;
-}
-
-.input-info.valor-tonelada {
+  }
+  
+  .input-info.valor-tonelada {
     background-color: #5e6655;
     color: white;
-}
-.input-info.valor-tonelada::placeholder {
-  color: white;
-  opacity: 85%;
-}
-
-.input-info.valor-total {
+  }
+  .input-info.valor-tonelada::placeholder {
+    color: white;
+    opacity: 85%;
+  }
+  
+  .input-info.valor-total {
     background-color: #324001;
     color: white;
     cursor: default;
-}
-
-.resultado-estoque {
+  }
+  
+  .resultado-estoque {
     margin-top: 10px;
-}
+  }
 
-.resultado-estoque input{
-  color: white;
-}
+  .resultado-estoque input{
+    color: white;
+  }
+  
+  .acoes button:hover {
+    opacity: 0.85;
+    color: #95b814;
+    transition: 0.3s;
+  }
+  
+  /*
+  Cadastro de Silo
+  */
 
-.acoes button:hover {
-  opacity: 0.85;
-  color: #95b814;
-  transition: 0.3s;
-}
-
-/*
-dashboard
-*/
-
-
-.dashboard-conteudo {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 20px;
-  padding: 40px;
-  margin-left: 30%;
-  align-items: stretch;
-}
- 
-.dashboard-linha-topo {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  align-items: start;
-}
- 
-.dashboard-card-gauge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .dashboard-conteudo {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px;
+    padding: 40px;
+    margin-left: 30%;
+    align-items: stretch;
+  }
+  
+  .dashboard-linha-topo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  
+  .dashboard-card-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   justify-content: center;
 }
- 
+
 .grafico-gauge {
   width: 100%;
   max-width: 220px;
   height: 160px;
   margin: 0 auto;
 }
- 
+
 .grafico-mensal {
   width: 100% !important;
   height: 270px !important;
   max-width: unset !important;
 }
- 
+
 .grafico-semanal {
   width: 100%;
   height: 270px;
 }
- 
+
 .grafico-mensal-full {
   width: 100%;
   height: 270px;
 }
- 
+
 .full-width {
   grid-column: unset;
   width: 100%;
 }
- 
+
 .full-width .grafico-container {
   max-width: 100% !important;
   width: 100%;
   height: 100%;
 }
- 
+
 .full-width .dashboard-card {
   width: 100%;
   height: 320px;
+}
+
+/* Scrollbar*/ 
+.dashboard-body {
+  overflow-y: auto;
+}
+.dashboard-body::-webkit-scrollbar {
+  width: 12px; 
+  background: var(--cor-fundo-scroll-fundo-verde);
+}
+.dashboard-body::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: rgb(121, 191, 16);
+}
+
+.bodyLoginCad {
+  overflow-y: auto;
+}
+.bodyLoginCad::-webkit-scrollbar {
+  width: 12px; 
+  background: var(--cor-fundo-scroll-fundo-verde);
+}
+.bodyLoginCad::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: rgb(121, 191, 16);
+}
+
+.index {
+  overflow-y: auto;
+}
+.index::-webkit-scrollbar {
+  width: 12px; 
+  background: var(--cor-fundo-scroll-fundo-azul);
+}
+.index::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background:var(--cor-fundo-scroll-azul);
+}
+
+.simulador-body {
+  overflow-y: auto;
+}
+.simulador-body::-webkit-scrollbar {
+  width: 12px; 
+  background: var(--cor-fundo-scroll-fundo-azul);
+}
+.simulador-body::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: var(--cor-fundo-scroll-azul);
+}
+
+/* Variáveis de cores do projeto*/
+:root {
+  --cor-verde-escuro: #042e09;
+  --cor-fundo: #275673;
+  --cor-fundo-button-bottom: #95b814;
+  --cor-fundo-scroll-fundo-verde: #3d4d03;
+  --cor-fundo-button-silo: #5293e2;
+  --cor-fundo-scroll-azul: #1F4D6B;
+  --cor-fundo-scroll-fundo-azul: rgb(176, 230, 245);
+  --cor-bordas: #95b814
 }
