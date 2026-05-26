@@ -141,9 +141,9 @@ function cadastrarEmpresa() {
                                         body: JSON.stringify(
                                             {
                                                 nomeServer: nome,
-                                                cnpjServer: cnpj,
+                                                cnpjServer: cnpj.replace(/\D/g, ""),
                                                 emailServer: email,
-                                                cepServer: cep,
+                                                cepServer: cep.replace(/\D/g, ""),
                                                 numeroServer: numero,
                                                 complementoServer: complemento
                                             }
