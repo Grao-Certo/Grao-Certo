@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grão Certo | Dashboard</title>
+    <link rel="shortcut icon" href="assets/imgs/logo_favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
+</head>
+
+<body class="dashboard-body" onload="validarSessao()">
+
+    <div class="dashboard-layout">
+
+        <aside class="dashboard-sidebar">
+
+            <a href="index.html"><img src="../assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
+
+            <div class="usuario">
+                <div class="icone-usuario">
+                    <img src="../assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
+                </div>
+                <h3 id="b_usuario">ARMAZENS PAULISTAS SA</h3>
+                <p id="b_email">contato@armazenspaulistas.com</p>
+            </div>
+
+            <ul class="menu">
+
+                <li class="menu-item" onclick="toggleMenu(this)">
+                    <span class="seta">▶</span> DASHBOARD
+                    <ul class="submenu">
+                        <li> <a href="dashboardGeral.html">AVISOS</a> </li>
+                        <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
+                        <li> <a href="dashboardSilo1.html" id="active">SILO 1</a> </li>
+                        <li> <a href="dashboardSilo2.html">SILO 2</a> </li>
+                        <li> <a href="dashboardSilo3.html">SILO 3</a> </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item" onclick="limparSessao()">
+                    Sair
+                </li>
+            </ul>
+
+
+        </aside>
+
+          <main class="dashboard-conteudo">
+
+            <!-- LINHA 1: Faturamento + Alterações de Estoque + Volume Atual -->
+            <div class="dashboard-linha-topo">
+
+                <div class="card-container">
+                    <h3 class="titulo-card">FATURAMENTO DO SILO</h3>
+                    <div class="dashboard-card">
+                        <div class="card-estoque">
+                            <h3 class="titulo-info">ESTOQUE ATUAL</h3>
+                            <input type="text" id="ipt_estoqueAtual" class="input-info estoque" value="72,5" readonly>
+
+                            <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                            <input type="text" id="ipt_valorTonelada" class="input-info valor-tonelada"
+                                placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
+
+                            <div class="resultado-estoque">
+                                <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                                <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">ESTOQUE SEMANAL </h3>
+                    <div class="dashboard-card">
+                        <div class="grafico-container grafico-mensal">
+                            <canvas id="grafico2"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">VOLUME ATUAL</h3>
+                    <div class="dashboard-card dashboard-card-gauge">
+                        <div class="grafico-container grafico-gauge">
+                            <canvas id="grafico3"></canvas>
+                        </div>
+                        <div class="info-container">
+                            <h3>ÚLTIMA ATUALIZAÇÃO:</h3>
+                            <input type="text" id="ipt_valorAtualizado" class="input-info valor-total" value="05-04-2026" readonly>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- LINHA 2: Entrada e Saída Total Semanal -->
+            <div class="card-container full-width">
+                <h3 class="titulo-card">ENTRADA E SAÍDA TOTAL SEMANAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container grafico-semanal">
+                        <canvas id="grafico4"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LINHA 3: Registro Volume Total Mensal -->
+            <div class="card-container full-width">
+                <h3 class="titulo-card">REGISTRO VOLUME TOTAL MENSAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container grafico-mensal-full">
+                        <canvas id="grafico6"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+
+    function toggleMenu(element) {
+        element.classList.toggle("ativo");
+    }
+
+    function calcularValorEstoque() {
+        let strEstoque = ipt_estoqueAtual.value.replaceAll(',', '.');
+        let strValorTonelada = ipt_valorTonelada.value.replaceAll(',', '.');
+
+        let estoque = Number(strEstoque);
+        let valorTonelada = Number(strValorTonelada);
+
+        let total = estoque * valorTonelada;
+
+        total = total.toFixed(2).replaceAll('.', ',')
+
+        ipt_valorTotal.value = "R$ " + total;
+    }
+
+    const ctx2 = document.getElementById('grafico2');
+    const ctx3 = document.getElementById('grafico3');
+    const ctx4 = document.getElementById('grafico4');
+    const ctx6 = document.getElementById('grafico6');
+
+    // GRÁFICO 2: Estoque Semanal 
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            datasets: [{
+                label: 'Alteração',
+                data: [60, 85, 70, 90, 75, 80, 65],
+                borderColor: '#8BC34A',
+                backgroundColor: 'rgba(139, 195, 74, 0.1)',
+                borderWidth: 2,
+                pointBackgroundColor: '#8BC34A',
+                pointRadius: 4,
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    min: 0,
+                    max: 100,
+                    ticks: { stepSize: 20 }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
+                }
+            }
+        }
+    });
+
+    // GRÁFICO 3: Volume Atual  
+    let capacidadeMax = 100;
+    let volumeAtual = 72.5;
+    let porcentagem = (volumeAtual / capacidadeMax) * 100;
+
+    let pluginTextoCentro = {
+        id: 'textoCentro',
+        afterDraw: function (chart) {
+            let ctx = chart.ctx;
+            let chartArea = chart.chartArea;
+            let x = (chartArea.left + chartArea.right) / 2;
+            let y = (chartArea.top + chartArea.bottom) / 1.15;
+
+            ctx.save();
+            ctx.textAlign = 'center';
+
+            ctx.font = 'bold 22px DM Sans, Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
+
+            ctx.restore();
+        }
+    };
+
+    new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [porcentagem, 100 - porcentagem],
+                backgroundColor: ['#324001', '#8BC34A'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            rotation: -90,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+        plugins: [pluginTextoCentro]
+    });
+
+    // GRÁFICO 4: Entrada e Saída Total Semanal 
+    new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            datasets: [
+                {
+                    label: 'Entrada',
+                    data: [0, 10, 5, 0, 10, 30, 40],
+                    backgroundColor: '#8BC34A',
+                    borderRadius: 3
+                },
+                {
+                    label: 'Saída',
+                    data: [0, 12, 10, 0, 5, 10, 48],
+                    backgroundColor: '#c0392b',
+                    borderRadius: 3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 50,
+                    ticks: { stepSize: 10 }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
+                }
+            }
+        }
+    });
+
+    // GRÁFICO 6: Registro Volume Total Mensal 
+    new Chart(ctx6, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+            datasets: [
+                {
+                    label: '2026',
+                    data: [80, 75, 70, 65, 72, 68, 80, 0, 0, 0, 0, 0],
+                    backgroundColor: '#324001',
+                    borderRadius: 3
+                },
+                {
+                    label: '2025',
+                    data: [78, 72, 68, 60, 65, 70, 75, 0, 0, 0, 0, 0],
+                    backgroundColor: '#8BC34A',
+                    borderRadius: 3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { stepSize: 20 }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
+                }
+            }
+        }
+    });
+
+</script>

@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="../js/sessao.js"></script>
+    <script src="../js/buscar.js"></script>
 </head>
 
 <body class="dashboard-body" onload="validarSessao()">
@@ -32,7 +33,7 @@
 
                 <li class="menu-item" onclick="toggleMenu(this)">
                     <span class="seta">▶</span> DASHBOARD
-                    <ul class="submenu">
+                    <ul class="submenu" id="ul_submenu">
                         <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
                         <!-- <div id="admin"></div> -->
                         <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
@@ -96,6 +97,8 @@
 </html>
 
 <script>
+
+    buscarSilos();
 
     function toggleMenu(element) {
         element.classList.toggle("ativo");
