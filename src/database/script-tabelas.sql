@@ -1,4 +1,3 @@
-
 CREATE DATABASE graoCerto;
 
 USE graoCerto;
