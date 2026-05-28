@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/imgs/logo_favicon.png" type="image/x-icon">
-    <title>Grão Certo | Cadastro de Silo</title>
+    <title>Grão Certo | Cadastro de Usúario</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/validacoes.js"></script>
     <script src="../js/sessao.js"></script>
 </head>
 
-<body class="cadastro-admin" onload="validarSessao()">
+<body class="cadastro-admin" onload="validarSessao()"> 
 
     <aside class="dashboard-sidebar">
 
@@ -31,8 +31,8 @@
                 <span class="seta">▶</span> DASHBOARD
                 <ul class="submenu">
                     <li> <a href="dashboardGeral.html">AVISOS</a> </li>
-                    <li> <a href="cadastroSilos.html" id="active">CADASTRAR NOVO SILO</a> </li>
-                    <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li>
+                    <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
+                    <li> <a href="cadastroUsuario.html" id="active">CADASTRAR NOVO USUÁRIO</a> </li>
                 </ul>
             </li>
         </ul>
@@ -42,23 +42,22 @@
     <div class="container-Cadastro-silo"> <!--PAI-->
 
         <div class="formulario">
-            <h1> CADASTRAR SILO </h1>
-            <label for="select_silo">Tipo de silo:</label>
-            <select id="select_silo">
+            <h1> CADASTRAR USUÁRIO </h1>
+            <label for="select_usuario">Tipo Usuário:</label>
+            <select id="select_usuario">
                 <option selected disabled> Selecione</option>
-                <option>Trincheira</option>
-                <option>Cilíndrico</option>
-                <option>Cilíndrico com Teto Conico</option>
+                <option>Administrador</option>
+                <option>Operador</option>
             </select><br>
-            <input type="text" id="input_altura" placeholder="Altura Total"> <br>
-            <input type="text" id="input_comprimento" placeholder="Comprimento"> <br>
-            <input type="text" id="input_largura" placeholder="Largura"> <br>
-            <input type="text" id="input_raio" placeholder="Raio"><br>
-            <input type="text" id="input_alturaCone" placeholder="Altura Cone"><br>
+            <input type="text" id="input_nome" placeholder="Nome compleo"> <br>
+            <input type="text" id="input_cpf" placeholder="CPF: xxx.xxx.xxx-xx" oninput="mascaraCPF(this)" maxlength="14"> <br>
+            <input type="email" id="input_email" placeholder="email"> <br>
+            <input type="password" id="input_senha" placeholder="Senha" oninput="verificar()"><br>
+            <input type="password" id="input_confirmarSenha" placeholder="Confirmar senha"><br>
 
             <div id="div_mensagem"></div>
             <div id="div_mensagem2"></div>
-            <button onclick="cadastrarSilo()"> C A D A S T R A R </button>
+            <button onclick="cadastrarUsuario()"> C A D A S T R A R </button>
         </div>
     </div>
 

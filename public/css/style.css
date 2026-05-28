@@ -348,6 +348,7 @@ html {
 
 #div_mensagem {
   margin: 10px;
+  font-size: 23px;
 }
 
 .erro {
@@ -548,7 +549,7 @@ html {
 }
 
 /* Parte do cadastro de silo */
-.cadastrarSilo {
+.cadastro-admin {
   display: flex;
   flex-direction: row;
 }

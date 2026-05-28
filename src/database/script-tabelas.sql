@@ -12,19 +12,18 @@ CREATE TABLE empresa (
     complemento_endereco VARCHAR(60)
 );
 
-CREATE TABLE usuario (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    senha CHAR(60) NOT NULL,
-    tipo_usuario VARCHAR(20) NOT NULL,
-    documento_usuario VARCHAR(14),
-    fk_empresa INT NOT NULL,
-    CONSTRAINT chk_tipo_usuario CHECK (
-        tipo_usuario IN ('administrador', 'operador')
-    ),
-    FOREIGN KEY (fk_empresa) REFERENCES empresa (id)
-);
+CREATE TABLE
+    usuario (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        nome VARCHAR(100) NOT NULL,
+        cpf CHAR(11) NOT NULL UNIQUE,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        senha CHAR(60) NOT NULL,
+        tipo_usuario VARCHAR(20) NOT NULL,
+        fk_empresa INT NOT NULL,
+        CONSTRAINT chk_tipo_usuario CHECK (tipo_usuario IN ('administrador', 'operador')),
+        FOREIGN KEY (fk_empresa) REFERENCES empresa (id)
+    );
 
 CREATE TABLE telefone (
     id INT PRIMARY KEY AUTO_INCREMENT,

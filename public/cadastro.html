@@ -34,24 +34,20 @@
 
         <div class="parteInferior">
             <div class="formulario">
-                <h1> CRIAR CONTA </h1>
-                <label for="select_pessoa">Tipo de pessoa:</label>
-                <select id="select_pessoa" onchange="colocarEmpresa()">
-                    <option selected disabled> Selecione</option>
-                    <option>Usuário</option>
-                    <option>Empresa</option>
-                </select><br>
-                <input type="text" name="" id="input_nome" placeholder="Nome"> <br>
-                <input type="text" name="" id="input_doc" placeholder="Documento" maxlength="14" oninput="mascaraCPF(this)"> <br>
+                <h1> CADASTRAR EMPRESA </h1>
+
+                <input type="text" name="" id="input_nome" placeholder="Nome da empresa"> <br>
+                <input type="text" name="" id="input_cnpj" placeholder="CNPJ: xx.xxx.xxx/xxxx-xx" maxlength="18" oninput="mascaraCNPJ(this)"> <br>
                 <input type="email" name="" id="input_email" placeholder="Email"> <br>
-                <input type="number" name="" id="input_empresa" placeholder="Número da empresa" style="display: none;"> 
-                <input type="text" name="" id="input_tipoUsu" placeholder="Tipo Usuário"><br>
-                <input type="password" name="" id="input_senha" placeholder="Senha"><br>
-                <input type="password" name="" id="input_confirmar_senha" placeholder="Confirme sua senha"><br>
+                <input type="text" name="" id="input_cep" placeholder="CEP: xxxx-xxx" oninput="mascaraCEP(this)" maxlength="9"><br>
+                <input type="text" name="" id="input_numero" placeholder="Número"><br>
+                <input type="text" name="" id="input_complemento" placeholder="Complemento"><br>
+                <input type="password" id="input_senha" placeholder="Senha" oninput="verificar()"><br>
+                <input type="password" id="input_confirmarSenha" placeholder="Confirmar senha"><br>
 
                 <div id="div_mensagem"></div>
                 <div id="div_mensagem2"></div>
-                <button onclick="cadastrar()"> C A D A S T R A R </button>
+                <button onclick="cadastrarEmpresa()"> C A D A S T R A R </button>
             </div>
         </div>
     </div>
