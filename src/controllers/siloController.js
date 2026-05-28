@@ -1,14 +1,16 @@
 var siloModel = require("../models/siloModel");
 
 function cadastrarSilo(req, res) {
-    var silo = req.body.siloServer;
     var altura = req.body.alturaServer;
     var comprimento = req.body.comprimentoServer;
     var largura = req.body.larguraServer;
     var raio = req.body.raioServer;
     var alturaCone = req.body.alturaConeServer;
+    let fkEmpresa = req.body.fkEmpresaServer;
 
-    if (altura == "" || altura == null) {
+    if(fkEmpresa == undefined){
+        res.status(400).send("O fkEmpresa está indefinido!");
+    }else if (altura == "" || altura == null) {
         res.status(400).send("A altura está indefinido!");
     } else if (comprimento == "" || comprimento == null) {
         res.status(400).send("O comprimento está indefinido!");
@@ -19,7 +21,7 @@ function cadastrarSilo(req, res) {
     } else if (alturaCone == "" || alturaCone == null) {
         res.status(400).send("A altura do cone está indefinida!");
     } else {
-        siloModel.cadastrarSilo(tipo, altura, comprimento, largura, raio, alturaCone)
+        siloModel.cadastrarSilo(altura, comprimento, largura, raio, alturaCone,fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -62,5 +64,6 @@ function buscarSilos(req,res){
 }
 
 module.exports = {
-    cadastrarSilo
+    cadastrarSilo,
+    buscarSilos
 }

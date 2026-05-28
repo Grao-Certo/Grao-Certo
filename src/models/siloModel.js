@@ -1,6 +1,6 @@
 let database = require("../database/config")
 
-function cadastrarSilo(tipo, altura, comprimento, largura, raio, alturaCone) {
+function cadastrarSilo(altura, comprimento, largura, raio, alturaCone,fkEmpresa) {
     console.log(
         `ACESSEI O SILO MODEL
 
@@ -10,7 +10,6 @@ function cadastrarSilo(tipo, altura, comprimento, largura, raio, alturaCone) {
 
 		function cadastrarSilo():
 
-		tipo: ${tipo}
 		altura: ${altura}
 		comprimento: ${comprimento}
 		largura: ${largura}
@@ -19,7 +18,7 @@ function cadastrarSilo(tipo, altura, comprimento, largura, raio, alturaCone) {
     );
 
     let instrucaoSql = `
-        INSERT INTO silo (tipo_silo, altura_total, comprimento, largura, raio, altura_cone, fk_empresa) VALUES ('${tipo}', '${altura}', '${comprimento}', '${largura}', '${raio}', '${alturaCone}');
+        INSERT INTO silo (altura_total, comprimento, largura, raio, altura_cone, fk_empresa) VALUES ('${altura}', '${comprimento}', '${largura}', '${raio}', '${alturaCone}',${fkEmpresa});
     `;
     
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -47,5 +46,6 @@ function buscarSilos(idUsuario){
 }
 
 module.exports = {
-    cadastrarSilo
+    cadastrarSilo,
+	buscarSilos
 };

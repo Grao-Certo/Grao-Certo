@@ -275,14 +275,12 @@ function logar() {
 }
 
 function cadastrarSilo() {
-    let silo = select_silo.value;
     let altura = input_altura.value;
     let comprimento = input_comprimento.value;
     let largura = input_largura.value;
     let raio = input_raio.value;
     let alturaCone = input_alturaCone.value;
-
-    if (silo == 'Trincheira' || silo == 'Cilindrico' || silo == 'Cilindrico com Teto Conico') { // TIPO DE SILO
+    let fkEmpresa = sessionStorage.ID_EMPRESA;
 
         if (altura != '') {
 
@@ -294,7 +292,7 @@ function cadastrarSilo() {
 
                         if (alturaCone != '') { // alturaCone
 
-                            fetch("/usuarios/cadastrarUsuario/", {
+                            fetch("/silo/cadastrarSilo", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json",
@@ -302,12 +300,12 @@ function cadastrarSilo() {
                                 body: JSON.stringify({
                                     // crie um atributo que recebe o valor recuperado aqui
                                     // Agora vá para o arquivo routes/usuario.js
-                                    siloServer: silo,
                                     alturaServer: altura,
                                     comprimentoServer: comprimento,
                                     larguraServer: largura,
                                     raioServer: raio,
-                                    alturaConeServer: alturaCone
+                                    alturaConeServer: alturaCone,
+                                    fkEmpresaServer: fkEmpresa
                                 }),
                             })
                                 .then(function (resposta) {
@@ -317,14 +315,12 @@ function cadastrarSilo() {
 
                                         div_mensagem2.innerHTML = '<span class="acerto"> Cadastro de silo realizado com sucesso!'
 
-                                        finalizarAguardar();
                                     } else {
                                         throw "Houve um erro ao tentar realizar o cadastro do usuario";
                                     }
                                 })
                                 .catch(function (resposta) {
                                     console.log(`#ERRO: ${resposta}`);
-                                    finalizarAguardar();
                                 });
 
                         } else {
@@ -342,9 +338,6 @@ function cadastrarSilo() {
         } else {
             div_mensagem2.innerHTML = '<span class="erro"> Digite a altura do silo'
         }
-    } else {
-        div_mensagem2.innerHTML = '<span class="erro"> Selecione o tipo de silo'
-    }
 }
 
 // function colocarEmpresa() {
