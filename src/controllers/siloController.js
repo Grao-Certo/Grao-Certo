@@ -37,6 +37,30 @@ function cadastrarSilo(req, res) {
     }
 }
 
+function buscarSilos(req,res){
+    let idUsuario = req.params.idUsuario;
+
+    if(idUsuario == undefined){
+        res.status(400).send("O id está undefined");
+    }else{
+        siloModel.buscarSilos(idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
+    }
+}
+
 module.exports = {
     cadastrarSilo
 }
