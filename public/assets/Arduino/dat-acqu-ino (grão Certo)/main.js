@@ -15,9 +15,9 @@ const serial = async (valoresDistancia) => {
   // Conexão com o banco - Verifique se a porta 3307 está correta para o seu MySQL!
   let poolBancoDados = mysql
     .createPool({
-      host: "localhost",
-      user: "aluno",
-      password: "Sptech#2024",
+      host: "10.18.33.127",
+      user: "lucas",
+      password: "@Senha123",
       database: "graoCerto",
       port: 3307,
     })
