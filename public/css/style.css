@@ -1430,7 +1430,7 @@ dashboard
 
 .alerta-silos {
   display: flex;
-  gap: 15px;
+  gap: 45px;
 }
 
 .silo-input {
