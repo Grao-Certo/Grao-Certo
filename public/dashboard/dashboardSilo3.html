@@ -65,7 +65,7 @@
                                 placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
 
                             <div class="resultado-estoque">
-                                <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                                <h3 class="titulo-info">VALOR TOTAL NO SILO</h3>
                                 <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="card-container">
-                    <h3 class="titulo-card">ESTOQUE SEMANAL </h3>
+                    <h3 class="titulo-card">OSCILAÇÃO DIÁRIA</h3>
                     <div class="dashboard-card">
                         <div class="grafico-container grafico-mensal">
                             <canvas id="grafico2"></canvas>
@@ -96,9 +96,9 @@
 
             </div>
 
-            <!-- LINHA 2: Entrada e Saída Total Semanal -->
+            <!-- LINHA 2: ENTRADA E SAÍDA DIÁRIA -->
             <div class="card-container full-width">
-                <h3 class="titulo-card">ENTRADA E SAÍDA TOTAL SEMANAL</h3>
+                <h3 class="titulo-card">ENTRADA E SAÍDA DIÁRIA</h3>
                 <div class="dashboard-card">
                     <div class="grafico-container grafico-semanal">
                         <canvas id="grafico4"></canvas>
@@ -106,9 +106,9 @@
                 </div>
             </div>
 
-            <!-- LINHA 3: Registro Volume Total Mensal -->
+            <!-- LINHA 3: MAIOR REGISTRO DO VOLUME MENSAL -->
             <div class="card-container full-width">
-                <h3 class="titulo-card">REGISTRO VOLUME TOTAL MENSAL</h3>
+                <h3 class="titulo-card">MAIOR REGISTRO DO VOLUME MENSAL</h3>
                 <div class="dashboard-card">
                     <div class="grafico-container grafico-mensal-full">
                         <canvas id="grafico6"></canvas>
@@ -157,7 +157,7 @@
         data: {
             labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
             datasets: [{
-                label: 'Alteração',
+                label: 'Quantidade de toneladas',
                 data: [60, 85, 70, 90, 75, 80, 65],
                 borderColor: '#8BC34A',
                 backgroundColor: 'rgba(139, 195, 74, 0.1)',
