@@ -1298,33 +1298,38 @@ dashboard
 }
 
 .card-topo {
-  margin-left: 25px;
   height: 150px;
-  width: 220px;
+  width: 300px;
   display: grid;
-  grid-template-rows: auto 1fr; 
+  grid-template: 3fr 1fr; 
   justify-items: center;
   align-items: center;
   border: 5px solid #2c6794;
-  border-radius: 5%;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .card-topo .titulo-card {
   text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .cards-topo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 90px;
-  grid-column: span 1;
+  gap: 45px;
 }
 
 .card-topo span {
-  font-size: 35px;
+  font-size: 50px;
   font-weight: bold;
+  margin: 0 0 10px 0;
+}
+
+.card-topo small {
+  font-size: 35px;
 }
 
 .card-topo .titulo-card {
@@ -1425,7 +1430,7 @@ dashboard
 
 .alerta-silos {
   display: flex;
-  gap: 15px;
+  gap: 45px;
 }
 
 .silo-input {
