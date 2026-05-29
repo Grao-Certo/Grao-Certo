@@ -1,3 +1,4 @@
+-- Active: 1779726796255@@127.0.0.1@3307@graoCerto
 CREATE DATABASE graoCerto;
 
 USE graoCerto;
@@ -21,9 +22,12 @@ CREATE TABLE
         senha CHAR(60) NOT NULL,
         tipo_usuario VARCHAR(20) NOT NULL,
         fk_empresa INT NOT NULL,
-        CONSTRAINT chk_tipo_usuario CHECK (tipo_usuario IN ('administrador', 'operador')),
+        CONSTRAINT chk_tipo_usuario CHECK (tipo_usuario IN ('administrador', 'operador', 'suporte')),
         FOREIGN KEY (fk_empresa) REFERENCES empresa (id)
     );
+
+ALTER TABLE usuario DROP CONSTRAINT chk_tipo_usuario;
+ALTER TABLE usuario ADD CONSTRAINT chk_tipo_usuario CHECK (tipo_usuario IN ('administrador', 'operador', 'suporte'));
 
 CREATE TABLE telefone (
     id INT PRIMARY KEY AUTO_INCREMENT,
