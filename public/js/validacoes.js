@@ -34,18 +34,13 @@ function cadastrarUsuario() {
     let senha = input_senha.value;
     let confirmarSenha = input_confirmarSenha.value;
 
-    let validoEmail = false;
-    if (email.includes('@') && email.indexOf('@') > 0 && email.lastIndexOf('.') > email.indexOf('@') + 1 && email.lastIndexOf('.') < email.length - 1) {
-        validoEmail = true;
-    }
-
     if (usuario == 'Operador' || usuario == 'Administrador') {
 
         if (nome != '') {
 
             if (cpf.length == 14 && cpf[3] == '.' && cpf[7] == '.' && cpf[11] == '-') {
 
-                if (validoEmail) {
+                if (email.includes('@') && email.includes('.')) {
 
                     if (criterios == 3) { // senha
 
@@ -68,7 +63,7 @@ function cadastrarUsuario() {
                                         tipoUsuarioServer: usuario
                                     }
                                     ),
-                                }
+                                }   
                             ).then(
                                 function (resposta) {
                                     console.log("resposta: ", resposta);
@@ -123,23 +118,17 @@ function cadastrarEmpresa() {
     let senha = input_senha.value;
     let confirmarSenha = input_confirmarSenha.value;
 
-    let validoEmail = false;
-    if (email.includes('@') && email.indexOf('@') > 0 && email.lastIndexOf('.') > email.indexOf('@') + 1 && email.lastIndexOf('.') < email.length - 1) {
-        validoEmail = true;
-    }
-
-
     if (nome != '') {
 
         if (cnpj.length == 18 && cnpj[2] == '.' && cnpj[6] == '.' && cnpj[10] == '/' && cnpj[15] == '-') {
 
-            if (validoEmail) {
+            if (email.includes('@') && email.includes('.')) {
 
                 if (cep.length == 9 && cep[5] == '-') {
 
                     if (numero != '') {
 
-                        if (criterios == 3) {
+                        if (senha != '') {
 
                             if (senha == confirmarSenha) {
 
@@ -162,12 +151,12 @@ function cadastrarEmpresa() {
                                     }
                                 ).then (
                                     function (resposta) {
-                                        if (resposta.ok) {
+                                         if (resposta.ok) {
                                             resposta.json().then(jsonEmpresa => {
                                                 let idEmpresaCriada = jsonEmpresa.insertId;
-
+ 
                                                 div_mensagem2.innerHTML = '<span class="acerto"> Empresa cadastrada!</span>';
-
+ 
                                                 fetch("/usuarios/cadastrarUsuario", {
                                                     method: "POST",
                                                     headers: {
@@ -197,11 +186,11 @@ function cadastrarEmpresa() {
                                             });
                                         } else {
                                             div_mensagem2.innerHTML = '<span class="erro"> Houve um erro ao cadastrar a empresa.</span>';
-                                        }
-                                    })
-                                    .catch(function (erro) {
-                                        console.log(`#ERRO: ${erro}`);
-                                    });
+                                         }
+                                     })
+                                     .catch(function (erro) {
+                                         console.log(`#ERRO: ${erro}`);
+                                     });
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> As senha não coicidem!'
                             }
@@ -258,6 +247,7 @@ function logar() {
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.ID_EMPRESA = json.empresaId;
+                    sessionStorage.TIPO_USUARIO = json.tipo;
 
                     setTimeout(function () {
                         window.location = "dashboard/dashboardGeral.html";
@@ -418,6 +408,7 @@ function mascaraCPF(input) {
     let valorOriginal = input.value;
     let apenasNumeros = "";
 
+    // 1. Filtrar apenas o que é número (comparando caractere por caractere)
     for (let i = 0; i < valorOriginal.length; i++) {
         let caractere = valorOriginal[i];
         // Verifica se o caractere está entre "0" e "9"
@@ -426,6 +417,7 @@ function mascaraCPF(input) {
         }
     }
 
+    // 2. Montar a máscara manualmente baseada na quantidade de números
     let valorFormatado = "";
 
     for (let i = 0; i < apenasNumeros.length; i++) {
@@ -439,6 +431,7 @@ function mascaraCPF(input) {
         valorFormatado += apenasNumeros[i];
     }
 
+    // 3. Atualiza o campo com o valor filtrado e formatado
     input.value = valorFormatado;
 }
 
@@ -446,6 +439,7 @@ function mascaraCNPJ(input) {
     let valorOriginal = input.value;
     let apenasNumeros = "";
 
+    // 1. Filtrar apenas o que é número (comparando caractere por caractere)
     for (let i = 0; i < valorOriginal.length; i++) {
         let caractere = valorOriginal[i];
         // Verifica se o caractere está entre "0" e "9"
@@ -454,6 +448,7 @@ function mascaraCNPJ(input) {
         }
     }
 
+    // 2. Montar a máscara manualmente baseada na quantidade de números
     let valorFormatado = "";
 
     for (let i = 0; i < apenasNumeros.length; i++) {
@@ -469,6 +464,7 @@ function mascaraCNPJ(input) {
         valorFormatado += apenasNumeros[i];
     }
 
+    // 3. Atualiza o campo com o valor filtrado e formatado
     input.value = valorFormatado;
 }
 
@@ -476,6 +472,7 @@ function mascaraCEP(input) {
     let valorOriginal = input.value;
     let apenasNumeros = "";
 
+    // 1. Filtrar apenas o que é número (comparando caractere por caractere)
     for (let i = 0; i < valorOriginal.length; i++) {
         let caractere = valorOriginal[i];
         // Verifica se o caractere está entre "0" e "9"
@@ -484,6 +481,7 @@ function mascaraCEP(input) {
         }
     }
 
+    // 2. Montar a máscara manualmente baseada na quantidade de números
     let valorFormatado = "";
 
     for (let i = 0; i < apenasNumeros.length; i++) {
@@ -493,5 +491,6 @@ function mascaraCEP(input) {
         valorFormatado += apenasNumeros[i];
     }
 
+    // 3. Atualiza o campo com o valor filtrado e formatado
     input.value = valorFormatado;
 }

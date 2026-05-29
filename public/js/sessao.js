@@ -15,14 +15,14 @@ function validarSessao() {
     }
 }
 
-// function validarAdmin() {
-//     var tipo = sessionStorage.TIPO_USUARIO;
-    
-//     if(tipo == `Administrador`){
-//         admin.innerHTML = `<li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li> <br>
-//                            <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li> `
-//     }
-// }
+function validarAdmin() {
+     var tipo = sessionStorage.TIPO_USUARIO;
+
+         if(tipo == `administrador`){
+            return true;
+        }
+            return false;
+}
 
 function limparSessao() {
     sessionStorage.clear();
