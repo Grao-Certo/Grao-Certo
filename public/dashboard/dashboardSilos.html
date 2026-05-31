@@ -11,7 +11,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body class="dashboard-body" onload="validarSessao()">
+<body class="dashboard-body" onload="validarSessao(); carregarDadosSilo();">
 
     <div class="dashboard-layout">
 
@@ -127,6 +127,18 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
+
+    function carregarDadosSilo() {
+    let idSilo = sessionStorage.getItem("ID_SILO_ATUAL");
+
+    if (!idSilo) {
+        alert(`Erro: Nenhum silo foi selecionado.`);
+        window.location.href = "dashboardGeral.html";
+        return;
+    }
+
+    console.log(`Página carregada. Carregando dados do silo: ${idSilo}`);
+    }
 
     function toggleMenu(element) {
         element.classList.toggle("ativo");
