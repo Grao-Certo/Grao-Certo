@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao.js"></script>
+    <script src="../js/buscar.js"></script>
 </head>
 
-<body class="dashboard-body" onload="validarSessao(); carregarDadosSilo();">
+<body class="dashboard-body" onload="validarSessao(); carregarDadosSilo()">
 
     <div class="dashboard-layout">
 
@@ -31,12 +32,9 @@
 
                 <li class="menu-item" onclick="toggleMenu(this)">
                     <span class="seta">▶</span> DASHBOARD
-                    <ul class="submenu">
+                    <ul class="submenu" id="ul_submenu">
                         <li> <a href="dashboardGeral.html">AVISOS</a> </li>
                         <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
-                        <li> <a href="dashboardSilo1.html" id="active">SILO 1</a> </li>
-                        <li> <a href="dashboardSilo2.html">SILO 2</a> </li>
-                        <li> <a href="dashboardSilo3.html">SILO 3</a> </li>
                     </ul>
                 </li>
 
@@ -127,6 +125,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
+
+    buscarSilos();
 
     function carregarDadosSilo() {
     let idSilo = sessionStorage.getItem("ID_SILO_ATUAL");
