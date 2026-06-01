@@ -2,49 +2,6 @@ function toggleMenu(element) {
     element.classList.toggle("ativo");
 }
 
-const ctx1 = document.getElementById('grafico1');
-
-new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ['SILO 1', 'SILO 2', 'SILO 3'],
-        datasets: [
-            {
-            data: [95, 10, 62],
-            backgroundColor: ['#7f0d0d', '#f1ae00', '#324001']
-            }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function (context) {
-                        return context.raw + '%';
-                    }
-                }
-            },
-            datalabels: {
-                anchor: 'end',
-                align: 'top',
-                formatter: function (value) {
-                    return value + '%';
-                },
-                font: {
-                    weight: 'bold',
-                    size: 14
-                }
-            }
-        }
-    },
-    plugins: [ChartDataLabels]
-});
-
 let graficoVolume;
 
 function obterDadosDashboard() {
@@ -92,31 +49,47 @@ function obterDadosDashboard() {
     );
 }
 
-function processarDadosDashboard (dados){
-    let totalAtual = 0;
+function processarDadosDashboard(dados) {
     let totalMax = 0;
-    let listaAvisos = [];
+    let totalAtual = 0;
 
-    let labelsGrafico = [];
-    let porcentagemGrafico = [];
+    let listaAvisos = [];
     let coresGrafico = [];
-        
+    let labelsGrafico = [];
+
+    let porcentagemGrafico = [];
+
     container_alertas.innerHTML = "";
 
     for (let i = 0; i < dados.length; i++) {
         let silo = dados[i];
 
-        totalAtual += silo.volume_atual;
-        totalMax += silo.volume_total;
+        let raio = Number(silo.raio);
+        let alturaTotal = Number(silo.altura_total);
+        let distancia = Number(silo.distancia_superficie);
 
-        let porcentagem = (silo.volume_atual / silo.volume_total) * 100;
+        let alturaCone = silo.altura_cone ? Number(silo.altura_cone) : 0;
+
+        let volumeTotal = (3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone);
+
+        let diferencaAltura = alturaTotal - distancia;
+
+        if (diferencaAltura < 0) {
+            diferencaAltura = 0;
+        }
+        
+        let volumeAtual = 3.1416 * raio * raio * diferencaAltura;
+        
+        totalAtual += volumeAtual;
+        totalMax += volumeTotal;
+        
+        let porcentagem = volumeTotal > 0 ? (volumeAtual / volumeTotal) * 100 : 0;
         let tipoAviso = "";
-        let corBarra = "#324001"; // Verde (normal)
-            
+        let corBarra = "#324001";
         if (porcentagem > 80) {
             tipoAviso = "vermelho";
             corBarra = "#7f0d0d";
-                                
+
             listaAvisos.push(
                 {
                     idSilo: silo.id_silo,
@@ -126,29 +99,83 @@ function processarDadosDashboard (dados){
                 }
             );
 
-            container_alertas.innerHTML += `<input type="text" class="silo-input critico" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Risco de superlotação" readonly>`;
+            container_alertas.innerHTML += `<input type="text" class="silo-input critico" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Risco de superlotação">`;
 
         } else if (porcentagem < 20) {
             tipoAviso = "amarelo";
             corBarra = "#f1ae00";
-
             listaAvisos.push(
                 {
-                    idSilo: silo.id_silo,
-                    fkEmpresa: silo.fk_empresa,
-                    porcentagem: porcentagem,
-                    tipoAviso: tipoAviso
+                idSilo: silo.id_silo,
+                fkEmpresa: silo.fk_empresa,
+                porcentagem: porcentagem,
+                tipoAviso: tipoAviso
                 }
             );
-            container_alertas.innerHTML += `<input type="text" class="silo-input atencao" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Nível baixo" readonly>`;
+
+            container_alertas.innerHTML += `<input type="text" class="silo-input atencao" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Nível baixo">`;
         }
 
         labelsGrafico.push("SILO " + silo.id_silo);
         porcentagemGrafico.push(porcentagem.toFixed(1));
         coresGrafico.push(corBarra);
+
     }
-
-    kpi_totalArmazenado.innerHTML = (totalAtual).toFixed(1) + " / " + (totalMax).toFixed(1) + " <small>m³</small>";
-
+    
+    kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)}m³</small>`;
     kpi_totalAlertas.innerHTML = listaAvisos.length;
+
+    plotarGrafico(labelsGrafico, porcentagemGrafico, coresGrafico);
+
+}
+
+function plotarGrafico(labels, dados, cores) {
+
+    const ctx1 = document.getElementById('grafico1');
+
+    //destruindo o primeiro grafico para não dar conflito de pré-existencia
+    if (graficoVolume) {
+        graficoVolume.destroy();
     }
+
+    graficoVolume = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: dados,
+                backgroundColor: cores
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: 
+                        function (contexto) {
+                            return contexto.raw + '%';
+                        }
+                    }
+                },
+                datalabels: {
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: 
+                    function (valor) {
+                        return valor + '%';
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+}

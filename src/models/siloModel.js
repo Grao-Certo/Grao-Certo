@@ -64,24 +64,18 @@ function obterTotalSilos(idEmpresa) {
 }
 
 function obterDadosGerais(idEmpresa) {
-	console.log(`
-		ACESSEI O SILO MODEL:
-		function obterDadosGerais:
-		empresa Atual : ${idEmpresa}
-	`);
-
     var instrucaoSql = `
-        SELECT 
-            v.id_silo,
-            v.volume_atual,
-            v.volume_total,
-            s.fk_empresa
-        FROM 
-            vw_volume_silo v
-        JOIN 
-            silo s ON v.id_silo = s.id
-        WHERE 
-            s.fk_empresa = ${idEmpresa};
+        SELECT s.id AS id_silo, s.raio, s.altura_total, s.altura_cone, t.distancia_superficie, s.fk_empresa
+        FROM silo AS s
+        JOIN sensor AS se ON se.fk_silo = s.id
+        JOIN telemetria AS t ON t.fk_sensor = se.id
+        JOIN (
+            SELECT fk_sensor, MAX(id) AS max_id 
+            FROM telemetria 
+            GROUP BY fk_sensor
+        ) AS maisRecente 
+		ON t.id = maisRecente.max_id
+        WHERE s.fk_empresa = ${idEmpresa};
     `;
     return database.executar(instrucaoSql);
 }
