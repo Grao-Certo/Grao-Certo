@@ -1,6 +1,8 @@
 -- Active: 1779726796255@@127.0.0.1@3307@graoCerto
 CREATE DATABASE graoCerto;
 
+DROP DATABASE graoCerto;
+
 USE graoCerto;
 
 CREATE TABLE empresa (
@@ -59,12 +61,7 @@ CREATE TABLE sensor (
     data_instalacao DATE,
     fk_silo INT NOT NULL,
     CONSTRAINT chk_status_sensor CHECK (
-        status_sensor IN (
-            'ativo',
-            'inativo',
-            'manutencao',
-            'instalacao'
-        )
+        status_sensor IN ('ativo','inativo','manutencao','instalacao')
     ),
     FOREIGN KEY (fk_silo) REFERENCES silo (id)
 );
@@ -77,183 +74,55 @@ CREATE TABLE telemetria (
     FOREIGN KEY (fk_sensor) REFERENCES sensor (id)
 );
 
-INSERT INTO
-    empresa (
-        nome,
-        cnpj,
-        email,
-        cep,
-        numero_endereco,
-        complemento_endereco
-    )
-VALUES (
-        'AgroTech Soluções',
-        '12345678000101',
-        'contato@agrotech.com',
-        '04567010',
-        '120',
-        'Galpão A'
-    ),
-    (
-        'Silos Brasil LTDA',
-        '98765432000199',
-        'financeiro@silosbrasil.com',
-        '03312040',
-        '450',
-        NULL
-    ),
-    (
-        'Armazéns do Campo',
-        '11223344000155',
-        'suporte@armazens.com',
-        '06789030',
-        '78',
-        'Bloco 2'
-    );
+INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endereco) VALUES
+('AgroTech Soluções','12345678000101','contato@agrotech.com','04567010','120','Galpão A'),
+('Silos Brasil LTDA','98765432000199','financeiro@silosbrasil.com','03312040','450',NULL),
+('Armazéns do Campo','11223344000155','suporte@armazens.com','06789030','78','Bloco 2');
 
-INSERT INTO
-    usuario (
-        nome,
-        email,
-        senha,
-        tipo_usuario,
-        documento_usuario,
-        fk_empresa
-    )
-VALUES (
-        'Carlos Mendes',
-        'carlos@agrotech.com',
-        '$2a$12$hashfake1',
-        'administrador',
-        '41231234123412',
-        1
-    ),
-    (
-        'Ana Souza',
-        'ana@agrotech.com',
-        '$2a$12$hashfake2',
-        'operador',
-        '23412312341234',
-        1
-    ),
-    (
-        'Bruno Lima',
-        'bruno@silosbrasil.com',
-        '$2a$12$hashfake3',
-        'administrador',
-        '11231231231234',
-        2
-    ),
-    (
-        'Fernanda Alves',
-        'fernanda@armazens.com',
-        '$2a$12$hashfake4',
-        'operador',
-        '13123123123412',
-        3
-    );
+INSERT INTO usuario (nome, email, senha, tipo_usuario, documento_usuario, fk_empresa) VALUES 
+('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake1','administrador','41231234123412',1),
+('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','23412312341234',1),
+('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','11231231231234',2),
+('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','13123123123412',3);
 
-INSERT INTO
-    telefone (
-        numero,
-        tipo,
-        fk_empresa,
-        fk_usuario
-    )
-VALUES (
-        '11987654321',
-        'empresa',
-        1,
-        NULL
-    ),
-    (
-        '11911112222',
-        'pessoal',
-        NULL,
-        1
-    ),
-    (
-        '11933334444',
-        'pessoal',
-        NULL,
-        2
-    ),
-    (
-        '11955556666',
-        'empresa',
-        2,
-        NULL
-    ),
-    (
-        '11977778888',
-        'empresa',
-        3,
-        NULL
-    ),
-    (
-        '11999990000',
-        'pessoal',
-        NULL,
-        4
-    );
+INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES 
+('11987654321', 'empresa', 1, NULL),
+('11911112222', 'pessoal', NULL, 1),
+('11933334444', 'pessoal', NULL, 2),
+('11955556666', 'empresa', 2, NULL),
+('11977778888', 'empresa', 3, NULL),
+('11999990000', 'pessoal', NULL, 4);
 
-INSERT INTO
-    silo (
-        raio,
-        altura_cone,
-        altura_total,
-        largura,
-        fk_empresa
-    )
-VALUES (4.00, 2.00, 12.00, 8.00, 1);
+INSERT INTO silo ( raio, altura_cone, altura_total, largura, fk_empresa ) VALUES 
+(4.00, 2.00, 12.00, 8.00, 1);
 
-INSERT INTO
-    sensor (
-        status_sensor,
-        data_instalacao,
-        fk_silo
-    )
-VALUES ('ativo', '2024-01-10', 1);
+INSERT INTO sensor ( status_sensor, data_instalacao, fk_silo ) VALUES 
+('ativo', '2024-01-10', 1);
 
 ---------------------------------------------------------------------------
 ----------------------------- KPIS E AVISOS -------------------------------
 ---------------------------------------------------------------------------
--- VIEW COM O TOTAL DE SILOS E VOLUME DELAS ---------  GLOBAL -------------
+
+-- VIEW COM O TOTAL DE SILOS E VOLUME DELAS 
+---------  GLOBAL -------------
 CREATE VIEW vw_volume_silo AS
 SELECT
     s.id AS id_silo,
-    ROUND(
-        (
-            3.1416 * s.raio * s.raio * (
-                s.altura_total - t.distancia_superficie
-            )
-        ),
-        2
-    ) AS volume_atual,
-    ROUND(
-        (
-            3.1416 * s.raio * s.raio * s.altura_total
-        ) + (
-            (1.0 / 3.0) * 3.1416 * s.raio * s.raio * s.altura_cone
-        ),
-        2
-    ) AS volume_total
+    ROUND((3.1416 * s.raio * s.raio * (s.altura_total - t.distancia_superficie)),2) AS volume_atual,
+    ROUND((3.1416 * s.raio * s.raio * s.altura_total) + ((1.0 / 3.0) * 3.1416 * s.raio * s.raio * s.altura_cone),2) AS volume_total
 FROM
     silo s
     JOIN sensor se ON se.fk_silo = s.id
     JOIN telemetria t ON t.fk_sensor = se.id;
+    
 ---------------------------------------------------------------------------
 -------------- DASHBOARD INDIVIDUAL DE SILO -------------------------------
 ---------------------------------------------------------------------------
+
 -- View total_silos + (data da última atualização)
 CREATE VIEW vw_volume_total_silo AS
 SELECT id AS id_silo, ROUND(
-        (
-            3.1416 * raio * raio * altura_total
-        ) + (
-            (1.0 / 3.0) * 3.1416 * raio * raio * altura_cone
-        ), 2
-    ) AS volume_total
+        (3.1416 * raio * raio * altura_total) + ((1.0 / 3.0) * 3.1416 * raio * raio * altura_cone), 2) AS volume_total
 FROM silo;
 
 -- Entrada e saída diária (Alterações gerais)

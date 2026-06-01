@@ -26,7 +26,12 @@ function cadastrarSilo(altura, comprimento, largura, raio, alturaCone,fkEmpresa)
 }
 
 function buscarSilos(idUsuario){
-	console.log("ACESSEI O SILO MODEL");
+	console.log(`
+		ACESSEI O SILO MODEL
+
+		function buscarSilos():
+		idUsuario : ${idUsuario}
+	`);
 
 	let instrucaoSql = `
 		SELECT 
@@ -45,7 +50,45 @@ function buscarSilos(idUsuario){
     return database.executar(instrucaoSql);
 }
 
+function obterTotalSilos(idEmpresa) {
+	console.log(`
+		ACESSEI O SILO MODEL:
+		function obterTotalSilos:
+		empresa Atual : ${idEmpresa}
+	`);
+
+    var instrucaoSql = `
+        SELECT COUNT(id) AS total FROM silo WHERE fk_empresa = ${idEmpresa};
+    `;
+    return database.executar(instrucaoSql);
+}
+
+function obterDadosGerais(idEmpresa) {
+	console.log(`
+		ACESSEI O SILO MODEL:
+		function obterDadosGerais:
+		empresa Atual : ${idEmpresa}
+	`);
+
+    var instrucaoSql = `
+        SELECT 
+            v.id_silo,
+            v.volume_atual,
+            v.volume_total,
+            s.fk_empresa
+        FROM 
+            vw_volume_silo v
+        JOIN 
+            silo s ON v.id_silo = s.id
+        WHERE 
+            s.fk_empresa = ${idEmpresa};
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarSilo,
-	buscarSilos
+	buscarSilos,
+	obterTotalSilos,
+	obterDadosGerais
 };

@@ -63,7 +63,48 @@ function buscarSilos(req,res){
     }
 }
 
+function obterTotalSilos (req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if(idEmpresa == undefined){
+        res.status(400).send("O idEmpresa retornou undefined");
+    } else {
+        siloModel.obterTotalSilos(idEmpresa).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+
+}
+
+function obterDadosGerais (req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if(idEmpresa == undefined){
+        res.status(400).send("O idEmpresa retornou undefined");
+    } else {
+        silosModel.obterDadosGerais(idEmpresa).then(
+            function(resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function(erro){
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
 module.exports = {
     cadastrarSilo,
-    buscarSilos
+    buscarSilos,
+    obterTotalSilos,
+    obterDadosGerais
 }
