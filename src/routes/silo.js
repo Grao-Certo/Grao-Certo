@@ -11,4 +11,12 @@ router.get("/buscarSilos/:idUsuario", function (req,res){
     siloController.buscarSilos(req,res);
 });
 
+router.post("/totalSilos/:idEmpresa", function (req, res) {
+    siloController.obterTotalSilos(req, res);
+});
+
+router.get("/ObterDadosGerais/:idEmpresa", function (req,res){
+    siloController.obterDadosGerais(req,res);
+});
+
 module.exports = router;
