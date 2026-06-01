@@ -149,6 +149,12 @@ function plotarGrafico(labels, dados, cores) {
         },
         options: {
             responsive: true,
+            scales: {
+                y: {
+                    max: 100,
+                    min: 0 
+                }
+            },
             maintainAspectRatio: false,
             plugins: {
                 legend: {
