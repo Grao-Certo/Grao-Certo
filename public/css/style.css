@@ -7,9 +7,11 @@
   font-family: Dm Sans;
   src: url(../assets/fonts/DMSans-VariableFont_opsz,wght.ttf);
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 * {
   padding: 0;
   margin: 0;
@@ -17,10 +19,12 @@ html {
   text-decoration: none;
   font-family: Dm Sans;
 }
+
 .index {
   background-color: #417fa6;
   overflow-x: hidden;
 }
+
 .imagem_fundo {
   position: relative;
   background-image:
@@ -44,19 +48,23 @@ html {
   align-items: center;
   padding: 0 60px;
 }
+
 #logo {
   height: 70px;
 }
+
 .barra ul {
   display: flex;
   padding: 0 30px 0 0;
 }
+
 .barra li {
   margin: 20px;
   list-style: none;
   cursor: pointer;
   font-weight: bold;
 }
+
 .barra li a {
   color: white;
   transition: 0.2s;
@@ -65,6 +73,7 @@ html {
   font-size: 22px;
   padding-right: 8px;
 }
+
 .barra li a::after {
   content: "";
   position: absolute;
@@ -75,12 +84,15 @@ html {
   background-color: var(--cor-fundo-button-bottom);
   transition: width 0.3s ease-in-out;
 }
+
 .barra li a:hover::after {
   width: 100%;
 }
+
 #active {
   color: var(--cor-fundo-button-bottom);
 }
+
 .barra button {
   height: 37px;
   width: 120px;
@@ -92,21 +104,25 @@ html {
   font-weight: bold;
   color: var(--cor-verde-escuro);
 }
+
 .barra button:hover {
   background-image: linear-gradient(to right, #319e2d, #042e09);
   color: white;
 }
+
 .conteudo_header {
   margin-top: 59px;
   display: flex;
   flex-direction: column;
   margin-left: 15vw;
 }
+
 .conteudo_header h2 {
   word-spacing: 10px;
   color: white;
   font-size: 28px;
 }
+
 .conteudo_header li {
   margin-left: 10px;
   margin-top: 5px;
@@ -115,21 +131,25 @@ html {
   font-size: 20px;
   list-style: var(--cor-verde-escuro);
 }
+
 .conteudo_header h3 {
   margin-bottom: 5px;
   color: white;
   font-size: 35px;
 }
+
 .conteudo_header p {
   color: white;
 
   margin-bottom: 10px;
   font-size: 20px;
 }
+
 .btn_contato {
   display: flex;
   flex-direction: row;
 }
+
 .btn_contato button {
   margin-right: 10px;
   margin-top: 10px;
@@ -145,10 +165,12 @@ html {
   font-weight: bold;
   text-transform: uppercase;
 }
+
 .btn_contato button:hover {
   background-image: linear-gradient(to right, #319e2d, #042e09);
   color: white;
 }
+
 .imagem_contato {
   top: 80%;
   position: absolute;
@@ -157,12 +179,14 @@ html {
   justify-content: space-evenly;
   z-index: 2;
 }
+
 .imagem_contato img {
   height: 300px;
   border-radius: 5px;
   transition: 0.5s;
 }
-.imagem_contato img:hover{
+
+.imagem_contato img:hover {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
@@ -173,21 +197,25 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .logo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .logo img {
   width: 130%;
   height: 130%;
   margin-bottom: 20px;
 }
+
 .logo p {
   font-family: "DM Sans", sans-serif;
   color: white;
   font-size: 30px;
 }
+
 .Sobre {
   padding: 40px;
   display: flex;
@@ -196,17 +224,20 @@ html {
   align-items: center;
   color: white;
 }
+
 .Sobre b {
   font-size: 38px;
   margin-left: 50px;
   font-style: italic;
 }
+
 .Sobre p {
   width: 920px;
   text-align: center;
   font-size: 30px;
   margin-left: 50px;
 }
+
 .slogan {
   margin: 30px;
   padding: 30px;
@@ -214,6 +245,7 @@ html {
   margin-left: 50px;
   font-size: 60px;
 }
+
 .container-footer {
   padding: 5%;
   display: flex;
@@ -221,10 +253,12 @@ html {
   flex-direction: column;
   background-color: #183a55;
 }
+
 .footer {
   display: flex;
   width: 100vw;
 }
+
 .logo-footer {
   display: flex;
   flex-direction: column;
@@ -232,9 +266,11 @@ html {
   margin-right: 100px;
   align-items: center;
 }
+
 .logo-footer img {
   width: 600px;
 }
+
 .informacoes {
   margin-top: 60px;
   display: flex;
@@ -249,6 +285,7 @@ html {
   color: white;
   font-size: 15px;
 }
+
 .informacoes a {
   margin-left: 50px;
   margin-bottom: 18px;
@@ -256,14 +293,17 @@ html {
   font-size: 15px;
   transition: 0.5s;
 }
+
 .informacoes a:hover {
   color: var(--cor-fundo-button-bottom);
 }
+
 .informacoes h3 {
   margin-left: 50px;
   margin-bottom: 22px;
   color: #95b814;
 }
+
 .container-cop {
   padding: 1%;
   display: flex;
@@ -284,14 +324,17 @@ html {
   align-items: center;
   padding: 0 60px;
 }
+
 .LoginCadastro #logo {
   height: 70px;
   width: 250px;
 }
+
 .LoginCadastro ul {
   display: flex;
   padding: 20px;
 }
+
 .LoginCadastro li {
   margin: 20px;
   list-style: none;
@@ -299,6 +342,7 @@ html {
   font-weight: bold;
   padding: 10px;
 }
+
 .LoginCadastro li a {
   color: white;
   transition: 0.3s;
@@ -306,6 +350,7 @@ html {
   position: relative;
   font-size: 22px;
 }
+
 .LoginCadastro li a::after {
   content: "";
   position: absolute;
@@ -316,9 +361,11 @@ html {
   background-color: var(--cor-verde-escuro);
   transition: width 0.3s ease-in-out;
 }
+
 .LoginCadastro li a:hover::after {
   width: 100%;
 }
+
 .bodyLoginCad {
   background: url(../assets/imgs/fundoLogin.png);
   height: 100vh;
@@ -340,6 +387,7 @@ html {
   font-weight: bold;
   transition: 0.3s;
 }
+
 .bodyLoginCad button:hover {
   transform: translateY(-7px);
   box-shadow: 0 0 20px 0 black;
@@ -385,11 +433,13 @@ html {
   object-fit: cover;
   object-position: center;
 }
+
 .container-Login {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
+
 .container-Login .parteEsquerda {
   position: relative;
   text-align: center;
@@ -402,6 +452,7 @@ html {
   top: 0%;
   left: 2%;
 }
+
 /* Parte do login */
 .container-Login .parteDireita {
   position: absolute;
@@ -414,6 +465,7 @@ html {
   flex-direction: column;
   align-items: center;
 }
+
 .container-Login .formulario {
   position: relative;
   background-color: #32400192;
@@ -421,6 +473,7 @@ html {
   border: solid var(--cor-fundo-button-bottom);
   margin-top: 0;
 }
+
 .container-Login input {
   border: solid transparent;
   border-bottom: solid var(--cor-fundo-button-bottom);
@@ -434,6 +487,7 @@ html {
   font-size: 23px;
   transition: 0.4s;
 }
+
 .container-Login input:hover {
   transform: translateY(-5px);
   width: 500px;
@@ -443,6 +497,7 @@ html {
   border: solid 2px rgb(157, 157, 173);
   border-radius: 15px;
 }
+
 .container-Login .formulario button {
   margin: 20px 0 30px 0;
 }
@@ -451,6 +506,7 @@ html {
 .bodyLoginCad input::placeholder {
   color: white;
 }
+
 .formulario h1 {
   margin: 30px 0 40px 0;
 }
@@ -463,12 +519,14 @@ html {
   object-fit: cover;
   object-position: center;
 }
+
 .container-Cadastro {
   display: flex;
   flex-direction: column;
   align-items: baseline;
   justify-content: space-between;
 }
+
 .container-Cadastro .parteSuperior {
   position: absolute;
   text-align: center;
@@ -481,6 +539,7 @@ html {
   top: 10%;
   margin-left: 25px;
 }
+
 .container-Cadastro .parteInferior {
   position: absolute;
   text-align: center;
@@ -500,6 +559,7 @@ html {
   margin-top: 10px;
   padding: 0;
 }
+
 .bodyLoginCad .container-Cadastro input {
   border: solid transparent;
   border-bottom: solid var(--cor-fundo-button-bottom);
@@ -513,6 +573,7 @@ html {
   font-size: 21px;
   transition: 0.4s;
 }
+
 .bodyLoginCad .container-Cadastro input:hover {
   transform: translateY(-5px);
   width: 500px;
@@ -527,6 +588,7 @@ html {
   margin: 25px 0;
   font-size: 40px;
 }
+
 .container-Cadastro select {
   width: 120px;
   height: 50px;
@@ -536,6 +598,7 @@ html {
   font-size: 20px;
   margin-top: 5px;
 }
+
 .container-Cadastro label {
   position: relative;
   margin: 10px 10px 20px 10px;
@@ -544,6 +607,7 @@ html {
   border-bottom: solid 3px #95b814;
   font-size: 21px;
 }
+
 .container-Cadastro .formulario button {
   margin: 20px 0 30px 0;
 }
@@ -554,7 +618,7 @@ html {
   flex-direction: row;
 }
 
-.menu-item a{
+.menu-item a {
   text-decoration: none;
   color: white;
 }
@@ -615,6 +679,7 @@ html {
   margin: 25px 0;
   font-size: 40px;
 }
+
 .container-Cadastro-silo select {
   width: 280px;
   height: 50px;
@@ -634,6 +699,7 @@ html {
   border-bottom: solid 3px #5293e2;
   font-size: 21px;
 }
+
 .container-Cadastro-silo .formulario button {
   margin: 20px 0 30px 0;
 }
@@ -651,6 +717,7 @@ html {
   font-weight: bold;
   transition: 0.3s;
 }
+
 .container-Cadastro-silo button:hover {
   transform: translateY(-7px);
   box-shadow: 0 0 20px 0 black;
@@ -684,9 +751,11 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   width: 100px;
   margin: 0 20px;
 }
+
 .secao-beneficios p {
   font-size: 20px;
 }
+
 /* Botão Verde Padrão */
 .botao-primario {
   display: inline-block;
@@ -717,6 +786,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   width: 80%;
   border-radius: 10px;
 }
+
 .caixa-de-destaque p {
   color: white;
   text-align: center;
@@ -797,7 +867,8 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   padding-bottom: 30px;
   transition: 0.5s;
 }
-.cartao-beneficio:hover{
+
+.cartao-beneficio:hover {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
@@ -842,6 +913,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   width: 50%;
   padding: 50px;
 }
+
 .imagem-porque-nos img {
   width: 100%;
   height: 108%;
@@ -861,6 +933,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 .texto-porque-nos .rotulo-secao {
   justify-content: flex-start;
 }
+
 .btn_porque-nos {
   display: flex;
   flex-direction: row;
@@ -868,6 +941,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   margin-bottom: 50px;
   margin-left: 20px;
 }
+
 .btn_porque-nos button {
   margin-right: 10px;
   margin-top: 10px;
@@ -879,10 +953,12 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   font-size: 19px;
   color: var(--cor-verde-escuro);
 }
+
 .btn_porque-nos button:hover {
   background-image: linear-gradient(to right, #319e2d, #042e09);
   color: white;
 }
+
 .texto-porque-nos h2 {
   text-align: left;
   font-size: 22px;
@@ -910,6 +986,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   text-align: justify;
   margin-left: 25px;
 }
+
 /*Seção simulador na calculadora*/
 .caixa-de-destaque-simulador {
   background-color: #183a55;
@@ -921,17 +998,20 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   text-transform: uppercase;
   font-weight: bold;
 }
+
 .caixa-de-destaque-simulador p {
   color: white;
   text-align: center;
   font-size: 24px;
 }
+
 .btn_simulador {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-bottom: 50px;
 }
+
 .btn_simulador button {
   margin-right: 10px;
   margin-top: 10px;
@@ -949,6 +1029,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   background-image: linear-gradient(to right, #319e2d, #042e09);
   color: white;
 }
+
 /* CALCULADORA */
 body.simulador-body {
   position: relative;
@@ -960,7 +1041,7 @@ body.simulador-body {
   text-align: center;
 }
 
-.simulador_fundo{
+.simulador_fundo {
   height: 600px;
   width: 100vw;
   z-index: 1;
@@ -995,7 +1076,7 @@ body.simulador-body {
   vertical-align: middle;
 }
 
-.container-pai{
+.container-pai {
   position: absolute;
   padding: 20px;
   width: 100vw;
@@ -1031,11 +1112,11 @@ body.simulador-body {
   padding: 12px;
   border-radius: 25px;
   border: 2px solid transparent;
-  
+
   background:
-  linear-gradient(#1f4b6d, #1f4b6d) padding-box,
-  linear-gradient(90deg, #2d6cdf, #6ea8ff) border-box;
-  
+    linear-gradient(#1f4b6d, #1f4b6d) padding-box,
+    linear-gradient(90deg, #2d6cdf, #6ea8ff) border-box;
+
   color: white;
   outline: none;
 }
@@ -1056,10 +1137,10 @@ body.simulador-body {
   height: 78px;
   border-radius: 50%;
   border: 2px solid transparent;
-  
+
   background:
-  linear-gradient(#1f4b6d, #1f4b6d) padding-box,
-  linear-gradient(180deg, #2d6cdf, #6ea8ff) border-box;
+    linear-gradient(#1f4b6d, #1f4b6d) padding-box,
+    linear-gradient(180deg, #2d6cdf, #6ea8ff) border-box;
 
   display: flex;
   align-items: center;
@@ -1105,10 +1186,12 @@ body.simulador-body {
 .conteudo_header {
   text-align: left;
 }
+
 .simulador-subtitulo {
   text-align: center;
-  
+
 }
+
 .simulador-resultados-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1122,7 +1205,7 @@ body.simulador-body {
   border-radius: 12px;
   padding: 15px;
   border: 1px solid #2d6cdf;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
 
@@ -1238,7 +1321,7 @@ dashboard
   color: #ffffff;
 }
 
-.submenu a{
+.submenu a {
   color: inherit;
 }
 
@@ -1250,10 +1333,11 @@ dashboard
 
 /* scrollbar */
 .menu-item.ativo .submenu::-webkit-scrollbar {
-  width: 9px; 
+  width: 9px;
   background: grey;
   border-radius: 100px;
 }
+
 .menu-item.ativo .submenu::-webkit-scrollbar-thumb {
   border-radius: 100px;
   background: rgb(121, 191, 16);
@@ -1280,7 +1364,8 @@ dashboard
 }
 
 .menu-item.ativo .seta {
-  transform: rotate(90deg); /* vira pra baixo */
+  transform: rotate(90deg);
+  /* vira pra baixo */
 }
 
 .dashboard-sidebar li {
@@ -1301,7 +1386,7 @@ dashboard
   height: 150px;
   width: 300px;
   display: grid;
-  grid-template: 3fr 1fr; 
+  grid-template: 3fr 1fr;
   justify-items: center;
   align-items: center;
   border: 5px solid #2c6794;
@@ -1418,7 +1503,7 @@ dashboard
   align-items: center;
   gap: 20px;
   padding: 20px 0;
-  
+
   border-top: 2px solid #000000;
   border-bottom: 2px solid #000000;
 }
@@ -1451,20 +1536,20 @@ dashboard
 }
 
 .silo-input.atencao {
-    background-color: #f1ae00;
-    color: white;
-  }
-  
-  .silo-input {
-    user-select: none;
-  }
-  
-  .acoes {
-    margin-top: auto;
-    margin-bottom: 20px;
-  }
-  
-  .acoes button {
+  background-color: #f1ae00;
+  color: white;
+}
+
+.silo-input {
+  user-select: none;
+}
+
+.acoes {
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.acoes button {
   width: 90%;
   margin: 10px auto;
   padding: 12px;
@@ -1487,84 +1572,85 @@ dashboard
   width: 100%;
 }
 
-  .titulo-info {
-    font-size: 16px;
-    font-weight: 700;
-    color: #2c6794;
-    margin: 0;
-  }
-  
-  .input-info {
-    width: 100%;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  .input-info.estoque {
-    background-color: #5e6655;
-    color: white;
-    cursor: default;
-  }
-  
-  .input-info.valor-tonelada {
-    background-color: #5e6655;
-    color: white;
-  }
-  .input-info.valor-tonelada::placeholder {
-    color: white;
-    opacity: 85%;
-  }
-  
-  .input-info.valor-total {
-    background-color: #324001;
-    color: white;
-    cursor: default;
-  }
-  
-  .resultado-estoque {
-    margin-top: 10px;
-  }
+.titulo-info {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c6794;
+  margin: 0;
+}
 
-  .resultado-estoque input{
-    color: white;
-  }
-  
-  .acoes button:hover {
-    opacity: 0.85;
-    color: #95b814;
-    transition: 0.3s;
-  }
-  
-  /*
+.input-info {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-info.estoque {
+  background-color: #5e6655;
+  color: white;
+  cursor: default;
+}
+
+.input-info.valor-tonelada {
+  background-color: #5e6655;
+  color: white;
+}
+
+.input-info.valor-tonelada::placeholder {
+  color: white;
+  opacity: 85%;
+}
+
+.input-info.valor-total {
+  background-color: #324001;
+  color: white;
+  cursor: default;
+}
+
+.resultado-estoque {
+  margin-top: 10px;
+}
+
+.resultado-estoque input {
+  color: white;
+}
+
+.acoes button:hover {
+  opacity: 0.85;
+  color: #95b814;
+  transition: 0.3s;
+}
+
+/*
   Cadastro de Silo
   */
 
-  .dashboard-conteudo {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px;
-    padding: 40px;
-    margin-left: 30%;
-    align-items: stretch;
-  }
-  
-  .dashboard-linha-topo {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    align-items: start;
-  }
-  
-  .dashboard-card-gauge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.dashboard-conteudo {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px;
+  padding: 40px;
+  margin-left: 30%;
+  align-items: stretch;
+}
+
+.dashboard-linha-topo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.dashboard-card-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
@@ -1607,14 +1693,16 @@ dashboard
   height: 320px;
 }
 
-/* Scrollbar*/ 
+/* Scrollbar*/
 .dashboard-body {
   overflow-y: auto;
 }
+
 .dashboard-body::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
   background: var(--cor-fundo-scroll-fundo-verde);
 }
+
 .dashboard-body::-webkit-scrollbar-thumb {
   border-radius: 100px;
   background: rgb(121, 191, 16);
@@ -1623,10 +1711,12 @@ dashboard
 .bodyLoginCad {
   overflow-y: auto;
 }
+
 .bodyLoginCad::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
   background: var(--cor-fundo-scroll-fundo-verde);
 }
+
 .bodyLoginCad::-webkit-scrollbar-thumb {
   border-radius: 100px;
   background: rgb(121, 191, 16);
@@ -1635,22 +1725,26 @@ dashboard
 .index {
   overflow-y: auto;
 }
+
 .index::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
   background: var(--cor-fundo-scroll-fundo-azul);
 }
+
 .index::-webkit-scrollbar-thumb {
   border-radius: 100px;
-  background:var(--cor-fundo-scroll-azul);
+  background: var(--cor-fundo-scroll-azul);
 }
 
 .simulador-body {
   overflow-y: auto;
 }
+
 .simulador-body::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
   background: var(--cor-fundo-scroll-fundo-azul);
 }
+
 .simulador-body::-webkit-scrollbar-thumb {
   border-radius: 100px;
   background: var(--cor-fundo-scroll-azul);
@@ -1658,87 +1752,84 @@ dashboard
 
 /* Suporte */
 .suporte {
-    font-family: Arial, sans-serif;
-    background-color: #63B1BC;
-    margin: 0;
-    padding: 0;
-    display: flex;
-<<<<<<< Updated upstream
-    height: 110vh;
-    width: 100vw;
+  font-family: Arial, sans-serif;
+  background-color: #63B1BC;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
 }
-  
-.fundoSuporte {
-  width: 57%;
-=======
-    position: relative;
-    height: 110vh;
-    width: 98vw;
-}
-  
-.fundoSuporte {
+
+.suporte .fundoSuporte {
   width: 60%;
->>>>>>> Stashed changes
-  margin: 100px 0  0 560px;
+  position: relative;
+  margin: 100px 0 0 560px;
   border: solid 5px var(--cor-fundo);
   background-color: var(--cor-fundo-suporte);
   border-radius: 20px;
   text-align: center;
-} 
-
-h1 {
-    color: #1F2A44;
-    font-size: 60px;
 }
 
-textarea[type="text"] {
-<<<<<<< Updated upstream
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-=======
-    padding: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #b5b5aa;
-    border-radius: 25px;
->>>>>>> Stashed changes
-    width: 90%;
-    height: 40%;
+.suporte h1 {
+  color: #1F2A44;
+  font-size: 60px;
+  padding: 20px;
 }
 
-select,
-button {
-    padding: 11px 40px;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 15px;
-    cursor: pointer;
+.suporte textarea {
+  padding: 30px 25px 20px 25px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000;
+  border-radius: 25px;
+  width: 90%;
+  height: 40%;
+  border: none;
 }
 
-button {
-    background-color: var(--cor-fundo-azul-escuro);
-    color: #FFFFFF;
-    border: none;
+.suporte textarea::placeholder {
+  color: #b5b5aa;
 }
 
-button:hover {
-    background-color: #ffffff;
-    color: var(--cor-fundo-azul-escuro);
-    box-shadow: inset 0 0 0 2px var(--cor-fundo-azul-escuro);
-    transition: 0.5s ease-in-out;
+.suporte select,
+.suporte button {
+  padding: 11px 40px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+}
 
+.suporte button {
+  background-color: var(--cor-fundo-azul-escuro);
+  color: #FFFFFF;
+  border: none;
+}
+
+.suporte button:hover {
+  background-color: #ffffff;
+  color: var(--cor-fundo-azul-escuro);
+  box-shadow: inset 0 0 0 2px var(--cor-fundo-azul-escuro);
+  transition: 0.5s ease-in-out;
+}
+
+.fundoSuporte h3 {
+  color: #1F2A44;
+  font-size: 30px;
+  padding: 20px;
 }
 
 #resposta {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #D0D3D4;
-    border: 1px solid #63666A;
-    text-align: left;
-    display: none;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #D0D3D4;
+  border: 1px solid #63666A;
+  text-align: left;
+  display: none;
 }
+
 /* Variáveis de cores do projeto*/
 :root {
   --cor-verde-escuro: #042e09;
