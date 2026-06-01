@@ -89,7 +89,7 @@ function obterDadosGerais (req, res) {
     if(idEmpresa == undefined){
         res.status(400).send("O idEmpresa retornou undefined");
     } else {
-        silosModel.obterDadosGerais(idEmpresa).then(
+        siloModel.obterDadosGerais(idEmpresa).then(
             function(resultado) {
                 res.json(resultado);
             }
