@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grão Certo | Suporte</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="suporte">
+
+    <aside class="dashboard-sidebar">
+
+        <a href="index.html"><img src="../assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
+
+        <div class="usuario">
+            <div class="icone-usuario">
+                <img src="../assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
+            </div>
+            <h3 id="b_usuario">ARMAZENS PAULISTAS SA</h3>
+            <p id="b_email">contato@armazenspaulistas.com</p>
+        </div>
+
+        <ul class="menu">
+
+            <li class="menu-item" onclick="toggleMenu(this)">
+                <span class="seta">▶</span> DASHBOARD
+                <ul class="submenu" id="ul_submenu">
+                    <li> <a href="dashboardGeral.html">AVISOS</a> </li>
+                    <li> <a href="cadastroSilos.html" id="active">CADASTRAR NOVO SILO</a> </li>
+                    <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li>
+                </ul>
+            </li>
+        </ul>
+
+    </aside>
+
+    <div id="container">
+        <h1>Suporte Grão Certo</h1>
+        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+        <br><br>
+        <button onclick="gerarResposta()">Gerar Resposta</button>
+        <h3>Resposta da IA:</h3>
+        <div id="resposta"></div>
+    </div>
+
+    <script>
+        
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/Bob/perguntar/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+
+    </script>
+    
+</body>
+</html>
