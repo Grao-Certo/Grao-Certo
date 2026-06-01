@@ -1798,12 +1798,13 @@ dashboard
   margin: 0;
   padding: 0;
   display: flex;
-  height: 100vh;
+  height: fit-content;
   width: 100vw;
 }
 
 .suporte .fundoSuporte {
   width: 60%;
+  height: fit-content;
   position: relative;
   margin: 40px 0 0 560px;
   border: solid 5px var(--cor-fundo);
@@ -1820,12 +1821,12 @@ dashboard
 
 .suporte textarea {
   padding: 30px 25px 20px 25px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   color: #000000;
   border-radius: 25px;
   width: 90%;
-  height: 40%;
+  height: 50%;
   border: none;
 }
 
@@ -1859,16 +1860,20 @@ dashboard
   color: #1F2A44;
   font-size: 30px;
   padding: 20px;
+  margin-bottom: 10px;
 }
 
 #resposta {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #D0D3D4;
-  border: 1px solid #63666A;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: white;
   text-align: left;
   display: none;
+  font-size: 25px;
+  width: 90%;
+  height: fit-content;
+  margin-left: 5%;
+  margin-bottom: 30px;
 }
 
 /* Variáveis de cores do projeto*/

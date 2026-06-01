@@ -7,6 +7,8 @@ DB_USER='seusDadosAqui'
 DB_PASSWORD='seusDadosAqui'
 DB_PORT='seusDadosAqui'
 
+MINHA_CHAVE='insira sua chave de API do google gemini aqui'
+
 # Configurações do servidor de aplicação
 APP_PORT=8080
 APP_HOST=localhost
