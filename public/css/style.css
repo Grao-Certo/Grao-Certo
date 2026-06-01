@@ -1663,12 +1663,22 @@ dashboard
     margin: 0;
     padding: 0;
     display: flex;
+<<<<<<< Updated upstream
     height: 110vh;
     width: 100vw;
 }
   
 .fundoSuporte {
   width: 57%;
+=======
+    position: relative;
+    height: 110vh;
+    width: 98vw;
+}
+  
+.fundoSuporte {
+  width: 60%;
+>>>>>>> Stashed changes
   margin: 100px 0  0 560px;
   border: solid 5px var(--cor-fundo);
   background-color: var(--cor-fundo-suporte);
@@ -1682,9 +1692,17 @@ h1 {
 }
 
 textarea[type="text"] {
+<<<<<<< Updated upstream
     padding: 8px;
     font-size: 16px;
     border-radius: 5px;
+=======
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #b5b5aa;
+    border-radius: 25px;
+>>>>>>> Stashed changes
     width: 90%;
     height: 40%;
 }
