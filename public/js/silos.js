@@ -37,48 +37,79 @@ const ctx6 = document.getElementById('grafico6');
 
 // GRÁFICO 2: Estoque Semanal 
 new Chart(ctx2, {
-    type: 'line',
-    data: {
-        labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-        datasets: [
-            {
-            label: 'Quantidade de toneladas',
-            data: [60, 85, 70, 90, 75, 80, 65],
-            borderColor: '#8BC34A',
-            backgroundColor: 'rgba(139, 195, 74, 0.1)',
-            borderWidth: 2,
-            pointBackgroundColor: '#8BC34A',
-            pointRadius: 4,
-            tension: 0.4,
-            fill: true
-            }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            y: {
-                beginAtZero: false,
-                min: 0,
-                max: 100,
-                ticks: { stepSize: 20 }
-            },
-            x: {
-                grid: { display: false }
-            }
+        type: 'line',
+        data: {
+            labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            datasets: [{
+                label: 'Quantidade de toneladas',
+                data: [60, 85, 70, 90, 75, 80, 65],
+                borderColor: '#8BC34A',
+                backgroundColor: 'rgba(139, 195, 74, 0.1)',
+                borderWidth: 2,
+                pointBackgroundColor: '#8BC34A',
+                pointRadius: 4,
+                tension: 0.4,
+                fill: true
+            }]
         },
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    usePointStyle: true,
-                    pointStyle: 'circle'
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    min: 0,
+                    max: 100,
+                    ticks: { stepSize: 20 }
+                },
+                x: { grid: { display: false } }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: { usePointStyle: true, pointStyle: 'circle' }
+                },
+                annotation: {
+                    annotations: {
+                        linhaCheia: {
+                            type: 'line',
+                            yMin: 80,
+                            yMax: 80,
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Cheio (80 TON)',
+                                position: 'start',        
+                                yAdjust: -14,            
+                                backgroundColor: 'transparent',
+                                color: 'red',
+                                font: { size: 11 }
+                            }
+                        },
+                        linhaVazia: {
+                            type: 'line',
+                            yMin: 20,
+                            yMax: 20,
+                            borderColor: '#f0c000',
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Vazio (20 TON)',
+                                position: 'start',        
+                                yAdjust: -14,             
+                                backgroundColor: 'transparent',
+                                color: '#f0c000',
+                                font: { size: 11 }
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
 });
 
 // GRÁFICO 3: Volume Atual  
@@ -178,46 +209,61 @@ new Chart(ctx4, {
 
 // GRÁFICO 6: Registro Volume Total Mensal 
 new Chart(ctx6, {
-    type: 'bar',
-    data: {
-        labels: ['Jan', 'Fev', 'Mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
-        datasets: [
-            {
-                label: '2026',
-                data: [80, 75, 70, 65, 72, 68, 80, 0, 0, 0, 0, 0],
-                backgroundColor: '#324001',
-                borderRadius: 3
-            },
-            {
-                label: '2025',
-                data: [78, 72, 68, 60, 65, 70, 75, 0, 0, 0, 0, 0],
-                backgroundColor: '#8BC34A',
-                borderRadius: 3
-            }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100,
-                ticks: { stepSize: 20 }
-            },
-            x: {
-                grid: { display: false }
-            }
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+            datasets: [
+                {
+                    label: '2026',
+                    data: [80, 75, 70, 65, 72, 68, 80, 0, 0, 0, 0, 0],
+                    backgroundColor: '#324001',
+                    borderRadius: 3
+                },
+                {
+                    label: '2025',
+                    data: [78, 72, 68, 60, 65, 70, 75, 0, 0, 0, 0, 0],
+                    backgroundColor: '#8BC34A',
+                    borderRadius: 3
+                }
+            ]
         },
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    usePointStyle: true,
-                    pointStyle: 'circle'
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { stepSize: 20 }
+                },
+                x: { grid: { display: false } }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: { usePointStyle: true, pointStyle: 'circle' }
+                },
+                annotation: {
+                    annotations: {
+                        linhaMeta: {
+                            type: 'line',
+                            yMin: 60,
+                            yMax: 60,
+                            borderColor: 'blake',
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Meta (60 TON)',
+                                position: 'end',
+                                backgroundColor: 'blake',
+                                color: 'white',
+                                font: { size: 11 }
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
-});
+    });
