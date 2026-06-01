@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grão Certo | Dashboard</title>
+    <link rel="shortcut icon" href="assets/imgs/logo_favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/buscar.js"></script>
+</head>
+
+<body class="dashboard-body" onload="validarSessao(); carregarDadosSilo()">
+
+    <div class="dashboard-layout">
+
+        <aside class="dashboard-sidebar">
+
+            <a href="index.html"><img src="../assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
+
+            <div class="usuario">
+                <div class="icone-usuario">
+                    <img src="../assets/imgs/perfil_dash.svg" alt="Foto de perfil do usuário">
+                </div>
+                <h3 id="b_usuario">ARMAZENS PAULISTAS SA</h3>
+                <p id="b_email">contato@armazenspaulistas.com</p>
+            </div>
+
+            <ul class="menu">
+
+                <li class="menu-item" onclick="toggleMenu(this)">
+                    <span class="seta">▶</span> DASHBOARD
+                    <ul class="submenu" id="ul_submenu">
+                        <li> <a href="dashboardGeral.html">AVISOS</a> </li>
+                        <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item" onclick="limparSessao()">
+                    Sair
+                </li>
+            </ul>
+
+
+        </aside>
+
+          <main class="dashboard-conteudo">
+
+            <!-- LINHA 1: Faturamento + Alterações de Estoque + Volume Atual -->
+            <div class="dashboard-linha-topo">
+
+                <div class="card-container">
+                    <h3 class="titulo-card">FATURAMENTO DO SILO</h3>
+                    <div class="dashboard-card">
+                        <div class="card-estoque">
+                            <h3 class="titulo-info">ESTOQUE ATUAL</h3>
+                            <input type="text" id="ipt_estoqueAtual" class="input-info estoque" value="72,5" readonly>
+
+                            <h3 class="titulo-info">VALOR POR TONELADA</h3>
+                            <input type="text" id="ipt_valorTonelada" class="input-info valor-tonelada"
+                                placeholder="Digite o valor por TON" oninput="calcularValorEstoque()">
+
+                            <div class="resultado-estoque">
+                                <h3 class="titulo-info">VALOR TOTAL NO SILO</h3>
+                                <input type="text" id="ipt_valorTotal" class="input-info valor-total" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">OSCILAÇÃO DIÁRIA</h3>
+                    <div class="dashboard-card">
+                        <div class="grafico-container grafico-mensal">
+                            <canvas id="grafico2"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <h3 class="titulo-card">VOLUME ATUAL</h3>
+                    <div class="dashboard-card dashboard-card-gauge">
+                        <div class="grafico-container grafico-gauge">
+                            <canvas id="grafico3"></canvas>
+                        </div>
+                        <div class="info-container">
+                            <h3>ÚLTIMA ATUALIZAÇÃO:</h3>
+                            <input type="text" id="ipt_valorAtualizado" class="input-info valor-total" value="05-04-2026" readonly>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- LINHA 2: Entrada e Saída Total Semanal -->
+            <div class="card-container full-width">
+                <h3 class="titulo-card">ENTRADA E SAÍDA DIÁRIA</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container grafico-semanal">
+                        <canvas id="grafico4"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LINHA 3: MAIOR REGISTRO DO VOLUME MENSAL -->
+            <div class="card-container full-width">
+                <h3 class="titulo-card">MAIOR REGISTRO DO VOLUME MENSAL</h3>
+                <div class="dashboard-card">
+                    <div class="grafico-container grafico-mensal-full">
+                        <canvas id="grafico6"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="../js/silos.js"></script>

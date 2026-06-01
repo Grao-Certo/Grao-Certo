@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/validacoes.js"></script>
     <script src="../js/sessao.js"></script>
+    <script src="../js/buscar.js"></script>
 </head>
 
-<body class="cadastro-admin" onload="validarSessao()">
+<body class="cadastro-admin" onload="validarSessao(); buscarSilos();">
 
     <aside class="dashboard-sidebar">
 
@@ -29,7 +30,7 @@
 
             <li class="menu-item" onclick="toggleMenu(this)">
                 <span class="seta">▶</span> DASHBOARD
-                <ul class="submenu">
+                <ul class="submenu" id="ul_submenu">
                     <li> <a href="dashboardGeral.html">AVISOS</a> </li>
                     <li> <a href="cadastroSilos.html" id="active">CADASTRAR NOVO SILO</a> </li>
                     <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li>
