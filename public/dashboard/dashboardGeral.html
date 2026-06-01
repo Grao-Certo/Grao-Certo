@@ -13,12 +13,11 @@
     <script src="../js/buscar.js"></script>
 </head>
 
-<body class="dashboard-body" onload="validarSessao()">
+<body class="dashboard-body" onload="validarSessao(); obterDadosDashboard();">
 
     <div class="dashboard-layout">
 
         <aside class="dashboard-sidebar">
-
             <a href="../index.html"><img src="../assets/imgs/logo_grãocerto.png" class="logo-sidebar"></a>
 
             <div class="usuario">
@@ -54,27 +53,24 @@
             <div class="cards-topo">
                 <div class="card-topo">
                     <h3 class="titulo-card">TOTAL SILOS</h3>
-                    <span style="color: green;">3</span>
+                    <span id="kpi_totalSilos" style="color: green;"> 0</span>
                 </div>
 
                 <div class="card-topo">
                     <h3 class="titulo-card">TOTAL ARMAZENADO</h3>
-                    <span>120,5 <small>TON</small></span>
+                    <span id="kpi_totalArmazenado">0/0 <small>M³</small></span>
                 </div>
 
                 <div class="card-topo">
                     <h3 class="titulo-card">SILOS EM ALERTA</h3>
-                    <span style="color:red;">2</span>
+                    <span id="kpi_totalAlertas" style="color:red;">0</span>
                 </div>
             </div>
 
             <div class="full-width alert">
                 <span class="alerta-titulo">ALERTA PRIORITÁRIO</span>
 
-                <div class="alerta-silos">
-                    <input type="text" class="silo-input critico" value="Silo 1: 95% - Risco de superlotação" readonly>
-                    <input type="text" class="silo-input atencao" value="Silo 2: 10% - Nível baixo" readonly>
-                </div>
+                <div class="alerta-silos" id="container_alertas"></div>
             </div>
 
             <div class="card-container full-width">
@@ -94,51 +90,7 @@
 </html>
 
 <script>
-
     buscarSilos();
-
-    function toggleMenu(element) {
-        element.classList.toggle("ativo");
-    }
-
-    const ctx1 = document.getElementById('grafico1');
-
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ['SILO 1', 'SILO 2', 'SILO 3'],
-            datasets: [{
-                data: [95, 10, 62],
-                backgroundColor: ['#7f0d0d', '#f1ae00', '#324001']
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            return context.raw + '%';
-                        }
-                    }
-                },
-                datalabels: {
-                    anchor: 'end',
-                    align: 'top',
-                    formatter: function (value) {
-                        return value + '%';
-                    },
-                    font: {
-                        weight: 'bold',
-                        size: 14
-                    }
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
 </script>
+
+<script src="../js/silosGeral.js"></script>
