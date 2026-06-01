@@ -2,49 +2,6 @@ function toggleMenu(element) {
     element.classList.toggle("ativo");
 }
 
-const ctx1 = document.getElementById('grafico1');
-
-new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ['SILO 1', 'SILO 2', 'SILO 3'],
-        datasets: [
-            {
-            data: [95, 10, 62],
-            backgroundColor: ['#7f0d0d', '#f1ae00', '#324001']
-            }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function (context) {
-                        return context.raw + '%';
-                    }
-                }
-            },
-            datalabels: {
-                anchor: 'end',
-                align: 'top',
-                formatter: function (value) {
-                    return value + '%';
-                },
-                font: {
-                    weight: 'bold',
-                    size: 14
-                }
-            }
-        }
-    },
-    plugins: [ChartDataLabels]
-});
-
 let graficoVolume;
 
 function obterDadosDashboard() {
@@ -162,9 +119,63 @@ function processarDadosDashboard(dados) {
         labelsGrafico.push("SILO " + silo.id_silo);
         porcentagemGrafico.push(porcentagem.toFixed(1));
         coresGrafico.push(corBarra);
+
+    }
+    
+    kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)}m³</small>`;
+    kpi_totalAlertas.innerHTML = listaAvisos.length;
+
+    plotarGrafico(labelsGrafico, porcentagemGrafico, coresGrafico);
+
+}
+
+function plotarGrafico(labels, dados, cores) {
+
+    const ctx1 = document.getElementById('grafico1');
+
+    //destruindo o primeiro grafico para não dar conflito de pré-existencia
+    if (graficoVolume) {
+        graficoVolume.destroy();
     }
 
-    kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)}m³</small>`;
-
-    kpi_totalAlertas.innerHTML = listaAvisos.length;
+    graficoVolume = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: dados,
+                backgroundColor: cores
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: 
+                        function (contexto) {
+                            return contexto.raw + '%';
+                        }
+                    }
+                },
+                datalabels: {
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: 
+                    function (valor) {
+                        return valor + '%';
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
 }
