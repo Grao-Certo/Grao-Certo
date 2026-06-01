@@ -1657,46 +1657,59 @@ dashboard
 }
 
 /* Suporte */
-body {
+.suporte {
     font-family: Arial, sans-serif;
     background-color: #63B1BC;
     margin: 0;
     padding: 0;
+    display: flex;
+    height: 110vh;
+    width: 100vw;
 }
-
-#container {
-    width: 80%;
-    margin: 50px auto;
-    text-align: center;
-}
+  
+.fundoSuporte {
+  width: 57%;
+  margin: 100px 0  0 560px;
+  border: solid 5px var(--cor-fundo);
+  background-color: var(--cor-fundo-suporte);
+  border-radius: 20px;
+  text-align: center;
+} 
 
 h1 {
     color: #1F2A44;
+    font-size: 60px;
 }
 
 textarea[type="text"] {
     padding: 8px;
     font-size: 16px;
     border-radius: 5px;
-    width: 400px;
+    width: 90%;
+    height: 40%;
 }
 
 select,
 button {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 11px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 15px;
     cursor: pointer;
 }
 
 button {
-    background-color: #ED145B;
+    background-color: var(--cor-fundo-azul-escuro);
     color: #FFFFFF;
     border: none;
 }
 
 button:hover {
-    background-color: #EFB661;
+    background-color: #ffffff;
+    color: var(--cor-fundo-azul-escuro);
+    box-shadow: inset 0 0 0 2px var(--cor-fundo-azul-escuro);
+    transition: 0.5s ease-in-out;
+
 }
 
 #resposta {
@@ -1716,6 +1729,8 @@ button:hover {
   --cor-fundo-scroll-fundo-verde: #3d4d03;
   --cor-fundo-button-silo: #5293e2;
   --cor-fundo-scroll-azul: #1F4D6B;
+  --cor-fundo-azul-escuro: #002e54;
   --cor-fundo-scroll-fundo-azul: rgb(176, 230, 245);
+  --cor-fundo-suporte: #dfebf4;
   --cor-bordas: #95b814
 }

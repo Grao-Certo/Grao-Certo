@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grão Certo | Suporte</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body class="suporte">
 
     <aside class="dashboard-sidebar">
@@ -34,17 +36,18 @@
 
     </aside>
 
-    <div id="container">
-        <h1>Suporte Grão Certo</h1>
-        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-        <br><br>
-        <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
-        <div id="resposta"></div>
+    <div class="fundoSuporte">
+            <h1>BOB IA</h1>
+            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+            <br><br>
+            <button onclick="gerarResposta()">GERAR RESPOSTA</button>
+            <h3>RESPOSTA DA IA:</h3>
+            <div id="resposta"></div>
+        
     </div>
 
     <script>
-        
+
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -63,6 +66,7 @@
         }
 
     </script>
-    
+
 </body>
+
 </html>
