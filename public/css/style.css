@@ -1751,6 +1751,47 @@ dashboard
 }
 
 /* Suporte */
+
+.suporteColuna {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.suporteCampo {
+  display: flex;
+  width: 60%;
+  margin: 40px 0 0 560px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.divCampo {
+  display: flex;
+  background-color: var(--cor-fundo-suporte);
+  border: 5px solid var(--cor-fundo-azul-escuro);
+  border-radius: 10px;
+  justify-content: space-around;
+  width: 45%;
+  height: 30vh;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divCampo h3 {
+  color: #1F2A44;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 15px;
+}
+
+.divCampo button {
+  width: 300px;
+  margin-bottom: 15px;
+}
+
 .suporte {
   font-family: Arial, sans-serif;
   background-color: #63B1BC;
@@ -1764,7 +1805,7 @@ dashboard
 .suporte .fundoSuporte {
   width: 60%;
   position: relative;
-  margin: 100px 0 0 560px;
+  margin: 40px 0 0 560px;
   border: solid 5px var(--cor-fundo);
   background-color: var(--cor-fundo-suporte);
   border-radius: 20px;
