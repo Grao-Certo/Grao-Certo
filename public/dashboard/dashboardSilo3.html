@@ -125,6 +125,7 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
@@ -178,17 +179,50 @@
                     max: 100,
                     ticks: { stepSize: 20 }
                 },
-                x: {
-                    grid: { display: false }
-                }
+                x: { grid: { display: false } }
             },
             plugins: {
                 legend: {
                     display: true,
                     position: 'top',
-                    labels: {
-                        usePointStyle: true,
-                        pointStyle: 'circle'
+                    labels: { usePointStyle: true, pointStyle: 'circle' }
+                },
+                annotation: {
+                    annotations: {
+                        linhaCheia: {
+                            type: 'line',
+                            yMin: 80,
+                            yMax: 80,
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Cheio (80 TON)',
+                                position: 'start',        
+                                yAdjust: -14,            
+                                backgroundColor: 'transparent',
+                                color: 'red',
+                                font: { size: 11 }
+                            }
+                        },
+                        linhaVazia: {
+                            type: 'line',
+                            yMin: 20,
+                            yMax: 20,
+                            borderColor: '#f0c000',
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Vazio (20 TON)',
+                                position: 'start',        
+                                yAdjust: -14,             
+                                backgroundColor: 'transparent',
+                                color: '#f0c000',
+                                font: { size: 11 }
+                            }
+                        }
                     }
                 }
             }
@@ -317,17 +351,32 @@
                     max: 100,
                     ticks: { stepSize: 20 }
                 },
-                x: {
-                    grid: { display: false }
-                }
+                x: { grid: { display: false } }
             },
             plugins: {
                 legend: {
                     display: true,
                     position: 'top',
-                    labels: {
-                        usePointStyle: true,
-                        pointStyle: 'circle'
+                    labels: { usePointStyle: true, pointStyle: 'circle' }
+                },
+                annotation: {
+                    annotations: {
+                        linhaMeta: {
+                            type: 'line',
+                            yMin: 60,
+                            yMax: 60,
+                            borderColor: 'blake',
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Meta (60 TON)',
+                                position: 'end',
+                                backgroundColor: 'blake',
+                                color: 'white',
+                                font: { size: 11 }
+                            }
+                        }
                     }
                 }
             }
