@@ -79,11 +79,11 @@ INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endere
 ('Silos Brasil LTDA','98765432000199','financeiro@silosbrasil.com','03312040','450',NULL),
 ('Armazéns do Campo','11223344000155','suporte@armazens.com','06789030','78','Bloco 2');
 
-INSERT INTO usuario (nome, email, senha, tipo_usuario, documento_usuario, fk_empresa) VALUES 
-('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake1','administrador','41231234123412',1),
-('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','23412312341234',1),
-('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','11231231231234',2),
-('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','13123123123412',3);
+INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES 
+('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake','administrador','41231234123',1),
+('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','23412312341',1),
+('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','11231231231',2),
+('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','13123123123',3);
 
 INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES 
 ('11987654321', 'empresa', 1, NULL),
@@ -98,6 +98,26 @@ INSERT INTO silo ( raio, altura_cone, altura_total, largura, fk_empresa ) VALUES
 
 INSERT INTO sensor ( status_sensor, data_instalacao, fk_silo ) VALUES 
 ('ativo', '2024-01-10', 1);
+
+INSERT INTO silo (altura_total, comprimento, largura, raio, altura_cone, fk_empresa) VALUES
+(15.00, 6.00, 6.00, 6.00, 4.00, 3),
+(12.00, 5.00, 5.00, 5.00, 3.00, 3),
+(10.00, 4.00, 4.00, 4.00, 2.00, 3);
+
+INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES
+('Roberto Santos', 'roberto@armazens.com', '$2a$12$hashfake5', 'administrador', '34567890123', 3);
+
+INSERT INTO sensor (status_sensor, data_instalacao, fk_silo) VALUES
+('ativo', '2024-06-02', 1),
+('ativo', '2025-14-12', 2),
+('ativo', '2026-06-01', 3),
+('ativo', '2024-09-13', 4),
+('ativo', '2025-7-04', 5),
+('ativo', '2026-03-12', 6),
+('ativo', '2025-11-12', 7),
+('ativo', '2026-02-05', 8),
+('ativo', '2026-06-02', 9);
+
 
 ---------------------------------------------------------------------------
 ----------------------------- KPIS E AVISOS -------------------------------
