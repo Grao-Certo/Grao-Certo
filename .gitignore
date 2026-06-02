@@ -1,6 +1,6 @@
 node_modules
 package-lock.json
-
+.deploy.sh
 .github
 .env
 .env.dev

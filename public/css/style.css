@@ -1807,7 +1807,7 @@ dashboard
   height: fit-content;
   position: relative;
   margin: 40px 0 0 560px;
-  border: solid 5px var(--cor-fundo);
+  border: solid 5px var(--cor-fundo-azul-escuro);
   background-color: var(--cor-fundo-suporte);
   border-radius: 20px;
   text-align: center;
