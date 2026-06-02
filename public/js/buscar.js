@@ -49,9 +49,19 @@ function buscarSilos(){
                             }
                             ul_submenu.innerHTML = mensagem;
                         }else{
-                            mensagem += `
-                            <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
-                            `;
+                            let admin = validarAdmin();
+
+                            if(admin){
+                                mensagem += `
+                                <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
+                                <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
+                                <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li>
+                                `;
+                            }else{
+                                mensagem += `
+                                <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
+                                `;
+                            }
                             ul_submenu.innerHTML = mensagem;
                         }
                     });
