@@ -852,7 +852,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 .secao-beneficios h2 {
   margin-bottom: 40px;
   font-size: 40px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .container-cartoes-beneficios {
@@ -1092,7 +1092,6 @@ body.simulador-body {
   padding: 45px;
   border-radius: 30px;
   border: 2px solid #2d6cdf;
-
 }
 
 .simulador-input-group {
@@ -1189,7 +1188,6 @@ body.simulador-body {
 
 .simulador-subtitulo {
   text-align: center;
-
 }
 
 .simulador-resultados-grid {
@@ -1781,7 +1779,7 @@ dashboard
 }
 
 .divCampo h3 {
-  color: #1F2A44;
+  color: #1f2a44;
   font-weight: bold;
   font-size: 30px;
   margin-top: 15px;
@@ -1794,7 +1792,6 @@ dashboard
 
 .suporte {
   font-family: Arial, sans-serif;
-  background-color: #63B1BC;
   margin: 0;
   padding: 0;
   display: flex;
@@ -1814,7 +1811,7 @@ dashboard
 }
 
 .suporte h1 {
-  color: #1F2A44;
+  color: #1f2a44;
   font-size: 60px;
   padding: 20px;
 }
@@ -1845,7 +1842,7 @@ dashboard
 
 .suporte button {
   background-color: var(--cor-fundo-azul-escuro);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
 }
 
@@ -1857,7 +1854,7 @@ dashboard
 }
 
 .fundoSuporte h3 {
-  color: #1F2A44;
+  color: #1f2a44;
   font-size: 30px;
   padding: 20px;
   margin-bottom: 10px;
@@ -1883,9 +1880,9 @@ dashboard
   --cor-fundo-button-bottom: #95b814;
   --cor-fundo-scroll-fundo-verde: #3d4d03;
   --cor-fundo-button-silo: #5293e2;
-  --cor-fundo-scroll-azul: #1F4D6B;
+  --cor-fundo-scroll-azul: #1f4d6b;
   --cor-fundo-azul-escuro: #002e54;
   --cor-fundo-scroll-fundo-azul: rgb(176, 230, 245);
   --cor-fundo-suporte: #dfebf4;
-  --cor-bordas: #95b814
+  --cor-bordas: #95b814;
 }
