@@ -65,7 +65,7 @@ function obterTotalSilos(idEmpresa) {
 
 function obterDadosGerais(idEmpresa) {
     var instrucaoSql = `
-        SELECT s.id AS id_silo, s.raio, s.altura_total, s.altura_cone, t.distancia_superficie, s.fk_empresa
+        SELECT s.id AS id_silo, s.raio, s.altura_total, s.altura_cone, AVG(t.distancia_superficie) AS distancia_superficie, s.fk_empresa
         FROM silo AS s
         JOIN sensor AS se ON se.fk_silo = s.id
         JOIN telemetria AS t ON t.fk_sensor = se.id
@@ -75,7 +75,8 @@ function obterDadosGerais(idEmpresa) {
             GROUP BY fk_sensor
         ) AS maisRecente 
 		ON t.id = maisRecente.max_id
-        WHERE s.fk_empresa = ${idEmpresa};
+        WHERE s.fk_empresa = ${idEmpresa}
+        GROUP BY s.id, s.raio, s.altura_total, s.altura_cone, s.fk_empresa;
     `;
     return database.executar(instrucaoSql);
 }
