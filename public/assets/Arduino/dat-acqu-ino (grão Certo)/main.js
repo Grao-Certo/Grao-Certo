@@ -9,6 +9,7 @@ const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
 const HABILITAR_OPERACAO_INSERIR = true;
+let SENSOR_TESTE = 1;
 
 // função para comunicação serial
 const serial = async (valoresDistancia) => {
@@ -68,19 +69,48 @@ const serial = async (valoresDistancia) => {
       // 2. Tenta salvar no Banco de Dados
       if (HABILITAR_OPERACAO_INSERIR) {
         try {
-          console.log("🔥 Tentando inserir:", distancia);
-          await poolBancoDados.execute(
-            "INSERT INTO telemetria (distancia_superficie, fk_sensor) VALUES (?, ?)",
-            [distancia, 1], // exemplo: sensor ID = 1
+          console.log("Tentando inserir:", distancia);
+          const [sensores] = await poolBancoDados.execute(
+            `SELECT se.id, s.altura_total 
+             FROM sensor AS se 
+             JOIN silo AS s ON se.fk_silo = s.id 
+             WHERE s.fk_empresa = (
+                 SELECT s2.fk_empresa 
+                 FROM silo AS s2 
+                 JOIN sensor AS se2 ON se2.fk_silo = s2.id 
+                 WHERE se2.id = ${SENSOR_TESTE}
+             )`,
           );
-          console.log(
-            `💾 [BANCO] Sucesso: ${distancia} inserido em telemetria.`,
-          );
+
+          let listaSensores = sensores;
+
+          if (sensores.length === 0) {
+            listaSensores = [{ id: SENSOR_TESTE, altura_total: 10 }];
+          }
+
+          for (let i = 0; i < listaSensores.length; i++) {
+            let sensor = listaSensores[i];
+            let fator = Math.random() * 0.4 + 0.8;
+
+            if (sensor.id === SENSOR_TESTE) {
+              fator = 1;
+            }
+
+            let alturaMaxima = Number(sensor.altura_total);
+            let valorFinal = Math.max(0, Math.min(alturaMaxima, distancia * fator));
+            
+            await poolBancoDados.execute(
+              `INSERT INTO telemetria (distancia_superficie, fk_sensor) VALUES (${valorFinal}, ${sensor.id})`,
+            );
+
+            if (sensor.id === SENSOR_TESTE) {
+              console.log(`Sucesso: ${valorFinal}m, para sensor principal ${sensor.id}`);
+            } else {
+              console.log(`Simulação: ${valorFinal}m, para sensor ${sensor.id}`);
+            }
+          }
         } catch (error) {
-          console.error("❌ [ERRO NO BANCO]: " + error);
-          console.log(
-            "DICA: Verifique se os nomes da tabela/coluna estão certos e se existem campos obrigatórios vazios!",
-          );
+          console.error("ERRO NO BANCO: " + error);
         }
       }
     });
