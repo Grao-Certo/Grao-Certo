@@ -125,10 +125,30 @@ function buscarMedidaMaisRecente(req, res) {
     }
 }
 
+function buscarVolumeMensal(req, res) {
+    var idSilo = req.params.idSilo;
+
+    if (idSilo == undefined) {
+        res.status(400).send("O id do silo está indefinido!");
+    } else {
+        siloModel.buscarVolumeMensal(idSilo).then(
+            function (resultado) {
+                res.status(200).json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 module.exports = {
     cadastrarSilo,
     buscarSilos,
     obterTotalSilos,
     obterDadosGerais,
-    buscarMedidaMaisRecente
+    buscarMedidaMaisRecente,
+    buscarVolumeMensal
 }
