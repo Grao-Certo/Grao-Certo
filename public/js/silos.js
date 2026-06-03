@@ -48,10 +48,10 @@ new Chart(ctx2, {
             datasets: [{
                 label: 'Quantidade de toneladas',
                 data: [60, 85, 70, 90, 75, 80, 65],
-                borderColor: '#8BC34A',
+                borderColor: '#94A69A',
                 backgroundColor: 'rgba(139, 195, 74, 0.1)',
                 borderWidth: 2,
-                pointBackgroundColor: '#8BC34A',
+                pointBackgroundColor: '#94A69A',
                 pointRadius: 4,
                 tension: 0.4,
                 fill: true
@@ -147,7 +147,7 @@ chartGauge = new Chart(ctx3, {
         datasets: [
             {
             data: [porcentagem, 100 - porcentagem],
-            backgroundColor: ['#324001', '#8BC34A'],
+            backgroundColor: ['#003E04', '#cdf8cd'],
             borderWidth: 0
             }
         ]
@@ -175,7 +175,7 @@ new Chart(ctx4, {
             {
                 label: 'Entrada',
                 data: [0, 10, 5, 0, 10, 30, 40],
-                backgroundColor: '#8BC34A',
+                backgroundColor: '#003E04',
                 borderRadius: 3
             },
             {
@@ -221,13 +221,13 @@ chartMensal = new Chart(ctx6, {
                 {
                     label: '2026',
                     data: [80, 75, 70, 65, 72, 68, 80, 0, 0, 0, 0, 0],
-                    backgroundColor: '#324001',
+                    backgroundColor: '#003E04',
                     borderRadius: 3
                 },
                 {
                     label: '2025',
                     data: [78, 72, 68, 60, 65, 70, 75, 0, 0, 0, 0, 0],
-                    backgroundColor: '#8BC34A',
+                    backgroundColor: '#A2DB8F',
                     borderRadius: 3
                 }
             ]
