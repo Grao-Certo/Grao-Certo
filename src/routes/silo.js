@@ -19,4 +19,8 @@ router.get("/obterDadosGerais/:idEmpresa", function (req,res){
     siloController.obterDadosGerais(req,res);
 });
 
+router.get("/buscarMedidaMaisRecente/:idSilo", function (req, res) {
+    siloController.buscarMedidaMaisRecente(req, res);
+});
+
 module.exports = router;
