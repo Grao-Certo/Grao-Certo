@@ -291,6 +291,7 @@ function obterMedidas(idSilo) {
                                 alturaCone = Number(registro.alturaCone);
                             }
                         
+                            //talvez a yasmin e o veneroso estejam certos sobre deixar isso no select
                             let volumeTotal = (3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone);
                             let diferencaAltura = alturaTotal - distancia;
 
@@ -339,6 +340,22 @@ function obterVolumeMensal(idSilo) {
                         let dados2026 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                         let dados2025 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+                        let volumeTotal = 0;
+
+                        // PUTA QUE PARIU QUE CALCULO CHATO DE FAZER NUM DAVA PRA FAZER A MERDA DO SILO SER QUADRADO????
+                        if (dados.length > 0) {
+                            let alturaCone = 0;
+
+                            let raio = Number(dados[0].raio);
+                            let alturaTotal = Number(dados[0].alturaTotal);
+
+                            if (dados[0].alturaCone) {
+                                alturaCone = Number(dados[0].alturaCone);
+                            }
+
+                            volumeTotal = (3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone);
+                        }
+
                         for (let i = 0; i < dados.length; i++) {
                             let registro = dados[i];
                             let mes = registro.mes;
@@ -354,6 +371,16 @@ function obterVolumeMensal(idSilo) {
 
                         chartMensal.data.datasets[0].data = dados2026;
                         chartMensal.data.datasets[1].data = dados2025;
+
+                        if (volumeTotal > 0) {
+                            let valorMeta = volumeTotal * 0.4;
+                            chartMensal.options.scales.y.max = Math.ceil(volumeTotal);
+
+                            //CONTEMPLE O FAMOSO "CAVAR NA PORRA DAS INVOCAÇÕES"
+                            chartMensal.options.plugins.annotation.annotations.linhaMeta.yMin = valorMeta;
+                            chartMensal.options.plugins.annotation.annotations.linhaMeta.yMax = valorMeta;
+                            chartMensal.options.plugins.annotation.annotations.linhaMeta.label.content = `Meta (${valorMeta.toFixed(1)} TON)`;
+                        }
                         chartMensal.update();
                     }
                 );
