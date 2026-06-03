@@ -338,69 +338,6 @@ function cadastrarSilo() {
         }
 }
 
-// function colocarEmpresa() {
-//     const documento = document.getElementById('input_doc'); // Criando as constantes para modificar os inputs
-//     const select = document.getElementById('select_pessoa'); // Essa funcao pega o elemento pelo ID
-//     const iptNome = document.getElementById('input_nome');
-
-//     const cep = document.getElementById('input_tipoUsu'); // Definindo as constantes que serão alteradas
-//     const numero = document.getElementById('input_senha'); // Empresa
-//     const complemento = document.getElementById('input_confirmar_senha');
-
-//     const tipo = document.getElementById('input_tipoUsu'); // Usuario
-//     const senha = document.getElementById('input_senha');
-//     const confirmar = document.getElementById('input_confirmar_senha');
-
-//     const tipoPessoa = select.value;
-
-//     const empresa = document.getElementById('input_empresa');
-
-//     // Limpa o valor do campo quando troca o tipo para não misturar máscaras
-//     documento.value = "";
-
-//     if (tipoPessoa == 'Empresa') {
-//         empresa.style.display = 'none';
-
-//         iptNome.placeholder = 'Nome da Empresa'; // Alterando os placeholders
-//         documento.placeholder = 'CNPJ: xx.xxx.xxx/xxxx-xx';
-//         documento.maxLength = 18; // Tamanho do CNPJ com pontos/barra/traço
-//         cep.placeholder = 'CEP: xxxxx-xxx'
-//         numero.placeholder = 'Número'
-//         complemento.placeholder = 'Complemento'
-
-//         numero.type = 'number'
-//         complemento.type = 'text'
-
-//         // Troca a função que será chamada no oninput
-//         documento.setAttribute('oninput', 'mascaraCNPJ(this)');
-
-//         cep.setAttribute('oninput', 'mascaraCEP(this)');
-//         cep.maxLength = 9;
-
-//     } else {
-//         empresa.style.display = 'flex';
-
-//         iptNome.placeholder = 'Nome Completo';
-//         documento.placeholder = 'CPF: xxx.xxx.xxx-xx';
-//         documento.maxLength = 14; // Tamanho do CPF com pontos/traço
-
-//         tipo.placeholder = 'Tipo Usuário: administrador/operador'
-//         senha.placeholder = 'Senha'
-//         confirmar.placeholder = 'Confirme sua senha'
-
-//         senha.setAttribute('oninput', 'verificar()');
-//         cep.setAttribute('oninput', '');
-//         cep.maxLength = 20;
-
-
-//         numero.type = 'password'
-//         complemento.type = 'password'
-
-//         // Volta para a função de CPF
-//         documento.setAttribute('oninput', 'mascaraCPF(this)');
-//     }
-// }
-
 function mascaraCPF(input) {
     let valorOriginal = input.value;
     let apenasNumeros = "";

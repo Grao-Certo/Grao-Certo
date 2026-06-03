@@ -189,7 +189,6 @@ function plotarGrafico(labels, dados, cores) {
         atualizar();
     }, 2000);
 
-    // setTimeout(() => atualizarGrafico(labels, dados, cores), 2000);
 }
 
 function atualizar() {
@@ -197,49 +196,3 @@ function atualizar() {
     processarDadosDashboard();
     plotarGrafico();
 }
-
-// let momento = 0;
-// function atualizarGrafico(labels, dados, cores) {
-
-//     fetch(`/silo/obterDadosGerais/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
-//         if (response.ok) {
-//             response.json().then(function (novoRegistro) {
-
-//                 plotarGrafico(labels, dados, cores);
-//                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-
-//                 let avisoCaptura = document.getElementById(`avisoCaptura${labels}`)
-//                 avisoCaptura.innerHTML = ""
-
-//                 if (momento == dados.labels[dados.labels.length - 1]) {
-//                     console.log("---------------------------------------------------------------")
-//                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-//                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-//                     console.log("Horário do novo dado capturado:")
-//                     console.log(novoRegistro[0].momento_grafico)
-//                     console.log("Horário do último dado capturado:")
-//                     console.log(dados.labels[dados.labels.length - 1])
-//                     console.log("---------------------------------------------------------------")
-//                 } else {
-//                     // tirando e colocando valores no gráfico
-//                     momento++; // incluir um novo momento
-
-//                     cores = novoRegistro.coresGrafico;
-//                     labels = novoRegistro.labelsGrafico;
-//                     dados = novoRegistro.porcentagemGrafico;
-//                 }
-
-//                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-//                 proximaAtualizacao = setTimeout(() => atualizarGrafico(labels, dados, cores), 2000);
-//             });
-//         } else {
-//             console.error('Nenhum dado encontrado ou erro na API');
-//             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-//             proximaAtualizacao = setTimeout(() => atualizarGrafico(labels, dados, cores), 2000);
-//         }
-//     })
-//         .catch(function (error) {
-//             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-//         });
-
-// }
