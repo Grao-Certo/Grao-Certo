@@ -26,5 +26,8 @@ router.get("/buscarMedidaMaisRecente/:idSilo", function (req, res) {
 router.get("/buscarVolumeMensal/:idSilo", function (req, res) {
     siloController.buscarVolumeMensal(req, res);
 });
+router.get("/buscarOscilacaoDiaria/:idSilo", function (req,res){
+    siloController.buscarOscilacaoDiaria(req,res);
+})
 
 module.exports = router;
