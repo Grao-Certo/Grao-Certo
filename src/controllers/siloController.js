@@ -144,6 +144,27 @@ function buscarVolumeMensal(req, res) {
     }
 }
 
+function buscarOscilacaoDiaria(req,res){
+    let idSilo = req.params.idSilo;
+
+    if(idSilo == undefined){
+        res.status(400).send("O id do silo está undefined");
+    }else{
+        siloModel.buscarOscilacaoDiaria(idSilo)
+            .then(
+                function (resultado){
+                    res.status(200).json(resultado);
+                }
+            ).catch(
+                function (erro){
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            )
+    }
+
+}
+
 module.exports = {
     cadastrarSilo,
     buscarSilos,
