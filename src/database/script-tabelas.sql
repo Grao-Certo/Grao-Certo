@@ -1,8 +1,4 @@
--- Active: 1779726796255@@127.0.0.1@3307@graoCerto
 CREATE DATABASE graoCerto;
-
-DROP DATABASE graoCerto;
-
 USE graoCerto;
 
 CREATE TABLE empresa (
@@ -79,11 +75,19 @@ INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endere
 ('Silos Brasil LTDA','98765432000199','financeiro@silosbrasil.com','03312040','450',NULL),
 ('Armazéns do Campo','11223344000155','suporte@armazens.com','06789030','78','Bloco 2');
 
-INSERT INTO usuario (nome, email, senha, tipo_usuario, documento_usuario, fk_empresa) VALUES 
+INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES 
 ('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake1','administrador','41231234123412',1),
 ('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','23412312341234',1),
 ('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','11231231231234',2),
 ('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','13123123123412',3);
+
+INSERT INTO usuario (nome, email, senha, tipo_usuario) VALUES 
+('Lucas Veneroso', 'lucas.veneroso@sptech.school', '@Senha123', 'suporte'),
+('Matheus dos Santos', 'matheus.santos@sptech.school', '@Senha123', 'suporte'),
+('Dayvid Dias', 'dayvid.dias@sptech.school', '@Senha123', 'suporte'),
+('Yasmin Oda', 'yasmin.lima@sptech.school', '@Senha123', 'suporte'),
+('Victor Mendes', 'victor.mendes@sptech.school', '@Senha123', 'suporte'),
+('Pedro Assis', 'pedro.assis@sptech.school', '@Senha123', 'suporte');
 
 INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES 
 ('11987654321', 'empresa', 1, NULL),
