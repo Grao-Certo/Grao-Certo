@@ -1,6 +1,7 @@
 buscarSilos();
 
 let chartGauge;
+let chartMensal;
 
 function carregarDadosSilo() {
     let idSilo = sessionStorage.getItem("ID_SILO_ATUAL");
@@ -13,6 +14,7 @@ function carregarDadosSilo() {
 
     console.log(`Página carregada. Carregando dados do silo: ${idSilo}`);
     obterMedidas(idSilo);
+    obterVolumeMensal(idSilo);
 }
 
 function toggleMenu(element) {
@@ -211,7 +213,7 @@ new Chart(ctx4, {
 });
 
 // GRÁFICO 6: Registro Volume Total Mensal 
-new Chart(ctx6, {
+chartMensal = new Chart(ctx6, {
         type: 'bar',
         data: {
             labels: ['Jan', 'Fev', 'Mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
@@ -296,8 +298,8 @@ function obterMedidas(idSilo) {
                                 diferencaAltura = 0;
                             }
                         
-                            let volumeAtual = 3.1416 * raio * raio * diferencaAltura;
-                            let capacidadeMax = volumeTotal;
+                            volumeAtual = 3.1416 * raio * raio * diferencaAltura;
+                            capacidadeMax = volumeTotal;
                         
                             let porcentagem = 0;
 
@@ -319,6 +321,44 @@ function obterMedidas(idSilo) {
                 );
             } else {
                 console.error("Erro ao obter medidas mais recentes.");
+            }
+        }
+    ).catch(
+        function (erro) {
+            console.error(erro);
+        }
+    );
+}
+
+function obterVolumeMensal(idSilo) {
+    fetch(`/silo/buscarVolumeMensal/${idSilo}`).then(
+        function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(
+                    function (dados) {
+                        let dados2026 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        let dados2025 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+                        for (let i = 0; i < dados.length; i++) {
+                            let registro = dados[i];
+                            let mes = registro.mes;
+                            let ano = registro.ano;
+                            let maxVolume = Number(registro.max_volume);
+
+                            if (ano === 2026) {
+                                dados2026[mes - 1] = maxVolume;
+                            } else if (ano === 2025) {
+                                dados2025[mes - 1] = maxVolume;
+                            }
+                        }
+
+                        chartMensal.data.datasets[0].data = dados2026;
+                        chartMensal.data.datasets[1].data = dados2025;
+                        chartMensal.update();
+                    }
+                );
+            } else {
+                console.error("Erro ao obter dados de volume mensal.");
             }
         }
     ).catch(
