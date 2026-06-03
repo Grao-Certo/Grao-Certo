@@ -73,12 +73,11 @@ INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endere
 ('Armazéns do Campo','11223344000155','suporte@armazens.com','06789030','78','Bloco 2');
 
 INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES 
-<<<<<<< HEAD
 ('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake','administrador','41231234123',1),
 ('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','23412312341',1),
 ('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','11231231231',2),
 ('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','13123123123',3);
-=======
+
 ('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake1','administrador','11111111111111',1),
 ('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','22222222222222',1),
 ('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','33333333333333',2),
@@ -91,7 +90,6 @@ INSERT INTO usuario (nome, email, senha, tipo_usuario) VALUES
 ('Yasmin Oda', 'yasmin.lima@sptech.school', '@Senha123', 'suporte'),
 ('Victor Mendes', 'victor.bertolino@sptech.school', '@Senha123', 'suporte'),
 ('Pedro Assis', 'pedro.dlima@sptech.school', '@Senha123', 'suporte');
->>>>>>> e4f7d4bdb82b76991702ada47fa2d09089a80097
 
 INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES 
 ('11987654321', 'empresa', 1, NULL),
