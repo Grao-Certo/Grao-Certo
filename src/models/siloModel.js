@@ -106,12 +106,15 @@ function buscarVolumeMensal(idSilo) {
         SELECT 
             MONTH(t.data_hora) AS mes,
             YEAR(t.data_hora) AS ano,
-            MAX(ROUND(3.1416 * s.raio * s.raio * (s.altura_total - t.distancia_superficie), 2)) AS max_volume
+            MAX(ROUND(3.1416 * s.raio * s.raio * (s.altura_total - t.distancia_superficie), 2)) AS max_volume,
+            s.raio,
+            s.altura_total AS alturaTotal,
+            s.altura_cone AS alturaCone
         FROM silo AS s
         JOIN sensor AS se ON se.fk_silo = s.id
         JOIN telemetria AS t ON t.fk_sensor = se.id
         WHERE s.id = ${idSilo}
-        GROUP BY YEAR(t.data_hora), MONTH(t.data_hora)
+        GROUP BY YEAR(t.data_hora), MONTH(t.data_hora), s.raio, s.altura_total, s.altura_cone
         ORDER BY ano ASC, mes ASC;
     `;
     return database.executar(instrucaoSql);
