@@ -1516,7 +1516,7 @@ dashboard
 }
 
 .alerta-silos {
-  display: flex;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   flex-wrap: wrap;
   gap: 25px 45px;
