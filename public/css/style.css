@@ -1244,7 +1244,7 @@ dashboard
 
 .dashboard-body {
   background-color: #d2e2e4;
-  margin-left: 68px;
+  margin-left: 50px;
 }
 
 .dashboard-layout {
@@ -1253,7 +1253,6 @@ dashboard
 }
 
 .dashboard-sidebar {
-  width: 480px;
   background-color: #1f4b6d;
   color: white;
   padding: 20px;
@@ -1386,7 +1385,6 @@ dashboard
 .card-topo {
   height: 150px;
   min-width: 300px;
-  width: fit-content;
   display: grid;
   grid-template: 3fr 1fr;
   justify-items: center;
@@ -1405,8 +1403,8 @@ dashboard
 
 .cards-topo {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 45px;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 15px;
 }
 
 .card-topo span {
@@ -1417,6 +1415,7 @@ dashboard
 
 .card-topo small {
   font-size: 35px;
+  padding: 10px;
 }
 
 .card-topo .titulo-card {
