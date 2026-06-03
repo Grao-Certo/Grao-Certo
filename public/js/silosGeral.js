@@ -187,7 +187,7 @@ function plotarGrafico(labels, dados, cores) {
 
     setTimeout(() => {
         atualizar();
-    }, 5000);
+    }, 2000);
 
     // setTimeout(() => atualizarGrafico(labels, dados, cores), 2000);
 }

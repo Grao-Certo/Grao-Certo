@@ -16,7 +16,7 @@ const serial = async (valoresDistancia) => {
   // Conexão com o banco - Verifique se a porta 3307 está correta para o seu MySQL!
   let poolBancoDados = mysql
     .createPool({
-      host: "10.18.33.127",
+      host: "localhost",
       user: "lucas",
       password: "@Senha123",
       database: "graoCerto",
@@ -85,7 +85,7 @@ const serial = async (valoresDistancia) => {
           let listaSensores = sensores;
 
           if (sensores.length === 0) {
-            listaSensores = [{ id: SENSOR_TESTE, altura_total: 10 }];
+            listaSensores = [{ id: SENSOR_TESTE, altura_total: 20 }];
           }
 
           for (let i = 0; i < listaSensores.length; i++) {
