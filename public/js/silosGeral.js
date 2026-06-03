@@ -7,16 +7,16 @@ let graficoVolume;
 function obterDadosDashboard() {
     let idEmpresa = sessionStorage.ID_EMPRESA;
 
-    if(!idEmpresa){
+    if (!idEmpresa) {
         console.error("Id da empresa invalido");
         return;
     }
 
     fetch(`/silo/totalSilos/${idEmpresa}`).then(
         function (resposta) {
-            if(resposta.ok) {
+            if (resposta.ok) {
                 resposta.json().then(
-                    function(dados){
+                    function (dados) {
                         kpi_totalSilos.innerHTML = dados[0].total;
                     }
                 );
@@ -25,7 +25,7 @@ function obterDadosDashboard() {
             }
         }
     ).catch(
-        function(erro){
+        function (erro) {
             console.error(erro);
         }
     );
@@ -77,12 +77,12 @@ function processarDadosDashboard(dados) {
         if (diferencaAltura < 0) {
             diferencaAltura = 0;
         }
-        
+
         let volumeAtual = 3.1416 * raio * raio * diferencaAltura;
-        
+
         totalAtual += volumeAtual;
         totalMax += volumeTotal;
-        
+
         let porcentagem = volumeTotal > 0 ? (volumeAtual / volumeTotal) * 100 : 0;
         let tipoAviso = "";
         let corBarra = "#324001";
@@ -106,10 +106,10 @@ function processarDadosDashboard(dados) {
             corBarra = "#f1ae00";
             listaAvisos.push(
                 {
-                idSilo: silo.id_silo,
-                fkEmpresa: silo.fk_empresa,
-                porcentagem: porcentagem,
-                tipoAviso: tipoAviso
+                    idSilo: silo.id_silo,
+                    fkEmpresa: silo.fk_empresa,
+                    porcentagem: porcentagem,
+                    tipoAviso: tipoAviso
                 }
             );
 
@@ -121,7 +121,7 @@ function processarDadosDashboard(dados) {
         coresGrafico.push(corBarra);
 
     }
-    
+
     kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)}m³</small>`;
     kpi_totalAlertas.innerHTML = listaAvisos.length;
 
@@ -152,7 +152,7 @@ function plotarGrafico(labels, dados, cores) {
             scales: {
                 y: {
                     max: 100,
-                    min: 0 
+                    min: 0
                 }
             },
             maintainAspectRatio: false,
@@ -162,19 +162,19 @@ function plotarGrafico(labels, dados, cores) {
                 },
                 tooltip: {
                     callbacks: {
-                        label: 
-                        function (contexto) {
-                            return contexto.raw + '%';
-                        }
+                        label:
+                            function (contexto) {
+                                return contexto.raw + '%';
+                            }
                     }
                 },
                 datalabels: {
                     anchor: 'end',
                     align: 'top',
-                    formatter: 
-                    function (valor) {
-                        return valor + '%';
-                    },
+                    formatter:
+                        function (valor) {
+                            return valor + '%';
+                        },
                     font: {
                         weight: 'bold',
                         size: 14
@@ -184,4 +184,62 @@ function plotarGrafico(labels, dados, cores) {
         },
         plugins: [ChartDataLabels]
     });
+
+    setTimeout(() => {
+        atualizar();
+    }, 5000);
+
+    // setTimeout(() => atualizarGrafico(labels, dados, cores), 2000);
 }
+
+function atualizar() {
+    obterDadosDashboard();
+    processarDadosDashboard();
+    plotarGrafico();
+}
+
+// let momento = 0;
+// function atualizarGrafico(labels, dados, cores) {
+
+//     fetch(`/silo/obterDadosGerais/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
+//         if (response.ok) {
+//             response.json().then(function (novoRegistro) {
+
+//                 plotarGrafico(labels, dados, cores);
+//                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+//                 let avisoCaptura = document.getElementById(`avisoCaptura${labels}`)
+//                 avisoCaptura.innerHTML = ""
+
+//                 if (momento == dados.labels[dados.labels.length - 1]) {
+//                     console.log("---------------------------------------------------------------")
+//                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+//                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+//                     console.log("Horário do novo dado capturado:")
+//                     console.log(novoRegistro[0].momento_grafico)
+//                     console.log("Horário do último dado capturado:")
+//                     console.log(dados.labels[dados.labels.length - 1])
+//                     console.log("---------------------------------------------------------------")
+//                 } else {
+//                     // tirando e colocando valores no gráfico
+//                     momento++; // incluir um novo momento
+
+//                     cores = novoRegistro.coresGrafico;
+//                     labels = novoRegistro.labelsGrafico;
+//                     dados = novoRegistro.porcentagemGrafico;
+//                 }
+
+//                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+//                 proximaAtualizacao = setTimeout(() => atualizarGrafico(labels, dados, cores), 2000);
+//             });
+//         } else {
+//             console.error('Nenhum dado encontrado ou erro na API');
+//             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+//             proximaAtualizacao = setTimeout(() => atualizarGrafico(labels, dados, cores), 2000);
+//         }
+//     })
+//         .catch(function (error) {
+//             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+//         });
+
+// }
