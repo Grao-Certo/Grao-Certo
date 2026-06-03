@@ -220,9 +220,6 @@ function logar() {
     let email = input_email.value;
     let senha = input_senha.value;
 
-    // let emailFicticio = 'pedro@sptech.school';
-    // let senhaFicticia = 'pedro';
-
     if (validacao > 0) {
 
         fetch("/usuarios/autenticar", {

@@ -1,14 +1,10 @@
--- Active: 1779726796255@@127.0.0.1@3307@graoCerto
 CREATE DATABASE graoCerto;
-
-DROP DATABASE graoCerto;
-
 USE graoCerto;
 
 CREATE TABLE empresa (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    cnpj CHAR(14) UNIQUE NOT NULL,
+    nome VARCHAR(100),
+    cnpj CHAR(14) UNIQUE,
     email VARCHAR(100) UNIQUE,
     cep CHAR(8),
     numero_endereco VARCHAR(5),
@@ -18,23 +14,20 @@ CREATE TABLE empresa (
 CREATE TABLE
     usuario (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        nome VARCHAR(100) NOT NULL,
-        cpf CHAR(11) NOT NULL UNIQUE,
-        email VARCHAR(100) UNIQUE NOT NULL,
-        senha CHAR(60) NOT NULL,
-        tipo_usuario VARCHAR(20) NOT NULL,
-        fk_empresa INT NOT NULL,
+        nome VARCHAR(100),
+        cpf CHAR(14) UNIQUE,
+        email VARCHAR(100) UNIQUE,
+        senha CHAR(60),
+        tipo_usuario VARCHAR(20),
+        fk_empresa INT,
         CONSTRAINT chk_tipo_usuario CHECK (tipo_usuario IN ('administrador', 'operador', 'suporte')),
         FOREIGN KEY (fk_empresa) REFERENCES empresa (id)
     );
 
-ALTER TABLE usuario DROP CONSTRAINT chk_tipo_usuario;
-ALTER TABLE usuario ADD CONSTRAINT chk_tipo_usuario CHECK (tipo_usuario IN ('administrador', 'operador', 'suporte'));
-
 CREATE TABLE telefone (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    numero VARCHAR(11) NOT NULL,
-    tipo VARCHAR(20) NOT NULL,
+    numero VARCHAR(11),
+    tipo VARCHAR(20),
     fk_empresa INT,
     fk_usuario INT,
     CONSTRAINT chk_tipo_telefone CHECK (
@@ -46,20 +39,20 @@ CREATE TABLE telefone (
 
 CREATE TABLE silo (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    altura_total DECIMAL(5, 2) NOT NULL,
+    altura_total DECIMAL(5, 2),
     comprimento DECIMAL(5, 2),
     largura DECIMAL(5, 2),
     raio DECIMAL(5, 2),
     altura_cone DECIMAL(5, 2),
-    fk_empresa INT NOT NULL,
+    fk_empresa INT,
     FOREIGN KEY (fk_empresa) REFERENCES empresa (id)
 );
 
 CREATE TABLE sensor (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    status_sensor VARCHAR(20) NOT NULL,
+    status_sensor VARCHAR(20),
     data_instalacao DATE,
-    fk_silo INT NOT NULL,
+    fk_silo INT,
     CONSTRAINT chk_status_sensor CHECK (
         status_sensor IN ('ativo','inativo','manutencao','instalacao')
     ),
@@ -68,9 +61,9 @@ CREATE TABLE sensor (
 
 CREATE TABLE telemetria (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    distancia_superficie DECIMAL(5, 2) NOT NULL,
+    distancia_superficie DECIMAL(5, 2),
     data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
-    fk_sensor INT NOT NULL,
+    fk_sensor INT,
     FOREIGN KEY (fk_sensor) REFERENCES sensor (id)
 );
 
@@ -80,10 +73,25 @@ INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endere
 ('Armazéns do Campo','11223344000155','suporte@armazens.com','06789030','78','Bloco 2');
 
 INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES 
+<<<<<<< HEAD
 ('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake','administrador','41231234123',1),
 ('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','23412312341',1),
 ('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','11231231231',2),
 ('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','13123123123',3);
+=======
+('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake1','administrador','11111111111111',1),
+('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','22222222222222',1),
+('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','33333333333333',2),
+('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','44444444444444',3);
+
+INSERT INTO usuario (nome, email, senha, tipo_usuario) VALUES 
+('Lucas Veneroso', 'lucas.veneroso@sptech.school', '@Senha123', 'suporte'),
+('Matheus dos Santos', 'matheus.sferreira@sptech.school', '@Senha123', 'suporte'),
+('Dayvid Dias', 'dayvid.dias@sptech.school', '@Senha123', 'suporte'),
+('Yasmin Oda', 'yasmin.lima@sptech.school', '@Senha123', 'suporte'),
+('Victor Mendes', 'victor.bertolino@sptech.school', '@Senha123', 'suporte'),
+('Pedro Assis', 'pedro.dlima@sptech.school', '@Senha123', 'suporte');
+>>>>>>> e4f7d4bdb82b76991702ada47fa2d09089a80097
 
 INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES 
 ('11987654321', 'empresa', 1, NULL),
