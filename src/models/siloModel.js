@@ -81,9 +81,30 @@ function obterDadosGerais(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMedidaMaisRecente(idSilo) {
+    var instrucaoSql = `
+        SELECT 
+            s.id AS idSilo,
+            s.raio,
+            s.altura_total AS alturaTotal,
+            s.altura_cone AS alturaCone,
+            t.distancia_superficie AS distanciaSuperficie,
+            t.data_hora AS dataHora,
+            DATE_FORMAT(t.data_hora, '%d/%m/%Y %H:%i:%s') AS dataHoraFormatada
+        FROM silo s
+        JOIN sensor se ON se.fk_silo = s.id
+        JOIN telemetria t ON t.fk_sensor = se.id
+        WHERE s.id = ${idSilo}
+        ORDER BY t.data_hora DESC, t.id DESC
+        LIMIT 1;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarSilo,
 	buscarSilos,
 	obterTotalSilos,
-	obterDadosGerais
+	obterDadosGerais,
+    buscarMedidaMaisRecente
 };

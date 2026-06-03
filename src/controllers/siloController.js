@@ -102,9 +102,33 @@ function obterDadosGerais (req, res) {
     }
 }
 
+function buscarMedidaMaisRecente(req, res) {
+    var idSilo = req.params.idSilo;
+
+    if (idSilo == undefined) {
+        res.status(400).send("O id do silo está indefinido!");
+    } else {
+        siloModel.buscarMedidaMaisRecente(idSilo).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 module.exports = {
     cadastrarSilo,
     buscarSilos,
     obterTotalSilos,
-    obterDadosGerais
+    obterDadosGerais,
+    buscarMedidaMaisRecente
 }
