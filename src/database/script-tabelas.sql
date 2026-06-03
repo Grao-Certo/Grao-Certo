@@ -193,8 +193,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (1.55, '2026-02-15 10:00:00', 1),
 (2.05, '2026-03-15 10:00:00', 1),
 (2.15, '2026-04-15 10:00:00', 1),
-(1.27, '2026-05-15 10:00:00', 1),
-(0.43, '2026-06-15 10:00:00', 1);
+(1.27, '2026-05-15 10:00:00', 1);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (4.51, '2025-01-15 10:00:00', 2),
@@ -213,8 +212,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (0.98, '2026-02-15 10:00:00', 2),
 (1.22, '2026-03-15 10:00:00', 2),
 (1.47, '2026-04-15 10:00:00', 2),
-(1.21, '2026-05-15 10:00:00', 2),
-(1.51, '2026-06-15 10:00:00', 2);
+(1.21, '2026-05-15 10:00:00', 2);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (5.21, '2025-01-15 10:00:00', 3),
@@ -233,8 +231,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (1.46, '2026-02-15 10:00:00', 3),
 (0.99, '2026-03-15 10:00:00', 3),
 (1.18, '2026-04-15 10:00:00', 3),
-(1.35, '2026-05-15 10:00:00', 3),
-(1.39, '2026-06-15 10:00:00', 3);
+(1.35, '2026-05-15 10:00:00', 3);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (1.47, '2025-01-15 10:00:00', 4),
@@ -253,8 +250,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (6.00, '2026-02-15 10:00:00', 4),
 (6.00, '2026-03-15 10:00:00', 4),
 (6.00, '2026-04-15 10:00:00', 4),
-(6.00, '2026-05-15 10:00:00', 4),
-(5.77, '2026-06-15 10:00:00', 4);
+(6.00, '2026-05-15 10:00:00', 4);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (1.66, '2025-01-15 10:00:00', 5),
@@ -273,8 +269,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (5.63, '2026-02-15 10:00:00', 5),
 (6.00, '2026-03-15 10:00:00', 5),
 (4.81, '2026-04-15 10:00:00', 5),
-(6.00, '2026-05-15 10:00:00', 5),
-(6.00, '2026-06-15 10:00:00', 5);
+(6.00, '2026-05-15 10:00:00', 5);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (1.25, '2025-01-15 10:00:00', 6),
@@ -293,8 +288,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (4.00, '2026-02-15 10:00:00', 6),
 (4.00, '2026-03-15 10:00:00', 6),
 (4.00, '2026-04-15 10:00:00', 6),
-(4.00, '2026-05-15 10:00:00', 6),
-(4.00, '2026-06-15 10:00:00', 6);
+(4.00, '2026-05-15 10:00:00', 6);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (6.34, '2025-01-15 10:00:00', 7),
@@ -313,8 +307,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (7.94, '2026-02-15 10:00:00', 7),
 (8.51, '2026-03-15 10:00:00', 7),
 (9.15, '2026-04-15 10:00:00', 7),
-(8.80, '2026-05-15 10:00:00', 7),
-(7.91, '2026-06-15 10:00:00', 7);
+(8.80, '2026-05-15 10:00:00', 7);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (5.45, '2025-01-15 10:00:00', 8),
@@ -333,8 +326,7 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (8.29, '2026-02-15 10:00:00', 8),
 (9.55, '2026-03-15 10:00:00', 8),
 (7.36, '2026-04-15 10:00:00', 8),
-(7.31, '2026-05-15 10:00:00', 8),
-(7.08, '2026-06-15 10:00:00', 8);
+(7.31, '2026-05-15 10:00:00', 8);
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (5.76, '2025-01-15 10:00:00', 9),
@@ -353,5 +345,4 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (7.47, '2026-02-15 10:00:00', 9),
 (9.21, '2026-03-15 10:00:00', 9),
 (10.00, '2026-04-15 10:00:00', 9),
-(8.03, '2026-05-15 10:00:00', 9),
-(7.14, '2026-06-15 10:00:00', 9);
+(8.03, '2026-05-15 10:00:00', 9);
