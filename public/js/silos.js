@@ -1,5 +1,7 @@
 buscarSilos();
 
+let chartGauge;
+
 function carregarDadosSilo() {
     let idSilo = sessionStorage.getItem("ID_SILO_ATUAL");
 
@@ -10,6 +12,7 @@ function carregarDadosSilo() {
     }
 
     console.log(`Página carregada. Carregando dados do silo: ${idSilo}`);
+    obterMedidas(idSilo);
 }
 
 function toggleMenu(element) {
@@ -136,7 +139,7 @@ let pluginTextoCentro = {
     }
 };
 
-new Chart(ctx3, {
+chartGauge = new Chart(ctx3, {
     type: 'doughnut',
     data: {
         datasets: [
@@ -266,4 +269,61 @@ new Chart(ctx6, {
                 }
             }
         }
-    });
+    }
+);
+
+function obterMedidas(idSilo) {
+    fetch(`/silo/buscarMedidaMaisRecente/${idSilo}`).then(
+        function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(
+                    function (dados) {
+                        if (dados.length > 0) {
+                            let registro = dados[0];
+                            let raio = Number(registro.raio);
+                            let alturaTotal = Number(registro.alturaTotal);
+                            let distancia = Number(registro.distanciaSuperficie);
+                                                
+                            let alturaCone = 0;
+                            if (registro.alturaCone) {
+                                alturaCone = Number(registro.alturaCone);
+                            }
+                        
+                            let volumeTotal = (3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone);
+                            let diferencaAltura = alturaTotal - distancia;
+
+                            if (diferencaAltura < 0) {
+                                diferencaAltura = 0;
+                            }
+                        
+                            let volumeAtual = 3.1416 * raio * raio * diferencaAltura;
+                            let capacidadeMax = volumeTotal;
+                        
+                            let porcentagem = 0;
+
+                            if (capacidadeMax > 0) {
+                                porcentagem = (volumeAtual / capacidadeMax) * 100;
+                            }
+                        
+                            chartGauge.data.datasets[0].data = [porcentagem, 100 - porcentagem];
+
+                            //atualiza o grafico já existente
+                            chartGauge.update();
+                        
+                            ipt_estoqueAtual.value = volumeAtual.toFixed(1).replace('.', ',');
+                            ipt_valorAtualizado.value = registro.dataHoraFormatada;
+                        
+                            calcularValorEstoque();
+                        }   
+                    }
+                );
+            } else {
+                console.error("Erro ao obter medidas mais recentes.");
+            }
+        }
+    ).catch(
+        function (erro) {
+            console.error(erro);
+        }
+    );
+}
