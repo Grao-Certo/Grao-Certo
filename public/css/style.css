@@ -316,56 +316,6 @@ html {
 /*====================================*/
 /* TELA DE LOGIM E CADASTRO */
 /*====================================*/
-.LoginCadastro {
-  height: 100px;
-  background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 60px;
-}
-
-.LoginCadastro #logo {
-  height: 70px;
-  width: 250px;
-}
-
-.LoginCadastro ul {
-  display: flex;
-  padding: 20px;
-}
-
-.LoginCadastro li {
-  margin: 20px;
-  list-style: none;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 10px;
-}
-
-.LoginCadastro li a {
-  color: white;
-  transition: 0.3s;
-  padding-bottom: 5px;
-  position: relative;
-  font-size: 22px;
-}
-
-.LoginCadastro li a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 0;
-  top: 28px;
-  height: 3px;
-  background-color: var(--cor-verde-escuro);
-  transition: width 0.3s ease-in-out;
-}
-
-.LoginCadastro li a:hover::after {
-  width: 100%;
-}
-
 .bodyLoginCad {
   background: url(../assets/imgs/fundoLogin.png);
   height: 100vh;
@@ -396,7 +346,7 @@ html {
 
 #div_mensagem {
   margin: 10px;
-  font-size: 23px;
+  font-size: 22px;
 }
 
 .erro {
@@ -406,7 +356,7 @@ html {
   margin: 20px 0 15px 0;
   padding: 4px 10px;
   border-radius: 11px;
-  font-size: 22px;
+  font-size: 21px;
 }
 
 .acerto {
@@ -416,7 +366,7 @@ html {
   margin: 14px 0 1 0;
   padding: 4px 7px;
   border-radius: 11px;
-  font-size: 22px;
+  font-size: 21px;
 }
 
 /*PÁGINA DE LOGIN*/
@@ -471,7 +421,7 @@ html {
   background-color: #32400192;
   border-radius: 25px;
   border: solid var(--cor-fundo-button-bottom);
-  margin-top: 0;
+  margin-bottom: 40px;
 }
 
 .container-Login input {
@@ -480,20 +430,20 @@ html {
   outline: none;
   background-color: transparent;
   color: white;
-  height: 70px;
-  width: 450px;
+  height: 60px;
+  width: 420px;
   padding: 0 0 0 16px;
-  margin: 0px 50px 10px 50px;
+  margin: 0px 50px 5px 50px;
   font-size: 23px;
   transition: 0.4s;
 }
 
 .container-Login input:hover {
   transform: translateY(-5px);
-  width: 500px;
+  width: 440px;
   margin-top: translateY(-5px);
-  margin-left: 25px;
-  margin-right: 25px;
+  margin-left: 40px;
+  margin-right: 40px;
   border: solid 2px rgb(157, 157, 173);
   border-radius: 15px;
 }
@@ -508,7 +458,7 @@ html {
 }
 
 .formulario h1 {
-  margin: 30px 0 40px 0;
+  margin: 30px 0;
 }
 
 /*PÁGINA DE CADASTRO*/
@@ -543,7 +493,7 @@ html {
 .container-Cadastro .parteInferior {
   position: absolute;
   text-align: center;
-  height: 70%;
+  height: 90%;
   width: 50%;
   left: 50%;
   display: flex;
@@ -1244,15 +1194,15 @@ dashboard
 
 .dashboard-body {
   background-color: #d2e2e4;
-  margin-left: 68px;
+  margin-left: 50px;
 }
 
 .dashboard-layout {
   display: flex;
+  width: 99%;
 }
 
 .dashboard-sidebar {
-  width: 480px;
   background-color: #1f4b6d;
   color: white;
   padding: 20px;
@@ -1385,7 +1335,6 @@ dashboard
 .card-topo {
   height: 150px;
   min-width: 300px;
-  width: fit-content;
   display: grid;
   grid-template: 3fr 1fr;
   justify-items: center;
@@ -1404,8 +1353,8 @@ dashboard
 
 .cards-topo {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 45px;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 15px;
 }
 
 .card-topo span {
@@ -1416,6 +1365,7 @@ dashboard
 
 .card-topo small {
   font-size: 35px;
+  padding: 10px;
 }
 
 .card-topo .titulo-card {
@@ -1515,8 +1465,10 @@ dashboard
 }
 
 .alerta-silos {
-  display: flex;
-  gap: 45px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex-wrap: wrap;
+  gap: 25px 45px;
 }
 
 .silo-input {
@@ -1701,12 +1653,12 @@ dashboard
 
 .dashboard-body::-webkit-scrollbar {
   width: 12px;
-  background: var(--cor-fundo-scroll-fundo-verde);
+  background: #A2DB8F;
 }
 
 .dashboard-body::-webkit-scrollbar-thumb {
   border-radius: 100px;
-  background: rgb(121, 191, 16);
+  background: #003E04;
 }
 
 .bodyLoginCad {

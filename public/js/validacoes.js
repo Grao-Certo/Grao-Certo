@@ -40,7 +40,7 @@ function cadastrarUsuario() {
 
             if (cpf.length == 14 && cpf[3] == '.' && cpf[7] == '.' && cpf[11] == '-') {
 
-                if (email.includes('@') && email.includes('.')) {
+                if (email.includes('@') && email.indexOf('@') > 0 && email.lastIndexOf('.') > email.indexOf('@') + 1 && email.lastIndexOf('.') < email.length - 1) {
 
                     if (criterios == 3) { // senha
 
@@ -63,7 +63,7 @@ function cadastrarUsuario() {
                                         tipoUsuarioServer: usuario
                                     }
                                     ),
-                                }   
+                                }
                             ).then(
                                 function (resposta) {
                                     console.log("resposta: ", resposta);
@@ -122,13 +122,13 @@ function cadastrarEmpresa() {
 
         if (cnpj.length == 18 && cnpj[2] == '.' && cnpj[6] == '.' && cnpj[10] == '/' && cnpj[15] == '-') {
 
-            if (email.includes('@') && email.includes('.')) {
+            if (email.includes('@') && email.indexOf('@') > 0 && email.lastIndexOf('.') > email.indexOf('@') + 1 && email.lastIndexOf('.') < email.length - 1) {
 
                 if (cep.length == 9 && cep[5] == '-') {
 
                     if (numero != '') {
 
-                        if (senha != '') {
+                        if (criterios == 3  ) {
 
                             if (senha == confirmarSenha) {
 
@@ -149,14 +149,14 @@ function cadastrarEmpresa() {
                                             }
                                         ),
                                     }
-                                ).then (
+                                ).then(
                                     function (resposta) {
-                                         if (resposta.ok) {
+                                        if (resposta.ok) {
                                             resposta.json().then(jsonEmpresa => {
                                                 let idEmpresaCriada = jsonEmpresa.insertId;
- 
+
                                                 div_mensagem2.innerHTML = '<span class="acerto"> Empresa cadastrada!</span>';
- 
+
                                                 fetch("/usuarios/cadastrarUsuario", {
                                                     method: "POST",
                                                     headers: {
@@ -186,11 +186,11 @@ function cadastrarEmpresa() {
                                             });
                                         } else {
                                             div_mensagem2.innerHTML = '<span class="erro"> Houve um erro ao cadastrar a empresa.</span>';
-                                         }
-                                     })
-                                     .catch(function (erro) {
-                                         console.log(`#ERRO: ${erro}`);
-                                     });
+                                        }
+                                    })
+                                    .catch(function (erro) {
+                                        console.log(`#ERRO: ${erro}`);
+                                    });
                             } else {
                                 div_mensagem2.innerHTML = '<span class="erro"> As senha não coicidem!'
                             }
@@ -246,6 +246,10 @@ function logar() {
                     sessionStorage.ID_EMPRESA = json.empresaId;
                     sessionStorage.TIPO_USUARIO = json.tipo;
 
+                    setTimeout(() => {
+                        div_mensagem2.innerHTML = '<span class="acerto"> Login efetuado! Redirecionando para a dashboard..';
+                    }, "1000");
+
                     setTimeout(function () {
                         window.location = "dashboard/dashboardGeral.html";
                     }, 1000); // apenas para exibir o loading
@@ -280,62 +284,62 @@ function cadastrarSilo() {
     let alturaCone = input_alturaCone.value;
     let fkEmpresa = sessionStorage.ID_EMPRESA;
 
-        if (altura != '') {
+    if (altura != '') {
 
-            if (comprimento != '') {
+        if (comprimento != '') {
 
-                if (largura != '') {
+            if (largura != '') {
 
-                    if (raio != '') {
+                if (raio != '') {
 
-                        if (alturaCone != '') { // alturaCone
+                    if (alturaCone != '') { // alturaCone
 
-                            fetch("/silo/cadastrarSilo", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify({
-                                    // crie um atributo que recebe o valor recuperado aqui
-                                    // Agora vá para o arquivo routes/usuario.js
-                                    alturaServer: altura,
-                                    comprimentoServer: comprimento,
-                                    larguraServer: largura,
-                                    raioServer: raio,
-                                    alturaConeServer: alturaCone,
-                                    fkEmpresaServer: fkEmpresa
-                                }),
+                        fetch("/silo/cadastrarSilo", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                // crie um atributo que recebe o valor recuperado aqui
+                                // Agora vá para o arquivo routes/usuario.js
+                                alturaServer: altura,
+                                comprimentoServer: comprimento,
+                                larguraServer: largura,
+                                raioServer: raio,
+                                alturaConeServer: alturaCone,
+                                fkEmpresaServer: fkEmpresa
+                            }),
+                        })
+                            .then(function (resposta) {
+                                console.log("resposta: ", resposta);
+
+                                if (resposta.ok) {
+
+                                    div_mensagem2.innerHTML = '<span class="acerto"> Cadastro de silo realizado com sucesso!'
+
+                                } else {
+                                    throw "Houve um erro ao tentar realizar o cadastro do usuario";
+                                }
                             })
-                                .then(function (resposta) {
-                                    console.log("resposta: ", resposta);
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
 
-                                    if (resposta.ok) {
-
-                                        div_mensagem2.innerHTML = '<span class="acerto"> Cadastro de silo realizado com sucesso!'
-
-                                    } else {
-                                        throw "Houve um erro ao tentar realizar o cadastro do usuario";
-                                    }
-                                })
-                                .catch(function (resposta) {
-                                    console.log(`#ERRO: ${resposta}`);
-                                });
-
-                        } else {
-                            div_mensagem2.innerHTML = '<span class="erro"> Adicione a altura do cone'
-                        }
                     } else {
-                        div_mensagem2.innerHTML = '<span class="erro"> Digite o raio do silo'
+                        div_mensagem2.innerHTML = '<span class="erro"> Adicione a altura do cone'
                     }
                 } else {
-                    div_mensagem2.innerHTML = '<span class="erro"> Digite a largura do silo'
+                    div_mensagem2.innerHTML = '<span class="erro"> Digite o raio do silo'
                 }
             } else {
-                div_mensagem2.innerHTML = '<span class="erro"> Digite o comprimento do silo'
+                div_mensagem2.innerHTML = '<span class="erro"> Digite a largura do silo'
             }
         } else {
-            div_mensagem2.innerHTML = '<span class="erro"> Digite a altura do silo'
+            div_mensagem2.innerHTML = '<span class="erro"> Digite o comprimento do silo'
         }
+    } else {
+        div_mensagem2.innerHTML = '<span class="erro"> Digite a altura do silo'
+    }
 }
 
 function mascaraCPF(input) {
