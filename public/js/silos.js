@@ -2,6 +2,7 @@ buscarSilos();
 
 let chartGauge;
 let chartMensal;
+let chartSemanal;
 
 function carregarDadosSilo() {
     let idSilo = sessionStorage.getItem("ID_SILO_ATUAL");
@@ -167,20 +168,20 @@ chartGauge = new Chart(ctx3, {
     });
 
 // GRÁFICO 4: Entrada e Saída Total Semanal 
-new Chart(ctx4, {
+chartSemanal = new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+        labels: [],
         datasets: [
             {
                 label: 'Entrada',
-                data: [0, 10, 5, 0, 10, 30, 40],
+                data: [],
                 backgroundColor: '#003E04',
                 borderRadius: 3
             },
             {
                 label: 'Saída',
-                data: [0, 12, 10, 0, 5, 10, 48],
+                data: [],
                 backgroundColor: '#c0392b',
                 borderRadius: 3
             }
@@ -191,9 +192,7 @@ new Chart(ctx4, {
         maintainAspectRatio: false,
         scales: {
             y: {
-                beginAtZero: true,
-                max: 50,
-                ticks: { stepSize: 10 }
+                beginAtZero: true
             },
             x: {
                 grid: { display: false }
@@ -393,4 +392,8 @@ function obterVolumeMensal(idSilo) {
             console.error(erro);
         }
     );
+}
+
+function obterMovimentacaoSemanal(){
+    
 }
