@@ -59,7 +59,7 @@ function processarDadosDashboard(dados) {
 
     let porcentagemGrafico = [];
 
-    container_alertas.innerHTML = "";
+    let alertasHtml = "";
 
     for (let i = 0; i < dados.length; i++) {
         let silo = dados[i];
@@ -99,7 +99,7 @@ function processarDadosDashboard(dados) {
                 }
             );
 
-            container_alertas.innerHTML += `<input type="text" class="silo-input critico" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Risco de lotação">`;
+            alertasHtml += `<input type="text" class="silo-input critico" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Risco de lotação">`;
 
         } else if (porcentagem < 20) {
             tipoAviso = "amarelo";
@@ -113,13 +113,17 @@ function processarDadosDashboard(dados) {
                 }
             );
 
-            container_alertas.innerHTML += `<input type="text" class="silo-input atencao" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Nível baixo">`;
+            alertasHtml += `<input type="text" class="silo-input atencao" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Nível baixo">`;
         }
 
         labelsGrafico.push("SILO " + silo.id_silo);
         porcentagemGrafico.push(porcentagem.toFixed(1));
         coresGrafico.push(corBarra);
 
+    }
+
+    if (container_alertas.innerHTML !== alertasHtml) {
+        container_alertas.innerHTML = alertasHtml;
     }
 
     kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)}m³</small>`;
@@ -135,55 +139,58 @@ function plotarGrafico(labels, dados, cores) {
 
     //destruindo o primeiro grafico para não dar conflito de pré-existencia
     if (graficoVolume) {
-        graficoVolume.destroy();
-    }
-
-    graficoVolume = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                data: dados,
-                backgroundColor: cores
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    max: 100,
-                    min: 0
+        graficoVolume.data.labels = labels;
+        graficoVolume.data.datasets[0].data = dados;
+        graficoVolume.data.datasets[0].backgroundColor = cores;
+        graficoVolume.update();
+    } else {
+        graficoVolume = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dados,
+                    backgroundColor: cores
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        max: 100,
+                        min: 0
+                    }
+                },
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label:
+                                function (contexto) {
+                                    return contexto.raw + '%';
+                                }
+                        }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter:
+                            function (valor) {
+                                return valor + '%';
+                            },
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        }
+                    }
                 }
             },
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label:
-                            function (contexto) {
-                                return contexto.raw + '%';
-                            }
-                    }
-                },
-                datalabels: {
-                    anchor: 'end',
-                    align: 'top',
-                    formatter:
-                        function (valor) {
-                            return valor + '%';
-                        },
-                    font: {
-                        weight: 'bold',
-                        size: 14
-                    }
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
+            plugins: [ChartDataLabels]
+        });
+    }
 
     setTimeout(() => {
         atualizar();
@@ -193,6 +200,4 @@ function plotarGrafico(labels, dados, cores) {
 
 function atualizar() {
     obterDadosDashboard();
-    processarDadosDashboard();
-    plotarGrafico();
 }
