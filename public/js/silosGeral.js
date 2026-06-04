@@ -99,7 +99,7 @@ function processarDadosDashboard(dados) {
                 }
             );
 
-            container_alertas.innerHTML += `<input type="text" class="silo-input critico" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Risco de superlotação">`;
+            container_alertas.innerHTML += `<input type="text" class="silo-input critico" value="Silo ${silo.id_silo}: ${porcentagem.toFixed(1)}% - Risco de lotação">`;
 
         } else if (porcentagem < 20) {
             tipoAviso = "amarelo";
