@@ -96,7 +96,7 @@ function buscarMedidaMaisRecente(idSilo) {
         JOIN telemetria AS t ON t.fk_sensor = se.id
         WHERE s.id = ${idSilo}
         ORDER BY t.data_hora DESC, t.id DESC
-        LIMIT 1;
+        LIMIT 2;
     `;
     return database.executar(instrucaoSql);
 }
