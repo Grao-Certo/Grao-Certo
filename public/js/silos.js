@@ -394,6 +394,37 @@ function obterVolumeMensal(idSilo) {
     );
 }
 
-function obterMovimentacaoSemanal(){
-    
+function obterMovimentacaoSemanal(idSilo) {
+    fetch(`/silo/buscarMovimentacaoSemanal/${idSilo}`).then(
+        function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(
+                    function (dados) {
+                        let labels = [];
+                        let entradas = [];
+                        let saidas = [];
+
+                        for (let i = 0; i < dados.length; i++) {
+                            let registro = dados[i];
+                            labels.push(registro.dia_mes);
+                            entradas.push(Number(registro.total_entrada));
+                            saidas.push(Number(registro.total_saida));
+                        }
+
+                        chartSemanal.data.labels = labels;
+                        chartSemanal.data.datasets[0].data = entradas;
+                        chartSemanal.data.datasets[1].data = saidas;
+
+                        chartSemanal.update();
+                    }
+                );
+            } else {
+                console.error("Erro ao obter movimentação semanal.");
+            }
+        }
+    ).catch(
+        function (erro) {
+            console.error(erro);
+        }
+    );
 }
