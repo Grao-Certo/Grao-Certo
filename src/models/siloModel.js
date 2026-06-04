@@ -120,11 +120,27 @@ function buscarVolumeMensal(idSilo) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMovimentacaoSemanal(idSilo) {
+    let instrucaoSql = `
+        SELECT 
+            DATE_FORMAT(data_hora, '%d/%m') AS dia_mes,
+            SUM(entrada_m3) AS total_entrada,
+            SUM(saida_m3) AS total_saida
+        FROM vw_entrada_saida_silo
+        WHERE id_silo = ${idSilo}
+          AND data_hora >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+        GROUP BY DATE(data_hora), DATE_FORMAT(data_hora, '%d/%m')
+        ORDER BY DATE(data_hora) ASC;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarSilo,
 	buscarSilos,
 	obterTotalSilos,
 	obterDadosGerais,
     buscarMedidaMaisRecente,
-    buscarVolumeMensal
+    buscarVolumeMensal,
+    buscarMovimentacaoSemanal
 };
