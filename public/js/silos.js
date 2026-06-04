@@ -4,6 +4,10 @@ let chartGauge;
 let chartMensal;
 let chartSemanal;
 
+function calcularArea(raio) {
+    return 3.1416 * raio * raio;
+}
+
 function carregarDadosSilo() {
     let idSilo = sessionStorage.getItem("ID_SILO_ATUAL");
 
@@ -137,11 +141,28 @@ let pluginTextoCentro = {
 
         ctx.font = 'bold 22px DM Sans, Arial';
         ctx.fillStyle = '#333';
+
+        /* exibição da porcentagem
+        let pct = chart.data.datasets[0].data[0];
+        ctx.fillText(pct.toFixed(1) + '%', x, y);
+        */
+
         ctx.fillText(volumeAtual.toFixed(1) + ' TON', x, y);
 
         ctx.restore();
     }
 };
+
+let corInicial = '#003E04';
+let corFundoInicial = '#cdf8cd';
+
+if (porcentagem <= 20) {
+    corInicial = '#f1ae00';
+    corFundoInicial = '#fcf3cf';
+} else if (porcentagem >= 80) {
+    corInicial = '#c0392b';
+    corFundoInicial = '#fadbd8';
+}
 
 chartGauge = new Chart(ctx3, {
     type: 'doughnut',
@@ -149,7 +170,7 @@ chartGauge = new Chart(ctx3, {
         datasets: [
             {
             data: [porcentagem, 100 - porcentagem],
-            backgroundColor: ['#003E04', '#cdf8cd'],
+            backgroundColor: [corInicial, corFundoInicial],
             borderWidth: 0
             }
         ]
@@ -292,14 +313,14 @@ function obterMedidas(idSilo) {
                             }
                         
                             //talvez a yasmin e o veneroso estejam certos sobre deixar isso no select
-                            let volumeTotal = (3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone);
+                            let volumeTotal = (calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone);
                             let diferencaAltura = alturaTotal - distancia;
 
                             if (diferencaAltura < 0) {
                                 diferencaAltura = 0;
                             }
                         
-                            volumeAtual = 3.1416 * raio * raio * diferencaAltura;
+                            volumeAtual = calcularArea(raio) * diferencaAltura;
                             capacidadeMax = volumeTotal;
                         
                             let porcentagem = 0;
@@ -310,11 +331,52 @@ function obterMedidas(idSilo) {
                         
                             chartGauge.data.datasets[0].data = [porcentagem, 100 - porcentagem];
 
-                            //atualiza o grafico já existente
+                            let corPreenchimento = '#003E04';
+                            let corFundo = '#cdf8cd';
+
+                            if (porcentagem <= 20) {
+                                corPreenchimento = '#f1ae00';
+                                corFundo = '#fcf3cf';
+                            } else if (porcentagem >= 80) {
+                                corPreenchimento = '#c0392b';
+                                corFundo = '#fadbd8';
+                            }
+
+                            chartGauge.data.datasets[0].backgroundColor = [corPreenchimento, corFundo];
+
                             chartGauge.update();
                         
                             ipt_estoqueAtual.value = volumeAtual.toFixed(1).replace('.', ',');
                             ipt_valorAtualizado.value = registro.dataHoraFormatada;
+
+                            //realizando comparação e alteração de cor do grafico com base no geristro anterior
+                                if (dados.length > 1) {
+                                    let registroAnterior = dados[1];
+                                    let distanciaAnterior = Number(registroAnterior.distanciaSuperficie);
+                                    let diferencaAnterior = alturaTotal - distanciaAnterior;
+
+                                    if (diferencaAnterior < 0) {
+                                        diferencaAnterior = 0;
+                                    }
+
+                                    let volumeAnterior = calcularArea(raio) * diferencaAnterior;
+
+                                    if (volumeAtual > volumeAnterior) {
+                                        div_kpi_movimentacao.innerHTML = "entrada";
+                                        div_kpi_movimentacao.style.color = "#003E04";
+                                        ipt_valorAtualizado.style.backgroundColor = "#003E04";
+                                    } else if (volumeAtual < volumeAnterior) {
+                                        div_kpi_movimentacao.innerHTML = "saida";
+                                        div_kpi_movimentacao.style.color = "#c0392b";
+                                        ipt_valorAtualizado.style.backgroundColor = "#c0392b";
+                                    } else {
+                                        div_kpi_movimentacao.innerHTML = "sem alterações";
+                                        ipt_valorAtualizado.style.backgroundColor = "#003E04";
+                                    }
+                                } else {
+                                    div_kpi_movimentacao.innerHTML = "";
+                                    ipt_valorAtualizado.style.backgroundColor = "#003E04";
+                                }
                         
                             calcularValorEstoque();
                         }   
@@ -353,7 +415,7 @@ function obterVolumeMensal(idSilo) {
                                 alturaCone = Number(dados[0].alturaCone);
                             }
 
-                            volumeTotal = (3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone);
+                            volumeTotal = (calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone);
                         }
 
                         for (let i = 0; i < dados.length; i++) {
@@ -377,6 +439,7 @@ function obterVolumeMensal(idSilo) {
                             chartMensal.options.scales.y.max = Math.ceil(volumeTotal);
 
                             //CONTEMPLE O FAMOSO "CAVAR NA PORRA DAS INVOCAÇÕES"
+                            //entra dentro dos plugind e faz a linha de meta ter valor adaptativo
                             chartMensal.options.plugins.annotation.annotations.linhaMeta.yMin = valorMeta;
                             chartMensal.options.plugins.annotation.annotations.linhaMeta.yMax = valorMeta;
                             chartMensal.options.plugins.annotation.annotations.linhaMeta.label.content = `Meta (${valorMeta.toFixed(1)} TON)`;
