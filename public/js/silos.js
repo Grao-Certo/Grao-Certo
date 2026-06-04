@@ -16,6 +16,7 @@ function carregarDadosSilo() {
     console.log(`Página carregada. Carregando dados do silo: ${idSilo}`);
     obterMedidas(idSilo);
     obterVolumeMensal(idSilo);
+    obterMovimentacaoSemanal(idSilo);
 }
 
 function toggleMenu(element) {
