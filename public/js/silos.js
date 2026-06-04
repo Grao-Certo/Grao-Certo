@@ -9,7 +9,7 @@ function calcularArea(raio) {
 }
 
 function carregarDadosSilo() {
-    let idSilo = sessionStorage.getItem("ID_SILO_ATUAL");
+    let idSilo = sessionStorage.ID_SILO_ATUAL;
 
     if (!idSilo) {
         alert(`Erro: Nenhum silo foi selecionado.`);
@@ -21,6 +21,10 @@ function carregarDadosSilo() {
     obterMedidas(idSilo);
     obterVolumeMensal(idSilo);
     obterMovimentacaoSemanal(idSilo);
+
+    setInterval(function () {
+        obterMedidas(idSilo);
+    }, 2000);
 }
 
 function toggleMenu(element) {
