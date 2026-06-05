@@ -3,6 +3,7 @@ buscarSilos();
 let chartGauge;
 let chartMensal;
 let chartSemanal;
+let chartFechamento;
 
 function calcularArea(raio) {
     return 3.1416 * raio * raio;
@@ -21,6 +22,7 @@ function carregarDadosSilo() {
     obterMedidas(idSilo);
     obterVolumeMensal(idSilo);
     obterMovimentacaoSemanal(idSilo);
+    obterFechamentoDiario(idSilo);
 
     setInterval(function () {
         obterMedidas(idSilo);
@@ -51,7 +53,7 @@ const ctx4 = document.getElementById('grafico4');
 const ctx6 = document.getElementById('grafico6');
 
 // GRÁFICO 2: Estoque Semanal 
-new Chart(ctx2, {
+chartFechamento = new Chart(ctx2, {
         type: 'line',
         data: {
             labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
@@ -74,7 +76,6 @@ new Chart(ctx2, {
                 y: {
                     beginAtZero: false,
                     min: 0,
-                    max: 100,
                     ticks: { stepSize: 20 }
                 },
                 x: { grid: { display: false } }
@@ -462,6 +463,57 @@ function obterVolumeMensal(idSilo) {
     );
 }
 
+function obterFechamentoDiario(idSilo){
+     fetch(`/silo/buscarOscilacaoDiaria/${idSilo}`).then(
+        function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(
+                        function (dados) {
+                        
+                        let diasSemana = [];
+                        let fechamentoDiario = []
+                        let volumeTotal = 0
+
+                        if (dados.length > 0) {
+                            for(let i = 0; i < dados.length; i++){
+                                diasSemana.push(dados[i].dia_semana);
+                                fechamentoDiario.push(dados[i].fechamento_diario); 
+                            }
+
+                            volumeTotal = dados[0].volume_total;
+                        }
+                        console.log(fechamentoDiario);
+                        console.log(diasSemana);
+
+                        let cheio = (volumeTotal * 0.80);
+                        let vazio = (volumeAtual * 0.20);
+                       
+                        chartFechamento.data.labels = diasSemana;
+                        chartFechamento.data.datasets[0].data = fechamentoDiario;
+                        chartFechamento.options.scales.y.max = volumeTotal;
+                        chartFechamento.options.plugins.annotation.annotations.linhaCheia.yMax = cheio;
+                        chartFechamento.options.plugins.annotation.annotations.linhaCheia.yMin = cheio;
+                        chartFechamento.options.plugins.annotation.annotations.linhaCheia.label.content = `Cheio (${cheio.toFixed(1)} TON)`;
+                        chartFechamento.options.plugins.annotation.annotations.linhaVazia.yMax = vazio;
+                        chartFechamento.options.plugins.annotation.annotations.linhaVazia.yMin = vazio;
+                        chartFechamento.options.plugins.annotation.annotations.linhaVazia.label.content = `Vazio (${vazio.toFixed(1)} TON)`;
+
+
+                       
+                        chartFechamento.update();
+                    }
+                );
+            } else {
+                console.error("Erro ao obter dados do fechamento mensal.");
+            }
+        }
+    ).catch(
+        function (erro) {
+            console.error(erro);
+        }
+    );
+}
+
 function obterMovimentacaoSemanal(idSilo) {
     fetch(`/silo/buscarMovimentacaoSemanal/${idSilo}`).then(
         function (resposta) {
@@ -472,7 +524,7 @@ function obterMovimentacaoSemanal(idSilo) {
                         let entradas = [];
                         let saidas = [];
 
-                        for (let i = 0; i < dados.length; i++) {
+                        for (let i = dados.length; i > 0; i--) {
                             let registro = dados[i];
                             labels.push(registro.dia_mes);
                             entradas.push(Number(registro.total_entrada));
