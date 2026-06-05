@@ -168,7 +168,7 @@ function buscarOscilacaoDiaria(idSilo){
         GROUP BY 
             DATE(v.data_hora), DAYOFWEEK(v.data_hora)
         ORDER BY 
-            DATE(v.data_hora) ASC
+            DATE(v.data_hora) DESC
         LIMIT 7;
     `;
     console.log(instrucaoSql)
