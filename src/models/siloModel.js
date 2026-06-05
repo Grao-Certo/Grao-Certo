@@ -134,6 +134,31 @@ function buscarMovimentacaoSemanal(idSilo) {
     `;
     return database.executar(instrucaoSql);
 }
+function buscarOscilacaoDiaria(idSilo){
+    console.log("ACESSEI O SILO MODEL");
+
+    let instrucaoSql = `
+        SELECT 
+            CASE DAYOFWEEK(data_hora)
+				WHEN 1 THEN 'Dom'
+				WHEN 2 THEN 'Seg'
+				WHEN 3 THEN 'Ter'
+				WHEN 4 THEN 'Qua'
+				WHEN 5 THEN 'Qui'
+				WHEN 6 THEN 'Sex'
+				WHEN 7 THEN 'Sáb'
+			END AS dia_semana,	
+            DATE_FORMAT(data_hora, '%d/%m') AS dia_mes,
+            MAX(volume_atual) AS fechamento_diario
+        FROM vw_entrada_saida_silo
+        WHERE id_silo = ${idSilo}
+        GROUP BY DATE(data_hora)
+        ORDER BY DATE(data_hora) DESC
+        LIMIT 7;
+    `;
+    console.log(instrucaoSql)
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     cadastrarSilo,
@@ -142,5 +167,6 @@ module.exports = {
 	obterDadosGerais,
     buscarMedidaMaisRecente,
     buscarVolumeMensal,
-    buscarMovimentacaoSemanal
+    buscarMovimentacaoSemanal,
+    buscarOscilacaoDiaria
 };

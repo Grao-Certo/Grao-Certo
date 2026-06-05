@@ -29,7 +29,6 @@ router.get("/buscarVolumeMensal/:idSilo", function (req, res) {
 router.get("/buscarOscilacaoDiaria/:idSilo", function (req,res){
     siloController.buscarOscilacaoDiaria(req,res);
 })
-
 router.get("/buscarMovimentacaoSemanal/:idSilo", function (req, res) {
     siloController.buscarMovimentacaoSemanal(req, res);
 });
