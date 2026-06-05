@@ -475,7 +475,7 @@ function obterFechamentoDiario(idSilo){
                         let volumeTotal = 0
 
                         if (dados.length > 0) {
-                            for(let i = 0; i < dados.length; i++){
+                            for(let i = dados.length - 1; i >= 0; i--){
                                 diasSemana.push(dados[i].dia_semana);
                                 fechamentoDiario.push(dados[i].fechamento_diario); 
                             }
@@ -493,10 +493,10 @@ function obterFechamentoDiario(idSilo){
                         chartFechamento.options.scales.y.max = volumeTotal;
                         chartFechamento.options.plugins.annotation.annotations.linhaCheia.yMax = cheio;
                         chartFechamento.options.plugins.annotation.annotations.linhaCheia.yMin = cheio;
-                        chartFechamento.options.plugins.annotation.annotations.linhaCheia.label.content = `Cheio (${cheio.toFixed(1)} TON)`;
+                        chartFechamento.options.plugins.annotation.annotations.linhaCheia.label.content = `Cheio (80%)`;
                         chartFechamento.options.plugins.annotation.annotations.linhaVazia.yMax = vazio;
                         chartFechamento.options.plugins.annotation.annotations.linhaVazia.yMin = vazio;
-                        chartFechamento.options.plugins.annotation.annotations.linhaVazia.label.content = `Vazio (${vazio.toFixed(1)} TON)`;
+                        chartFechamento.options.plugins.annotation.annotations.linhaVazia.label.content = `Vazio (20%)`;
 
 
                        
