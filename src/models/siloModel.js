@@ -136,7 +136,6 @@ function buscarMovimentacaoSemanal(idSilo) {
 }
 function buscarOscilacaoDiaria(idSilo){
     console.log("ACESSEI O SILO MODEL");
-
     let instrucaoSql = `
              SELECT 
             CASE DAYOFWEEK(v.data_hora)
@@ -148,13 +147,10 @@ function buscarOscilacaoDiaria(idSilo){
                 WHEN 6 THEN 'Sex'
                 WHEN 7 THEN 'Sáb'
             END AS dia_semana,
-        
             MAX(v.volume_atual) AS fechamento_diario,
             vts.volume_total AS volume_total
-
         FROM 
             vw_entrada_saida_silo v
-        
         JOIN (
                 SELECT DATE(data_hora) AS data_dia, MAX(data_hora) AS ultima_hora
                 FROM vw_entrada_saida_silo
