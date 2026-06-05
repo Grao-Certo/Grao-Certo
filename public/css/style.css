@@ -111,25 +111,16 @@ html {
 }
 
 .conteudo_header {
-  margin-top: 59px;
+  margin-top: 39px;
   display: flex;
   flex-direction: column;
-  margin-left: 15vw;
+  margin-left: 11vw;
 }
 
 .conteudo_header h2 {
   word-spacing: 10px;
   color: white;
   font-size: 28px;
-}
-
-.conteudo_header li {
-  margin-left: 10px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  color: white;
-  font-size: 20px;
-  list-style: var(--cor-verde-escuro);
 }
 
 .conteudo_header h3 {
@@ -178,10 +169,11 @@ html {
   width: 100%;
   justify-content: space-evenly;
   z-index: 2;
+  margin-top: 15px;
 }
 
 .imagem_contato img {
-  height: 300px;
+  height: 330px;
   border-radius: 5px;
   transition: 0.5s;
 }
@@ -207,7 +199,7 @@ html {
 .logo img {
   width: 130%;
   height: 130%;
-  margin-bottom: 20px;
+  margin: 70px 0 20px 0;
 }
 
 .logo p {
@@ -756,29 +748,27 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
 /* Seção Nossa Solução */
 .secao-solucoes {
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 60px 10%;
+  width: 90%;
+  margin-left: 80px;
 }
 
-.imagem-solucoes {
-  width: 70%;
-  padding-right: 30px;
-}
-
-.imagem-solucoes img {
-  width: 700px;
-  height: 520px;
+.secao-solucoes img {
+  width: 800px;
+  height: 525px;
   border-radius: 10px;
+  background-size: cover;
 }
 
 .conteudo-solucoes {
-  width: 50%;
+  width: 60%;
   text-align: center;
   background-color: #183a55;
-  padding-top: 50px;
   padding-bottom: 20px;
   border-radius: 10px;
   padding: 20px;
+  margin-left: 70px;
 }
 
 .conteudo-solucoes h3 {
@@ -868,6 +858,7 @@ SEÇÕES SOBRE NÓS (integradas de quemSomosNos)
   width: 100%;
   height: 108%;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .texto-porque-nos {
