@@ -158,15 +158,15 @@ function buscarOscilacaoDiaria(idSilo){
         JOIN (
                 SELECT DATE(data_hora) AS data_dia, MAX(data_hora) AS ultima_hora
                 FROM vw_entrada_saida_silo
-                WHERE id_silo = 1
+                WHERE id_silo = ${idSilo}
                 GROUP BY DATE(data_hora)
             ) ult_leitura ON DATE(v.data_hora) = ult_leitura.data_dia 
                         AND v.data_hora = ult_leitura.ultima_hora
         JOIN vw_volume_total_silo AS vts ON vts.id_silo = v.id_silo
         WHERE 
-            v.id_silo = 1
+            v.id_silo = ${idSilo}
         GROUP BY 
-            DATE(v.data_hora), DAYOFWEEK(v.data_hora)
+            DATE(v.data_hora), DAYOFWEEK(v.data_hora), vts.volume_total
         ORDER BY 
             DATE(v.data_hora) DESC
         LIMIT 7;
