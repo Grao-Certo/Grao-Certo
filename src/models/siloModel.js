@@ -138,22 +138,37 @@ function buscarOscilacaoDiaria(idSilo){
     console.log("ACESSEI O SILO MODEL");
 
     let instrucaoSql = `
-        SELECT 
-            CASE DAYOFWEEK(data_hora)
-				WHEN 1 THEN 'Dom'
-				WHEN 2 THEN 'Seg'
-				WHEN 3 THEN 'Ter'
-				WHEN 4 THEN 'Qua'
-				WHEN 5 THEN 'Qui'
-				WHEN 6 THEN 'Sex'
-				WHEN 7 THEN 'Sáb'
-			END AS dia_semana,	
-            DATE_FORMAT(data_hora, '%d/%m') AS dia_mes,
-            MAX(volume_atual) AS fechamento_diario
-        FROM vw_entrada_saida_silo
-        WHERE id_silo = ${idSilo}
-        GROUP BY DATE(data_hora)
-        ORDER BY DATE(data_hora) ASC
+             SELECT 
+            CASE DAYOFWEEK(v.data_hora)
+                WHEN 1 THEN 'Dom'
+                WHEN 2 THEN 'Seg'
+                WHEN 3 THEN 'Ter'
+                WHEN 4 THEN 'Qua'
+                WHEN 5 THEN 'Qui'
+                WHEN 6 THEN 'Sex'
+                WHEN 7 THEN 'Sáb'
+            END AS dia_semana,
+        
+            MAX(v.volume_atual) AS fechamento_diario,
+            vts.volume_total AS volume_total
+
+        FROM 
+            vw_entrada_saida_silo v
+        
+        JOIN (
+                SELECT DATE(data_hora) AS data_dia, MAX(data_hora) AS ultima_hora
+                FROM vw_entrada_saida_silo
+                WHERE id_silo = 1
+                GROUP BY DATE(data_hora)
+            ) ult_leitura ON DATE(v.data_hora) = ult_leitura.data_dia 
+                        AND v.data_hora = ult_leitura.ultima_hora
+        JOIN vw_volume_total_silo AS vts ON vts.id_silo = v.id_silo
+        WHERE 
+            v.id_silo = 1
+        GROUP BY 
+            DATE(v.data_hora), DAYOFWEEK(v.data_hora)
+        ORDER BY 
+            DATE(v.data_hora) ASC
         LIMIT 7;
     `;
     console.log(instrucaoSql)
