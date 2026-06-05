@@ -153,7 +153,7 @@ function buscarOscilacaoDiaria(idSilo){
         FROM vw_entrada_saida_silo
         WHERE id_silo = ${idSilo}
         GROUP BY DATE(data_hora)
-        ORDER BY DATE(data_hora) DESC
+        ORDER BY DATE(data_hora) ASC
         LIMIT 7;
     `;
     console.log(instrucaoSql)
