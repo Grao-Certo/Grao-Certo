@@ -317,7 +317,6 @@ function obterMedidas(idSilo) {
                                 alturaCone = Number(registro.alturaCone);
                             }
                         
-                            //talvez a yasmin e o veneroso estejam certos sobre deixar isso no select
                             let volumeTotal = (calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone);
                             let diferencaAltura = alturaTotal - distancia;
 
@@ -408,8 +407,7 @@ function obterVolumeMensal(idSilo) {
                         let dados2025 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
                         let volumeTotal = 0;
-
-                        // PUTA QUE PARIU QUE CALCULO CHATO DE FAZER NUM DAVA PRA FAZER A MERDA DO SILO SER QUADRADO????
+                        
                         if (dados.length > 0) {
                             let alturaCone = 0;
 
@@ -443,8 +441,6 @@ function obterVolumeMensal(idSilo) {
                             let valorMeta = volumeTotal * 0.4;
                             chartMensal.options.scales.y.max = Math.ceil(volumeTotal);
 
-                            //CONTEMPLE O FAMOSO "CAVAR NA PORRA DAS INVOCAÇÕES"
-                            //entra dentro dos plugind e faz a linha de meta ter valor adaptativo
                             chartMensal.options.plugins.annotation.annotations.linhaMeta.yMin = valorMeta;
                             chartMensal.options.plugins.annotation.annotations.linhaMeta.yMax = valorMeta;
                             chartMensal.options.plugins.annotation.annotations.linhaMeta.label.content = `Meta (${valorMeta.toFixed(1)} TON)`;
