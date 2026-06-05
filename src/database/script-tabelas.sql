@@ -73,15 +73,11 @@ INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endere
 ('Armazéns do Campo','11223344000155','suporte@armazens.com','06789030','78','Bloco 2');
 
 INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES 
-('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake','administrador','41231234123',1),
-('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','23412312341',1),
-('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','11231231231',2),
-('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','13123123123',3);
-
 ('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake1','administrador','11111111111111',1),
 ('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','22222222222222',1),
 ('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','33333333333333',2),
-('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','44444444444444',3);
+('Fernanda Alves','fernanda@armazens.com','$2a$12$hashfake4','operador','44444444444444',3),
+('Roberto Santos', 'roberto@armazens.com', '$2a$12$hashfake5', 'administrador', '34567890123', 3);
 
 INSERT INTO usuario (nome, email, senha, tipo_usuario) VALUES 
 ('Lucas Veneroso', 'lucas.veneroso@sptech.school', '@Senha123', 'suporte'),
@@ -90,7 +86,6 @@ INSERT INTO usuario (nome, email, senha, tipo_usuario) VALUES
 ('Yasmin Oda', 'yasmin.lima@sptech.school', '@Senha123', 'suporte'),
 ('Victor Mendes', 'victor.bertolino@sptech.school', '@Senha123', 'suporte'),
 ('Pedro Assis', 'pedro.dlima@sptech.school', '@Senha123', 'suporte');
-
 INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES 
 ('11987654321', 'empresa', 1, NULL),
 ('11911112222', 'pessoal', NULL, 1),
@@ -99,23 +94,20 @@ INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES
 ('11977778888', 'empresa', 3, NULL),
 ('11999990000', 'pessoal', NULL, 4);
 
-INSERT INTO silo ( raio, altura_cone, altura_total, largura, fk_empresa ) VALUES 
-(4.00, 2.00, 12.00, 8.00, 1);
-
-INSERT INTO sensor ( status_sensor, data_instalacao, fk_silo ) VALUES 
-('ativo', '2024-01-10', 1);
-
 INSERT INTO silo (altura_total, comprimento, largura, raio, altura_cone, fk_empresa) VALUES
+(4.00, 2.00, 12.00, 8.00, 0.90, 1),
+(12.50, 4.50, 4.50, 4.50, 2.50, 1),
+(10.00, 4.00, 4.00, 4.00, 2.00, 1),
+(13.00, 5.00, 5.00, 5.00, 3.00, 2),
+(12.50, 5.50, 5.50, 5.50, 3.50, 2),
+(11.00, 5.00, 5.00, 5.00, 3.00, 2),
 (15.00, 6.00, 6.00, 6.00, 4.00, 3),
 (12.00, 5.00, 5.00, 5.00, 3.00, 3),
 (10.00, 4.00, 4.00, 4.00, 2.00, 3);
 
-INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES
-('Roberto Santos', 'roberto@armazens.com', '$2a$12$hashfake5', 'administrador', '34567890123', 3);
-
 INSERT INTO sensor (status_sensor, data_instalacao, fk_silo) VALUES
 ('ativo', '2024-06-02', 1),
-('ativo', '2025-14-12', 2),
+('ativo', '2025-12-14', 2),
 ('ativo', '2026-06-01', 3),
 ('ativo', '2024-09-13', 4),
 ('ativo', '2025-7-04', 5),
@@ -123,58 +115,6 @@ INSERT INTO sensor (status_sensor, data_instalacao, fk_silo) VALUES
 ('ativo', '2025-11-12', 7),
 ('ativo', '2026-02-05', 8),
 ('ativo', '2026-06-02', 9);
-
-
----------------------------------------------------------------------------
------------------------------ KPIS E AVISOS -------------------------------
----------------------------------------------------------------------------
-
--- VIEW COM O TOTAL DE SILOS E VOLUME DELAS 
----------  GLOBAL -------------
-CREATE VIEW vw_volume_silo AS
-SELECT
-    s.id AS id_silo,
-    ROUND((3.1416 * s.raio * s.raio * (s.altura_total - t.distancia_superficie)),2) AS volume_atual,
-    ROUND((3.1416 * s.raio * s.raio * s.altura_total) + ((1.0 / 3.0) * 3.1416 * s.raio * s.raio * s.altura_cone),2) AS volume_total
-FROM
-    silo s
-    JOIN sensor se ON se.fk_silo = s.id
-    JOIN telemetria t ON t.fk_sensor = se.id;
-    
----------------------------------------------------------------------------
--------------- DASHBOARD INDIVIDUAL DE SILO -------------------------------
----------------------------------------------------------------------------
-
--- View total_silos + (data da última atualização)
-CREATE VIEW vw_volume_total_silo AS
-SELECT id AS id_silo, ROUND(
-        (3.1416 * raio * raio * altura_total) + ((1.0 / 3.0) * 3.1416 * raio * raio * altura_cone), 2) AS volume_total
-FROM silo;
-
--- Entrada e saída diária (Alterações gerais)
-CREATE VIEW vw_entrada_saida_silo AS
-SELECT
-    s.id AS id_silo,
-    t_atual.data_hora,
-    ROUND(3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie), 2) AS volume_atual,
-    CASE
-        WHEN (
-            (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
-        ) > 0 THEN (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
-        ELSE 0
-    END AS entrada_m3,
-    CASE
-        WHEN (
-            (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
-        ) < 0 THEN (
-            (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie))
-        ) ELSE 0
-    END AS saida_m3
-FROM
-    silo s
-    JOIN sensor se ON se.fk_silo = s.id
-    JOIN telemetria t_atual ON t_atual.fk_sensor = se.id
-    JOIN telemetria t_anterior ON t_anterior.id = t_atual.id - 1;
 
 INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (3.09, '2025-01-15 10:00:00', 1),
@@ -346,3 +286,55 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 (9.21, '2026-03-15 10:00:00', 9),
 (10.00, '2026-04-15 10:00:00', 9),
 (8.03, '2026-05-15 10:00:00', 9);
+
+
+---------------------------------------------------------------------------
+----------------------------- KPIS E AVISOS -------------------------------
+---------------------------------------------------------------------------
+
+-- VIEW COM O TOTAL DE SILOS E VOLUME DELAS 
+---------  GLOBAL -------------
+CREATE VIEW vw_volume_silo AS
+SELECT
+    s.id AS id_silo,
+    ROUND((3.1416 * s.raio * s.raio * (s.altura_total - t.distancia_superficie)),2) AS volume_atual,
+    ROUND((3.1416 * s.raio * s.raio * s.altura_total) + ((1.0 / 3.0) * 3.1416 * s.raio * s.raio * s.altura_cone),2) AS volume_total
+FROM
+    silo s
+    JOIN sensor se ON se.fk_silo = s.id
+    JOIN telemetria t ON t.fk_sensor = se.id;
+    
+---------------------------------------------------------------------------
+-------------- DASHBOARD INDIVIDUAL DE SILO -------------------------------
+---------------------------------------------------------------------------
+
+-- View total_silos + (data da última atualização)
+CREATE VIEW vw_volume_total_silo AS
+SELECT id AS id_silo, ROUND(
+        (3.1416 * raio * raio * altura_total) + ((1.0 / 3.0) * 3.1416 * raio * raio * altura_cone), 2) AS volume_total
+FROM silo;
+
+-- Entrada e saída diária (Alterações gerais)
+CREATE VIEW vw_entrada_saida_silo AS
+SELECT
+    s.id AS id_silo,
+    t_atual.data_hora,
+    ROUND(3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie), 2) AS volume_atual,
+    CASE
+        WHEN (
+            (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
+        ) > 0 THEN (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
+        ELSE 0
+    END AS entrada_m3,
+    CASE
+        WHEN (
+            (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
+        ) < 0 THEN (
+            (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie))
+        ) ELSE 0
+    END AS saida_m3
+FROM
+    silo s
+    JOIN sensor se ON se.fk_silo = s.id
+    JOIN telemetria t_atual ON t_atual.fk_sensor = se.id
+    JOIN telemetria t_anterior ON t_anterior.id = t_atual.id - 1;
