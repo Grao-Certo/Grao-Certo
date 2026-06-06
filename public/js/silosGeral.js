@@ -127,7 +127,7 @@ function processarDadosDashboard(dados) {
         container_alertas.innerHTML = alertasHtml;
     }
 
-    kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)} TON</small>`;
+    kpi_totalArmazenado.innerHTML = `<small>${totalAtual.toFixed(1)}/${totalMax.toFixed(1)} TON</small>`;
     kpi_totalAlertas.innerHTML = listaAvisos.length;
 
     plotarGrafico(labelsGrafico, porcentagemGrafico, coresGrafico);
