@@ -34,7 +34,7 @@ function verificarLogado(){
                 <li><a href="#nossa_solucao">NOSSA SOLUÇÃO</a></li> 
                 <li><a href="#sobreNos">SOBRE NÓS</a></li> 
                 <li><a href="simulador.html#simulador-titulo-1">SIMULADOR</a></li>
-                <li><a href="suporte.html">SUPORTE</a></li>`;
+                <li><a href="/dashboard/suporte.html">SUPORTE</a></li>`;
         }
     }
 }
