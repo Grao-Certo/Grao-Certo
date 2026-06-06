@@ -245,14 +245,26 @@ function logar() {
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.ID_EMPRESA = json.empresaId;
                     sessionStorage.TIPO_USUARIO = json.tipo;
+                    let tipo = sessionStorage.TIPO_USUARIO;
 
-                    setTimeout(() => {
-                        div_mensagem2.innerHTML = '<span class="acerto"> Login efetuado! Redirecionando para a dashboard..';
-                    }, "1000");
+                    if(tipo == 'suporte'){
+                        setTimeout(() => {
+                            div_mensagem2.innerHTML = '<span class="acerto"> Login efetuado! Redirecionando para o suporte..';
+                        }, "1000");
 
-                    setTimeout(function () {
-                        window.location = "dashboard/dashboardGeral.html";
-                    }, 1000); // apenas para exibir o loading
+                        setTimeout(function () {
+                            window.location = "dashboard/suporte.html";
+                        }, 1000); // apenas para exibir o loading
+                    }else{
+                        setTimeout(() => {
+                            div_mensagem2.innerHTML = '<span class="acerto"> Login efetuado! Redirecionando para a dashboard..';
+                        }, "1000");
+    
+                        setTimeout(function () {
+                            window.location = "dashboard/dashboardGeral.html";
+                        }, 1000); // apenas para exibir o loading
+                    }
+
 
                 });
 
