@@ -7,11 +7,12 @@
     <title>Grão Certo | Suporte</title>
     <link rel="shortcut icon" href="../assets/imgs/logo_favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/buscar.js"></script>
     <script src="../js/silos.js"></script>
     <script src="../js/sessao.js"></script>
 </head>
 
-<body class="suporte" onload="verificarSuporte()">
+<body class="suporte" onload="verificarSuporte();">
 
     <aside class="dashboard-sidebar">
 
@@ -34,6 +35,10 @@
                     <li> <a href="cadastroSilos.html" id="active">CADASTRAR NOVO SILO</a> </li>
                     <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li>
                 </ul>
+
+                <li class="menu-item" onclick="limparSessao()">
+                    Sair
+                </li>
             </li>
         </ul>
 

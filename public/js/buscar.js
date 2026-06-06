@@ -15,11 +15,13 @@ function buscarSilos(){
                                     
                 if(resposta.ok){
                     resposta.json().then(dados => {       
+                        let tipo = sessionStorage.TIPO_USUARIO;
+                        let paginaAtual = window.location.pathname;
+                        let ativoSuporte = paginaAtual.includes("suporte.html") ? 'id="active"' : '';
+
                         if(dados.length > 0){
                             //buscando a página atual + o id do silo
-                            let paginaAtual = window.location.pathname;
-                            let siloAtual = sessionStorage.getItem("ID_SILO_ATUAL");
-
+                            let siloAtual = sessionStorage.getItem("ID_SILO_ATUAL"); 
                             //validando se a página atual é a dashboard geral, caso seja limpa a tag active ou coloca ela
                             let ativoAvisos = paginaAtual.includes("dashboardGeral.html") ? 'id="active"' : '';
                             let admin = validarAdmin();
@@ -27,13 +29,21 @@ function buscarSilos(){
                             if(admin){
                                 mensagem += `
                                 <li> <a href="dashboardGeral.html" ${ativoAvisos}>AVISOS</a> </li>
+                                <li> <a href="suporte.html" ${ativoSuporte}>SUPORTE</a> </li>
                                 <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
                                 <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li>
                                 `;
                             }else{
-                                mensagem += `
-                                <li> <a href="dashboardGeral.html" ${ativoAvisos}>AVISOS</a> </li>
-                                `;
+                                if(tipo == 'suporte'){
+                                    mensagem += `
+                                    <li> <a href="suporte.html" ${ativoSuporte}>SUPORTE</a> </li>
+                                    `;
+                                }else{
+                                    mensagem += `
+                                    <li> <a href="dashboardGeral.html" ${ativoAvisos}>AVISOS</a> </li>
+                                    <li> <a href="suporte.html" ${ativoSuporte}>SUPORTE</a> </li>
+                                    `;
+                                }
                             }
 
                             for(let i = 0; i < dados.length; i++){
@@ -54,13 +64,22 @@ function buscarSilos(){
                             if(admin){
                                 mensagem += `
                                 <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
+                                <li> <a href="suporte.html" ${ativoSuporte}>SUPORTE</a> </li>
                                 <li> <a href="cadastroSilos.html">CADASTRAR NOVO SILO</a> </li>
                                 <li> <a href="cadastroUsuario.html">CADASTRAR NOVO USUÁRIO</a> </li>
                                 `;
                             }else{
-                                mensagem += `
-                                <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
-                                `;
+
+                                if(tipo == 'suporte'){
+                                    mensagem += `
+                                    <li> <a href="suporte.html" ${ativoSuporte}>SUPORTE</a> </li>
+                                    `;
+                                }else{
+                                    mensagem += `
+                                    <li> <a href="dashboardGeral.html" id="active">AVISOS</a> </li>
+                                    <li> <a href="suporte.html" ${ativoSuporte}>SUPORTE</a> </li>
+                                    `;
+                                }
                             }
                             ul_submenu.innerHTML = mensagem;
                         }
