@@ -70,7 +70,8 @@ function processarDadosDashboard(dados) {
 
         let alturaCone = silo.altura_cone ? Number(silo.altura_cone) : 0;
 
-        let volumeTotal = (3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone);
+        let densidadeGrao = 0.75;
+        let volumeTotal = ((3.1416 * raio * raio * alturaTotal) + ((1.0 / 3.0) * 3.1416 * raio * raio * alturaCone)) * densidadeGrao;
 
         let diferencaAltura = alturaTotal - distancia;
 
@@ -78,7 +79,7 @@ function processarDadosDashboard(dados) {
             diferencaAltura = 0;
         }
 
-        let volumeAtual = 3.1416 * raio * raio * diferencaAltura;
+        let volumeAtual = 3.1416 * raio * raio * diferencaAltura * densidadeGrao;
 
         totalAtual += volumeAtual;
         totalMax += volumeTotal;
@@ -126,7 +127,7 @@ function processarDadosDashboard(dados) {
         container_alertas.innerHTML = alertasHtml;
     }
 
-    kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)}m³</small>`;
+    kpi_totalArmazenado.innerHTML = `${totalAtual.toFixed(1)}<small>/${totalMax.toFixed(1)} TON</small>`;
     kpi_totalAlertas.innerHTML = listaAvisos.length;
 
     plotarGrafico(labelsGrafico, porcentagemGrafico, coresGrafico);

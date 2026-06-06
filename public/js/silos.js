@@ -317,14 +317,15 @@ function obterMedidas(idSilo) {
                                 alturaCone = Number(registro.alturaCone);
                             }
                         
-                            let volumeTotal = (calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone);
+                            let densidadeGrao = 0.75;
+                            let volumeTotal = ((calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone)) * densidadeGrao;
                             let diferencaAltura = alturaTotal - distancia;
 
                             if (diferencaAltura < 0) {
                                 diferencaAltura = 0;
                             }
                         
-                            volumeAtual = calcularArea(raio) * diferencaAltura;
+                            volumeAtual = calcularArea(raio) * diferencaAltura * densidadeGrao;
                             capacidadeMax = volumeTotal;
                         
                             let porcentagem = 0;
@@ -363,7 +364,7 @@ function obterMedidas(idSilo) {
                                         diferencaAnterior = 0;
                                     }
 
-                                    let volumeAnterior = calcularArea(raio) * diferencaAnterior;
+                                    let volumeAnterior = calcularArea(raio) * diferencaAnterior * densidadeGrao;
 
                                     if (volumeAtual > volumeAnterior) {
                                         div_kpi_movimentacao.innerHTML = "entrada";
@@ -418,7 +419,7 @@ function obterVolumeMensal(idSilo) {
                                 alturaCone = Number(dados[0].alturaCone);
                             }
 
-                            volumeTotal = (calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone);
+                            volumeTotal = ((calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone)) * 0.75;
                         }
 
                         for (let i = 0; i < dados.length; i++) {
