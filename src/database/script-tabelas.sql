@@ -95,15 +95,15 @@ INSERT INTO telefone (numero, tipo, fk_empresa, fk_usuario) VALUES
 ('11999990000', 'pessoal', NULL, 4);
 
 INSERT INTO silo (altura_total, comprimento, largura, raio, altura_cone, fk_empresa) VALUES
-(4.00, 2.00, 12.00, 8.00, 0.90, 1),
-(12.50, 4.50, 4.50, 4.50, 2.50, 1),
-(10.00, 4.00, 4.00, 4.00, 2.00, 1),
-(13.00, 5.00, 5.00, 5.00, 3.00, 2),
-(12.50, 5.50, 5.50, 5.50, 3.50, 2),
-(11.00, 5.00, 5.00, 5.00, 3.00, 2),
-(15.00, 6.00, 6.00, 6.00, 4.00, 3),
-(12.00, 5.00, 5.00, 5.00, 3.00, 3),
-(10.00, 4.00, 4.00, 4.00, 2.00, 3);
+(4.00, 2.00, 12.00, 4.00, 0.90, 1),
+(12.50, 4.50, 4.50, 2.25, 2.50, 1),
+(10.00, 4.00, 4.00, 2.00, 2.00, 1),
+(13.00, 5.00, 5.00, 2.50, 3.00, 2),
+(12.50, 5.50, 5.50, 2.75, 3.50, 2),
+(11.00, 5.00, 5.00, 2.50, 3.00, 2),
+(15.00, 6.00, 6.00, 3.00, 4.00, 3),
+(12.00, 5.00, 5.00, 2.50, 3.00, 3),
+(10.00, 4.00, 4.00, 2.00, 2.00, 3);
 
 INSERT INTO sensor (status_sensor, data_instalacao, fk_silo) VALUES
 ('ativo', '2024-06-02', 1),
@@ -297,8 +297,8 @@ INSERT INTO telemetria (distancia_superficie, data_hora, fk_sensor) VALUES
 CREATE VIEW vw_volume_silo AS
 SELECT
     s.id AS id_silo,
-    ROUND((3.1416 * s.raio * s.raio * (s.altura_total - t.distancia_superficie)),2) AS volume_atual,
-    ROUND((3.1416 * s.raio * s.raio * s.altura_total) + ((1.0 / 3.0) * 3.1416 * s.raio * s.raio * s.altura_cone),2) AS volume_total
+    ROUND((3.1416 * s.raio * s.raio * (s.altura_total - t.distancia_superficie)) * 0.75, 2) AS volume_atual,
+    ROUND(((3.1416 * s.raio * s.raio * s.altura_total) + ((1.0 / 3.0) * 3.1416 * s.raio * s.raio * s.altura_cone)) * 0.75, 2) AS volume_total
 FROM
     silo s
     JOIN sensor se ON se.fk_silo = s.id
@@ -311,7 +311,7 @@ FROM
 -- View total_silos + (data da última atualização)
 CREATE VIEW vw_volume_total_silo AS
 SELECT id AS id_silo, ROUND(
-        (3.1416 * raio * raio * altura_total) + ((1.0 / 3.0) * 3.1416 * raio * raio * altura_cone), 2) AS volume_total
+        ((3.1416 * raio * raio * altura_total) + ((1.0 / 3.0) * 3.1416 * raio * raio * altura_cone)) * 0.75, 2) AS volume_total
 FROM silo;
 
 -- Entrada e saída diária (Alterações gerais)
@@ -319,19 +319,18 @@ CREATE VIEW vw_entrada_saida_silo AS
 SELECT
     s.id AS id_silo,
     t_atual.data_hora,
-    ROUND(3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie), 2) AS volume_atual,
+    ROUND(3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie) * 0.75, 2) AS volume_atual,
     CASE
         WHEN (
             (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
-        ) > 0 THEN (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
+        ) > 0 THEN ROUND(((3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))) * 0.75, 2)
         ELSE 0
     END AS entrada_m3,
     CASE
         WHEN (
             (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie))
-        ) < 0 THEN (
-            (3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie))
-        ) ELSE 0
+        ) < 0 THEN ROUND(((3.1416 * s.raio * s.raio * (s.altura_total - t_anterior.distancia_superficie)) - (3.1416 * s.raio * s.raio * (s.altura_total - t_atual.distancia_superficie))) * 0.75, 2)
+        ELSE 0
     END AS saida_m3
 FROM
     silo s
