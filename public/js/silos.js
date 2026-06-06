@@ -520,7 +520,7 @@ function obterMovimentacaoSemanal(idSilo) {
                         let entradas = [];
                         let saidas = [];
 
-                        for (let i = 0; i > dados.length; i++) {
+                        for (let i = 0; i < dados.length; i++) {
                             let registro = dados[i];
                             labels.push(registro.dia_mes);
                             entradas.push(Number(registro.total_entrada));
