@@ -482,7 +482,7 @@ function obterFechamentoDiario(idSilo){
                         console.log(diasSemana);
 
                         let cheio = (volumeTotal * 0.80);
-                        let vazio = (volumeAtual * 0.20);
+                        let vazio = (volumeTotal * 0.20);
                        
                         chartFechamento.data.labels = diasSemana;
                         chartFechamento.data.datasets[0].data = fechamentoDiario;
@@ -500,7 +500,7 @@ function obterFechamentoDiario(idSilo){
                     }
                 );
             } else {
-                console.error("Erro ao obter dados do fechamento mensal.");
+                console.error("Erro ao obter dados do fechamento diario.");
             }
         }
     ).catch(
