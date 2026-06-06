@@ -11,8 +11,9 @@
     />
 
     <link rel="stylesheet" href="css\style.css" />
+    <script src="js/sessao.js"></script>
   </head>
-  <body class="simulador-body">
+  <body class="simulador-body" onload="verificarLogado()">
     <div class="imagem_fundo simulador_fundo">
       <header class="barra">
         <a href="index.html"
@@ -21,7 +22,7 @@
             alt="logo da grão certo"
             id="logo"
         /></a>
-        <ul>
+        <ul id="li_header">
           <li><a href="index.html">HOME</a></li>
           <li><a href="index.html#nossa_solucao">NOSSA SOLUÇÃO</a></li>
           <li><a href="index.html#sobreNos">SOBRE NÓS</a></li>
