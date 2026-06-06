@@ -34,7 +34,7 @@ function verificarLogado(){
                 <li><a href="#nossa_solucao">NOSSA SOLUÇÃO</a></li> 
                 <li><a href="#sobreNos">SOBRE NÓS</a></li> 
                 <li><a href="simulador.html#simulador-titulo-1">SIMULADOR</a></li>
-                <li><a href="Suporte.html">SUPORTE</a></li>`;
+                <li><a href="suporte.html">SUPORTE</a></li>`;
         }
     }
 }
@@ -46,6 +46,14 @@ function validarAdmin() {
             return true;
         }
             return false;
+}
+
+function verificarSuporte(){
+    let tipo = sessionStorage.TIPO_USUARIO;
+
+    if(tipo == 'suporte'){
+        div_bob_ia.style.display = "block"
+    }
 }
 
 function limparSessao() {

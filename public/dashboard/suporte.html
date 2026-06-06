@@ -7,9 +7,10 @@
     <title>Grão Certo | Suporte</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/silos.js"></script>
+    <script src="../js/sessao.js"></script>
 </head>
 
-<body class="suporte">
+<body class="suporte" onload="verificarSuporte()">
 
     <aside class="dashboard-sidebar">
 
@@ -53,7 +54,7 @@
             </div>
         </div>
 
-        <div class="fundoSuporte">
+        <div class="fundoSuporte" id="div_bob_ia" style="display: none;">
             <h1>BOB IA</h1>
             <textarea id="pergunta" type="text" placeholder="DIGITE A SUA PERGUNTA ..."></textarea>
             <br><br>
