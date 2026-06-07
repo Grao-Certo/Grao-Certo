@@ -73,6 +73,9 @@ INSERT INTO empresa (nome, cnpj, email, cep, numero_endereco, complemento_endere
 ('Armazéns do Campo','11223344000155','suporte@armazens.com','06789030','78','Bloco 2');
 
 INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES 
+('João Machado','joao.machado@agrotech.com','$2a$12$hashfake2','administrador','@Senha123',1);
+
+INSERT INTO usuario (nome, email, senha, tipo_usuario, cpf, fk_empresa) VALUES 
 ('Carlos Mendes','carlos@agrotech.com','$2a$12$hashfake1','administrador','11111111111111',1),
 ('Ana Souza','ana@agrotech.com','$2a$12$hashfake2','operador','22222222222222',1),
 ('Bruno Lima','bruno@silosbrasil.com','$2a$12$hashfake3','administrador','33333333333333',2),

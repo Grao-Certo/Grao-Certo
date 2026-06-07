@@ -90,8 +90,7 @@ function buscarMedidaMaisRecente(idSilo) {
             s.altura_cone AS alturaCone,
             t.distancia_superficie AS distanciaSuperficie,
             t.data_hora AS dataHora,
-            DATE_FORMAT(t.data_hora, '%d/%m/%Y %H:%i:%s') AS dataHoraFormatada,
-            DATE_FORMAT(t.data_hora, '%d / %m / %Y') AS dataHoraFechamento
+            DATE_FORMAT(t.data_hora, '%d/%m/%Y %H:%i:%s') AS dataHoraFormatada
         FROM silo AS s
         JOIN sensor AS se ON se.fk_silo = s.id
         JOIN telemetria AS t ON t.fk_sensor = se.id
@@ -139,15 +138,7 @@ function buscarOscilacaoDiaria(idSilo){
     console.log("ACESSEI O SILO MODEL");
     let instrucaoSql = `
              SELECT 
-            CASE DAYOFWEEK(v.data_hora)
-                WHEN 1 THEN 'Dom'
-                WHEN 2 THEN 'Seg'
-                WHEN 3 THEN 'Ter'
-                WHEN 4 THEN 'Qua'
-                WHEN 5 THEN 'Qui'
-                WHEN 6 THEN 'Sex'
-                WHEN 7 THEN 'Sáb'
-            END AS dia_semana,
+            DATE_FORMAT(data_hora, '%d/%m') AS dia_mes,
             MAX(v.volume_atual) AS fechamento_diario,
             vts.volume_total AS volume_total
         FROM 

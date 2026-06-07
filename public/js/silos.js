@@ -56,7 +56,7 @@ const ctx6 = document.getElementById('grafico6');
 chartFechamento = new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            labels: [],
             datasets: [{
                 label: 'Quantidade de toneladas',
                 data: [60, 85, 70, 90, 75, 80, 65],
@@ -353,7 +353,6 @@ function obterMedidas(idSilo) {
                         
                             ipt_estoqueAtual.value = volumeAtual.toFixed(1).replace('.', ',');
                             ipt_valorAtualizado.value = registro.dataHoraFormatada;
-                            ipt_dataFechamento.value = registro.dataHoraFechamento;
 
                             //realizando comparação e alteração de cor do grafico com base no geristro anterior
                                 if (dados.length > 1) {
@@ -419,7 +418,7 @@ function obterVolumeMensal(idSilo) {
                             if (dados[0].alturaCone) {
                                 alturaCone = Number(dados[0].alturaCone);
                             }
-
+                            ipt_dataFechamento.value = registro.dataHoraFechamento;
                             volumeTotal = ((calcularArea(raio) * alturaTotal) + ((1.0 / 3.0) * calcularArea(raio) * alturaCone)) * 0.75;
                         }
 
@@ -474,8 +473,8 @@ function obterFechamentoDiario(idSilo){
 
                         if (dados.length > 0) {
                             for(let i = dados.length - 1; i >= 0; i--){
-                                diasSemana.push(dados[i].dia_semana);
-                                fechamentoDiario.push(dados[i].fechamento_diario); 
+                                diasSemana.push(dados[i].dia_mes);
+                                fechamentoDiario.push(dados[i].fechamento_diario);
                             }
 
                             volumeTotal = dados[0].volume_total;
