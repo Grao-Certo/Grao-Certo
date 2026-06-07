@@ -90,7 +90,8 @@ function buscarMedidaMaisRecente(idSilo) {
             s.altura_cone AS alturaCone,
             t.distancia_superficie AS distanciaSuperficie,
             t.data_hora AS dataHora,
-            DATE_FORMAT(t.data_hora, '%d/%m/%Y %H:%i:%s') AS dataHoraFormatada
+            DATE_FORMAT(t.data_hora, '%d/%m/%Y %H:%i:%s') AS dataHoraFormatada,
+            DATE_FORMAT(t.data_hora, '%d / %m / %Y') AS dataHoraFechamento
         FROM silo AS s
         JOIN sensor AS se ON se.fk_silo = s.id
         JOIN telemetria AS t ON t.fk_sensor = se.id

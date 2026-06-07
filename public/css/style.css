@@ -1422,6 +1422,12 @@ dashboard
   width: 100%;
   height: 100%;
 }
+#grafico2 {
+  margin-bottom: 10px;
+}
+#ipt_dataFechamento {
+  scale: 0.9;
+}
 
 .full-width .dashboard-card {
   width: 100%;

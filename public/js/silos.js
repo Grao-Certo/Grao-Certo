@@ -353,6 +353,7 @@ function obterMedidas(idSilo) {
                         
                             ipt_estoqueAtual.value = volumeAtual.toFixed(1).replace('.', ',');
                             ipt_valorAtualizado.value = registro.dataHoraFormatada;
+                            ipt_dataFechamento.value = registro.dataHoraFechamento;
 
                             //realizando comparação e alteração de cor do grafico com base no geristro anterior
                                 if (dados.length > 1) {
