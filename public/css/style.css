@@ -1727,13 +1727,13 @@ dashboard
 .divCampo h3 {
   color: #1F2A44;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 22px;
   margin-top: 15px;
 }
 
 .divCampo button {
   width: 300px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .suporte {
@@ -1785,6 +1785,7 @@ dashboard
   font-weight: bold;
   border-radius: 15px;
   cursor: pointer;
+  transition: 0.5s;
 }
 
 .suporte button {
