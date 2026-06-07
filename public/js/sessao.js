@@ -2,9 +2,11 @@
 function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
+    let tipo = sessionStorage.TIPO_USUARIO;
 
     var b_usuario = document.getElementById("b_usuario");
     var b_email = document.getElementById("b_email");
+    let b_tipo = document.getElementById("b_tipo");
 
     if(nome != undefined){
         b_usuario.innerHTML = nome;
@@ -12,6 +14,10 @@ function validarSessao() {
 
     if(email != undefined){
         b_email.innerHTML = email;
+    }
+
+    if(tipo != undefined){
+        b_tipo.innerHTML = `Função: ${tipo}`;
     }
 }
 

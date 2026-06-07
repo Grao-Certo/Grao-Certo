@@ -1233,7 +1233,7 @@ dashboard
 .usuario p {
   font-size: 18px;
   margin-top: 0;
-  margin-bottom: 30px;
+  margin-bottom: 1vh;
 }
 
 .icone-usuario img {
