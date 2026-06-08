@@ -157,7 +157,7 @@ function buscarOscilacaoDiaria(idSilo){
                 WHERE id_silo = ${idSilo}
                 GROUP BY DATE(data_hora)
             ) ult_leitura ON DATE(v.data_hora) = ult_leitura.data_dia 
-                        AND v.data_hora = ult_leitura.ultima_hora
+                AND v.data_hora = ult_leitura.ultima_hora
         JOIN vw_volume_total_silo AS vts ON vts.id_silo = v.id_silo
         WHERE 
             v.id_silo = ${idSilo}
